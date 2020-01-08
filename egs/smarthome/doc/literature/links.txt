@@ -1,0 +1,2 @@
+https://scikit-learn.org/stable/modules/outlier_detection.html
+https://towardsdatascience.com/anomaly-detection-for-dummies-15f148e559c1
