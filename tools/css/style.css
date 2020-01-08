@@ -1,0 +1,15 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#unique_id {
+    color: darkblue;
+}
+
+.common_class {
+    line-height: 1.5em;
+}
+
+.common_class_with_selector[selected=true] {
+    font-weight: bold;
+}
