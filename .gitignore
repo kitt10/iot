@@ -6,6 +6,7 @@
 
 # models
 .clf
+models/
 
 # config files
 config.cfg

@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>
+        Smarthome Sensory System
+    </title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" type="text/css" >
+
+    <!-- Scripts -->
+    <script type="text/javascript">
+        var ws
+        var models
+        var selectedRowID
+    </script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="script.js" type="text/javascript"></script>
+</head>
+<body onload="onBodyLoad()">
+    <table id="overview_table">
+        <tr>
+            <th>owner</th>
+            <th>location</th>
+            <th>quantity</th>
+            <th>sensor</th>
+            <th>last value</th>
+            <th>at</th>
+        </tr>
+        <tbody></tbody>
+    </table>
+    <div id="detail_plot"></div>
+    <div id="detail_info">
+        <div id="available_models_title">
+            Available models
+        </div>
+        <table id="available_models_table">
+            <tr>
+                <th>&nbsp;</th>
+                <th>from</th>
+                <th>to</th>
+                <th>sensors</th>
+            </tr>
+            <tbody></tbody>
+            <tr>
+                <td>
+                    <button onClick="onRetrain()">
+                        New
+                    </button>
+                </td>
+                <td>
+                    <input type="date" />
+                </td>
+                <td>
+                    <input type="date" />
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
