@@ -10,3 +10,7 @@ models/
 
 # config files
 config.cfg
+
+# python
+*.pyc
+__pycache__

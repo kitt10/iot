@@ -5,7 +5,7 @@
     </title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css" type="text/css" >
+    <link rel="stylesheet" href="frontend/style.css" type="text/css" >
 
     <!-- Scripts -->
     <script type="text/javascript">
@@ -14,7 +14,7 @@
         var selectedRowID
     </script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="script.js" type="text/javascript"></script>
+    <script src="frontend/script.js" type="text/javascript"></script>
 </head>
 <body onload="onBodyLoad()">
     <table id="overview_table">
@@ -39,6 +39,7 @@
                 <th>from</th>
                 <th>to</th>
                 <th>sensors</th>
+                <th>n_samples</th>
             </tr>
             <tbody></tbody>
             <tr>
@@ -48,10 +49,13 @@
                     </button>
                 </td>
                 <td>
-                    <input type="date" />
+                    <input type="date" id="input_date_from" />
                 </td>
                 <td>
-                    <input type="date" />
+                    <input type="date" id="input_date_to" />
+                </td>
+                <td id="td_sensors_available">
+                    &nbsp;
                 </td>
                 <td>
                     &nbsp;

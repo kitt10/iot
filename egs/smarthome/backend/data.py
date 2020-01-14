@@ -47,3 +47,7 @@ def get_samples(topic, date_from, date_to, sensors, owners, cfg):
             samples.append(sample)
 
     return samples
+
+def get_today_samples(topic, sensor, cfg, owners=['pn']):
+    today = datetime.today().strftime('%Y-%m-%d')
+    return get_samples(topic=topic, date_from=today, date_to=today, sensors=[sensor], owners=owners, cfg=cfg)

@@ -2,7 +2,7 @@ from sys import version as py_version
 from argparse import ArgumentParser
 from config import Config
 from sklearn.ensemble import IsolationForest
-from pickle import dump as pickle_dump
+from pickle import dump as pickle_dump, load as pickle_load
 from json import load as load_json, dump as dump_json
 from data import get_samples
 
@@ -38,6 +38,7 @@ def train_and_save_clf(samples, dim, model_name, cfg):
     with open('models/'+model_name+'.clf', 'wb') as f:
         pickle_dump(clf, f)
 
+    return len(X_train)
 
 def init_models(cfg, owners=['pn']):
     
@@ -72,12 +73,12 @@ def init_models(cfg, owners=['pn']):
                                       cfg=cfg)
 
                 # Train and save the default classifier
-                train_and_save_clf(samples, dim, model_name, cfg)
+                n_samples = train_and_save_clf(samples, dim, model_name, cfg)
 
                 # Register the classifier to models.json
                 clf_metadata = {
                     'sensors': sensors,
-                    'n_samples': len(X_train),
+                    'n_samples': n_samples,
                     'date_from': date_from,
                     'date_to': date_to
                 }
@@ -88,6 +89,61 @@ def init_models(cfg, owners=['pn']):
     # Save the models metadata
     with open('models.json', 'w') as f:
         dump_json(models, f)
+
+def new_model(topic, date_from, date_to, sensors, cfg, owner='pn'):
+    _, location, quantity = topic.split('/')
+
+    # Get samples for training
+    model_name = owner+':'+location+':'+quantity+':'+'&'.join(sensors)
+    model_name += ':'+date_from+'&'+date_to
+
+    samples = get_samples(topic='smarthome/'+location+'/'+quantity,
+                          date_from=date_from,
+                          date_to=date_to,
+                          sensors=sensors,
+                          owners=[owner],
+                          cfg=cfg)
+
+    with open('models.json', 'r') as f:
+        models = load_json(f)
+
+    # Train and save the default classifier
+    n_samples = train_and_save_clf(samples, models[owner][location][quantity]['dim'], model_name, cfg)
+
+    # Register the classifier to models.json
+    clf_metadata = {
+        'sensors': sensors,
+        'n_samples': n_samples,
+        'date_from': date_from,
+        'date_to': date_to
+    }
+
+    models[owner][location][quantity]['active'] = model_name
+    models[owner][location][quantity]['available'][model_name] = clf_metadata
+
+    # Save the models metadata
+    with open('models.json', 'w') as f:
+        dump_json(models, f)
+
+def load_clfs():
+    clfs = dict()
+
+    with open('models.json', 'r') as f:
+        models = load_json(f)
+    
+    for owner in models.keys():
+        clfs[owner] = dict()
+        for location in models[owner].keys():
+            clfs[owner][location] = dict()
+            for quantity in models[owner][location].keys():
+                clf_name = models[owner][location][quantity]['active']
+                try:
+                    with open('models/'+clf_name+'.clf', 'rb') as f:
+                        clfs[owner][location][quantity] = pickle_load(f)
+                except IOError:
+                    print('E: clf file not found.', clf_name)
+
+    return clfs
 
 if __name__ == '__main__':
     
