@@ -24,6 +24,9 @@ def load_config(args):
         return Config(f)
 
 def train_and_save_clf(samples, dim, model_name, cfg):
+    if not samples:
+        return 0
+        
     # Form the training data
     if dim == 1:
         X_train = [[sample.secOfDay] for sample in samples]
@@ -60,8 +63,8 @@ def init_models(cfg, owners=['pn']):
                 }
 
                 # Get samples for training
-                date_from = '2019-12-20'
-                date_to = '2019-12-31'
+                date_from = '2020-01-03'
+                date_to = '2020-01-17'
                 model_name = owner+':'+location+':'+quantity+':'+'&'.join(sensors)
                 model_name += ':'+date_from+'&'+date_to
 
@@ -74,6 +77,7 @@ def init_models(cfg, owners=['pn']):
 
                 # Train and save the default classifier
                 n_samples = train_and_save_clf(samples, dim, model_name, cfg)
+                print(location+'/'+quantity+':', n_samples)
 
                 # Register the classifier to models.json
                 clf_metadata = {

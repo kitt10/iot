@@ -12,7 +12,7 @@ def read_mongo(collection, topic):
         print(json_loads(item['payload'].decode('utf-8')))
 
 if __name__ == '__main__':
-    mongoClient = MongoClient('localhost', 27077)
+    mongoClient = MongoClient('localhost', 27017)
     db = mongoClient.smarthome   # database
     db_collection = db.testing   # collection
 

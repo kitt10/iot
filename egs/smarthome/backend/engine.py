@@ -111,12 +111,15 @@ class WSHandler(WebSocketHandler):
                           cfg=cfg,
                           owner=params['owners'])
             elif params['type'] == 'getDetail':
+                self.send_detail(params)
+                """
                 try:
                     t = Thread(target=self.send_detail, args=[params])
                     t.setDaemon(True)
                     t.start()
                 except ThreadError:
                     print('ERR: Thread WS')
+                """
 
         except ValueError:
             pass
@@ -126,7 +129,8 @@ class WSHandler(WebSocketHandler):
 
         print('Sending detail...', params)
         clf = pointers['clfs'][params['owner']][params['location']][params['quantity']]
-        xx, yy = np.meshgrid(np.linspace(0, 86400), np.linspace(0, 700))    # TODO y_lim to cfg
+        xx, yy = np.meshgrid(np.linspace(0, 86400), np.linspace(cfg.project[params['location']][params['quantity']].y_min, 
+                                                                cfg.project[params['location']][params['quantity']].y_max))
         samples = get_today_samples(topic='smarthome/'+params['location']+'/'+params['quantity'], 
                                     sensor=params['sensor_id'],
                                     cfg=cfg)

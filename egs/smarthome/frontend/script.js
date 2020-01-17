@@ -21,6 +21,8 @@ function onSocketMessage(message) {
             var sensor_id = data['sensor_id']
             var value = data['value']
             var timestamp = data['timestamp']
+            var classification = data['classification']
+            console.log(quantity, sensor_id, value, '::classification:', classification)
             
             try {
                 document.getElementById("value_"+quantity+"_"+sensor_id).innerHTML = value+""
@@ -64,7 +66,7 @@ function onSocketMessage(message) {
     } catch(e) {
         data = message.data
     }
-    console.log(data)
+    //console.log(data)
 }
 
 function onSocketClose() {
@@ -187,6 +189,10 @@ function showQuantityDetail(id) {
     table.replaceChild(tbody, tbody_old)
 
     var td_sensors_available = document.getElementById("td_sensors_available")
+    while (td_sensors_available.firstChild) {
+        td_sensors_available.removeChild(td_sensors_available.firstChild);
+    }
+
     for (available_sensor of available_sensors) {
         var cb = document.createElement("input")
         cb.type = "checkbox"
