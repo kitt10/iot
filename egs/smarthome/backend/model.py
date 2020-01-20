@@ -174,6 +174,7 @@ def load_clf(models, owner, location, quantity, sensors, cfg):
             clf = pickle_load(f)
     except IOError:
         print('E: clf file not found.', clf_name)
+        exit()
 
     json_clfs_this_quantity = dict()
     for sensor_id in sensors:
@@ -185,7 +186,7 @@ def load_clf(models, owner, location, quantity, sensors, cfg):
                                                               dim=models[owner][location][quantity]['dim'],
                                                               cfg=cfg)
     return clf, json_clfs_this_quantity
-    
+
 def load_clfs(cfg):
     clfs = dict()
     json_clfs = dict()
