@@ -39,7 +39,12 @@ def get_samples(topic, date_from, date_to, sensors, owners, cfg):
 
     samples = list()
     for item in db_collection.find({'topic': topic_clean}):
-        sample = Sample(data=loads_json(item['payload']), today=today)
+        try:
+            d = loads_json(item['payload'].decode('utf-8'))
+        except AttributeError:
+            d = loads_json(item['payload'])
+
+        sample = Sample(data=d, today=today)
         if sample.status == 'ok' \
             and days_ago_end <= sample.daysAgo <= days_ago_start \
                 and sample.sensor_id in sensors \

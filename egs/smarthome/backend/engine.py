@@ -50,7 +50,11 @@ class MQTT(ClientMQTT):
     def on_message(self, client, userdata, msg):
         global pointers
 
-        payload = json_loads(msg.payload)
+        try:
+            payload = json_loads(msg.payload.decode('utf-8'))
+        except AttributeError:
+            payload = json_loads(msg.payload)
+            
         print('\n MQTT message\n\tTopic: {} \n\tPayload: {}'.format(msg.topic, payload))
 
         clf = pointers['clfs'][payload['owner']][payload['location']][payload['quantity']]
