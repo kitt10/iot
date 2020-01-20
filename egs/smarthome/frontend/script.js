@@ -30,39 +30,7 @@ function onSocketMessage(message) {
             } catch(e) {
                 console.log('E:', e)
             }
-        } else if (data['type'] == 'aDetail') {
-            console.log('AM HERE.')
-            console.log(data)
-            var plot_data = [{
-                                z: data['model'], 
-                                x: data['x'], 
-                                y: data['y'],
-                                type: 'contour'
-                             },
-                             {
-                                x: data['samples_x'],
-                                y: data['samples_y'],
-                                type: 'scatter',
-                                mode: 'markers',
-                                marker: {
-                                    size: 2,
-                                    color: data['samples_color']
-                                }
-                             }
-                            ]
-
-            var layout = {
-                title: data['owner']+" / "+data['location']+" / "+data['quantity'],
-                xaxis: {
-                    tickmode: "linear",
-                    tick0: 0,
-                    dtick: 3600
-                }
-            }
-            Plotly.newPlot('detail_plot', plot_data, layout)
-        }
-
-        
+        }        
     } catch(e) {
         data = message.data
     }
@@ -71,6 +39,16 @@ function onSocketMessage(message) {
 
 function onSocketClose() {
     console.log("WS client: Websocket closed.")
+}
+
+function loadJsonClf(owner, location, quantity, sensor_id) {
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest()
+    }
+    xmlhttp.open('GET', '/json_clfs/', false)
+    xmlhttp.send(null);
+
+    return  JSON.parse(xmlhttp.responseText)[owner][location][quantity][sensor_id]
 }
 
 function reloadModels() {
@@ -202,14 +180,53 @@ function showQuantityDetail(id) {
     }
 
     // Load CLF data and sensory data
-    var params = {
-        type: "getDetail",
-        owner: owner,
-        location: location,
-        quantity: quantity,
-        sensor_id: sensor
+    data = loadJsonClf(owner, location, quantity, sensor)
+    if (data['dim'] == 1) {
+        var plot_data = [{
+            y: data['model'], 
+            x: data['x'],
+            type: 'scatter'
+            },
+            {
+            x: data['samples_x'],
+            y: data['samples_y'],
+            type: 'scatter',
+            mode: 'markers',
+            marker: {
+                size: 2,
+                color: data['samples_color']
+            }
+            }
+        ]
+    } else if (data['dim'] == 2) {
+        var plot_data = [{
+            z: data['model'], 
+            x: data['x'], 
+            y: data['y'],
+            type: 'contour'
+            },
+            {
+            x: data['samples_x'],
+            y: data['samples_y'],
+            type: 'scatter',
+            mode: 'markers',
+            marker: {
+                size: 2,
+                color: data['samples_color']
+            }
+            }
+        ]
     }
-    ws.send(JSON.stringify(params))
+
+    var layout = {
+        title: owner+" / "+location+" / "+quantity+" / "+sensor,
+        xaxis: {
+            tickmode: "linear",
+            tick0: 0,
+            dtick: 3600
+        }
+    }
+    Plotly.newPlot('detail_plot', plot_data, layout)
 }
 
 function onRetrain() {

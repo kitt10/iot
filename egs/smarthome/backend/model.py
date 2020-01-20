@@ -4,7 +4,8 @@ from config import Config
 from sklearn.ensemble import IsolationForest
 from pickle import dump as pickle_dump, load as pickle_load
 from json import load as load_json, dump as dump_json
-from data import get_samples
+from data import get_samples, get_today_samples
+import numpy as np
 
 def parse_arguments():  
     parser = ArgumentParser(description='Smarthome sensory system - model')
@@ -29,7 +30,7 @@ def train_and_save_clf(samples, dim, model_name, cfg):
         
     # Form the training data
     if dim == 1:
-        X_train = [[sample.secOfDay] for sample in samples]
+        X_train = [[sample.secOfDay] for sample in samples if sample.value == 1]
     elif dim == 2:
         X_train = [[sample.secOfDay, sample.value] for sample in samples]
 
@@ -129,16 +130,54 @@ def new_model(topic, date_from, date_to, sensors, cfg, owner='pn'):
     with open('models.json', 'w') as f:
         dump_json(models, f)
 
-def load_clfs():
+def prepare_json_clf(clf, location, quantity, sensor_id, dim, cfg):
+    
+    color_map = {1: 'green', -1: 'red'}
+    samples = get_today_samples(topic='smarthome/'+location+'/'+quantity, sensor=sensor_id, cfg=cfg)
+    json_clf = {'dim': dim}
+
+    if dim == 1:
+        xx = np.linspace(0, 86400)
+        json_clf['model'] = clf.decision_function([[xxx] for xxx in xx]).reshape(xx.shape).tolist()
+        json_clf['x'] = xx.tolist()
+        
+        if samples:
+            X = np.array([[sample.secOfDay] for sample in samples])
+            samples_color = [color_map[c] for c in clf.predict(X)]
+            json_clf['samples_x'] = X[:,0].tolist()
+            json_clf['samples_y'] = [1 for _ in range(len(samples_color))]
+            json_clf['samples_color'] = samples_color
+
+    elif dim == 2:
+        xx, yy = np.meshgrid(np.linspace(0, 86400), np.linspace(cfg.project[location][quantity].y_min, 
+                                                                cfg.project[location][quantity].y_max))
+
+        json_clf['model'] = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape).tolist()
+        json_clf['x'] = xx[0, :].tolist()
+        json_clf['y'] = yy[:, 0].tolist()
+        
+        if samples:
+            X = np.array([[sample.secOfDay, sample.value] for sample in samples], ndmin=2)
+            samples_color = [color_map[c] for c in clf.predict(X)]
+            json_clf['samples_x'] = X[:,0].tolist()
+            json_clf['samples_y'] = X[:,1].tolist()
+            json_clf['samples_color'] = samples_color
+            
+    return json_clf
+
+def load_clfs(cfg):
     clfs = dict()
+    json_clfs = dict()
 
     with open('models.json', 'r') as f:
         models = load_json(f)
     
     for owner in models.keys():
         clfs[owner] = dict()
+        json_clfs[owner] = dict()
         for location in models[owner].keys():
             clfs[owner][location] = dict()
+            json_clfs[owner][location] = dict()
             for quantity in models[owner][location].keys():
                 clf_name = models[owner][location][quantity]['active']
                 try:
@@ -147,7 +186,17 @@ def load_clfs():
                 except IOError:
                     print('E: clf file not found.', clf_name)
 
-    return clfs
+                for sensor_id in models[owner][location][quantity]['sensors']:
+                    print('Building json_clf for', clf_name, '/ sensor', sensor_id)
+                    json_clfs[owner][location][quantity] = dict()
+                    json_clfs[owner][location][quantity][sensor_id] = prepare_json_clf(clf=clfs[owner][location][quantity], 
+                                                                                       location=location, 
+                                                                                       quantity=quantity, 
+                                                                                       sensor_id=sensor_id,
+                                                                                       dim=models[owner][location][quantity]['dim'],
+                                                                                       cfg=cfg)
+
+    return clfs, json_clfs
 
 if __name__ == '__main__':
     

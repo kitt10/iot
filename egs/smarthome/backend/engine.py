@@ -13,7 +13,7 @@ from datetime import datetime, date
 import numpy as np
 
 from model import load_clfs, new_model
-from data import Sample, get_today_samples
+from data import Sample
 
 
 def parse_arguments():  
@@ -88,6 +88,10 @@ class MainHandler(TornadoRequestHandler):
     def get(self):
         self.render('../frontend/index.html')
 
+class JsonHandler(TornadoRequestHandler):
+    def get(self):
+        self.write(dumps_json(pointers['json_clfs']))
+
 class WSHandler(WebSocketHandler):
 
     def initialize(self):
@@ -110,17 +114,6 @@ class WSHandler(WebSocketHandler):
                           sensors=params['sensors'],
                           cfg=cfg,
                           owner=params['owners'])
-            elif params['type'] == 'getDetail':
-                self.send_detail(params)
-                """
-                try:
-                    t = Thread(target=self.send_detail, args=[params])
-                    t.setDaemon(True)
-                    t.start()
-                except ThreadError:
-                    print('ERR: Thread WS')
-                """
-
         except ValueError:
             pass
 
@@ -172,7 +165,8 @@ if __name__ == '__main__':
     cfg = load_config()
 
     # Load trained classifiers
-    pointers = {'ws_handlers': list(), 'clfs': load_clfs(), 'models': load_models()}
+    clfs, json_clfs = load_clfs(cfg)
+    pointers = {'ws_handlers': list(), 'clfs': clfs, 'models': load_models(), 'json_clfs': json_clfs}
 
     mqtt_client = MQTT(cfg)
     mqtt_client.connect(cfg.mqtt.host)
@@ -187,6 +181,7 @@ if __name__ == '__main__':
     app = TornadoApplication([
         (r'/', MainHandler),
         (r'/websocket', WSHandler),
+        (r"/json_clfs/", JsonHandler),
         (r'/(.*)', StaticFileHandler, {
             'path': join_path(dirname(__file__), '../')})
     ], debug=debug_web, autoreload=debug_web)
