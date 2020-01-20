@@ -12,8 +12,11 @@ from json import load as load_json, dump as dump_json, loads as json_loads, dump
 from datetime import datetime, date
 import numpy as np
 
-from model import load_clfs, new_model, prepare_json_clf
+from model import load_clfs, load_clf, new_model, prepare_json_clf
 from data import Sample
+
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def parse_arguments():  
@@ -55,8 +58,6 @@ class MQTT(ClientMQTT):
         except AttributeError:
             payload = json_loads(msg.payload)
 
-        print('\n MQTT message\n\tTopic: {} \n\tPayload: {}'.format(msg.topic, payload))
-
         clf = pointers['clfs'][payload['owner']][payload['location']][payload['quantity']]
 
         # Classify and send in a new thread
@@ -81,8 +82,6 @@ class MQTT(ClientMQTT):
             payload['type'] = 'newSample'
             for handler in pointers['ws_handlers']:
                 iol.spawn_callback(handler.write_message, dumps_json(payload))
-        else:
-            print('W: sample not OK', payload)
 
     def on_disconnect(self, client, userdata, rc):
         print('MQTT Client: Disconnected with result code qos:', rc)
@@ -112,19 +111,40 @@ class WSHandler(WebSocketHandler):
         print('WS server: <- '+str(message))
         try:
             params = json_loads(message)
-            if params['type'] == 'retrainModel':
+            if params['type'] == 'newModel':
                 new_model(topic=params['topic'], 
                           date_from=params['date_from'],
                           date_to=params['date_to'],
                           sensors=params['sensors'],
                           cfg=cfg,
-                          owner=params['owners'])
+                          owner=params['owner'])
                 
-                return
-                # register new model - TODO
+                print('New model trained.', params)
+
+                pointers['models'] = load_models()
+
                 _, location, quantity = params['topic'].split('/')
-                for sensor in params['sensors']:
-                    pointers['json_clfs']['pn'][location][quantity][sensor] = prepare_json_clf(pointers)
+                pointers['clfs'][params['owner']][location][quantity], pointers['json_clfs'][params['owner']][location][quantity] = load_clf(pointers['models'], params['owner'], location, quantity, params['sensors'], cfg)
+
+                print('CLF json updated.')
+                for handler in pointers['ws_handlers']:
+                    iol.spawn_callback(handler.write_message, dumps_json({'type': 'newModelReady'}))
+            
+            elif params['type'] == 'selectModel':
+                model_name = params['model_name']
+                owner, location, quantity, sensors_, _ = model_name.split(':')
+                sensors = sensors_.split('&')
+                
+                pointers['models'][owner][location][quantity]['active'] = model_name
+                pointers['clfs'][owner][location][quantity], pointers['json_clfs'][owner][location][quantity] = load_clf(pointers['models'], owner, location, quantity, sensors, cfg)
+
+                # Save the models metadata
+                with open('models.json', 'w') as f:
+                    dump_json(pointers['models'], f)
+                
+                print('New model selected:', model_name)
+                for handler in pointers['ws_handlers']:
+                    iol.spawn_callback(handler.write_message, dumps_json({'type': 'newModelReady'}))
 
         except ValueError:
             pass

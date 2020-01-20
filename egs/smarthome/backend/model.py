@@ -13,6 +13,10 @@ def parse_arguments():
                         help='Path to the config file.')
     parser.add_argument('-m', '--mode', type=str, default='', choices=['', 'init'],
                         help='Mode of this script.')
+    parser.add_argument('-df', '--date_from', type=str, default='2020-01-03',
+                        help='Mode of this script.')
+    parser.add_argument('-dt', '--date_to', type=str, default='2020-01-17',
+                        help='Mode of this script.')
 
     return parser.parse_args()
 
@@ -44,7 +48,7 @@ def train_and_save_clf(samples, dim, model_name, cfg):
 
     return len(X_train)
 
-def init_models(cfg, owners=['pn']):
+def init_models(cfg, date_from, date_to, owners=['pn']):
     
     models = {}
     for owner in owners:
@@ -64,8 +68,6 @@ def init_models(cfg, owners=['pn']):
                 }
 
                 # Get samples for training
-                date_from = '2020-01-03'
-                date_to = '2020-01-17'
                 model_name = owner+':'+location+':'+quantity+':'+'&'.join(sensors)
                 model_name += ':'+date_from+'&'+date_to
 
@@ -165,6 +167,25 @@ def prepare_json_clf(clf, location, quantity, sensor_id, dim, cfg):
             
     return json_clf
 
+def load_clf(models, owner, location, quantity, sensors, cfg):
+    clf_name = models[owner][location][quantity]['active']
+    try:
+        with open('models/'+clf_name+'.clf', 'rb') as f:
+            clf = pickle_load(f)
+    except IOError:
+        print('E: clf file not found.', clf_name)
+
+    json_clfs_this_quantity = dict()
+    for sensor_id in sensors:
+        print('Building json_clf for', clf_name, '/ sensor', sensor_id)
+        json_clfs_this_quantity[sensor_id] = prepare_json_clf(clf=clf, 
+                                                              location=location, 
+                                                              quantity=quantity, 
+                                                              sensor_id=sensor_id,
+                                                              dim=models[owner][location][quantity]['dim'],
+                                                              cfg=cfg)
+    return clf, json_clfs_this_quantity
+    
 def load_clfs(cfg):
     clfs = dict()
     json_clfs = dict()
@@ -179,22 +200,12 @@ def load_clfs(cfg):
             clfs[owner][location] = dict()
             json_clfs[owner][location] = dict()
             for quantity in models[owner][location].keys():
-                clf_name = models[owner][location][quantity]['active']
-                try:
-                    with open('models/'+clf_name+'.clf', 'rb') as f:
-                        clfs[owner][location][quantity] = pickle_load(f)
-                except IOError:
-                    print('E: clf file not found.', clf_name)
-
-                json_clfs[owner][location][quantity] = dict()
-                for sensor_id in models[owner][location][quantity]['sensors']:
-                    print('Building json_clf for', clf_name, '/ sensor', sensor_id)
-                    json_clfs[owner][location][quantity][sensor_id] = prepare_json_clf(clf=clfs[owner][location][quantity], 
-                                                                                       location=location, 
-                                                                                       quantity=quantity, 
-                                                                                       sensor_id=sensor_id,
-                                                                                       dim=models[owner][location][quantity]['dim'],
-                                                                                       cfg=cfg)
+                clfs[owner][location][quantity], json_clfs[owner][location][quantity] = load_clf(models,
+                                                                                                 owner,
+                                                                                                 location,
+                                                                                                 quantity,
+                                                                                                 models[owner][location][quantity]['sensors'],
+                                                                                                 cfg)
 
     return clfs, json_clfs
 
@@ -207,4 +218,4 @@ if __name__ == '__main__':
     cfg = load_config(args)
 
     if args.mode == 'init':
-        init_models(cfg)
+        init_models(cfg, args.date_from, args.date_to)

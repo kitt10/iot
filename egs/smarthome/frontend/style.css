@@ -47,3 +47,16 @@ body {
     padding: 2%;
     border: 1px solid gray;
 }
+
+.am_tr {
+    line-height: 1.5em;
+    cursor: pointer;
+}
+
+.am_tr[selected=false] {
+    font-weight: normal;
+}
+
+.am_tr[selected=true] {
+    font-weight: bold;
+}

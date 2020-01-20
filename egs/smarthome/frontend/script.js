@@ -5,6 +5,7 @@ function onBodyLoad() {
     ws.onclose = onSocketClose
 
     reloadModels()
+    fillOverview()
 }
 
 function onSocketOpen(event) {
@@ -30,7 +31,10 @@ function onSocketMessage(message) {
             } catch(e) {
                 console.log('E:', e)
             }
-        }        
+        } else if (data['type'] == 'newModelReady') {
+            reloadModels()
+            showQuantityDetail(selectedRowID)
+        }
     } catch(e) {
         data = message.data
     }
@@ -56,8 +60,6 @@ function reloadModels() {
     request.open("GET", "backend/models.json", false)
     request.send(null)
     models = JSON.parse(request.responseText)
-
-    fillOverview()
 }
 
 function fillOverview() {
@@ -176,7 +178,13 @@ function showQuantityDetail(id) {
         cb.type = "checkbox"
         cb.id = "cb:"+available_sensor
         cb.value = available_sensor
+        cb.checked = true
         td_sensors_available.appendChild(cb)
+
+        var label = document.createElement("label")
+        label.setAttribute("for", cb.id)
+        label.innerHTML = available_sensor
+        td_sensors_available.appendChild(label)
     }
 
     // Load CLF data and sensory data
@@ -238,13 +246,29 @@ function onRetrain() {
     var location = res[2]
     var quantity = res[3]
 
+    var sensors_selected = []
+    for (el of document.getElementById("td_sensors_available").childNodes) {
+        if (el.nodeName == "INPUT" && el.checked) {
+            sensors_selected.push(el.value)
+        }
+    }
+
     var params = {
-        type: "retrainModel",
+        type: "newModel",
         owner: owner,
         topic: "smarthome/"+location+"/"+quantity,
-        sensors: ["ls311b38_02"],
-        date_start: "2019-12-10",
-        date_end: "2019-12-15"
+        sensors: sensors_selected,
+        date_from: document.getElementById("input_date_from").value,
+        date_to: document.getElementById("input_date_to").value
+    }
+    ws.send(JSON.stringify(params))
+}
+
+function selectModel(id) {
+    model_name = id.substring(3)
+    var params = {
+        type: "selectModel",
+        model_name: model_name
     }
     ws.send(JSON.stringify(params))
 }
