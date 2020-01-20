@@ -186,9 +186,9 @@ def load_clfs(cfg):
                 except IOError:
                     print('E: clf file not found.', clf_name)
 
+                json_clfs[owner][location][quantity] = dict()
                 for sensor_id in models[owner][location][quantity]['sensors']:
                     print('Building json_clf for', clf_name, '/ sensor', sensor_id)
-                    json_clfs[owner][location][quantity] = dict()
                     json_clfs[owner][location][quantity][sensor_id] = prepare_json_clf(clf=clfs[owner][location][quantity], 
                                                                                        location=location, 
                                                                                        quantity=quantity, 

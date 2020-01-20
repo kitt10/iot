@@ -12,7 +12,7 @@ from json import load as load_json, dump as dump_json, loads as json_loads, dump
 from datetime import datetime, date
 import numpy as np
 
-from model import load_clfs, new_model
+from model import load_clfs, new_model, prepare_json_clf
 from data import Sample
 
 
@@ -54,7 +54,7 @@ class MQTT(ClientMQTT):
             payload = json_loads(msg.payload.decode('utf-8'))
         except AttributeError:
             payload = json_loads(msg.payload)
-            
+
         print('\n MQTT message\n\tTopic: {} \n\tPayload: {}'.format(msg.topic, payload))
 
         clf = pointers['clfs'][payload['owner']][payload['location']][payload['quantity']]
@@ -108,6 +108,7 @@ class WSHandler(WebSocketHandler):
         self.write_message(u'WS server: Server ready.')
 
     def on_message(self, message):
+        global pointers
         print('WS server: <- '+str(message))
         try:
             params = json_loads(message)
@@ -118,44 +119,15 @@ class WSHandler(WebSocketHandler):
                           sensors=params['sensors'],
                           cfg=cfg,
                           owner=params['owners'])
+                
+                return
+                # register new model - TODO
+                _, location, quantity = params['topic'].split('/')
+                for sensor in params['sensors']:
+                    pointers['json_clfs']['pn'][location][quantity][sensor] = prepare_json_clf(pointers)
+
         except ValueError:
             pass
-
-    def send_detail(self, params):
-        global pointers
-
-        print('Sending detail...', params)
-        clf = pointers['clfs'][params['owner']][params['location']][params['quantity']]
-        xx, yy = np.meshgrid(np.linspace(0, 86400), np.linspace(cfg.project[params['location']][params['quantity']].y_min, 
-                                                                cfg.project[params['location']][params['quantity']].y_max))
-        samples = get_today_samples(topic='smarthome/'+params['location']+'/'+params['quantity'], 
-                                    sensor=params['sensor_id'],
-                                    cfg=cfg)
-
-        dim = pointers['models'][params['owner']][params['location']][params['quantity']]['dim']
-        if dim == 1:
-            X = np.array([[sample.secOfDay] for sample in samples])
-        elif dim == 2:
-            X = np.array([[sample.secOfDay, sample.value] for sample in samples])
-        
-        color_map = {1: 'green', -1: 'red'}
-        samples_color = [color_map[c] for c in clf.predict(X)]
-        
-        reply = {
-            'type': 'aDetail',
-            'owner': params['owner'],
-            'location': params['location'],
-            'quantity': params['quantity'],
-            'sensor_id': params['sensor_id'],
-            'model': clf.decision_function(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape).tolist(),
-            'x': xx[0, :].tolist(),
-            'y': yy[:, 0].tolist(),
-            'samples_x': X[:,0].tolist(),
-            'samples_y': X[:,1].tolist(),
-            'samples_color': samples_color
-        }
-        
-        self.write_message(dumps_json(reply))
 
     def on_close(self):
         global pointers

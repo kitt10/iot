@@ -1,5 +1,5 @@
 function onBodyLoad() {
-    ws = new WebSocket('ws://localhost:8881/websocket')
+    ws = new WebSocket('ws://147.228.124.48:8881/websocket')
     ws.onopen = onSocketOpen
     ws.onmessage = onSocketMessage
     ws.onclose = onSocketClose
@@ -221,9 +221,12 @@ function showQuantityDetail(id) {
     var layout = {
         title: owner+" / "+location+" / "+quantity+" / "+sensor,
         xaxis: {
-            tickmode: "linear",
-            tick0: 0,
-            dtick: 3600
+            //tickmode: "linear",
+            //tick0: 0,
+            //dtick: 3600
+            tickmode: 'array',
+            tickvals: [0, 3600, 7200, 10800, 14400, 18000, 21600, 25200, 28800, 32400, 36000, 39600, 43200, 46800, 50400, 54000, 57600, 61200, 64800, 68400, 72000, 75600, 79200, 82800, 86400],
+            ticktext: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
         }
     }
     Plotly.newPlot('detail_plot', plot_data, layout)
