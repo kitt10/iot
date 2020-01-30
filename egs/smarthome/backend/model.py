@@ -135,7 +135,8 @@ def new_model(topic, date_from, date_to, sensors, cfg, owner='pn'):
 def prepare_json_clf(clf, location, quantity, sensor_id, dim, cfg):
     
     color_map = {1: 'green', -1: 'red'}
-    samples = get_today_samples(topic='smarthome/'+location+'/'+quantity, sensor=sensor_id, cfg=cfg)
+    #samples = get_today_samples(topic='smarthome/'+location+'/'+quantity, sensor=sensor_id, cfg=cfg)
+    samples = []    # hack to speed it up: not classifying today samples
     json_clf = {'dim': dim}
 
     if dim == 1:
@@ -164,7 +165,7 @@ def prepare_json_clf(clf, location, quantity, sensor_id, dim, cfg):
             json_clf['samples_x'] = X[:,0].tolist()
             json_clf['samples_y'] = X[:,1].tolist()
             json_clf['samples_color'] = samples_color
-            
+
     return json_clf
 
 def load_clf(models, owner, location, quantity, sensors, cfg):
