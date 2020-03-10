@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <title>Smart Home About</title>
+    <link rel="icon" type="image/png" href="img/favicon/icon.png"/>
+    
+    <!-- STYLES -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="page_template.css" type="text/css" >
+    <link rel="stylesheet" href="about_template.css" type="text/css" >
+
+    <!-- FUNCTIONS -->
+    <script src="functions.js" type="text/javascript"></script>
+</head>
+
+<body onload="aboutLoaded()"> 
+    <buttonswrap>
+        <a href="overview.html" class="button">Overview</a>
+        <a href="analytics.html" class="button">Analytics</a>
+        <a href="about.html" class="button">About</a>
+    </buttonswrap>
+
+    <h1_frame><h1>
+        Smart home sensory system with an automatic communication diagnostics
+    </h1></h1_frame>
+
+    <text_frame><about_text>
+        This project is a bachelor work at Faculty of Applied Sciences, Department of Cybernetics 
+        at University of West Bohemia. <br><br>
+
+        Aim of this student work is to design and built several smart home Wi-Fi sensors, 
+        programm the communication between individual sensors and broker via MQTT standard 
+        and design an automatic communication diagnostic system in order to catch anomaly and possible failure of the sensors. <br><br>
+        
+        These sensors are based on ESP8266 platform and the data transfer is performed wireless over Wi-Fi. <br><br>
+    </about_text></text_frame>
+
+    <ok_icon_frame></ok_icon_frame>
+    <legend1_frame> 
+        <about_text>When everything works fine. Both ESP8266 and sensor is <b>OK</b>, data transfer is OK. <br> 
+                    Range of measured value is in the predicted area - Classification is <b>1</b>.
+        </about_text>
+    </legend1_frame>
+
+    <value_error_icon_frame></value_error_icon_frame>
+    <legend2_frame>
+        <about_text>When almost everything works fine. Data transfer is OK but the value is not as expected.
+                    This can be caused by the lack of trained data or the sensor might be down.
+                    Range of measured value is <b>not</b> in the predicted area - Classification is <b>-1</b>.
+        </about_text>
+    </legend2_frame>
+    
+    <error_icon_frame></error_icon_frame>
+    <legend3_frame>
+        <about_text>When some <b>error</b> occured. ESP8266 did not send data several times or the sensor is broken. <br>
+                    This can be cause by no internet connection or broken sensor.
+        </about_text>
+    </legend3_frame>
+    
+
+    <logo_name_frame><text>
+        <table class="logo_name">
+            <tr>
+                <td class="td_logo_name"><zcu_logo></zcu_logo></td>
+                <td class="td_logo_name">Patrik Nachtmann<br><br> 2020</td>
+            </tr>
+        </table>
+    </text></logo_name_frame>
+</body>
+</html>

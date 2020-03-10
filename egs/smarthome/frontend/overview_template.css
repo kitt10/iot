@@ -1,0 +1,177 @@
+date_time_frame{
+  position: absolute;
+  width: 845px;
+  height: 40px;
+  margin-left:100px;
+  margin-top: 100px;
+  background:rgba(0, 0, 0, 0.5);
+  padding-top: 10px;
+}
+
+table.table_date_time{
+  text-align: center;
+}
+
+td.td_date_time {
+  width: 845px;
+  height: 20px;
+}
+
+.main_frame_settings {
+  background:rgba(0, 0, 0, 0.5);
+  position: absolute;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.support_frame_settings {
+  position: absolute;
+  text-align: center;
+}
+
+temp_in_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 100px;
+  margin-top: 160px;
+}
+
+temp_out_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 535px;
+  margin-top: 160px;
+}
+
+humidity_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 100px;
+  margin-top: 330px;
+}
+
+luminosity_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 535px;
+  margin-top: 330px;
+}
+
+door_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 100px;
+  margin-top: 670px;
+}
+
+window_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 535px;
+  margin-top: 670px;
+}
+
+pressure_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 100px;
+  margin-top: 500px;
+}
+
+motion_frame {
+  width: 410px;
+  height: 150px;
+  margin-left: 535px;
+  margin-top: 500px;
+}
+
+temp_in_number_frame {
+  width: 200px;
+  height: 90px;
+  margin-left: 205px;
+  margin-top: 210px;
+}
+
+temp_out_number_frame {
+  width: 200px;
+  height: 90px;
+  margin-left: 640px;
+  margin-top: 210px;
+}
+
+humidity_number_frame {
+  width: 160px;
+  height: 90px;
+  margin-left: 225px;
+  margin-top: 380px;
+}
+
+luminosity_number_frame {
+  width: 160px;
+  height: 90px;
+  margin-left: 660px;
+  margin-top: 380px;
+}
+
+door_status_frame {
+  width: 160px;
+  height: 90px;
+  margin-left: 225px;
+  margin-top: 710px;
+}
+
+window_status_frame {
+  width: 160px;
+  height: 90px;
+  margin-left: 660px;
+  margin-top: 710px;
+}
+
+pressure_number_frame {
+  width: 250px;
+  height: 90px;
+  margin-left: 180px;
+  margin-top: 540px;
+}
+
+motion_status_frame {
+  width: 320px;
+  height: 40px;
+  margin-left: 580px;
+  margin-top: 560px;
+}
+
+temp_in_state_frame {
+  width: 30px;
+  height: 30px;
+  margin-left: 470px;
+  margin-top: 170px;
+}
+
+temp_out_state_frame {
+  width: 30px;
+  height: 30px;
+  margin-left: 905px;
+  margin-top: 170px;
+}
+
+humidity_state_frame {
+  width: 30px;
+  height: 30px;
+  margin-left: 470px;
+  margin-top: 340px;
+}
+
+luminosity_state_frame {
+  width: 30px;
+  height: 30px;
+  margin-left: 905px;
+  margin-top: 340px;
+}
+
+pressure_state_frame {
+  width: 30px;
+  height: 30px;
+  margin-left: 470px;
+  margin-top: 510px;
+}

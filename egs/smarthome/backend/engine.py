@@ -3,14 +3,17 @@ from argparse import ArgumentParser
 from config import Config
 from os.path import dirname, join as join_path
 from paho.mqtt.client import Client as ClientMQTT
-from threading import Thread, ThreadError
+from threading import Thread, ThreadError, Timer
 from tornado.web import StaticFileHandler, RequestHandler as TornadoRequestHandler, Application as TornadoApplication
 from tornado.websocket import WebSocketHandler
 from tornado.ioloop import IOLoop
 from websocket import WebSocketApp
 from json import load as load_json, dump as dump_json, loads as json_loads, dumps as dumps_json
 from datetime import datetime, date
+from time import ctime
+import time
 import numpy as np
+import os
 
 from model import load_clfs, load_clf, new_model, prepare_json_clf
 from data import Sample
@@ -39,12 +42,38 @@ def load_models():
     with open('models.json', 'r') as f:
         return load_json(f)
 
+def watcher():
+    print('Timer', ctime())
+
 class MQTT(ClientMQTT):
 
     def __init__(self, cfg):
         ClientMQTT.__init__(self)
         self.cfg = cfg
         self.username_pw_set(cfg.mqtt.uname, password=cfg.mqtt.passwd)
+        self.create_json_file()
+        self.ds18b20_01 = 0
+        self.ds18b20_02 = 0
+        self.dht11_01 = 0
+        self.tsl2591_01 = 0
+        self.bme280_01 = 0
+        self.keys = []
+        
+    def create_json_file(self):
+        webpage_data = os.path.isfile('webpage_data.json') 
+        if not webpage_data:
+            with open('webpage_data.json', 'w') as json_file: 
+                json_data = dict()
+                dump_json(json_data, json_file, indent=2)
+                
+    def update_data(self,payload):
+        data['am312_01'] = [1,'2020-02-21 00:00:00','ok']
+        if payload['sensor_id'] == 'bme280_01' and payload['quantity'] == 'temperature':
+            pass
+        else: 
+            data[payload['sensor_id']] = [payload['value'],payload['timestamp'],payload['status']] 
+            with open('webpage_data.json', 'w+') as f:
+                dump_json(data, f, indent=2)            
 
     def on_connect(self, client, userdata, flags, rc):
         print('MQTT Client: Connected with result code qos:', rc)
@@ -67,18 +96,67 @@ class MQTT(ClientMQTT):
             t.start()
         except ThreadError:
             print('ERR: Thread MQTT')
-
+            
     def predict_and_send_ws(self, clf, payload):
         global pointers
         sample = Sample(data=payload, today=date.today())
         dim = pointers['models'][payload['owner']][payload['location']][payload['quantity']]['dim']
 
-        if sample.status == 'ok' and pointers['ws_handlers']:
+        if sample.status == 'ok': #and pointers['ws_handlers']:
             if dim == 2:
                 payload['classification'] = int(clf.predict([[sample.secOfDay, sample.value]])[0])
             elif dim == 1:
                 payload['classification'] = int(clf.predict([[sample.secOfDay]])[0])
             
+            if payload['classification'] < 0:
+                print("Sample status OK and Clasif -1")
+                payload['status'] = 'value_error'
+
+        elif payload['status'] is not 'ok':
+            print("Sample status NOT ok")
+            payload['status'] = 'error'  
+            
+        payload['type'] = 'newSample'
+        for handler in pointers['ws_handlers']:
+            iol.spawn_callback(handler.write_message, dumps_json(payload))
+
+        # Check the next one
+        sensor_key = payload['owner']+':'+payload['location']+':'+payload['quantity']+':'+payload['sensor_id']
+        pointers['last_sample_timestamp'][sensor_key] = payload['timestamp']
+        Timer(80, self.sensor_check, [payload]).start()    
+            
+            #if payload['classification'] == 1:
+            #    payload['page_info'] = 'ok'
+            #elif payload['classification'] == -1:
+            #    payload['page_info'] = 'value_error'
+
+        #elif sample.status == 'sensor_error' or 'ds18b20_inside_error' or 'ds18b20_outside_error' or 'dht11_error':
+            #print('status ERR')
+            #payload['value'] = 0
+            #payload['page_info'] = 'error'
+
+        #payload['type'] = 'newSample'
+        #for handler in pointers['ws_handlers']:
+            #iol.spawn_callback(handler.write_message, dumps_json(payload))
+            #iol.spawn_callback(handler.write_message, dumps_json({'location': 'heheh', 'owner': 'pn', 'status': 'ok'}))
+
+        try:
+            t = Thread(target=self.update_data(payload), args=[clf, payload])
+            t.setDaemon(True)
+            t.start()
+        except ThreadError:
+            print('ERR: Thread UPDATE DATA')        
+
+    def sensor_check(self, payload):
+        sensor_key = payload['owner']+':'+payload['location']+':'+payload['quantity']+':'+payload['sensor_id']
+        dt_last = datetime.strptime(pointers['last_sample_timestamp'][sensor_key], '%Y-%m-%d %H:%M:%S')
+        dt_now = datetime.now()
+        seconds_diff = (dt_now-dt_last).total_seconds()
+        if seconds_diff > 60:
+            print('ERR: sensor_dead:', sensor_key)
+            payload['status'] = 'error'
+            payload['value'] = 0
+            payload['classification'] = 0
             payload['type'] = 'newSample'
             for handler in pointers['ws_handlers']:
                 iol.spawn_callback(handler.write_message, dumps_json(payload))
@@ -89,7 +167,7 @@ class MQTT(ClientMQTT):
 class MainHandler(TornadoRequestHandler):
 
     def get(self):
-        self.render('../frontend/index.html')
+        self.render('../frontend/overview.html')
 
 class JsonHandler(TornadoRequestHandler):
     def get(self):
@@ -156,16 +234,22 @@ class WSHandler(WebSocketHandler):
 
 
 if __name__ == '__main__':
+    data = dict()
     
     # Print Python version, load project configuration
     cfg = load_config()
 
     # Load trained classifiers
     clfs, json_clfs = load_clfs(cfg)
-    pointers = {'ws_handlers': list(), 'clfs': clfs, 'models': load_models(), 'json_clfs': json_clfs}
+    pointers = {'ws_handlers': list(), 
+                'clfs': clfs, 
+                'models': load_models(), 
+                'json_clfs': json_clfs,
+                'last_sample_timestamp': dict()}
 
     mqtt_client = MQTT(cfg)
     mqtt_client.connect(cfg.mqtt.host)
+    
     try:
         t = Thread(target=mqtt_client.loop_forever)
         t.setDaemon(True)

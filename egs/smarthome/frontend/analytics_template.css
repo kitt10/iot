@@ -1,0 +1,163 @@
+table.table_dropdown_menu{
+  text-align: center;
+  width: 770px;
+}
+
+td.td_option {
+  width: 165px;
+  height: 20px;
+  padding-right: 0px;
+}
+
+td.td_space {
+  width: 2px;
+  height: 20px;
+  padding-right: 0px;
+}
+
+.box {
+  --position: absolute;
+}
+
+.box select {
+  background-color: #999;
+  color:  white;
+  padding: 6px;
+  width: 180px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 100;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.box::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  background-color:  #ffffff;
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: white;
+  background-color: white;
+}
+
+.box select option {
+  --padding: 30px;
+}
+
+dropdown_menu_frame{
+  position: absolute;
+  width: 770px;
+  height: 40px;
+  margin-left:95px;
+  margin-top: 100px;
+  background:#27273f;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  padding-left: 0px;
+}
+
+refresh_button_frame{
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  margin-left: 904px;
+  margin-top: 103px;
+} 
+
+title_frame{
+  position: absolute;
+  width: 845px;
+  height: 35px;
+  margin-left:100px;
+  margin-top: 160px;
+  background:rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding-top: 6px;
+}
+
+quantity_detail_frame1{
+  position: absolute;
+  width: 415px;
+  height: 140px;
+  margin-left:100px;
+  margin-top: 210px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+quantity_detail_frame2{
+  position: absolute;
+  width: 415px;
+  height: 140px;
+  margin-left:530px;
+  margin-top: 210px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+n_samples_frame{
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  margin-left: 700px;
+  margin-top: 215px;
+  padding-left: 10px;
+  padding-top: 1px;
+}
+
+last_value_frame{
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  margin-left: 700px;
+  margin-top: 240px;
+  padding-left: 10px;
+  padding-top: 1px;
+}
+
+at_timestamp_frame{
+  position: absolute;
+  width: 200px;
+  height: 20px;
+  margin-left: 700px;
+  margin-top: 265px;
+  padding-left: 10px;
+  padding-top: 1px;
+}
+
+sensor_status_frame{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin-left: 695px;
+  margin-top: 295px;
+  padding-left: 10px;
+  padding-top: 1px;
+}
+
+selected_data_detail_frame{
+  position: absolute;
+  width: 845px;
+  height: 350px;
+  margin-left:100px;
+  margin-top: 375px;
+  background:#27273f;
+}
+
+main_frame{
+  position: absolute;
+  width: 845px;
+  height: 1000px;
+  margin-left:100px;
+  margin-top: 1400px;
+  background:white;
+  border: 1px solid white;
+}

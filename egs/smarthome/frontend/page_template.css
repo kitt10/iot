@@ -1,0 +1,79 @@
+* {
+	-webkit-transition-property: all;
+	-webkit-transition-duration: .3s;
+  -moz-transition-timing-function: cubic-bezier(100,50,21,6);
+}
+
+body{
+  font-family: 'Oswald', sans-serif;
+  background:#27273f;
+  width: 1030px;
+  margin: 0 auto;
+}
+
+h1{
+  color: white;
+  font-weight:100;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+text{
+  color: white;
+  font-weight: 100;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+about_text{
+  color: white;
+  font-weight: 100;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+number{
+  color: white;
+  font-weight: 100;
+  font-size: 60px;
+  letter-spacing: 2px;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+quantity{
+  color: white;
+  font-weight: 100;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.button{
+  color:#999;
+  background:rgba(0, 0, 0, 0.5);
+  padding:10px 100px;
+  font-size:17px;
+  text-decoration:none;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.button:hover{
+  border:none;
+  background:rgba(0, 0, 0, 0.4);
+  background:#fff;
+  padding:17px 100px; #000;
+  color:#1b1b1b;
+}
+
+buttonswrap{
+  position: absolute;
+  width: 845px;
+  height: 20px;
+  margin-left: 100px;
+  margin-top: 40px;
+}

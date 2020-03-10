@@ -1,0 +1,89 @@
+h1_frame{
+  position: absolute;
+  width: 845px;
+  height: 40px;
+  margin-left:100px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+text_frame{
+  position: absolute;
+  width: 845px;
+  height: 200px;
+  margin-left:100px;
+  margin-top: 170px;
+  text-align: justify;
+}
+
+logo_name_frame{
+  position: absolute;
+  width: 845px;
+  height: 200px;
+  margin-left:100px;
+  margin-top: 650px;
+  text-align: justify;
+}
+
+ok_icon_frame{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-left:100px;
+  margin-top: 400px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+legend1_frame{
+  position: absolute;
+  width: 780px;
+  height: 60px;
+  margin-left:170px;
+  margin-top: 400px;
+}
+
+value_error_icon_frame{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-left:100px;
+  margin-top: 470px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+legend2_frame{
+  position: absolute;
+  width: 780px;
+  height: 90px;
+  margin-left:170px;
+  margin-top: 470px;
+}
+
+error_icon_frame{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-left:100px;
+  margin-top: 570px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+legend3_frame{
+  position: absolute;
+  width: 780px;
+  height: 60px;
+  margin-left:170px;
+  margin-top: 570px;
+}
+
+table.logo_name{
+  text-align: center;
+}
+
+td.td_logo_name {
+  width: 400px;
+  height: 150px;
+}

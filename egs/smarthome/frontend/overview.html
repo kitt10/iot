@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <title>Smart Home Overview</title>
+    <link rel="icon" type="image/png" href="../frontend/img/favicon/icon.png"/>
+    
+    <!-- STYLES -->
+        <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../frontend/page_template.css" type="text/css" >
+        <link rel="stylesheet" href="../frontend/overview_template.css" type="text/css" >
+
+    <!-- SCRIPTS -->
+        <script src="../frontend/functions.js" type="text/javascript"></script>
+        <script src="../frontend/overview.js" type="text/javascript"></script>
+</head>
+
+<body onload=overviewLoaded();> 
+    <buttonswrap>
+        <a href="../frontend/overview.html" class="button">Overview</a>
+        <a href="../frontend/analytics.html" class="button">Analytics</a>
+        <a href="../frontend/about.html" class="button">About</a>
+    </buttonswrap>
+    
+    <date_time_frame><text>
+        <table class="table_date_time">
+            <tr>
+                <td class="td_date_time"><set_actual_date></set_actual_date></td>
+                <td class="td_date_time"><set_actual_time></set_actual_time></td>
+            </tr>
+        </table>
+    </text></date_time_frame>
+
+    <temp_in_frame class="main_frame_settings"><text>
+        inside temperature        
+    </text></temp_in_frame>
+
+    <temp_in_number_frame class="support_frame_settings"><number>
+        <temp_in_value> </temp_in_value>      <quantity> °C </quantity>
+    </number></temp_in_number_frame>
+
+    <temp_in_state_frame class="support_frame_settings"></temp_in_state_frame>
+    
+    <temp_out_frame class="main_frame_settings"><text>
+        outside temperature   
+    </text></temp_out_frame>
+
+    <temp_out_number_frame class="support_frame_settings"><number>
+        <temp_out_value> </temp_out_value>      <quantity> °C </quantity>
+    </number></temp_out_number_frame>
+
+    <temp_out_state_frame class="support_frame_settings"></temp_out_state_frame>
+
+    <humidity_frame class="main_frame_settings"><text>
+        inside humidity
+    </text></humidity_frame>
+
+    <humidity_number_frame class="support_frame_settings"><number>
+        <humidity_value> </humidity_value>      <quantity> % </quantity>
+    </number></humidity_number_frame>    
+
+    <humidity_state_frame class="support_frame_settings"></humidity_state_frame>
+ 
+    <luminosity_frame class="main_frame_settings"><text>
+        inside illuminance
+    </text></luminosity_frame>
+
+    <luminosity_number_frame class="support_frame_settings"><number>
+        <illuminance_value> </illuminance_value>      <quantity> lux </quantity>
+    </number></luminosity_number_frame> 
+    
+    <luminosity_state_frame class="support_frame_settings"></luminosity_state_frame>
+
+    <pressure_frame class="main_frame_settings"><text>
+        inside pressure
+    </text></pressure_frame>
+
+    <pressure_number_frame class="support_frame_settings"><number>
+        <pressure_value> </pressure_value>      <quantity>hPa </quantity>
+    </number></pressure_number_frame>
+
+    <pressure_state_frame class="support_frame_settings"></pressure_state_frame>
+
+    <motion_frame class="main_frame_settings"><text>
+        last motion in room
+    </text></motion_frame>
+
+    <motion_status_frame class="support_frame_settings"><quantity>
+        <motion_value> </motion_value>
+    </quantity></motion_status_frame>  
+
+    <door_frame class="main_frame_settings"><text>
+        door status
+    </text></door_frame>
+
+    <door_status_frame class="support_frame_settings"><number class="uppercase">
+        <door_value> </door_value>
+    </number></door_status_frame>    
+
+    <window_frame class="main_frame_settings"><text>
+        window status
+    </text></window_frame>
+
+    <window_status_frame class="support_frame_settings"><number class="uppercase">
+        <window_value> </window_value>
+    </number></window_status_frame>  
+    
+</body>
+</html>
