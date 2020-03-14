@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Masters/Doctoral Thesis 
+% LaTeX Template
+% Version 2.3 (25/3/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Version 2.x major modifications by:
+% Vel (vel@latextemplates.com)
+%
+% This template is based on a template by:
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+%
+% Template license:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+11pt, 						% The default document font size, options: 10pt, 11pt, 12pt
+oneside, 					% Two side (alternating margins) for binding by default, uncomment to switch to one side
+%chapterinoneline,			% Have the chapter title next to the number in one single line
+english, 					% ngerman for German
+singlespacing, 				% Single line spacing, alternatives: onehalfspacing or doublespacing
+%draft, 					% Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+nolistspacing, 				% Uncomment this to set spacing in lists to single
+%liststotoc, 				% Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, 					% Uncomment to add the main table of contents to the table of contents
+parskip, 					% Uncomment to add space between paragraphs
+%nohyperref, 				% Uncomment to not load the hyperref package
+headsepline, 				% Uncomment to get a line under the header
+hidelinks,
+]{style/thesis_style} 		% The class file specifying the document structure
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} 	% Output font encoding for international characters
+
+\usepackage{lmodern} 		% Font family
+
+% Use the bibtex backend with the authoryear citation style (which resembles APA) (citestyle=alphabetic)
+\usepackage[backend=bibtex,style=numeric,citestyle=authoryear-comp,natbib=true,sorting=ynt]{biblatex} 
+\addbibresource{bib/thesis_bibliography.bib} 				% The filename of the bibliography
+
+% Required to generate language-dependent quotes in the bibliography
+\usepackage[autostyle=true]{csquotes}
+
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
+\geometry{
+	paper=a4paper, 			% Change to letterpaper for US letter
+	inner=2.5cm, 			% Inner margin
+	outer=3.8cm, 			% Outer margin
+	bindingoffset=2cm, 		% Binding offset
+	top=1.5cm, 				% Top margin
+	bottom=1.5cm, 			% Bottom margin
+	%showframe,				% show how the type block is set on the page
+}
+
+% --------------------------------------
+% Kitt added style and packages
+% --------------------------------------
+\usepackage[table,xcdraw]{xcolor}
+\definecolor{lightgray}{gray}{0.95}
+\definecolor{lightblue}{rgb}{0.6,0.75,0.85}
+\definecolor{lightyellow}{rgb}{0.95,1.0,0.8}
+
+\usepackage{courier}
+
+\usepackage{listings}
+\lstset{frame=single, basicstyle=\footnotesize\ttfamily, backgroundcolor=\color{lightgray}}
+\renewcommand{\lstlistingname}{Part of Code}
+\renewcommand{\lstlistlistingname}{List of Algorithms and Code Parts}
+
+\usepackage{amsmath}
+\usepackage{cleveref}
+\crefname{listing}{code part}{code parts}
+\crefname{figure}{Fig.}{Fig.}
+\crefname{table}{Table}{Tables}
+\crefname{equation}{Eq.}{Eq.}
+
+\usepackage{float}
+
+\usepackage{epstopdf}
+
+\usepackage{commath}
+
+\usepackage{multirow}
+
+\usepackage{url}
+
+\newcommand{\pluseq}{\mathrel{+}=}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{tocloft}
+\addtolength{\cftchapnumwidth}{5pt}
+
+\makeatletter
+\def\l@figure{\@dottedtocline{1}{1.5em}{3em}}
+\makeatother
+
+\usepackage{pdfpages}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{enumitem}
+
+\usepackage{forest}
+
+\usepackage{longtable}
+
+\usepackage{array} % for defining a new column type
+\usepackage{varwidth} %for the varwidth minipage environment
+\newcolumntype{M}{>{\begin{varwidth}{4cm}}l<{\end{varwidth}}}
+
+\def\xstrut{\rule[-2ex]{0pt}{5ex}}
