@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.11)  13 MAR 2020 15:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.11)  19 MAR 2020 11:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -46,7 +46,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 10--10
 
 ! Undefined control sequence.
 l.11 \includegraphics
-                     [width=0.4\textwidth]{zcu_logo_text.png} % University logo
+                     [width=0.4\textwidth]{zcu_logo_cze.png} % University logo
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -67,7 +67,7 @@ Missing character: There is no 4 in font nullfont!
 <to be read again> 
                    ]
 l.11 \includegraphics[width=0.4\textwidth]
-                                          {zcu_logo_text.png} % University logo
+                                          {zcu_logo_cze.png} % University logo
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -76,7 +76,7 @@ look up `weird error' in the index to The TeXbook.)
 <to be read again> 
                    ]
 l.11 \includegraphics[width=0.4\textwidth]
-                                          {zcu_logo_text.png} % University logo
+                                          {zcu_logo_cze.png} % University logo
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -92,7 +92,7 @@ Missing character: There is no u in font nullfont!
 <inserted text> 
                 $
 l.11 \includegraphics[width=0.4\textwidth]{zcu_
-                                               logo_text.png} % University logo
+                                               logo_cze.png} % University logo
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
@@ -101,7 +101,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 11.
 ! Extra }, or forgotten $.
-l.11 ...cs[width=0.4\textwidth]{zcu_logo_text.png}
+l.11 ...ics[width=0.4\textwidth]{zcu_logo_cze.png}
                                                    % University logo
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -142,8 +142,8 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (54.33572pt too wide) in paragraph at lines 11--13
- []\OML/cmm/m/it/10 ogo[]ext:png[]$ 
+Overfull \hbox (50.65254pt too wide) in paragraph at lines 11--13
+ []\OML/cmm/m/it/10 ogo[]ze:png[]$ 
  []
 
 ! Undefined control sequence.
@@ -244,6 +244,15 @@ Overfull \hbox (28.84285pt too wide) in paragraph at lines 22--22
  []
 
 ! Undefined control sequence.
+l.22 \emph{Autor:}\\{\authorname
+                                }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
 l.26 \begin{flushright} \large
                               
 The control sequence at the end of the top line
@@ -328,93 +337,29 @@ and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
 l.32 \large
-            \textit{A thesis submitted in fulfillment of the requirements\\ ...
+            \textit{Závěrečná práce k získání akademického titulu  ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (7.43329pt too wide) in paragraph at lines 32--32
- []\OT1/cmr/m/it/10 A 
- []
-
-
-Overfull \hbox (16.61098pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 the- 
- []
-
-
-Overfull \hbox (11.24438pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 sis 
- []
-
-
-Overfull \hbox (17.63321pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 sub- 
- []
-
-
-Overfull \hbox (18.14432pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 mit- 
- []
-
-
-Overfull \hbox (12.52211pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 ted 
- []
-
-
-Overfull \hbox (8.68884pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 in 
- []
-
-
-Overfull \hbox (14.56657pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 ful- 
- []
-
-
-Overfull \hbox (14.82213pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 fill- 
- []
-
-
-Overfull \hbox (21.72208pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 ment 
- []
-
-
-Overfull \hbox (8.17773pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 of 
- []
-
-
-Overfull \hbox (13.03323pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 the 
- []
-
-
-Overfull \hbox (11.88321pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 re- 
- []
-
-
-Overfull \hbox (24.91646pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 quire- 
- []
-
-
-Overfull \hbox (25.81094pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 ments 
- []
 
 ! Undefined control sequence.
-<argument> ...nts\\ for the degree of \degreename 
+<argument> ...í akademického titulu \degreename 
+                                                  v oboru \studyfield 
+l.32 ...o titulu  \degreename v oboru \studyfield}
+                                                   \\[0.3cm] % University re...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ulu \degreename v oboru \studyfield 
                                                   
-l.32 ...uirements\\ for the degree of \degreename}
-                                                  \\[0.3cm] % University req...
+l.32 ...o titulu  \degreename v oboru \studyfield}
+                                                   \\[0.3cm] % University re...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -422,28 +367,53 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (12.39436pt too wide) in paragraph at lines 32--32
- []\OT1/cmr/m/it/10 for 
+Overfull \hbox (44.083pt too wide) in paragraph at lines 32--32
+ []\OT1/cmr/m/it/10 Z^^Sav^^Tere^^Tcn^^Sa 
  []
 
 
-Overfull \hbox (13.03323pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 the 
+Overfull \hbox (23.1276pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 pr^^Sace 
  []
 
 
-Overfull \hbox (13.28879pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 de- 
+Overfull \hbox (4.59996pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 k 
  []
 
 
-Overfull \hbox (16.99426pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 gree 
+Overfull \hbox (29.64427pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 z^^S^^Psk^^San^^S^^P 
  []
 
 
-Overfull \hbox (10.29718pt too wide) in paragraph at lines 32--32
- \OT1/cmr/m/it/10 of 
+Overfull \hbox (18.39987pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 aka- 
+ []
+
+
+Overfull \hbox (44.97748pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 demick^^Seho 
+ []
+
+
+Overfull \hbox (13.28877pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 tit- 
+ []
+
+
+Overfull \hbox (13.28882pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 ulu 
+ []
+
+
+Overfull \hbox (4.59996pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 v 
+ []
+
+
+Overfull \hbox (24.6614pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/it/10 oboru 
  []
 
 
@@ -479,22 +449,50 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.38 {\large
-             \today} % Date
+l.39 {\large
+             13. března 2020}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.38 {\large \today
-                   } % Date
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no b in font nullfont!
+LaTeX Font Info:    Try loading font information for +cmr on input line 39.
+LaTeX Font Info:    No file cmr.fd. on input line 39.
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `/cmr/m/n' instead on input line 39.
+
+! Corrupted NFSS tables.
+wrong@fontshape ...message {Corrupted NFSS tables}
+                                                  error@fontshape else let f...
+l.39 {\large 13. bř
+                    ezna 2020}
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `OT1/cmr/m/n' instead on input line 39.
+
+Missing character: There is no e in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+
+Overfull \hbox (8.91669pt too wide) in paragraph at lines 39--40
+ \/cmr/m/n/10 ^^Tr 
+ []
 
 
 ! LaTeX Error: \begin{document} ended by \end{titlepage}.
@@ -503,7 +501,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.42 \end{titlepage}
+l.43 \end{titlepage}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -517,11 +515,11 @@ or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 20 strings out of 492616
- 283 string characters out of 6129481
+ 29 strings out of 492616
+ 333 string characters out of 6129481
  58218 words of memory out of 5000000
- 4037 multiletter control sequences out of 15000+600000
+ 4045 multiletter control sequences out of 15000+600000
  4595 words of font info for 17 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 18i,3n,12p,173b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 18i,3n,16p,176b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

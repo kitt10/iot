@@ -1,0 +1,31 @@
+\chapter{Diagnostika a detekce anomálií} \label{chap:methods}
+
+Proč řešit diagnostiku čidel v rámci chytré domácnosti, ... \\
+Úvod do detekce anomálií, základní principy, smysl využití, ... \\
+Diagnostika a detekce anomálií v projektu chytré domácnosti probíhá na 3 úrovních ... \\
+
+\section{Detekce chyb na úrovni ESP8266} \label{sec:example_xor}
+
+První a nejnižší úroveň diagnostiky jednotlivých senzorů \\
+Implementace detekce chyb na úrovni samotného microchipu \\
+Popis základního principu - při načítání ze dat ze senzoru čidlo pozná, když je senzor nefunkční - nevrací  žádné hodnoty a ESP pošle info o nefunkčním senzoru) \\
+Robustnost - odolnost ESP vůči výpadkům senzorů - esp nespadne kvůli nefunkčnímu senzoru, jen změní status zprávy, ... \\
+Nonstop provoz - senzory lze k ESP připojovat a odpojovat v reálném čase bez nutnosti vypínání nebo restartu microchipu, pokud senzor v jakémkoliv časovém okamžiku odpojím - změní se status zprávy na "error", ve chvíli kdy senzor zase připojím na desku - esp začne měřit a posílat, ... \\
+
+\section{Detekce anomálií na základě klasifikace} \label{sec:example_xor}
+
+Implementace funkcí scikit-learn pro natrénovaní modelů \\
+Nastavení modelu a natrénování modelů pro jednotlivé veličiny \\
+Porovnání schémat natrénovaných modelů \\
+Implementace do projektu - klasifikace jednotlivých příchozích zpráv (přidání atributu "classification" do každé zprávy)
+Implementace detekce anomálií přijatých zpráv na základě rozhodnutí klasifikace - klasifikace 1 nebo -1 (1 v případě, že přijatá zpráva svou hodnotou "odpovídá" natrénovanému modelu, -1 v případě, že se vychyluje od natrénovaného modelu) \\
+Přenos této informace o klasifikaci do webového rozhraní \\
+
+\section{Diagnostika stavu čidel na serveru} \label{sec:example_xor}
+
+Implementace detekce anomálií na úrovni serveru (brokeru) \\
+Implementace funkce sensor-check() \\
+Periodická kontrola odesílání zpráv jednotlivých čidel - pokud čidlo z neznámého důvodu neodešle zprávu nebo pokud se zpráva nepřenese k brokeru - informace o anomálii se přenese do webového rozhraní \\
+Vysvětlení stavů čidel - 3 možné stavy čidla - ok, value-error, error \\
+
+Závěr diagnostiky: kontrola stavu jednotlivých čidel + kontrola věrohodnosti posílaných hodnot + kontrola pravidelnosti odesílaných zpráv
