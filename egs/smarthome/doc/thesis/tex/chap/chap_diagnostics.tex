@@ -4,7 +4,7 @@ Proč řešit diagnostiku čidel v rámci chytré domácnosti, ... \\
 Úvod do detekce anomálií, základní principy, smysl využití, ... \\
 Diagnostika a detekce anomálií v projektu chytré domácnosti probíhá na 3 úrovních ... \\
 
-\section{Detekce chyb na úrovni ESP8266} \label{sec:example_xor}
+\section{Detekce chyb na úrovni ESP8266} \label{sec:error_detection_esp}
 
 První a nejnižší úroveň diagnostiky jednotlivých senzorů \\
 Implementace detekce chyb na úrovni samotného microchipu \\
@@ -12,7 +12,7 @@ Popis základního principu - při načítání ze dat ze senzoru čidlo pozná,
 Robustnost - odolnost ESP vůči výpadkům senzorů - esp nespadne kvůli nefunkčnímu senzoru, jen změní status zprávy, ... \\
 Nonstop provoz - senzory lze k ESP připojovat a odpojovat v reálném čase bez nutnosti vypínání nebo restartu microchipu, pokud senzor v jakémkoliv časovém okamžiku odpojím - změní se status zprávy na "error", ve chvíli kdy senzor zase připojím na desku - esp začne měřit a posílat, ... \\
 
-\section{Detekce anomálií na základě klasifikace} \label{sec:example_xor}
+\section{Detekce anomálií na základě klasifikace} \label{sec:detection_classification}
 
 Implementace funkcí scikit-learn pro natrénovaní modelů \\
 Nastavení modelu a natrénování modelů pro jednotlivé veličiny \\

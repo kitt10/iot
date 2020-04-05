@@ -13,13 +13,20 @@ Sestavení struktury zpráv + identifikátorů čidel (popis jednotlivých atrib
 ESP má aktuální čas pomocí NTP protokolu - díky tomu je možné přidávat do zpráv timestampy
 Popis logiky odesílání zpráv z ESP - ESP odešle zprávu periodicky vždy v polovině minuty (např.: 14:30:30, 14:31:30, ... ) - lehké nepřesnosti způsobené dobou načítání dat ze senzorů, ... \\
 
-\section{Ukládání dat do databáze} \label{sec:example_xor}
+%\begin{figure}[H]
+  %\centering
+  %\includegraphics[width=0.7 \textwidth]{mqtt_diagram.png}
+  %\caption{POPIS}
+  %\label{fig:schema_esp_bme280}
+%\end{figure}
+
+\section{Ukládání dat do databáze} \label{sec:database}
 
 Základní princip databáze, proč jsme se rozhodli pro použití databáze,  ... \\
 Co je MongoDB (určení, využití, funkčnost, ... ) \\
 Ukládání hodnot měřených veličin do MongoDB \\
 
-\section{Webserver} \label{sec:example_xor}
+\section{Webserver} \label{sec:webserver}
 
 Popis backendu engine.py
 Backend - z hlediska programování - jeden soubor engine.py, který zajišťuje serverování webové stránky, ukládání dat do databáze, sensor check, ... \\
