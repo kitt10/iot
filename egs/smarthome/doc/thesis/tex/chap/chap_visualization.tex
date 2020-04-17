@@ -1,18 +1,11 @@
-\chapter{Webové rozhraní} \label{chap:methods}
-
-\textcolor{red}{Podle toho jak to půjde.. 
-Kapitola 5
-Interakce systému z uživatelem
-- Webové rozhraní
-- Hlasové ovládání}
-
-
+\chapter{Webové rozhraní} \label{chap:web_page}
 
 Důvod využití webové vizualizace \\ 
 Frontend - popis struktury webu - proč 3 záložky, popis Overview, Analytics, About, ... \\
 Smysl Overwiev - nonstop zobrazení dat na monitoru, ... \\
 Přijímání aktuálních zpráv z ESP bez nutnosti refresh stránky přes websockets - co je websockets, důvod využití této technologie, alternativa v podobě json souboru - nevýhody, ... \\
 
+Akce webové stránky - při první načtení se podívá do souboru webpage-data.json, načte poslední hodnoty ze senzorů a od této chvíli přijímá aktuální hodnoty přes websocket..
 
 Zajištění integrity celého webu (nově přijaté zprávy se propisují na web, po znovunačtení se ihned ukazují poslední přijaté hodnoty - má smysl hlavně u neperidicky posílaných veličin, ...) \\
 

@@ -14,6 +14,9 @@ Nonstop provoz - senzory lze k ESP připojovat a odpojovat v reálném čase bez
 
 \section{Detekce anomálií na základě klasifikace} \label{sec:detection_classification}
 
+Ve skriptu engine.py jsou příchozí data z brokeru klasifikována a následně odesílána na webovou stránku. Klasifikace -1 nebo 1 podle... Webová stránka dále pracuje s klasifikací - zobrazení ikon u jednotlivých veličin (zelená, žlutá, červená)
+
+
 Implementace funkcí scikit-learn pro natrénovaní modelů \\
 Nastavení modelu a natrénování modelů pro jednotlivé veličiny \\
 Porovnání schémat natrénovaných modelů \\
@@ -21,7 +24,7 @@ Implementace do projektu - klasifikace jednotlivých příchozích zpráv (přid
 Implementace detekce anomálií přijatých zpráv na základě rozhodnutí klasifikace - klasifikace 1 nebo -1 (1 v případě, že přijatá zpráva svou hodnotou "odpovídá" natrénovanému modelu, -1 v případě, že se vychyluje od natrénovaného modelu) \\
 Přenos této informace o klasifikaci do webového rozhraní \\
 
-\section{Diagnostika stavu čidel na serveru} \label{sec:example_xor}
+\section{Diagnostika stavu čidel na serveru} \label{sec:error_detection_server}
 
 Implementace detekce anomálií na úrovni serveru (brokeru) \\
 Implementace funkce sensor-check() \\
