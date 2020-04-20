@@ -76,6 +76,32 @@ hidelinks,
 
 \usepackage{listings}
 \lstset{frame=single, basicstyle=\footnotesize\ttfamily, backgroundcolor=\color{lightgray}}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\small\normalfont\ttfamily,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+    *{:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1}
+      {>}{{{\color{delim}{>}}}}{1},
+}
+
 \renewcommand{\lstlistingname}{Part of Code}
 \renewcommand{\lstlistlistingname}{List of Algorithms and Code Parts}
 
@@ -124,5 +150,6 @@ hidelinks,
 \usepackage{array} % for defining a new column type
 \usepackage{varwidth} %for the varwidth minipage environment
 \newcolumntype{M}{>{\begin{varwidth}{4cm}}l<{\end{varwidth}}}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 \def\xstrut{\rule[-2ex]{0pt}{5ex}}

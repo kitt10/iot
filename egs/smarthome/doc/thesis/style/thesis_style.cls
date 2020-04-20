@@ -279,14 +279,25 @@ KOMA-script documentation for details.}]{fancyhdr}
 \newcommand{\authorshipname}{Declaration of Authorship}
 \providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\authorshipname}{Declaration of Authorship} % Declaration of Authorship text for English countries
 \providecaptionname{german,ngerman,austrian,naustrian}{\authorshipname}{Eidesstattliche Erkl\"arung} % Declaration of Authorship text for Germanic countries
+\providecaptionname{czech}{\authorshipname}{Prohlášení} % Declaration of Authorship text for Czech Republic
+%\newenvironment{declaration}{
+%	\checktoopen
+%	\tttypeout{\authorshipname}
+%	\thispagestyle{plain}
+%	\null\vfil
+%	{\noindent\huge\bfseries\authorshipname\par\vspace{10pt}}
+%}{}
+\NewDocumentEnvironment{declaration}{}{%
+\checktoopen
+\tttypeout{\authorshipname}
+\thispagestyle{plain}
+\begin{center}{\huge\textit{\authorshipname}\par}\end{center}
+}
+{
+\vfil\vfil\null
+}
 
-\newenvironment{declaration}{
-	\checktoopen
-	\tttypeout{\authorshipname}
-	\thispagestyle{plain}
-	\null\vfil
-	{\noindent\huge\bfseries\authorshipname\par\vspace{10pt}}
-}{}
+
 
 %----------------------------------------------------------------------------------------
 %	DEDICATION PAGE DESIGN
@@ -308,6 +319,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 \newcommand{\byname}{by}
 \providecaptionname{german,ngerman,austrian,naustrian}{\byname}{von}
 \providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\byname}{by}
+\providecaptionname{czech}{\byname}{ }
 \newenvironment{abstract}{
 	\checktoopen
 	\tttypeout{\abstractname}
@@ -395,6 +407,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 \newcommand{\acknowledgementname}{Acknowledgements}
 \providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish} {\acknowledgementname}{Acknowledgements} % Acknowledgement text for English countries
 \providecaptionname{german,ngerman,austrian,naustrian}{\acknowledgementname}{Danksagung} % Acknowledgement text for Germanic countries
+\providecaptionname{czech}{\acknowledgementname}{Poděkování} % Acknowledgement text for Czech Republic
 
 \NewDocumentEnvironment{acknowledgements}{}{%
 \checktoopen
