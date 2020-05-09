@@ -245,7 +245,7 @@ Počítač Raspberry Pi má v projektu chytré domácnosti několik využití.
   \item Web server
 \end{itemize}
 
-Primárně slouží jako MQTT broker, který přijímá všechny příchozí zprávy ze senzorů (více v \cref{sec:protocol_mqtt}). Dále na RPi běží databázový server za účelem ukládání všech příchozích zpráv do databáze (více v \cref{sec:database}). Současně jsou na RPi trénovány modely, na základě kterých je prováděna klasifikace jednotlivých příchozích zpráv (více v \cref{sec:detection_classification}). Datově náročnější modely lze trénovat na externích výkonnějších počítačích a následně na RPi použít pro klasifikaci již natrénované modely. Za účelem grafické vizualizace naměřených dat a aktuálních hodnot veličin běží na RPi webový server (více v \cref{sec:webserver}). 
+Primárně slouží jako MQTT broker, který přijímá všechny příchozí zprávy ze senzorů (více v \cref{sec:protocol_mqtt}). Dále na RPi běží databázový server za účelem ukládání všech příchozích zpráv do databáze (více v \cref{sec:database}). Současně jsou na RPi trénovány modely, na základě kterých je prováděna klasifikace jednotlivých příchozích zpráv (více v \cref{sec:classifier}). Datově náročnější modely lze trénovat na externích výkonnějších počítačích a následně na RPi použít pro klasifikaci již natrénované modely. Za účelem grafické vizualizace naměřených dat a aktuálních hodnot veličin běží na RPi webový server (více v \cref{sec:webserver}). 
 
 Velkou výhodou RPi jsou minimální rozměry a hlavně malý odběr proudu. V těchto aplikacích je nutné, aby počítač byl neustále zapnutý. Klasické PC by se k těmto účelům nehodilo kvůli vysoké spotřebě a nepotřebně velkému výkonu. Náklady na provoz a pořízení počítače RPi jsou ve srovnání s klasickém PC serverem několikanásobně nižší. 
 

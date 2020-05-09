@@ -1,0 +1,67 @@
+\chapter{Struktura repozitáře} \label{app:structure_of_the_repository}
+\vspace*{-10mm}
+\begin{forest}
+  for tree={
+    font=\small\normalfont\ttfamily,
+    grow'=0,
+    line width = -10,
+    child anchor=west,
+    parent anchor=south,
+    align=center,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      %(!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+      (!u.south west) +(2pt,0) |- node[fill,inner sep=1.5pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=20pt},
+  }
+%[egs
+	[ smarthome
+		[\ device
+			[\ esp8266\_tsl2591]
+			[\ esp8266\_ls311b38]
+			[\ esp8266\_am312]
+			[\ esp8266\_bme280]
+			[\ esp8266\_ds18b20\_dht11]
+			[\ README]		
+		]
+	    [\ frontend
+			[\ img]
+			[\ about.html]
+			[\ about\_template.css]
+			[\ analytics.html]
+			[\ analytics.js]
+			[\ analytics\_template.css]
+			[\ functions.js]
+			[\ overview.html]
+			[\ overview.js]
+			[\ overview\_template.css]
+			[\ page\_template.css]		
+			[\ README]
+		]
+		[\ backend
+			[\ config.cfg]
+			[\ data.py]
+			[\ engine.py]
+			[\ model.py]
+			[\ model.json]
+			[\ README]
+		]
+		[\ doc
+			[\ api]
+			[\ literature]
+			[\ thesis]		
+		]
+	[\ README]	  
+	]
+%]
+\end{forest}
+

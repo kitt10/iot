@@ -21,7 +21,7 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-
+\clearpage
 \documentclass[
 11pt, 						% The default document font size, options: 10pt, 11pt, 12pt
 oneside, 					% Two side (alternating margins) for binding by default, uncomment to switch to one side
@@ -113,6 +113,7 @@ hidelinks,
 \crefname{equation}{Eq.}{Eq.}
 \crefname{section}{Kap.}{Kap.}
 \crefname{chapter}{Kap.}{Kap.}
+\crefname{appendix}{Příloha}{Příloha}
 
 
 \usepackage{float}
@@ -153,3 +154,12 @@ hidelinks,
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 \def\xstrut{\rule[-2ex]{0pt}{5ex}}
+
+\usepackage{mwe}
+\usepackage{graphbox} %loads graphicx package
+
+%\usepackage[raggedright]{titlesec} %removes hyphenation from titles and substitles
+
+%removes first blank page (first white page in document)
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}

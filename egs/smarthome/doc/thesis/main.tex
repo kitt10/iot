@@ -5,29 +5,28 @@
 \begin{document}
 % ------------------------------------------------------------------------------------------------------
 \input{tex/sett/title_page}
-\input{tex/sett/declaration_of_authorship}
+\input{tex/sett/authorship_declaration}
 \input{tex/sett/quotation}
 \input{tex/sett/abstract}
+\input{tex/sett/keywords}
 \input{tex/sett/acknowledgements}
 \input{tex/sett/lists}
-%\input{tex/sett/dedication} 
 % ------------------------------------------------------------------------------------------------------
 \mainmatter 										% Begin numeric (1,2,3...) page numbering
 \pagestyle{thesis} 									% Return the page headers back to the "thesis" style
 \include{tex/chap/chap_introduction}
-
 \include{tex/chap/chap_hardware}
 \include{tex/chap/chap_network_database}
 \include{tex/chap/chap_diagnostics}
 \include{tex/chap/chap_visualization}
-
 \include{tex/chap/chap_conclusion}
 % ------------------------------------------------------------------------------------------------------
 \input{tex/sett/bibliography}
 % ------------------------------------------------------------------------------------------------------
 \appendix 											% Cue to tell LaTeX that the following "chapters" are Appendices
 \renewcommand{\thechapter}{A\arabic{chapter}}		% Appendices A1, A2, ...
-\include{tex/appx/app_structure_of_the_workspace}
+%\setlength{\headsep}{-1cm}
+\include{tex/appx/app_structure_of_the_repository}
 % ------------------------------------------------------------------------------------------------------
 \end{document}  
 % ------------------------------------------------------------------------------------------------------

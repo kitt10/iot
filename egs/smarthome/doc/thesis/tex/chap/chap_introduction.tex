@@ -1,11 +1,53 @@
 \chapter{Úvod} \label{chap:introduction}
+Využití moderních technologií v domácnosti otevírá možnosti monitorování a ovládání domácího prostředí a jeho okolí dříve nevídanými způsoby. Chytrá domácnost reaguje skrze systém automatického řízení na potřeby uživatele a pomocí efektivního nakládání s energiemi snižuje provozní náklady. Mezi vlastnosti inteligentního domu patří především zajištění komfortu pro jeho obyvatele a ekonomická efektivita. Centrem chytré domácnosti je komplexní systém, který sbírá lokálně měřená data a na základě těchto dat automatizuje provoz v domácnosti. Tento řídící systém se stará například o centrální řízení teploty v domě, zabezpečení objektu nebo o automatické ovládání osvětlení. Hlavní využití této centrálně řízené domácnosti spočívá v autonomii - inteligentní dům rozhoduje na základě uživatelského nastavení a dat a ke svému fungování nepotřebuje aktivní zásahy od uživatele. Projekt senzorického řešení chytré domácnosti se zaměřuje na jeden z aspektů inteligentního domu - na konstrukci chytrých senzorů a následné zpracování naměřených dat. \par  
+Díky chytrým senzorům, které monitorují fyzikální veličiny v domácnosti a jejím okolí, je možné vzdáleně kontrolovat jednotlivé sekce v inteligentním domě, optimalizovat provozní náklady a zvýšit zabezpečení objektu. Naměřené hodnoty lze ukládat, sledovat jejich vývoj v čase a na základě klasifikace predikovat budoucí vývoj a detekovat anomálie. \par
+Cílem této práce je sestrojit funkční model chytré domácnosti, který svým zaměřením a funkčností odpovídá realitě a má konkrétní reálné aplikace. Tento model se skládá z několika senzorů měřících různé fyzikální veličiny a řídícího systému. Významnou část toho projektu tvoří systém automatické diagnostiky komunikace, který využívá principů strojového učení a na základě klasifikace poskytuje další informace o senzorech a měřených veličinách. 
 
-\textcolor{red}{Přeložit do češtiny}
+\section*{Cíle práce} \label{sec:thesis_objectives}
+Cíle této práce jsou následující. 
 
-Your intro... Thesis ref example: \cite{bulin:2016}, Misc ref example: \cite{smidl:pc}, Article ref example: \cite{mcculloch:neuron}, Online webpage ref example: \cite{online:xor_solution}
+\begin{enumerate}
+   \item Otestovat funkcionalitu senzorů vhodných pro využití v projektu chytré domácnosti.
+   \item Zajistit fyzické zapojení vybraných senzorů a jejich komunikaci s mikročipem ESP8266.
+   \item Pomocí protokolu MQTT zprovoznit komunikaci vybraných čidel s webovým rozhraním pro vzdálené monitorování.
+   \item Navrhnout systém automatické diagnostiky MQTT zpráv s cílem detekce výpadků senzorů a jiných anomálií.
+\end{enumerate}
 
-\section{State of the Art} \label{sec:state_of_the_art}
+\section*{Obsah práce} \label{sec:thesis_outline}
+Práce se skládá z šesti kapitol a svou strukturou odpovídá standardu vědeckých publikací. \par
+V první kapitole jsou popsány aktuální trendy v oblasti chytré domácnosti, základní principy detekce anomálií a stručně vystižené cíle tohoto projektu. \par
+V \cref{chap:hardware} je popsán veškerý použitý hardware a na schématech zobrazená konstrukce jednotlivých senzorů v projektu chytré domácnosti. Tato část dále popisuje programování síťové komunikace mikročipu \textit{ESP8266} se serverem a využití počítače \textit{Raspberry Pi}. \par 
+V \cref{chap:network_database} jsou znázorněny datové toky v celém projektu a popsán komunikační protokol \textit{MQTT}. Tato kapitola je věnována vysvětlení principu přenosu dat po síti a jejich ukládání do databáze. \par
+Systém automatické diagnostiky a detekce anomálií je popsán v \cref{chap:diagnostics}. Tato kapitola je rozdělena do tří částí podle úrovně diagnostického systému. Je zde popsána detekce chyb na úrovni mikročipu ESP8266, systém kontroly periodicity příchozích zpráv a strojové učení ve formě klasifikace příchozích zpráv. \par
+Vizualizace veškerých naměřených dat a stavu senzorů je ukázána v \cref{chap:web_page}. \par
+V příloze \ref{app:structure_of_the_repository} je zobrazena adresářová struktura repozitáře v projektu chytré domácnosti. 
 
-\section{Thesis Objectives} \label{sec:thesis_objectives}
+\section*{Současný stav řešené problematiky} \label{sec:state_of_the_art}
+Jednou ze stěžejních částí této práce je systém automatické diagnostiky, jehož primárním úkolem je detekovat chyby a anomálie. Detekce anomálií je proces, jehož účelem je detekovat neočekávané prvky v množině dat. Tyto neočekávané prvky jsou charakterizovány výchylkami od normy ostatních dat. Pro umožnění detekce anomálií musejí být naplněny dva předpoklady: 
 
-\section{Thesis Outline} \label{sec:thesis_outline}
+\begin{itemize}
+	\item Neočekávané události (hodnoty) se v datech vyskytují výjimečně
+	\item Neočekávané hodnoty se od standardních dat odlišují významně 
+\end{itemize}
+
+Tím, že se neočekávané hodnoty od ostatních dat podstatně odlišují a vyskytují se jen výjimečně, je možné tyto anomálie spolehlivě detekovat. Detekce anomálií má v reálném světě četné využití skrze obory jako je bankovnictví, medicína nebo automatická výroba. V objemných databázích je často velmi složité objevit opakující se vzory a identifikovat anomálie, proto se uchylujeme k použití algoritmů strojového učení. V tomto projektu je pro detekci anomálií využitý algoritmus \textit{Isolation Forest}, jehož historie sahá do roku 2008. 
+
+\subsection*{Algoritmus Isolation Forest}
+Isolation Forest je algoritmus založený na strojovém učení, který detekuje anomálie tím, že identifikuje a izoluje neočekávané hodnoty od ostatních dat. Tento algoritmus narozdíl od ostatních přístupů detekce anomálií nepotřebuje předem definovanou množinu dat, které je brána jako bezchybná a vzorová. Ostatní algoritmy vyžadují trénovací množinu dat, ve které se nevyskytují žádné anomálie a za anomálie považují data, která jsou mimo předem učenou normovanou množinu dat. Isolation Forest narozdíl od těchto algoritmů detekuje anomálie bez předem definované množiny normálních dat na základě dvou výše zmíněných předpokladů - neočekávaná data (anomálie) se vyskytují v datech výjimečně a odlišují se významně. Hlavní výhodou tohoto algoritmu je rychlost detekce anomálií a nízké nároky na výpočetní paměť. \par
+Anomálií je v tomto systému diagnostiky:
+
+\begin{itemize}
+	\item Naměřená hodnota, která se výrazně odlišuje od ostatních hodnot v množině dat.
+	\item Časové razítko vzniku zprávy, jehož časová hodnota je nepravděpodobná (významně se vzdaluje od ostatních časových hodnot v množině dat).
+\end{itemize}
+
+Příkladem naměřené hodnoty, která bude považována za anomálii je například hodnota 55 \si{\degree}C u teploty v místnosti, jestliže se hodnoty této teploty v množině dat pohybují v rozmezí od 20 do 26 \si{\degree}C (kontrola hodnot měřených veličin na základě strojového učení je popsána v \cref{subsec:2D_quantities}). Zpráva s časovým razítkem, které bude klasifikováno jako anomálie, může být například otevření dveří v 2:00 ráno, jestliže v tuto dobu bývají dveře vždy zavřené (kontrola času zpráv na základě strojového učení je popsána v \cref{subsec:1D_quantities}). \par
+Mezi klíčové vlastnosti algoritmu Isolation Forest patří: 
+
+\begin{enumerate}
+  \item Nízké nároky na výpočetní paměť.
+  \item Schopnost zpracovávat mnohodimenzionální data bez další informace o typu dat (algoritmus nepotřebuje vědět jaký typ dat zpracovává).
+  \item V trénovacích datech mohou nebo nemusejí být přítomny anomálie.
+\end{enumerate}
+
+Princip detekce anomálií algoritmu Isolation Forest spočívá v přiřazení číselného skóre všem datům v množině dat. Po přiřazení skóre jednotlivým datům v množině je možné za anomálie označit data, jejichž hodnoty přesáhnou předem určený práh. Schopnost algoritmu zpracovávat a vyhodnocovat data bez předchozí znalosti obsahu dat je klíčová pro klasifikaci různých druhů veličin. Tímto algoritmem jsou v tomto projektu klasifikovány \textit{1D} a \textit{2D} veličiny. 1D jsou veličiny, které vznikají na základě vzniku události a u těchto veličin je klasifikován čas vzniku události. 2D jsou veličiny, které jsou odesílány pravidelně a u těchto veličin je klasifikována jejich hodnota (více o 1D a 2D veličinách v \cref{sec:classifier}). Algoritmus Isolation Forest je vhodný pro klasifikaci obou typů veličin. 

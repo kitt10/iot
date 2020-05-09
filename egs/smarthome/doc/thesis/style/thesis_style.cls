@@ -273,33 +273,6 @@ KOMA-script documentation for details.}]{fancyhdr}
 \newcommand*{\keywords}[1]{\def\keywordnames{#1}}
 
 %----------------------------------------------------------------------------------------
-%	DECLARATION PAGE DESIGN
-%----------------------------------------------------------------------------------------
-
-\newcommand{\authorshipname}{Declaration of Authorship}
-\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\authorshipname}{Declaration of Authorship} % Declaration of Authorship text for English countries
-\providecaptionname{german,ngerman,austrian,naustrian}{\authorshipname}{Eidesstattliche Erkl\"arung} % Declaration of Authorship text for Germanic countries
-\providecaptionname{czech}{\authorshipname}{Prohlášení} % Declaration of Authorship text for Czech Republic
-%\newenvironment{declaration}{
-%	\checktoopen
-%	\tttypeout{\authorshipname}
-%	\thispagestyle{plain}
-%	\null\vfil
-%	{\noindent\huge\bfseries\authorshipname\par\vspace{10pt}}
-%}{}
-\NewDocumentEnvironment{declaration}{}{%
-\checktoopen
-\tttypeout{\authorshipname}
-\thispagestyle{plain}
-\begin{center}{\huge\textit{\authorshipname}\par}\end{center}
-}
-{
-\vfil\vfil\null
-}
-
-
-
-%----------------------------------------------------------------------------------------
 %	DEDICATION PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
@@ -336,12 +309,20 @@ KOMA-script documentation for details.}]{fancyhdr}
 	\bigskip
 	{\normalsize \degreename\par} % Degree name
 	\bigskip
-	{\normalsize\bfseries \@title \par} % Thesis title
-	\medskip
 	{\normalsize \byname{} \authorname \par} % Author name
+	\medskip
+	{\normalsize\bfseries \@title \par} % Thesis title CZ
 	\bigskip
 	\end{center}
 }
+
+\newenvironment{abstract_en}{
+	\begin{center}
+	{\normalsize\bfseries Smart home sensory system with an automatic communication diagnostics \par} % Thesis title ENG
+	\bigskip
+	\end{center}
+}
+
 {
   \vfil\vfil\vfil\null
 }
@@ -415,6 +396,48 @@ KOMA-script documentation for details.}]{fancyhdr}
 \thispagestyle{plain}
 \begin{center}{\huge\textit{\acknowledgementname}\par}\end{center}
 }
+{
+\vfil\vfil\null
+}
+
+%----------------------------------------------------------------------------------------
+%	AUTHORSHIP DECLARATION PAGE
+%----------------------------------------------------------------------------------------
+
+\newcommand{\authorship}{Acknowledgements}
+\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish} {\authorship}{Acknowledgements} % Acknowledgement text for English countries
+\providecaptionname{german,ngerman,austrian,naustrian}{\authorship}{Danksagung} % Acknowledgement text for Germanic countries
+\providecaptionname{czech}{\authorship}{Prohlášení} % Acknowledgement text for Czech Republic
+
+\NewDocumentEnvironment{authorship_declaration}{}{%
+\checktoopen
+\tttypeout{\authorship}
+\thispagestyle{plain}
+\begin{center}{\huge\textit{\authorship}\par}\end{center}
+}
+{
+\vfil\vfil\null
+}
+
+%----------------------------------------------------------------------------------------
+%	KEYWORDS PAGE DESIGN
+%----------------------------------------------------------------------------------------
+
+\newcommand{\keywordsname}{Keywords}
+\providecaptionname{american,australian,british,canadian,english,UKenglish,USenglish} {\keywordsname}{Keywords}
+\providecaptionname{czech}{\keywordsname}{Klíčová slova}
+
+\newenvironment{keywords_cs}{
+	\checktoopen
+	\tttypeout{\keywordsname}
+	\thispagestyle{plain}
+	\begin{center}{\huge\textit{\keywordsname}\par}\end{center}
+}
+
+\newenvironment{keywords_en}{
+	\begin{center}{\huge\textit{Keywords}\par}\end{center}
+}
+
 {
 \vfil\vfil\null
 }
