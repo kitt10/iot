@@ -1,0 +1,9 @@
+topic: smarthome/outside/temperature
+date from: 2020-01-20
+date to: 2020-01-20
+project: smarthome
+location: outside
+quantity: temperature
+owners: ('pn',)
+dim: 2
+n samples: 1426

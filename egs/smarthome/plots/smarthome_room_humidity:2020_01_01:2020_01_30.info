@@ -1,0 +1,9 @@
+topic: smarthome/room/humidity
+date from: 2020-01-01
+date to: 2020-01-30
+project: smarthome
+location: room
+quantity: humidity
+owners: ('pn',)
+dim: 2
+n samples: 42729

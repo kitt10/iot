@@ -1,0 +1,9 @@
+topic: smarthome/room/temperature
+date from: 2020-01-01
+date to: 2020-01-30
+project: smarthome
+location: room
+quantity: temperature
+owners: ('pn',)
+dim: 2
+n samples: 78982

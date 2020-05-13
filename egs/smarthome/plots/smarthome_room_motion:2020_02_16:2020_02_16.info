@@ -1,0 +1,9 @@
+topic: smarthome/room/motion
+date from: 2020-02-16
+date to: 2020-02-16
+project: smarthome
+location: room
+quantity: motion
+owners: ('pn',)
+dim: 1
+n samples: 356

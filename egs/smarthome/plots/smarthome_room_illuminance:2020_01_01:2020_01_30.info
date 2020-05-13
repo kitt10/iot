@@ -1,0 +1,9 @@
+topic: smarthome/room/illuminance
+date from: 2020-01-01
+date to: 2020-01-30
+project: smarthome
+location: room
+quantity: illuminance
+owners: ('pn',)
+dim: 2
+n samples: 42642

@@ -1,0 +1,9 @@
+topic: smarthome/room/door_open
+date from: 2020-01-01
+date to: 2020-01-31
+project: smarthome
+location: room
+quantity: door_open
+owners: ('pn',)
+dim: 1
+n samples: 527

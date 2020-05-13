@@ -1,0 +1,9 @@
+The anomaly score of the input samples. The lower, the more abnormal. Negative scores represent outliers, positive scores represent inliers.
+
+Average anomaly score of X of the base classifiers.
+
+The anomaly score of an input sample is computed as the mean anomaly score of the trees in the forest.
+
+The measure of normality of an observation given a tree is the depth of the leaf containing this observation, which is equivalent to the number of splittings required to isolate this point. In case of several observations n_left in the leaf, the average path length of a n_left samples isolation tree is added.
+
+https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest.decision_function

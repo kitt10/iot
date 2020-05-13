@@ -1,0 +1,9 @@
+topic: smarthome/room/pressure
+date from: 2020-04-01
+date to: 2020-04-30
+project: smarthome
+location: room
+quantity: pressure
+owners: ('pn',)
+dim: 2
+n samples: 38892
