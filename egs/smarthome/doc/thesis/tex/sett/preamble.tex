@@ -43,8 +43,8 @@ hidelinks,
 
 \usepackage{lmodern} 		% Font family
 
-% Use the bibtex backend with the authoryear citation style (which resembles APA) (citestyle=alphabetic)
-\usepackage[backend=bibtex,style=numeric,citestyle=authoryear-comp,natbib=true,sorting=ynt]{biblatex} 
+\usepackage[backend=bibtex,style=numeric,citestyle=numeric,natbib=true,sorting=ynt]{biblatex} 
+
 \addbibresource{bib/thesis_bibliography.bib} 				% The filename of the bibliography
 
 % Required to generate language-dependent quotes in the bibliography
@@ -163,3 +163,5 @@ hidelinks,
 %removes first blank page (first white page in document)
 \usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
 \AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+
+\usepackage{algorithmic}

@@ -1,40 +1,123 @@
-@mastersthesis{bulin:2016,
-	author 		= {Bulín, Martin},
-	title 		= {Classification of terrain based on proprioception and tactile sensing for multi-legged walking robot},
-	school 		= {University of Southern Denmark},
-	address 	= {Campusvej 55, 5230 Odense M},
-	year 		= {2016},
-	month 		= {6}
+@manual{ESP8266:Datasheet,
+	author = {Espressif Systems},
+	title = {ESP8266EX Datasheet},	
+	year = {2020},
+	organization = {Espressif Inc.},
+	url = {https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf},
+	version = {6.4}
 }
 
-@misc{smidl:pc,
-  	author 		= {Šmídl, Luboš},
-  	year	 	= {2017},
-  	howpublished = {personal communication},
-  	note 		= {supervision of the thesis}
+@misc{esptool.py,
+	author = {Fredrik Ahlberg and Angus Gratton},
+	title = {ESP8266 and ESP32 serial bootloader utility},
+	subtitle = {esptool.py},
+	year = {2016},
+	journal = {GitHub repository},
+	howpublished = {https://github.com/espressif/esptool},
+	version = {2.8},
+	note = {GitHub},
+	commit = {87286f90f4a5ba2af9cdae0b312ea291f789ce86}
 }
 
-@article{mcculloch:neuron,
-  title={A logical calculus of the ideas immanent in nervous activity},
-  author={McCulloch, Warren S and Pitts, Walter},
-  journal={The bulletin of mathematical biophysics},
-  volume={5},
-  number={4},
-  pages={115--133},
-  year={1943},
-  publisher={Springer}
+@misc{mpfshell,
+	author = {Stefan Wendler},
+	title = {A simple shell based file explorer for ESP8266 Micropython based devices},
+	subtitle = {mpfshell},
+	year = {2016},
+	journal = {GitHub repository},
+	howpublished = {https://github.com/wendlers/mpfshell},
+	version = {0.9.1},
+	note = {GitHub},
+	commit = {429469fcccbda770fddf7a4277f5db92b1217664}
 }
 
-@online{online:xor_solution,
-   title 		= {The XOR Problem and Solution},
-   date 		= {2006},
-   author 		= {Bradley, Peter},
-   url 			= {http://mind.ilstu.edu/}
+@manual{DS18B20:Datasheet,
+	author = {Maxim Integrated Products},
+	title = {DS18B20 Programmable Resolution 1-Wire Digital Thermometer},
+	year = {2019},
+	organization = {Maxim Integrated Products, Inc.},
+	url = {https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf},
+	version = {6}
 }
 
-@online{online:esp8266,
-   title = {Parametry mikročipu ESP8266},
+@manual{DHT11:Datasheet,
+	author = {lady ada},
+	title = {DHT11, DHT22 and AM2302 Sensors},
+	year = {2019},
+	organization = {Adafruit Industries},
+	url = {https://cdn-learn.adafruit.com/downloads/pdf/dht.pdf}
+}
+
+@manual{TSL2591:Datasheet,
+	title = {TSL2591 Datasheet},
+	year = {2013},
+	version = {ams163.5},
+	url = {https://cdn-shop.adafruit.com/datasheets/TSL25911_Datasheet_EN_v1.pdf},
+	organization = {ams AG, Austria-Europe}
+}
+
+@online{AM312:online,
+   title = {Arduino Micro PIR detektor pohybu AM312},
    date = {2020},
-   url = {https://en.wikipedia.org/wiki/ESP8266}
+   url = {https://www.laskarduino.cz/arduino-micro-pir-detektor-pohybu-am312/},
+   organization = {laskarduino.cz}
 }
 
+@manual{HC-SR501:Datasheet,
+	title = {HC-SR501 PIR MOTION DETECTOR},
+	url = {https://www.mpja.com/download/31227sc.pdf}
+}
+
+@online{Wikipedia:online,
+   title = {Wikipedia},
+   date = {2020},
+   url = {https://www.wikipedia.org},
+   organization = {Wikimedia Foundation, Inc.}
+}
+
+@article{scikit-learn,
+ title={Scikit-learn: Machine Learning in {P}ython},
+ author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
+         and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.
+         and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
+         Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},
+ journal={Journal of Machine Learning Research},
+ volume={12},
+ pages={2825--2830},
+ year={2011}
+}
+
+@inproceedings{sklearn_api,
+  author    = {Lars Buitinck and Gilles Louppe and Mathieu Blondel and
+               Fabian Pedregosa and Andreas Mueller and Olivier Grisel and
+               Vlad Niculae and Peter Prettenhofer and Alexandre Gramfort
+               and Jaques Grobler and Robert Layton and Jake VanderPlas and
+               Arnaud Joly and Brian Holt and Ga{\"{e}}l Varoquaux},
+  title     = {{API} design for machine learning software: experiences from the scikit-learn
+               project},
+  booktitle = {ECML PKDD Workshop: Languages for Data Mining and Machine Learning},
+  year      = {2013},
+  pages = {108--122},
+}
+
+@book{Hradla-Volty:book,
+author = {Martin Malý},
+title = {HRADLA, VOLTY, JEDNOČIPY Úvod do bastlení},
+year = {2017},
+publisher = {CZ.NIC, z. s. p. o.},
+edition = {1. vydání},
+isbn = {978-80-88168-26-3},
+url = {https://knihy.nic.cz/files/edice/hradla_volty_jednocipy.pdf},
+urldate = {2020},
+series = {16. publikace v Edici CZ.NIC},
+location = {Praha},
+}
+
+@online{IoT-MQTT-prakticky:online,
+title = {IoT MQTT prakticky v automatizaci},
+url = {https://automatizace.hw.cz/iot-mqtt-prakticky-v-automatizaci-1dil-uvod.html},
+author = {Antonín Vojáček},
+year = {2017},
+organization = {HW server s.r.o.},
+urldate = {2020},
+}
