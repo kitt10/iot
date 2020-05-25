@@ -14,7 +14,7 @@ Cíle této práce jsou následující.
 \end{enumerate}
 
 \section*{Současný stav řešené problematiky} \label{sec:state_of_the_art}
-Jednou ze stěžejních částí této práce je systém automatické diagnostiky, jehož primárním úkolem je detekovat chyby a anomálie. Detekce anomálií je proces, jehož účelem je identifikovat neočekávané prvky v množině dat. Tyto neočekávané prvky jsou charakterizovány výchylkami od normy ostatních dat. Pro umožnění detekce anomálií musejí být naplněny dva předpoklady: 
+\cite{scikit-learn} Jednou ze stěžejních částí této práce je systém automatické diagnostiky, jehož primárním úkolem je detekovat chyby a anomálie. Detekce anomálií je proces, jehož účelem je identifikovat neočekávané prvky v množině dat. Tyto neočekávané prvky jsou charakterizovány výchylkami od normy ostatních dat. Pro umožnění detekce anomálií musejí být naplněny dva předpoklady: 
 
 \begin{enumerate}
 	\item Neočekávané události (hodnoty) se v datech vyskytují výjimečně.
@@ -28,7 +28,7 @@ Tím, že se neočekávané hodnoty od ostatních dat podstatně odlišují a vy
 	\item Trénovací data nejsou znečištěna anomáliemi a algoritmus rozhoduje o tom, zda nové prvky korespondují s trénovací množinou nebo zda se jedná o anomálie (tato klasifikace je nazývána \textit{Novelty Detection}).
 \end{itemize}
 
-Detekce anomálií má v reálném světě četné využití skrze obory jako je bankovnictví, medicína nebo automatická výroba. V objemných databázích je často velmi složité objevit opakující se vzory a identifikovat anomálie, proto se uchylujeme k použití algoritmů strojového učení. V současné době je k dispozici řada algoritmů, které slouží k detekci anomálií. Několik příkladů je uvedeno níže.  \par
+Detekce anomálií má v reálném světě četné využití skrze obory jako je bankovnictví, medicína nebo automatická výroba. V objemných databázích je často velmi složité objevit opakující se vzory a identifikovat anomálie, proto se uchylujeme k použití algoritmů strojového učení. V současné době je k dispozici řada algoritmů, které slouží k detekci anomálií. Několik příkladů \cite{scikit-learn} je uvedeno níže.  \par
 
 \begin{itemize}
 	\item \textit{Robust Covariance} je algoritmus založený na předpokladu, že sledovaná data mají známé rozložení (například Gaussovské) a že je možné odhadnout tvar tohoto rozložení; Na základě elipsy, která prochází centrálními daty jsou za anomálie označeny prvky, které leží za hranicí této elipsy. 
@@ -51,12 +51,12 @@ Princip detekce anomálií algoritmu Isolation Forest spočívá v přiřazení 
 \[
     f(x)= 
 \begin{cases}
-     \ \ \text{if } S > 0 & \text{sample \textit{ok}}\\
-     \ \ \text{if } S \leq 0 & \text{sample \textit{outlier},}\\
+     \ \ 1 \ (\text{sample \textit{ok}}) & \text{if } S > 0 \\
+     \ \ 0 \ (\text{sample \textit{outlier}}) & \text{if } S \leq 0 \\
 \end{cases}
 \]
 
-kde $S$ je hodnota číselného skóre. Po přiřazení skóre vzorkům v množině dat jsou za anomálie označena data, jejichž hodnoty přesáhnou předem určený práh (práh je zde nula). Pokud je skóre vzorku kladné, vzorek koresponduje s natrénovaným modelem a je v pořádku - nejedná se o anomálii. Pokud je skóre záporné, daný vzorek je považován za tzv. \textit{outlier} - neodpovídá natrénovanému modelu a je označen za anomálii. \par
+kde $x$ je daný vzorek (sample) a $S$ je hodnota číselného skóre. Po přiřazení skóre vzorkům v množině dat jsou za anomálie označena data, jejichž hodnoty přesáhnou předem určený práh (práh je zde nula). Pokud je skóre vzorku kladné, vzorek koresponduje s natrénovaným modelem a je v pořádku - nejedná se o anomálii. Pokud je skóre záporné, daný vzorek je považován za tzv. \textit{outlier} - neodpovídá natrénovanému modelu a je označen za anomálii. \par
 Schopnost algoritmu zpracovávat a vyhodnocovat data bez předchozí znalosti obsahu dat je klíčová pro klasifikaci různých druhů veličin. V tomto projektu jsou pro algoritmus Isolation Forest data formována dvěma způsoby: 
 
 \begin{itemize}
@@ -64,17 +64,17 @@ Schopnost algoritmu zpracovávat a vyhodnocovat data bez předchozí znalosti ob
 	\item dvoudimenzionálně: [timestamp, value] - obsah dat je tvořen dvěma atributy; Zde je klasifikována hodnota měřené veličiny v daném časovém okamžiku.
 \end{itemize}
 
-Klasifikace jedno- a dvoudimenzionálních dat je popsána v kapitole \cref{chap:diagnostics}. Algoritmus Isolation Forest je vhodný pro klasifikaci obou typů veličin a jeho hlavní výhodou jsou nízké nároky na výpočetní paměť a rychlost detekce anomálií.  Anomálií je v tomto projektu:
+Klasifikace jedno- a dvoudimenzionálních dat je popsána v kapitole \cref{chap:diagnostics}. Algoritmus Isolation Forest je vhodný pro klasifikaci obou typů veličin a jeho hlavní výhodou jsou nízké nároky na výpočetní výkon a rychlost detekce anomálií.  Anomálií je v tomto projektu:
 
 \begin{itemize}
-	\item Hodnota měřené veličiny, která se v daném časovém okamžiku výrazně odlišuje od ostatních hodnot v množině dat.
 	\item Událost, která vznikla v čase, kdy je vznik této události nepravděpodobný. 
+	\item Hodnota měřené veličiny, která se v daném časovém okamžiku výrazně odlišuje od ostatních hodnot v množině dat.
 \end{itemize}
 
 \section*{Obsah práce} \label{sec:thesis_outline}
 Práce se skládá z šesti kapitol a svou strukturou odpovídá standardu vědeckých publikací. \par
-V první kapitole jsou popsány aktuální trendy v oblasti chytré domácnosti, základní principy detekce anomálií a stručně vystižené cíle tohoto projektu. \par
-V \cref{chap:hardware} je popsán veškerý použitý hardware a na schématech zobrazená konstrukce jednotlivých senzorů v projektu chytré domácnosti. Tato část dále popisuje programování síťové komunikace mikročipu \textit{ESP8266} se serverem a využití počítače \textit{Raspberry Pi}. \par 
+V první kapitole jsou popsány aktuální trendy v oblasti chytré domácnosti, základní principy detekce anomálií a stručně vystiženy cíle tohoto projektu. \par
+V \cref{chap:hardware} je popsán veškerý použitý hardware a na schématech je zobrazena konstrukce jednotlivých senzorů v projektu chytré domácnosti. Tato část dále popisuje programování síťové komunikace mikročipu \textit{ESP8266} se serverem a využití počítače \textit{Raspberry Pi}. \par 
 V \cref{chap:network_database} jsou znázorněny datové toky v celém projektu a popsán komunikační protokol \textit{MQTT}. Tato kapitola je věnována vysvětlení principu přenosu dat po síti a jejich ukládání do databáze. \par
 Systém automatické diagnostiky a detekce anomálií je popsán v \cref{chap:diagnostics}. Tato kapitola je rozdělena do tří částí podle úrovně diagnostického systému. Je zde popsána detekce chyb na úrovni mikročipu ESP8266, systém kontroly periodicity příchozích zpráv a použití klasifikátoru pro detekci anomálií v měřených datech. \par
 Vizualizace veškerých naměřených dat a stavu senzorů je ukázána v \cref{chap:web_page}. \par
