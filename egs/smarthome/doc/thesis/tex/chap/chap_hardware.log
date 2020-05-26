@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.11)  3 APR 2020 15:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.11)  26 MAY 2020 11:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -363,8 +363,8 @@ Missing character: There is no g in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no V in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no v in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -512,7 +512,7 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no r in font nullfont!
@@ -528,22 +528,40 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no k in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no i in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no V in font nullfont!
+Missing character: There is no m in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no j in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no b in font nullfont!
-Missing character: There is no u in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no V in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -954,6 +972,21 @@ Overfull \hbox (2.77779pt too wide) in paragraph at lines 4--5
  []
 
 
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 4--5
+\/cmr/m/n/10 ^^Sa
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 4--5
+\/cmr/m/n/10 ^^Sa
+ []
+
+
+Overfull \hbox (2.77779pt too wide) in paragraph at lines 4--5
+\/cmr/m/n/10 ^^S^^P
+ []
+
+
 Overfull \hbox (6.69446pt too wide) in paragraph at lines 4--5
 \/cmr/m/n/10 ^^Tr^^S^^P
  []
@@ -1356,18 +1389,23 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no D in font nullfont!
-Missing character: There is no j in font nullfont!
+Missing character: There is no T in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no v in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -1431,10 +1469,12 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
 Missing character: There is no j in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no z in font nullfont!
@@ -1496,54 +1536,64 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no v in font nullfont!
+Missing character: There is no V in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no l in font nullfont!
 Missing character: There is no z in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no j in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no z in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no k in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -1561,7 +1611,6 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no : in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no h in font nullfont!
@@ -1630,16 +1679,9 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no ) in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -1654,11 +1696,8 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no j in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no J in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -1670,6 +1709,10 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
 Missing character: There is no z in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -1744,13 +1787,13 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
-\/cmr/m/n/10 ^^Te
+Overfull \hbox (6.69446pt too wide) in paragraph at lines 13--14
+\/cmr/m/n/10 ^^Tr^^S^^P
  []
 
 
 Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
-\/cmr/m/n/10 ^^Te
+\/cmr/m/n/10 ^^Tz
  []
 
 
@@ -1779,8 +1822,8 @@ Overfull \hbox (2.77779pt too wide) in paragraph at lines 13--14
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
-\/cmr/m/n/10 ^^Tc
+Overfull \hbox (5.55557pt too wide) in paragraph at lines 13--14
+\/cmr/m/n/10 ^^Wu
  []
 
 
@@ -1809,23 +1852,28 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
  []
 
 
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 13--14
-\/cmr/m/n/10 ^^Tr^^S^^P
- []
-
-
 Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
 \/cmr/m/n/10 ^^Tz
  []
 
 
 Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
-\/cmr/m/n/10 ^^Se
+\/cmr/m/n/10 ^^Tc
  []
 
 
-Overfull \hbox (11.11115pt too wide) in paragraph at lines 13--14
-\/cmr/m/n/10 ^^Wu^^Wu
+Overfull \hbox (2.77779pt too wide) in paragraph at lines 13--14
+\/cmr/m/n/10 ^^S^^P
+ []
+
+
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
+\/cmr/m/n/10 ^^Tc
+ []
+
+
+Overfull \hbox (10.00003pt too wide) in paragraph at lines 13--14
+\/cmr/m/n/10 ^^Sa^^Sa
  []
 
 
@@ -1904,11 +1952,6 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
  []
 
 
-Overfull \hbox (5.55557pt too wide) in paragraph at lines 13--14
-\/cmr/m/n/10 ^^Wu
- []
-
-
 Overfull \hbox (12.50003pt too wide) in paragraph at lines 13--14
 \/cmr/m/n/10 ^^Sy^^Tc^^S^^P
  []
@@ -1916,6 +1959,11 @@ Overfull \hbox (12.50003pt too wide) in paragraph at lines 13--14
 
 Overfull \hbox (9.44446pt too wide) in paragraph at lines 13--14
 \/cmr/m/n/10 ^^Sa^^Tc
+ []
+
+
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 13--14
+\/cmr/m/n/10 ^^Tc
  []
 
 
@@ -1986,7 +2034,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.17 Z
-      ákladním stavebním prvkem senzorů v této chytré domácnosti je m...
+      ákladním stavebním prvkem senzorů v tomto projektu je mikročip \t...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2020,22 +2068,18 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no d in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
 Missing character: There is no j in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
@@ -2212,12 +2256,8 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no G in font nullfont!
-Missing character: There is no P in font nullfont!
-Missing character: There is no I in font nullfont!
-Missing character: There is no O in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -2247,6 +2287,24 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no I in font nullfont!
 Missing character: There is no S in font nullfont!
 Missing character: There is no . in font nullfont!
+Missing character: There is no [ in font nullfont!
+\citation{ESP8266:Datasheet}
+! Undefined control sequence.
+<write> ...: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.17 ... I$^2$C a I$^2$S. \cite{ESP8266:Datasheet}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `ESP8266:Datasheet' on page  undefined on input line 17
+.
+
+Missing character: There is no ] in font nullfont!
 
 Overfull \hbox (27.7778pt too wide) in paragraph at lines 17--18
 []\/cmr/m/n/10 ^^Sa^^S^^P
@@ -2264,27 +2322,12 @@ Overfull \hbox (5.55557pt too wide) in paragraph at lines 17--18
 
 
 Overfull \hbox (4.44444pt too wide) in paragraph at lines 17--18
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 17--18
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 17--18
-\/cmr/m/n/10 ^^Sa
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 17--18
 \/cmr/m/n/10 ^^Tc
  []
 
 
-Overfull \hbox (44.80531pt too wide) in paragraph at lines 17--18
-\OT1/cmr/bx/n/10 ESP8266
+Overfull \hbox (39.63312pt too wide) in paragraph at lines 17--18
+\OT1/cmr/m/it/10 ESP8266
  []
 
 
@@ -2354,7 +2397,12 @@ Overfull \hbox (4.48613pt too wide) in paragraph at lines 17--18
 
 
 Overfull \hbox (4.48613pt too wide) in paragraph at lines 17--18
-[]$ 
+[]$
+ []
+
+
+Overfull \hbox (5.43053pt too wide) in paragraph at lines 17--18
+[] 
  []
 
 ! Undefined control sequence.
@@ -2412,6 +2460,8 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -3162,6 +3212,20 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no y in font nullfont!
@@ -3212,7 +3276,7 @@ Missing character: There is no ( in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 ! Undefined control sequence.
-l.23 ...jovou platformu \textbf{NodeMCU} (na \cref
+l.23 ...jovou platformu \textit{NodeMCU} (na \cref
                                                   {fig:nodemcu}). Tato platf...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3479,7 +3543,7 @@ Missing character: There is no d in font nullfont!
 \@footnotetext ...tins {\reset@font \footnotesize 
                                                   \interlinepenalty \interfo...
 l.23 ...e vhodná pro prvotní experimentování.}
-                                                   a propojovací kabely. V ...
+                                                   a propojovací kabely. Ve...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3490,7 +3554,7 @@ and I'll forget about whatever was undefined.
 \@footnotetext ...}\color@begingroup \@makefntext 
                                                   {\rule \z@ \footnotesep \i...
 l.23 ...e vhodná pro prvotní experimentování.}
-                                                   a propojovací kabely. V ...
+                                                   a propojovací kabely. Ve...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3498,8 +3562,18 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (38.05565pt too wide) in paragraph at lines 23--23
-[][]\/cmr/m/n/10 Nep^^Sajiv^^Se
+Overfull \hbox (51.3057pt too wide) in paragraph at lines 23--23
+[][]\/cmr/m/n/10 Breadboard
+ []
+
+
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 23--23
+\/cmr/m/n/10 je
+ []
+
+
+Overfull \hbox (36.1112pt too wide) in paragraph at lines 23--23
+\/cmr/m/n/10 nep^^Sajiv^^Se
  []
 
 
@@ -3651,6 +3725,7 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no V in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no z in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -3721,6 +3796,16 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 22--24
  []
 
 
+Overfull \hbox (10.6389pt too wide) in paragraph at lines 22--24
+\/cmr/m/n/10 ^^Tr^^Ts^^S^^P
+ []
+
+
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 22--24
+\/cmr/m/n/10 ^^Se
+ []
+
+
 Overfull \hbox (5.00002pt too wide) in paragraph at lines 22--24
 \/cmr/m/n/10 ^^Sa
  []
@@ -3741,8 +3826,8 @@ Overfull \hbox (5.2778pt too wide) in paragraph at lines 22--24
  []
 
 
-Overfull \hbox (54.79832pt too wide) in paragraph at lines 22--24
-\OT1/cmr/bx/n/10 NodeMCU
+Overfull \hbox (45.2997pt too wide) in paragraph at lines 22--24
+\OT1/cmr/m/it/10 NodeMCU
  []
 
 
@@ -4088,15 +4173,17 @@ Missing character: There is no y in font nullfont!
 Missing character: There is no j in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no p in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no h in font nullfont!
@@ -4315,17 +4402,24 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no . in font nullfont!
+Missing character: There is no [ in font nullfont!
+\citation{esptool.py}
+! Undefined control sequence.
+<write> ...: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.33 ...roj \textit{esptool.py}. \cite{esptool.py}
+                                                   Esptool je program postav...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `esptool.py' on page  undefined on input line 33.
+
+Missing character: There is no ] in font nullfont!
 Missing character: There is no E in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -4473,13 +4567,13 @@ Overfull \hbox (9.72224pt too wide) in paragraph at lines 32--34
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 32--34
-\/cmr/m/n/10 ^^Te
+Overfull \hbox (3.91667pt too wide) in paragraph at lines 32--34
+\/cmr/m/n/10 ^^Tr
  []
 
 
-Overfull \hbox (3.91667pt too wide) in paragraph at lines 32--34
-\/cmr/m/n/10 ^^Tr
+Overfull \hbox (6.69446pt too wide) in paragraph at lines 32--34
+\/cmr/m/n/10 ^^Tr^^S^^P
  []
 
 
@@ -4560,6 +4654,26 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 32--34
 
 Overfull \hbox (5.00002pt too wide) in paragraph at lines 32--34
 \/cmr/m/n/10 ^^Sa
+ []
+
+
+Overfull \hbox (12.26657pt too wide) in paragraph at lines 32--34
+\OT1/cmr/m/it/10 es-
+ []
+
+
+Overfull \hbox (8.68883pt too wide) in paragraph at lines 32--34
+\OT1/cmr/m/it/10 p-
+ []
+
+
+Overfull \hbox (28.62202pt too wide) in paragraph at lines 32--34
+\OT1/cmr/m/it/10 tool.py
+ []
+
+
+Overfull \hbox (5.43053pt too wide) in paragraph at lines 32--34
+[]
  []
 
 
@@ -4657,76 +4771,6 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no . in font nullfont!
 Missing character: There is no V in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no k in font nullfont!
@@ -5130,15 +5174,24 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no j in font nullfont!
 Missing character: There is no j in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no M in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no l in font nullfont!
 Missing character: There is no . in font nullfont!
+Missing character: There is no [ in font nullfont!
+\citation{mpfshell}
+! Undefined control sequence.
+<write> ...: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.36 ...jů je \textit{Mpfshell}.  \cite{mpfshell}
+                                                   Mpfshell je balíček pos...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `mpfshell' on page  undefined on input line 36.
+
+Missing character: There is no ] in font nullfont!
 Missing character: There is no M in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no f in font nullfont!
@@ -5390,41 +5443,6 @@ Overfull \hbox (29.72224pt too wide) in paragraph at lines 35--37
 
 Overfull \hbox (6.69446pt too wide) in paragraph at lines 35--37
 \/cmr/m/n/10 ^^Tr^^S^^P
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 35--37
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 35--37
-\/cmr/m/n/10 ^^S^^P
- []
-
-
-Overfull \hbox (5.2778pt too wide) in paragraph at lines 35--37
-\/cmr/m/n/10 ^^Sy
- []
-
-
-Overfull \hbox (11.66667pt too wide) in paragraph at lines 35--37
-\/cmr/m/n/10 ^^Tc^^S^^P^^Tc
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 35--37
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (8.88889pt too wide) in paragraph at lines 35--37
-\/cmr/m/n/10 ^^Tz^^Se
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 35--37
-\/cmr/m/n/10 ^^S^^P
  []
 
 
@@ -5698,6 +5716,21 @@ Overfull \hbox (10.55559pt too wide) in paragraph at lines 35--37
  []
 
 
+Overfull \hbox (20.72209pt too wide) in paragraph at lines 35--37
+\OT1/cmr/m/it/10 Mpf-
+ []
+
+
+Overfull \hbox (19.4221pt too wide) in paragraph at lines 35--37
+\OT1/cmr/m/it/10 shell
+ []
+
+
+Overfull \hbox (5.43053pt too wide) in paragraph at lines 35--37
+[]
+ []
+
+
 Overfull \hbox (7.22223pt too wide) in paragraph at lines 35--37
 \/cmr/m/n/10 ^^S^^P^^Tc
  []
@@ -5854,7 +5887,7 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 35--37
 
 ! Undefined control sequence.
 l.38 \subsection
-                *{Programování mikročipu}
+                *{Programování mikročipu} \label{subsec:microchip_program...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -5869,7 +5902,8 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.38 \subsection*
-                 {Programování mikročipu}
+                 {Programování mikročipu} \label{subsec:microchip_program...
+
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -5898,6 +5932,13 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no n in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no p in font nullfont!
 Missing character: There is no E in font nullfont!
 Missing character: There is no S in font nullfont!
 Missing character: There is no P in font nullfont!
@@ -5919,7 +5960,6 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no k in font nullfont!
@@ -6085,16 +6125,14 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no l in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no M in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no c in font nullfont!
@@ -6465,8 +6503,13 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 38--40
  []
 
 
+Overfull \hbox (5.2778pt too wide) in paragraph at lines 38--40
+\/cmr/m/n/10 ^^Sy
+ []
+
+
 Overfull \hbox (4.44444pt too wide) in paragraph at lines 38--40
-\/cmr/m/n/10 ^^Se
+\/cmr/m/n/10 ^^Tc
  []
 
 
@@ -6537,6 +6580,11 @@ Overfull \hbox (5.55557pt too wide) in paragraph at lines 38--40
 
 Overfull \hbox (4.44444pt too wide) in paragraph at lines 38--40
 \/cmr/m/n/10 ^^Se
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 38--40
+\/cmr/m/n/10 ^^Sa
  []
 
 
@@ -6661,7 +6709,7 @@ Overfull \hbox (4.44444pt too wide) in paragraph at lines 38--40
 
 ! Undefined control sequence.
 l.41 \subsection
-                *{Postup fyzické realizace čidel}
+                *{Odesílání dat z mikročipu}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -6676,1150 +6724,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.41 \subsection*
-                 {Postup fyzické realizace čidel}
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Missing character: There is no * in font nullfont!
-Missing character: There is no P in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no P in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no P in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no P in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no P in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no K in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no U in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no L in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no W in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no F in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no V in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no . in font nullfont!
-
-Overfull \hbox (20.0pt too wide) in paragraph at lines 41--43
-[]
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^S^^P
- []
-
-
-Overfull \hbox (3.91667pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tr
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa
- []
-
-
-Overfull \hbox (5.2778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sy
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^S^^P
- []
-
-
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa^^S^^P
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (11.1389pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Te^^Tr^^S^^P
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Te
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa^^S^^P
- []
-
-
-Overfull \hbox (7.22223pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Se^^S^^P
- []
-
-
-Overfull \hbox (5.55557pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Wu
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^S^^P
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^S^^P
- []
-
-
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tr^^S^^P
- []
-
-
-Overfull \hbox (7.22223pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc^^S^^P
- []
-
-
-Overfull \hbox (10.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Wu^^Tz
- []
-
-
-Overfull \hbox (7.22223pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc^^S^^P
- []
-
-
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa^^S^^P
- []
-
-
-Overfull \hbox (7.22223pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Te^^S^^P
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^So
- []
-
-
-Overfull \hbox (15.00003pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc^^S^^P^^Sa^^S^^P
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (18.3889pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Su^^Te^^Ts^^Se
- []
-
-
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa^^S^^P
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (7.86111pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tr^^Ts
- []
-
-
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tr^^S^^P
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa^^S^^P
- []
-
-
-Overfull \hbox (5.2778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sy
- []
-
-
-Overfull \hbox (12.22224pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc^^Sa^^S^^P
- []
-
-
-Overfull \hbox (9.22224pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Ts^^Sy
- []
-
-
-Overfull \hbox (9.22224pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Ts^^Sy
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa
- []
-
-
-Overfull \hbox (5.2778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sy
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Se
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tz
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^S^^P
- []
-
-
-Overfull \hbox (8.88889pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tz^^Se
- []
-
-
-Overfull \hbox (3.91667pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tr
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^S^^P
- []
-
-
-Overfull \hbox (10.83337pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Wu^^Sy
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Te
- []
-
-
-Overfull \hbox (5.55557pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Wu
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tz
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Te
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa
- []
-
-
-Overfull \hbox (14.72226pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tz^^Sa^^Sy
- []
-
-
-Overfull \hbox (5.2778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sy
- []
-
-
-Overfull \hbox (5.55557pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Wu
- []
-
-
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa^^S^^P
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tc
- []
-
-
-Overfull \hbox (12.22224pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tz^^S^^P^^Sa
- []
-
-
-Overfull \hbox (3.91667pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tr
- []
-
-
-Overfull \hbox (18.3889pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Su^^Te^^Ts^^Se
- []
-
-
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tr^^S^^P
- []
-
-
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa^^S^^P
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tz
- []
-
-
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Tz
- []
-
-
-Overfull \hbox (3.94444pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Ts
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
-\/cmr/m/n/10 ^^Sa
- []
-
-! Undefined control sequence.
-l.44  \subsection
-                 *{Odesílání dat z mikročipu}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.44  \subsection*
-                  {Odesílání dat z mikročipu}
+                 {Odesílání dat z mikročipu}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -8187,163 +7092,163 @@ Missing character: There is no v in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (30.55559pt too wide) in paragraph at lines 44--46
+Overfull \hbox (30.55559pt too wide) in paragraph at lines 41--43
 []\/cmr/m/n/10 ^^S^^P^^Sa^^S^^P
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 44--46
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tc
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 44--46
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa
  []
 
 
-Overfull \hbox (8.33336pt too wide) in paragraph at lines 44--46
+Overfull \hbox (8.33336pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tn^^S^^P
  []
 
 
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 44--46
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa^^S^^P
  []
 
 
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 44--46
+Overfull \hbox (6.69446pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tr^^S^^P
  []
 
 
-Overfull \hbox (10.55559pt too wide) in paragraph at lines 44--46
+Overfull \hbox (10.55559pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^S^^P^^Sa^^S^^P
  []
 
 
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 44--46
+Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^S^^P
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 44--46
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tz
  []
 
 
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 44--46
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa^^S^^P
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 44--46
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa
  []
 
 
-Overfull \hbox (9.44446pt too wide) in paragraph at lines 44--46
+Overfull \hbox (9.44446pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa^^Te
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 44--46
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa
  []
 
 
-Overfull \hbox (5.2778pt too wide) in paragraph at lines 44--46
+Overfull \hbox (5.2778pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sy
  []
 
 
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 44--46
+Overfull \hbox (6.69446pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tr^^S^^P
  []
 
 
-Overfull \hbox (7.7778pt too wide) in paragraph at lines 44--46
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^S^^P^^Sa
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 44--46
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 44--46
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Te
  []
 
 
-Overfull \hbox (3.91667pt too wide) in paragraph at lines 44--46
+Overfull \hbox (3.91667pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tr
  []
 
 
-Overfull \hbox (10.55559pt too wide) in paragraph at lines 44--46
+Overfull \hbox (10.55559pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^S^^P^^Sa^^S^^P
  []
 
 
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 44--46
+Overfull \hbox (6.69446pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tr^^S^^P
  []
 
 
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 44--46
+Overfull \hbox (2.77779pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^S^^P
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 44--46
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tc
  []
 
 
-Overfull \hbox (6.69446pt too wide) in paragraph at lines 44--46
+Overfull \hbox (6.69446pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tr^^S^^P
  []
 
 
-Overfull \hbox (4.44444pt too wide) in paragraph at lines 44--46
+Overfull \hbox (4.44444pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Te
  []
 
 
-Overfull \hbox (9.44446pt too wide) in paragraph at lines 44--46
+Overfull \hbox (9.44446pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa^^Te
  []
 
 
-Overfull \hbox (3.91667pt too wide) in paragraph at lines 44--46
+Overfull \hbox (3.91667pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tr
  []
 
 
-Overfull \hbox (3.91667pt too wide) in paragraph at lines 44--46
+Overfull \hbox (3.91667pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tr
  []
 
 
-Overfull \hbox (7.22223pt too wide) in paragraph at lines 44--46
+Overfull \hbox (7.22223pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Tc^^S^^P
  []
 
 
-Overfull \hbox (5.55557pt too wide) in paragraph at lines 44--46
+Overfull \hbox (5.55557pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Wu
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 44--46
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 41--43
 \/cmr/m/n/10 ^^Sa 
  []
 
 ! Undefined control sequence.
-l.47  \subsubsection
-                    *{Odesílání zpráv na základě vzniku události} \la...
+l.44 \subsubsection
+                   *{Odesílání zpráv na základě vzniku události} \lab...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -8357,8 +7262,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47  \subsubsection*
-                     {Odesílání zpráv na základě vzniku události} \la...
+l.44 \subsubsection*
+                    {Odesílání zpráv na základě vzniku události} \lab...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -8539,7 +7444,7 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 ! Undefined control sequence.
-l.48 ...o přístup je popsán v diagramu na \cref
+l.45 ...o přístup je popsán v diagramu na \cref
                                                   {fig:esp_event_based_diagr...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -8557,13 +7462,13 @@ Missing character: There is no p in font nullfont!
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.48 ...up je popsán v diagramu na \cref{fig:esp_
+l.45 ...up je popsán v diagramu na \cref{fig:esp_
                                                   event_based_diagram}. V ne...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.48 ...ramu na \cref{fig:esp_event_based_diagram}
+l.45 ...ramu na \cref{fig:esp_event_based_diagram}
                                                   . V nekonečném cyklu, do...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -8572,15 +7477,15 @@ the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...f{fig:esp_event_based_diagram}. V nekoneč
+l.45 ...f{fig:esp_event_based_diagram}. V nekoneč
                                                   ném cyklu, do kterého se...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8588,7 +7493,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \edef 
-l.48 ...f{fig:esp_event_based_diagram}. V nekoneč
+l.45 ...f{fig:esp_event_based_diagram}. V nekoneč
                                                   ném cyklu, do kterého se...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -8598,7 +7503,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...f{fig:esp_event_based_diagram}. V nekoneč
+l.45 ...f{fig:esp_event_based_diagram}. V nekoneč
                                                   ném cyklu, do kterého se...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8606,12 +7511,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...ig:esp_event_based_diagram}. V nekonečné
+l.45 ...ig:esp_event_based_diagram}. V nekonečné
                                                   m cyklu, do kterého se se...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8619,7 +7524,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...ig:esp_event_based_diagram}. V nekonečné
+l.45 ...ig:esp_event_based_diagram}. V nekonečné
                                                   m cyklu, do kterého se se...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8627,12 +7532,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ..._diagram}. V nekonečném cyklu, do které
+l.45 ..._diagram}. V nekonečném cyklu, do které
                                                   ho se senzor dostane po p�...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8640,7 +7545,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ..._diagram}. V nekonečném cyklu, do které
+l.45 ..._diagram}. V nekonečném cyklu, do které
                                                   ho se senzor dostane po p�...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8648,12 +7553,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...yklu, do kterého se senzor dostane po př
+l.45 ...yklu, do kterého se senzor dostane po př
                                                   ipojení k internetu, se p...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8661,7 +7566,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...yklu, do kterého se senzor dostane po př
+l.45 ...yklu, do kterého se senzor dostane po př
                                                   ipojení k internetu, se p...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8669,12 +7574,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ... kterého se senzor dostane po připojení
+l.45 ... kterého se senzor dostane po připojení
                                                    k internetu, se prvně se...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8682,7 +7587,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ... kterého se senzor dostane po připojení
+l.45 ... kterého se senzor dostane po připojení
                                                    k internetu, se prvně se...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -8690,12 +7595,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ... kterého se senzor dostane po připojení
+l.45 ... kterého se senzor dostane po připojení
                                                    k internetu, se prvně se...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8703,12 +7608,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...tane po připojení k internetu, se prvně
+l.45 ...tane po připojení k internetu, se prvně
                                                    sesynchronizuje čas se s...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8716,7 +7621,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...tane po připojení k internetu, se prvně
+l.45 ...tane po připojení k internetu, se prvně
                                                    sesynchronizuje čas se s...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8724,12 +7629,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ... k internetu, se prvně sesynchronizuje č
+l.45 ... k internetu, se prvně sesynchronizuje č
                                                   as se světovým časem po...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8737,7 +7642,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ... k internetu, se prvně sesynchronizuje č
+l.45 ... k internetu, se prvně sesynchronizuje č
                                                   as se světovým časem po...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8745,12 +7650,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...tu, se prvně sesynchronizuje čas se svě
+l.45 ...tu, se prvně sesynchronizuje čas se svě
                                                   tovým časem pomocí prot...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8758,7 +7663,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...tu, se prvně sesynchronizuje čas se svě
+l.45 ...tu, se prvně sesynchronizuje čas se svě
                                                   tovým časem pomocí prot...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8766,12 +7671,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...e prvně sesynchronizuje čas se světový
+l.45 ...e prvně sesynchronizuje čas se světový
                                                   m časem pomocí protokolu...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8779,7 +7684,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...e prvně sesynchronizuje čas se světový
+l.45 ...e prvně sesynchronizuje čas se světový
                                                   m časem pomocí protokolu...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8787,12 +7692,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...vně sesynchronizuje čas se světovým č
+l.45 ...vně sesynchronizuje čas se světovým č
                                                   asem pomocí protokolu NTP...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8800,7 +7705,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...vně sesynchronizuje čas se světovým č
+l.45 ...vně sesynchronizuje čas se světovým č
                                                   asem pomocí protokolu NTP...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8808,12 +7713,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...ronizuje čas se světovým časem pomocí
+l.45 ...ronizuje čas se světovým časem pomocí
                                                    protokolu NTP\footnote{\t...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8821,7 +7726,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...ronizuje čas se světovým časem pomocí
+l.45 ...ronizuje čas se světovým časem pomocí
                                                    protokolu NTP\footnote{\t...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -8829,12 +7734,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...ronizuje čas se světovým časem pomocí
+l.45 ...ronizuje čas se světovým časem pomocí
                                                    protokolu NTP\footnote{\t...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -8844,7 +7749,7 @@ return to the right one by typing `I}' or `I$' or `I\par'.
 ! Undefined control sequence.
 \@footnotetext ...tins {\reset@font \footnotesize 
                                                   \interlinepenalty \interfo...
-l.48 ...chronizaci času počítače po internetu}
+l.45 ...chronizaci času počítače po internetu}
                                                   . Po synchronizaci senzor ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -8855,7 +7760,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \@footnotetext ...}\color@begingroup \@makefntext 
                                                   {\rule \z@ \footnotesep \i...
-l.48 ...chronizaci času počítače po internetu}
+l.45 ...chronizaci času počítače po internetu}
                                                   . Po synchronizaci senzor ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -8864,134 +7769,134 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (38.19444pt too wide) in paragraph at lines 48--48
+Overfull \hbox (38.19444pt too wide) in paragraph at lines 45--45
 [][]\OT1/cmr/bx/n/10 N\/cmr/m/n/10 etwork
  []
 
 
-Overfull \hbox (23.55554pt too wide) in paragraph at lines 48--48
+Overfull \hbox (23.55554pt too wide) in paragraph at lines 45--45
 \OT1/cmr/bx/n/10 T\/cmr/m/n/10 ime
  []
 
 
-Overfull \hbox (38.1667pt too wide) in paragraph at lines 48--48
+Overfull \hbox (38.1667pt too wide) in paragraph at lines 45--45
 \OT1/cmr/bx/n/10 P\/cmr/m/n/10 rotocol
  []
 
 
-Overfull \hbox (3.33333pt too wide) in paragraph at lines 48--48
+Overfull \hbox (3.33333pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 -
  []
 
 
-Overfull \hbox (17.80559pt too wide) in paragraph at lines 48--48
+Overfull \hbox (17.80559pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 pro-
  []
 
 
-Overfull \hbox (21.66673pt too wide) in paragraph at lines 48--48
+Overfull \hbox (21.66673pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 tokol
  []
 
 
-Overfull \hbox (14.47226pt too wide) in paragraph at lines 48--48
+Overfull \hbox (14.47226pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 pro
  []
 
 
-Overfull \hbox (18.11115pt too wide) in paragraph at lines 48--48
+Overfull \hbox (18.11115pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 syn-
  []
 
 
-Overfull \hbox (21.97224pt too wide) in paragraph at lines 48--48
+Overfull \hbox (21.97224pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 chro-
  []
 
 
-Overfull \hbox (25.00005pt too wide) in paragraph at lines 48--48
+Overfull \hbox (25.00005pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 nizaci
  []
 
 
-Overfull \hbox (18.94447pt too wide) in paragraph at lines 48--48
+Overfull \hbox (18.94447pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 ^^Tcasu
  []
 
 
-Overfull \hbox (35.8334pt too wide) in paragraph at lines 48--48
+Overfull \hbox (35.8334pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 po^^Tc^^S^^Pta^^Tce
  []
 
 
-Overfull \hbox (10.83337pt too wide) in paragraph at lines 48--48
+Overfull \hbox (10.83337pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 po
  []
 
 
-Overfull \hbox (11.66669pt too wide) in paragraph at lines 48--48
+Overfull \hbox (11.66669pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 in-
  []
 
 
-Overfull \hbox (15.58334pt too wide) in paragraph at lines 48--48
+Overfull \hbox (15.58334pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 ter-
  []
 
 
-Overfull \hbox (19.44449pt too wide) in paragraph at lines 48--48
+Overfull \hbox (19.44449pt too wide) in paragraph at lines 45--45
 \/cmr/m/n/10 netu| 
  []
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ... po internetu}. Po synchronizaci senzor č
-                                                  eká dokud se neobjeví ud...
+l.45 ... po internetu}. Po synchronizaci senzor č
+                                                  eká, dokud se neobjeví u...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ... po internetu}. Po synchronizaci senzor č
-                                                  eká dokud se neobjeví ud...
+l.45 ... po internetu}. Po synchronizaci senzor č
+                                                  eká, dokud se neobjeví u...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...internetu}. Po synchronizaci senzor čeká
-                                                   dokud se neobjeví událo...
+l.45 ...internetu}. Po synchronizaci senzor čeká
+                                                  , dokud se neobjeví udál...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...internetu}. Po synchronizaci senzor čeká
-                                                   dokud se neobjeví událo...
+l.45 ...internetu}. Po synchronizaci senzor čeká
+                                                  , dokud se neobjeví udál...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...hronizaci senzor čeká dokud se neobjeví
+l.45 ...ronizaci senzor čeká, dokud se neobjeví
                                                    událost, kterou má zazn...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -8999,7 +7904,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...hronizaci senzor čeká dokud se neobjeví
+l.45 ...ronizaci senzor čeká, dokud se neobjeví
                                                    událost, kterou má zazn...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9007,12 +7912,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...hronizaci senzor čeká dokud se neobjeví
+l.45 ...ronizaci senzor čeká, dokud se neobjeví
                                                    událost, kterou má zazn...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9020,12 +7925,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...zaci senzor čeká dokud se neobjeví udá
+l.45 ...aci senzor čeká, dokud se neobjeví udá
                                                   lost, kterou má zaznamena...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9033,7 +7938,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...zaci senzor čeká dokud se neobjeví udá
+l.45 ...aci senzor čeká, dokud se neobjeví udá
                                                   lost, kterou má zaznamena...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9041,12 +7946,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...á dokud se neobjeví událost, kterou má
+l.45 ...�, dokud se neobjeví událost, kterou má
                                                    zaznamenat. Touto událos...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9054,7 +7959,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...á dokud se neobjeví událost, kterou má
+l.45 ...�, dokud se neobjeví událost, kterou má
                                                    zaznamenat. Touto událos...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9062,12 +7967,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...dálost, kterou má zaznamenat. Touto udá
+l.45 ...dálost, kterou má zaznamenat. Touto udá
                                                   lostí je například otev...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9075,7 +7980,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...dálost, kterou má zaznamenat. Touto udá
+l.45 ...dálost, kterou má zaznamenat. Touto udá
                                                   lostí je například otev...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9083,12 +7988,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...t, kterou má zaznamenat. Touto událostí
+l.45 ...t, kterou má zaznamenat. Touto událostí
                                                    je například otevření...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9096,7 +8001,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...t, kterou má zaznamenat. Touto událostí
+l.45 ...t, kterou má zaznamenat. Touto událostí
                                                    je například otevření...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9104,12 +8009,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...t, kterou má zaznamenat. Touto událostí
+l.45 ...t, kterou má zaznamenat. Touto událostí
                                                    je například otevření...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9117,12 +8022,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ... má zaznamenat. Touto událostí je např
+l.45 ... má zaznamenat. Touto událostí je např
                                                   íklad otevření či zav�...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9130,7 +8035,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ... má zaznamenat. Touto událostí je např
+l.45 ... má zaznamenat. Touto událostí je např
                                                   íklad otevření či zav�...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9138,12 +8043,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...á zaznamenat. Touto událostí je napří
+l.45 ...á zaznamenat. Touto událostí je napří
                                                   klad otevření či zavře...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9151,7 +8056,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...á zaznamenat. Touto událostí je napří
+l.45 ...á zaznamenat. Touto událostí je napří
                                                   klad otevření či zavře...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9159,12 +8064,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...á zaznamenat. Touto událostí je napří
+l.45 ...á zaznamenat. Touto událostí je napří
                                                   klad otevření či zavře...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9172,12 +8077,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...at. Touto událostí je například otevř
+l.45 ...at. Touto událostí je například otevř
                                                   ení či zavření okna ne...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9185,7 +8090,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...at. Touto událostí je například otevř
+l.45 ...at. Touto událostí je například otevř
                                                   ení či zavření okna ne...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9193,12 +8098,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...Touto událostí je například otevření
+l.45 ...Touto událostí je například otevření
                                                    či zavření okna nebo d...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9206,7 +8111,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...Touto událostí je například otevření
+l.45 ...Touto událostí je například otevření
                                                    či zavření okna nebo d...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9214,12 +8119,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...Touto událostí je například otevření
+l.45 ...Touto událostí je například otevření
                                                    či zavření okna nebo d...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9227,12 +8132,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...to událostí je například otevření č
+l.45 ...to událostí je například otevření č
                                                   i zavření okna nebo dve�...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9240,7 +8145,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...to událostí je například otevření č
+l.45 ...to událostí je například otevření č
                                                   i zavření okna nebo dve�...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9248,12 +8153,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...lostí je například otevření či zavř
+l.45 ...lostí je například otevření či zavř
                                                   ení okna nebo dveří a n...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9261,7 +8166,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...lostí je například otevření či zavř
+l.45 ...lostí je například otevření či zavř
                                                   ení okna nebo dveří a n...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9269,12 +8174,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...í je například otevření či zavření
+l.45 ...í je například otevření či zavření
                                                    okna nebo dveří a nebo ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9282,7 +8187,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...í je například otevření či zavření
+l.45 ...í je například otevření či zavření
                                                    okna nebo dveří a nebo ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9290,12 +8195,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...í je například otevření či zavření
+l.45 ...í je například otevření či zavření
                                                    okna nebo dveří a nebo ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9303,12 +8208,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...d otevření či zavření okna nebo dveř
+l.45 ...d otevření či zavření okna nebo dveř
                                                   í a nebo pohyb člověka ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9316,7 +8221,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...d otevření či zavření okna nebo dveř
+l.45 ...d otevření či zavření okna nebo dveř
                                                   í a nebo pohyb člověka ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9324,12 +8229,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...otevření či zavření okna nebo dveří
+l.45 ...otevření či zavření okna nebo dveří
                                                    a nebo pohyb člověka v ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9337,7 +8242,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...otevření či zavření okna nebo dveří
+l.45 ...otevření či zavření okna nebo dveří
                                                    a nebo pohyb člověka v ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9345,12 +8250,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...otevření či zavření okna nebo dveří
+l.45 ...otevření či zavření okna nebo dveří
                                                    a nebo pohyb člověka v ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9358,298 +8263,88 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...avření okna nebo dveří a nebo pohyb č
-                                                  lověka v místnosti. V t�...
+l.45 ...avření okna nebo dveří a nebo pohyb č
+                                                  lověka v místnosti. V mo...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...avření okna nebo dveří a nebo pohyb č
-                                                  lověka v místnosti. V t�...
+l.45 ...avření okna nebo dveří a nebo pohyb č
+                                                  lověka v místnosti. V mo...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...ní okna nebo dveří a nebo pohyb člově
-                                                  ka v místnosti. V této �...
+l.45 ...ní okna nebo dveří a nebo pohyb člově
+                                                  ka v místnosti. V moment�...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...ní okna nebo dveří a nebo pohyb člově
-                                                  ka v místnosti. V této �...
+l.45 ...ní okna nebo dveří a nebo pohyb člově
+                                                  ka v místnosti. V moment�...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ... nebo dveří a nebo pohyb člověka v mí
-                                                  stnosti. V této části k...
+l.45 ... nebo dveří a nebo pohyb člověka v mí
+                                                  stnosti. V momentě, kdy u...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ... nebo dveří a nebo pohyb člověka v mí
-                                                  stnosti. V této části k...
+l.45 ... nebo dveří a nebo pohyb člověka v mí
+                                                  stnosti. V momentě, kdy u...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ... nebo dveří a nebo pohyb člověka v mí
-                                                  stnosti. V této části k...
+l.45 ... nebo dveří a nebo pohyb člověka v mí
+                                                  stnosti. V momentě, kdy u...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...a nebo pohyb člověka v místnosti. V té
-                                                  to části kódu tedy čid...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...a nebo pohyb člověka v místnosti. V té
-                                                  to části kódu tedy čid...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \v invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...o pohyb člověka v místnosti. V této č
-                                                  ásti kódu tedy čidlo se...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...o pohyb člověka v místnosti. V této č
-                                                  ásti kódu tedy čidlo se...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...pohyb člověka v místnosti. V této čá
-                                                  sti kódu tedy čidlo setr...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...pohyb člověka v místnosti. V této čá
-                                                  sti kódu tedy čidlo setr...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...�lověka v místnosti. V této části kó
-                                                  du tedy čidlo setrvává ...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...�lověka v místnosti. V této části kó
-                                                  du tedy čidlo setrvává ...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \v invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ... místnosti. V této části kódu tedy č
-                                                  idlo setrvává naprostou ...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ... místnosti. V této části kódu tedy č
-                                                  idlo setrvává naprostou ...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ... V této části kódu tedy čidlo setrvá
-                                                  vá naprostou většinu č...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ... V této části kódu tedy čidlo setrvá
-                                                  vá naprostou většinu č...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...této části kódu tedy čidlo setrvává
-                                                   naprostou většinu času...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...této části kódu tedy čidlo setrvává
-                                                   naprostou většinu času...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \v invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...kódu tedy čidlo setrvává naprostou vě
-                                                  tšinu času. V momentě, ...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...kódu tedy čidlo setrvává naprostou vě
-                                                  tšinu času. V momentě, ...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \v invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...du tedy čidlo setrvává naprostou větš
-                                                  inu času. V momentě, kdy...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...du tedy čidlo setrvává naprostou větš
-                                                  inu času. V momentě, kdy...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \v invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...y čidlo setrvává naprostou většinu č
-                                                  asu. V momentě, kdy udál...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! You can't use `\spacefactor' in math mode.
-\add@accent ...}\accent #1 #2\egroup \spacefactor 
-                                                  \accent@spacefactor 
-l.48 ...y čidlo setrvává naprostou většinu č
-                                                  asu. V momentě, kdy udál...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Command \v invalid in math mode on input line 48.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ...@spacefactor \spacefactor }\accent 
-                                                  #1 #2\egroup \spacefactor ...
-l.48 ...�vá naprostou většinu času. V momentě
+l.45 ...o pohyb člověka v místnosti. V momentě
                                                   , kdy událost nastane, č...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9657,7 +8352,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...�vá naprostou většinu času. V momentě
+l.45 ...o pohyb člověka v místnosti. V momentě
                                                   , kdy událost nastane, č...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9665,12 +8360,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...stou většinu času. V momentě, kdy udá
+l.45 ...lověka v místnosti. V momentě, kdy udá
                                                   lost nastane, čidlo probl...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9678,7 +8373,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...stou většinu času. V momentě, kdy udá
+l.45 ...lověka v místnosti. V momentě, kdy udá
                                                   lost nastane, čidlo probl...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9686,12 +8381,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...�asu. V momentě, kdy událost nastane, č
+l.45 ...osti. V momentě, kdy událost nastane, č
                                                   idlo problikne externí le...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9699,7 +8394,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...�asu. V momentě, kdy událost nastane, č
+l.45 ...osti. V momentě, kdy událost nastane, č
                                                   idlo problikne externí le...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9707,12 +8402,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...dálost nastane, čidlo problikne externí
+l.45 ...dálost nastane, čidlo problikne externí
                                                    led diodou (v případě ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9720,7 +8415,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...dálost nastane, čidlo problikne externí
+l.45 ...dálost nastane, čidlo problikne externí
                                                    led diodou (v případě ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9728,12 +8423,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...dálost nastane, čidlo problikne externí
+l.45 ...dálost nastane, čidlo problikne externí
                                                    led diodou (v případě ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9741,12 +8436,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...�idlo problikne externí led diodou (v př
+l.45 ...�idlo problikne externí led diodou (v př
                                                   ípadě pohybového čidla...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9754,7 +8449,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...�idlo problikne externí led diodou (v př
+l.45 ...�idlo problikne externí led diodou (v př
                                                   ípadě pohybového čidla...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9762,12 +8457,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...dlo problikne externí led diodou (v pří
+l.45 ...dlo problikne externí led diodou (v pří
                                                   padě pohybového čidla s...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9775,7 +8470,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...dlo problikne externí led diodou (v pří
+l.45 ...dlo problikne externí led diodou (v pří
                                                   padě pohybového čidla s...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9783,12 +8478,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...dlo problikne externí led diodou (v pří
+l.45 ...dlo problikne externí led diodou (v pří
                                                   padě pohybového čidla s...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9796,12 +8491,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...roblikne externí led diodou (v případě
+l.45 ...roblikne externí led diodou (v případě
                                                    pohybového čidla se pro...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9809,7 +8504,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...roblikne externí led diodou (v případě
+l.45 ...roblikne externí led diodou (v případě
                                                    pohybového čidla se pro...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9817,12 +8512,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...xterní led diodou (v případě pohybové
+l.45 ...xterní led diodou (v případě pohybové
                                                   ho čidla se pro indikaci ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9830,7 +8525,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...xterní led diodou (v případě pohybové
+l.45 ...xterní led diodou (v případě pohybové
                                                   ho čidla se pro indikaci ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9838,12 +8533,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...í led diodou (v případě pohybového č
+l.45 ...í led diodou (v případě pohybového č
                                                   idla se pro indikaci zapne...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9851,7 +8546,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...í led diodou (v případě pohybového č
+l.45 ...í led diodou (v případě pohybového č
                                                   idla se pro indikaci zapne...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9859,12 +8554,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...ybového čidla se pro indikaci zapne ješ
+l.45 ...ybového čidla se pro indikaci zapne ješ
                                                   tě externí bzučák) a p...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9872,7 +8567,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...ybového čidla se pro indikaci zapne ješ
+l.45 ...ybového čidla se pro indikaci zapne ješ
                                                   tě externí bzučák) a p...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9880,12 +8575,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...vého čidla se pro indikaci zapne ještě
+l.45 ...vého čidla se pro indikaci zapne ještě
                                                    externí bzučák) a pře...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9893,7 +8588,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...vého čidla se pro indikaci zapne ještě
+l.45 ...vého čidla se pro indikaci zapne ještě
                                                    externí bzučák) a pře...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9901,12 +8596,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...dla se pro indikaci zapne ještě externí
+l.45 ...dla se pro indikaci zapne ještě externí
                                                    bzučák) a přejde do f�...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9914,7 +8609,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \begingroup 
-l.48 ...dla se pro indikaci zapne ještě externí
+l.45 ...dla se pro indikaci zapne ještě externí
                                                    bzučák) a přejde do f�...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -9922,12 +8617,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \i invalid in math mode on input line 48.
+LaTeX Warning: Command \i invalid in math mode on input line 45.
 
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...dla se pro indikaci zapne ještě externí
+l.45 ...dla se pro indikaci zapne ještě externí
                                                    bzučák) a přejde do f�...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9935,12 +8630,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ... pro indikaci zapne ještě externí bzuč
+l.45 ... pro indikaci zapne ještě externí bzuč
                                                   ák) a přejde do fáze vy...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9948,7 +8643,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ... pro indikaci zapne ještě externí bzuč
+l.45 ... pro indikaci zapne ještě externí bzuč
                                                   ák) a přejde do fáze vy...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9956,12 +8651,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...ro indikaci zapne ještě externí bzučá
+l.45 ...ro indikaci zapne ještě externí bzučá
                                                   k) a přejde do fáze vytv...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9969,7 +8664,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...ro indikaci zapne ještě externí bzučá
+l.45 ...ro indikaci zapne ještě externí bzučá
                                                   k) a přejde do fáze vytv...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9977,12 +8672,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 48.
+LaTeX Warning: Command \v invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...aci zapne ještě externí bzučák) a př
+l.45 ...aci zapne ještě externí bzučák) a př
                                                   ejde do fáze vytváření...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -9990,7 +8685,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...aci zapne ještě externí bzučák) a př
+l.45 ...aci zapne ještě externí bzučák) a př
                                                   ejde do fáze vytváření...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -9998,12 +8693,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 48.
+LaTeX Warning: Command \' invalid in math mode on input line 45.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.48 ...eště externí bzučák) a přejde do fá
+l.45 ...eště externí bzučák) a přejde do fá
                                                   ze vytváření zprávy. P...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -10011,16 +8706,231 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.48 ...eště externí bzučák) a přejde do fá
+l.45 ...eště externí bzučák) a přejde do fá
                                                   ze vytváření zprávy. P...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ...terní bzučák) a přejde do fáze vytvá
+                                                  ření zprávy. Po vytvoř...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ...terní bzučák) a přejde do fáze vytvá
+                                                  ření zprávy. Po vytvoř...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ...rní bzučák) a přejde do fáze vytvář
+                                                  ení zprávy. Po vytvořen...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ...rní bzučák) a přejde do fáze vytvář
+                                                  ení zprávy. Po vytvořen...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ... bzučák) a přejde do fáze vytváření
+                                                   zprávy. Po vytvoření s...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \begingroup 
+l.45 ... bzučák) a přejde do fáze vytváření
+                                                   zprávy. Po vytvoření s...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \i invalid in math mode on input line 45.
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ... bzučák) a přejde do fáze vytváření
+                                                   zprávy. Po vytvoření s...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ...ák) a přejde do fáze vytváření zprá
+                                                  vy. Po vytvoření struktu...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ...ák) a přejde do fáze vytváření zprá
+                                                  vy. Po vytvoření struktu...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ... do fáze vytváření zprávy. Po vytvoř
+                                                  ení struktury zprávy, kt...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ... do fáze vytváření zprávy. Po vytvoř
+                                                  ení struktury zprávy, kt...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ...fáze vytváření zprávy. Po vytvoření
+                                                   struktury zprávy, která...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \begingroup 
+l.45 ...fáze vytváření zprávy. Po vytvoření
+                                                   struktury zprávy, která...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \i invalid in math mode on input line 45.
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ...fáze vytváření zprávy. Po vytvoření
+                                                   struktury zprávy, která...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ...í zprávy. Po vytvoření struktury zprá
+                                                  vy, která sestává z ně...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ...í zprávy. Po vytvoření struktury zprá
+                                                  vy, která sestává z ně...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 .... Po vytvoření struktury zprávy, která
+                                                   sestává z několika atr...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 .... Po vytvoření struktury zprávy, která
+                                                   sestává z několika atr...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 45.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.45 ...tvoření struktury zprávy, která sestá
+                                                  vá z několika atributů ...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.45 ...tvoření struktury zprávy, která sestá
+                                                  vá z několika atributů ...
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 30 strings out of 492616
- 371 string characters out of 6129481
- 73822 words of memory out of 5000000
+ 31 strings out of 492616
+ 384 string characters out of 6129481
+ 71717 words of memory out of 5000000
  4046 multiletter control sequences out of 15000+600000
- 3948 words of font info for 15 fonts, out of 8000000 for 9000
+ 4294 words of font info for 16 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 18i,16n,16p,1666b,179s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 18i,18n,22p,1582b,184s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 !  ==> Fatal error occurred, no output PDF file produced!
