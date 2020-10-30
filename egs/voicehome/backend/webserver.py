@@ -33,7 +33,7 @@ class VoicehomeTornadoApp(TornadoApplication):
         TornadoApplication.__init__(self, self.tornado_handlers, **self.tornado_settings)
 
 
-class VoicehomeWebserver(TornadoApplication):
+class VoicehomeWebserver:
 
     def __init__(self, engine):
         self.engine = engine
@@ -42,4 +42,7 @@ class VoicehomeWebserver(TornadoApplication):
         self.app = VoicehomeTornadoApp(self.cfg)
         self.app.listen(self.cfg.tornado.port)
         self.iol = IOLoop.current()
-        print('Webserver: Listening on', self.cfg.tornado.port)
+        print('Webserver: Initialized. Listening on', self.cfg.tornado.port)
+
+    def run_loop(self):
+        self.iol.start()

@@ -11,10 +11,12 @@ class VoicehomeMQTTClient(MQTTClient):
         self.username_pw_set(self.cfg.mqtt.uname, password=self.cfg.mqtt.passwd)
         self.connect(self.cfg.mqtt.host, self.cfg.mqtt.port)
 
+    def run_loop(self):
+        self.loop_forever()
+
     def on_connect(self, client, userdata, flags, rc):
-        print('MQTT Client: Connected.')
         self.subscribe(self.cfg.mqtt.topic)
-        print('MQTT Client: Subscribed to:', self.cfg.mqtt.topic)
+        print('MQTT Client: Connected. Subscribed to', self.cfg.mqtt.topic)
 
     def on_message(self, client, userdata, msg):
         print('MQTT Client: New Message:', msg.payload)
