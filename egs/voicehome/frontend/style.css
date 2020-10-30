@@ -1,0 +1,16 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#header {
+    position: absolute;
+    top: 30px;
+    left: 15%;
+    width: 70%;
+    color: darkblue;
+    background-color: aliceblue;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}

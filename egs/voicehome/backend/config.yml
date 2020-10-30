@@ -1,0 +1,21 @@
+# --- General configuration --- #
+
+# --- MQTT configuration --- #
+mqtt:
+  uname: "sanda"
+  passwd: "denmark"
+  host: "147.228.124.230"
+  port: 1883
+  topic: "voicehome/#"
+
+# --- Tornado webserver configuration --- #
+tornado:
+  port: 8881
+  debug: True
+  frontend_relative: "../frontend/"
+  index_page: "index.html"
+
+# --- Mongo database configuration --- #
+mongo:
+  host: "localhost"
+  port: 27017
