@@ -5,6 +5,8 @@ from box import Box
 
 from mqtt_client import VoicehomeMQTTClient
 from webserver import VoicehomeWebserver
+from database import VoicehomeDatabase
+from control import ControlInterface
 
 
 class Engine:
@@ -24,11 +26,12 @@ class Engine:
         self.webserver = None
         self.webserver_thread(daemonic=False)
 
-        # Mongo Database
-        print('TODO: MongoDB')
+        # Control (VoiceKit) Interface
+        self.control = None
+        self.control_thread(daemonic=False)
 
-        # VoiceKit Interface
-        print('TODO: VoiceKit')
+        # Mongo Database
+        self.db = VoicehomeDatabase(engine=self)
 
         # Modules
         print('TODO: Modules')
@@ -59,6 +62,15 @@ class Engine:
             t.start()
         except ThreadError:
             print('ERR: Thread Webserver.')
+
+    def control_thread(self, daemonic=False):
+        self.control = ControlInterface(engine=self)
+        try:
+            t = Thread(target=self.control.wait_for_controller())
+            t.setDaemon(daemonic)
+            t.start()
+        except ThreadError:
+            print('ERR: Thread Control.')
 
 
 if __name__ == '__main__':

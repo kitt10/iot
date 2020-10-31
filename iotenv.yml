@@ -5,4 +5,7 @@ dependencies:
   - python=3.8
   - ipykernel
   - paho-mqtt
+  - pyyaml
+  - python-box
+  - pymongo
 prefix: /Users/kitt/miniconda3/envs/iot

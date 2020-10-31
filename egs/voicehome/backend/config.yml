@@ -17,5 +17,10 @@ tornado:
 
 # --- Mongo database configuration --- #
 mongo:
-  host: "localhost"
+  host: "127.0.0.1"
   port: 27017
+
+# --- Socket control interface configuration --- #
+socket:
+  host: "127.0.0.1"
+  port: 7107
