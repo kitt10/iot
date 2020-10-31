@@ -7,28 +7,53 @@ class ControlInterface:
         self.engine = engine
         self.cfg = engine.cfg
 
+        self.sock = None
         self.controller = None
-        self.controller_addr = None
-        self.control_commands = []
+        self.disconnected = False
+        self.commands = []
+        self.replies = []
 
     def wait_for_controller(self):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.bind((self.cfg.socket.host, self.cfg.socket.port))
-            print('Control: Initialized. Listening on', self.cfg.socket.port)
-            sock.listen()
-            self.controller, self.controller_addr = sock.accept()
-            self.control_loop()
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.bind((self.cfg.socket.host, self.cfg.socket.port))
+        print('Control: Initialized. Listening on', self.cfg.socket.port)
+        self.sock.listen()
+        self.controller, _ = self.sock.accept()
+        print('Control: Controller connected from', self.controller.getsockname())
+        self.wait_for_commands()
 
-    def control_loop(self):
-        print('Control: New connection from', self.controller_addr)
-        while True:
-            self.control_commands.append(self.controller.recv(1024))
-            if self.last() == 'disconnect_controller':
-                self.controller.close()
-                break
+    def wait_for_commands(self):
+        while not self.disconnected:
+            self.new_command(self.controller.recv(1024).decode())
 
-            print('Control: New command:', self.last())
+        self.restart_listening()
 
-    def last(self):
-        return self.control_commands[-1]
+    def last_command(self):
+        return self.commands[-1]
+
+    def last_reply(self):
+        return self.replies[-1]
+
+    def new_command(self, command):
+        self.commands.append(command)
+        print('Control: New command:', self.last_command())
+        if self.last_command() == 'disconnect_controller':
+            self.disconnect_controller()
+
+    def new_reply(self, reply):
+        self.controller.sendall(str.encode(reply))
+        self.replies.append(reply)
+        print('Control: New reply:', self.last_reply())
+        if self.last_reply() == 'disconnect_controller':
+            self.disconnect_controller()
+
+    def disconnect_controller(self):
+        self.disconnected = True
+        print('Control: Controller disconnected from', self.controller.getsockname())
+        self.controller.close()
+        self.sock.close()
+
+    def restart_listening(self):
+        self.disconnected = False
+        self.wait_for_controller()
 

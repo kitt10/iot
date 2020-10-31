@@ -1,7 +1,7 @@
 from sys import version as py_version
 from argparse import ArgumentParser
-from threading import Thread, ThreadError
 from box import Box
+from threading import Thread, ThreadError
 
 from mqtt_client import VoicehomeMQTTClient
 from webserver import VoicehomeWebserver
@@ -66,7 +66,7 @@ class Engine:
     def control_thread(self, daemonic=False):
         self.control = ControlInterface(engine=self)
         try:
-            t = Thread(target=self.control.wait_for_controller())
+            t = Thread(target=self.control.wait_for_controller)
             t.setDaemon(daemonic)
             t.start()
         except ThreadError:
