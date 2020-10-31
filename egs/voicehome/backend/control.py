@@ -1,7 +1,7 @@
 import socket
 
 
-class ControlInterface:
+class VoicehomeControlInterface:
 
     def __init__(self, engine):
         self.engine = engine
@@ -39,6 +39,9 @@ class ControlInterface:
         print('Control: New command:', self.last_command())
         if self.last_command() == 'disconnect_controller':
             self.disconnect_controller()
+
+        # Pass the command to the logic
+        self.engine.logic.on_command(command)
 
     def new_reply(self, reply):
         self.controller.sendall(str.encode(reply))

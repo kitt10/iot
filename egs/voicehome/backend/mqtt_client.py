@@ -14,6 +14,10 @@ class VoicehomeMQTTClient(MQTTClient):
     def run_loop(self):
         self.loop_forever()
 
+    def publish(self, payload, topic, qos=0, retain=False):
+        self.publish(payload, topic, qos, retain)
+        print('MQTT Client: Published to', topic)
+
     def on_connect(self, client, userdata, flags, rc):
         self.subscribe(self.cfg.mqtt.topic)
         print('MQTT Client: Connected. Subscribed to', self.cfg.mqtt.topic)

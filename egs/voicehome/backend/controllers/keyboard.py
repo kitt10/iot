@@ -7,7 +7,7 @@ class KeyboardController(VoicehomeController):
         VoicehomeController.__init__(self)
 
     def new_reply(self):
-        print('Got new reply to keyboard controller', self.last_reply())
+        print('Reply:', self.last_reply())
 
 
 if __name__ == '__main__':

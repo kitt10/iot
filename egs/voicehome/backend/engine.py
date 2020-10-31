@@ -6,7 +6,9 @@ from threading import Thread, ThreadError
 from mqtt_client import VoicehomeMQTTClient
 from webserver import VoicehomeWebserver
 from database import VoicehomeDatabase
-from control import ControlInterface
+from control import VoicehomeControlInterface
+from the_logic import VoicehomeLogic
+from modules_port import VoicehomeModulesPort
 
 
 class Engine:
@@ -18,6 +20,9 @@ class Engine:
         self.cfg = None
         self.args_and_config()
 
+        # The Logic
+        self.logic = VoicehomeLogic(engine=self)
+
         # MQTT Client (new thread)
         self.mqtt = None
         self.mqtt_thread(daemonic=False)
@@ -26,7 +31,7 @@ class Engine:
         self.webserver = None
         self.webserver_thread(daemonic=False)
 
-        # Control (VoiceKit) Interface
+        # Control Interface (VoiceKit or Keyboard)
         self.control = None
         self.control_thread(daemonic=False)
 
@@ -34,7 +39,7 @@ class Engine:
         self.db = VoicehomeDatabase(engine=self)
 
         # Modules
-        print('TODO: Modules')
+        self.port = VoicehomeModulesPort(engine=self)
 
     def args_and_config(self):
         parser = ArgumentParser(description='Voicehome engine.')
@@ -64,7 +69,7 @@ class Engine:
             print('ERR: Thread Webserver.')
 
     def control_thread(self, daemonic=False):
-        self.control = ControlInterface(engine=self)
+        self.control = VoicehomeControlInterface(engine=self)
         try:
             t = Thread(target=self.control.wait_for_controller)
             t.setDaemon(daemonic)

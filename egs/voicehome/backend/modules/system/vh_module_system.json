@@ -1,0 +1,24 @@
+{
+  "module_id": "system",
+  "version": "1.0.0",
+  "actions": [
+    {
+      "action_id": "system_01.test_mqtt",
+      "method_name": "test_mqtt",
+      "calls": [
+        ["otestuj", "mqtt"],
+        ["mqtt", "test"],
+        ["zkus", "mqtt"]
+      ]
+    },
+    {
+      "action_id": "system_02.test_database",
+      "method_name": "test_database",
+      "calls": [
+        ["otestuj", "databáze"],
+        ["databáze", "test"],
+        ["test", "databáze"]
+      ]
+    }
+  ]
+}
