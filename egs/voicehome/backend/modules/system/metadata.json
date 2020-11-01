@@ -1,7 +1,9 @@
 {
   "module_id": "system",
-  "description":"System moves.",
   "version": "1.0.0",
+  "description":"System moves.",
+  "mqtt_topics": [],
+  "websocket_passports": [],
   "moves": [
     {
       "move_id": "system_01.reload_modules",

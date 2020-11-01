@@ -1,5 +1,5 @@
 from paho.mqtt.client import Client as MQTTClient
-from json import loads as json_loads
+from threading import Thread, ThreadError
 
 
 class VoicehomeMQTTClient(MQTTClient):
@@ -8,6 +8,9 @@ class VoicehomeMQTTClient(MQTTClient):
         MQTTClient.__init__(self)
         self.engine = engine
         self.cfg = engine.cfg
+
+        self.subscriptions = []
+
         self.username_pw_set(self.cfg.mqtt.uname, password=self.cfg.mqtt.passwd)
         self.connect(self.cfg.mqtt.host, self.cfg.mqtt.port)
 
@@ -16,14 +19,23 @@ class VoicehomeMQTTClient(MQTTClient):
 
     def publish(self, payload, topic, qos=0, retain=False):
         self.publish(payload, topic, qos, retain)
-        print('MQTT Client: Published to', topic)
+        print('MQTT: Published to', topic)
 
     def on_connect(self, client, userdata, flags, rc):
         self.subscribe(self.cfg.mqtt.topic)
-        print('MQTT Client: Connected. Subscribed to', self.cfg.mqtt.topic)
+        print('MQTT: Connected. Subscribed to', self.cfg.mqtt.topic)
 
     def on_message(self, client, userdata, msg):
-        print('MQTT Client: New Message:', msg.payload)
+        print('MQTT: New Message:', msg.payload)
+        for (module_id, method, subscribing_list) in self.subscriptions:
+            if msg.topic in subscribing_list:
+                print('MQTT: Module', module_id, 'interested.')
+                try:
+                    t = Thread(target=method)
+                    t.setDaemon(True)
+                    t.start()
+                except ThreadError:
+                    print('ERR: Thread MQTT Message-Module', module_id)
 
     def on_disconnect(self, client, userdata, rc):
-        print('MQTT Client: Disconnected.')
+        print('MQTT: Disconnected.')

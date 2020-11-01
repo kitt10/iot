@@ -3,7 +3,8 @@ from tornado.web import StaticFileHandler, RequestHandler as TornadoRequestHandl
 from tornado.websocket import WebSocketHandler
 from tornado.ioloop import IOLoop
 from os.path import dirname, join as join_path
-from json import dumps as dumps_json
+from json import dumps as dumps_json, loads as json_loads
+from threading import Thread, ThreadError
 
 
 class VoicehomeMainHandler(TornadoRequestHandler, ABC):
@@ -28,6 +29,20 @@ class VoicehomeWebSocketHandler(WebSocketHandler, ABC):
 
     def on_message(self, message):
         print('Webserver: Received WS message:'+str(message))
+        try:
+            message = json_loads(message.decode('utf-8'))
+
+            for (module_id, method, subscribing_list) in self.application.webserver.subscriptions:
+                if message.passport in subscribing_list:
+                    print('Webserver: Module', module_id, 'interested.')
+                    try:
+                        t = Thread(target=method)
+                        t.setDaemon(True)
+                        t.start()
+                    except ThreadError:
+                        print('ERR: Thread Websocket Message-Module', module_id)
+        except ValueError:
+            print('Webserver: WS message with no passport, discarding...')
 
     def on_close(self):
         self.application.ws_clients.remove(self)
@@ -76,6 +91,7 @@ class VoicehomeWebserver:
         self.engine = engine
         self.cfg = engine.cfg
 
+        self.subscriptions = []
         self.packet = {
             'modules': []
         }

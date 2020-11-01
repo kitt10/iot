@@ -1,5 +1,6 @@
 from json import load as load_json
 from os.path import join as join_path
+from abc import abstractmethod
 
 
 class VoicehomeModule:
@@ -11,10 +12,12 @@ class VoicehomeModule:
 
         self.id = None
         self.version = None
+        self.mqtt_topics = []
+        self.websocket_passports = []
         self.module_moves = []
 
         self.load_metadata()
-        self.register_actions()
+        self.register_moves()
 
         print('Module', self.id, 'loaded ('+str(len(self.module_moves))+' moves).' )
 
@@ -25,13 +28,36 @@ class VoicehomeModule:
         self.id = metadata['module_id']
         self.version = metadata['version']
         self.module_moves = metadata['moves']
+        self.mqtt_topics = metadata['mqtt_topics']
+        self.websocket_passports = metadata['websocket_passports']
 
         self.engine.webserver.packet['modules'].append(metadata)
 
-    def register_actions(self):
+    def register_moves(self):
         for move in self.module_moves:
             method = getattr(self, move['method_name'])
             self.engine.logic.moves[move['move_id']] = (method, move['calls'])
 
-    def reply(self, msg):
-        self.engine.control.new_reply(msg)
+    def register_subscriptions(self):
+        if self.mqtt_topics:
+            self.engine.mqtt.subscriptions.append((self.id, self.on_mqtt_message, self.mqtt_topics))
+
+        if self.websocket_passports:
+            self.engine.webserver.subscriptions.append((self.id, self.on_websocket_message, self.websocket_passports))
+
+    def reply(self, message):
+        self.engine.control.new_reply(message)
+
+    def mqtt_publish(self, payload, topic):
+        self.engine.mqtt.publish(payload, topic)
+
+    def websocket_send(self, message):
+        self.engine.webserver.app.ws_message(message)
+
+    @abstractmethod
+    def on_mqtt_message(self):
+        pass
+
+    @abstractmethod
+    def on_websocket_message(self):
+        pass

@@ -24,4 +24,6 @@ class VoicehomeModulesPort:
         self.modules = []
         self.engine.logic.moves = {}
         self.engine.webserver.packet['modules'] = []
+        self.engine.webserver.subscriptions = []
+        self.engine.mqtt.subscriptions = []
         self.load_modules()
