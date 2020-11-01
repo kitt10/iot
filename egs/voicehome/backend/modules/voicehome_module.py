@@ -18,6 +18,7 @@ class VoicehomeModule:
 
         self.load_metadata()
         self.register_moves()
+        self.register_subscriptions()
 
         print('Module', self.id, 'loaded ('+str(len(self.module_moves))+' moves).' )
 
@@ -55,9 +56,9 @@ class VoicehomeModule:
         self.engine.webserver.app.ws_message(message)
 
     @abstractmethod
-    def on_mqtt_message(self):
+    def on_mqtt_message(self, msg):
         pass
 
     @abstractmethod
-    def on_websocket_message(self):
+    def on_websocket_message(self, msg):
         pass

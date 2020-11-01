@@ -2,8 +2,8 @@
   "module_id": "lights",
   "version": "1.0.0",
   "description": "Lightning system - LED for now.",
-  "mqtt_topics": [],
-  "websocket_passports": [],
+  "mqtt_topics": ["voicehome/lights/led", "voicehome/sensors"],
+  "websocket_passports": ["lights"],
   "moves": [
   ]
 }

@@ -27,21 +27,21 @@ class VoicehomeWebSocketHandler(WebSocketHandler, ABC):
         print('Webserver: Websocket opened.')
         self.write_message('Server ready.')
 
-    def on_message(self, message):
-        print('Webserver: Received WS message:'+str(message))
+    def on_message(self, msg):
         try:
-            message = json_loads(message.decode('utf-8'))
+            msg = json_loads(msg)
+            print('Webserver: Received WS message, passport:', msg['passport'])
 
             for (module_id, method, subscribing_list) in self.application.webserver.subscriptions:
-                if message.passport in subscribing_list:
+                if msg['passport'] in subscribing_list:
                     print('Webserver: Module', module_id, 'interested.')
                     try:
-                        t = Thread(target=method)
+                        t = Thread(target=method, args=(msg,))
                         t.setDaemon(True)
                         t.start()
                     except ThreadError:
                         print('ERR: Thread Websocket Message-Module', module_id)
-        except ValueError:
+        except (ValueError, KeyError):
             print('Webserver: WS message with no passport, discarding...')
 
     def on_close(self):

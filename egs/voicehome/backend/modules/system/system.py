@@ -15,8 +15,8 @@ class System(VoicehomeModule):
         print('Testing Database on', self.cfg.mongo.port)
         self.reply('Database tested.')
 
-    def on_mqtt_message(self):
+    def on_mqtt_message(self, msg):
         pass
 
-    def on_websocket_message(self):
+    def on_websocket_message(self, msg):
         pass

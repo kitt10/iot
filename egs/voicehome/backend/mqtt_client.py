@@ -31,7 +31,7 @@ class VoicehomeMQTTClient(MQTTClient):
             if msg.topic in subscribing_list:
                 print('MQTT: Module', module_id, 'interested.')
                 try:
-                    t = Thread(target=method)
+                    t = Thread(target=method, args=(msg,))
                     t.setDaemon(True)
                     t.start()
                 except ThreadError:
