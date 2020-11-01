@@ -1,10 +1,10 @@
-from ..vh_module import VoicehomeModule
+from modules.vh_module import VoicehomeModule
 
 
 class System(VoicehomeModule):
 
-    def __init__(self, engine):
-        VoicehomeModule.__init__(self, engine)
+    def __init__(self, engine, dir_path):
+        VoicehomeModule.__init__(self, engine, dir_path)
 
     def test_mqtt(self):
         print('Testing MQTT on', self.cfg.mqtt.port)
