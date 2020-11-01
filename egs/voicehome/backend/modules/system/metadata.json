@@ -16,8 +16,7 @@
       "method_name": "test_database",
       "calls": [
         ["otestuj", "databáze"],
-        ["databáze", "test"],
-        ["test", "databáze"]
+        ["databáze", "test"]
       ]
     }
   ]

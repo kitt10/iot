@@ -3,6 +3,7 @@ from argparse import ArgumentParser
 from box import Box
 from threading import Thread, ThreadError
 from abc import abstractmethod
+import os
 import socket
 
 
@@ -54,10 +55,13 @@ class VoicehomeController:
         return self.commands[-1]
 
     def new_reply(self):
-        if self.last_reply() == 'disconnect_controller':
-            self.disconnect_controller()
+        if self.last_reply():
+            if self.last_reply() == 'disconnect_controller':
+                self.disconnect_controller()
 
-        self.got_reply(self.last_reply())
+            self.got_reply(self.last_reply())
+        else:
+            self.disconnect_controller()
 
     def new_command(self, command):
         self.commands.append(command)
@@ -69,6 +73,7 @@ class VoicehomeController:
         self.disconnected = True
         self.sock.close()
         print('Controller disconnected.')
+        os._exit(0)
 
     @abstractmethod
     def got_reply(self, reply):

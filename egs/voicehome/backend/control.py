@@ -15,6 +15,7 @@ class VoicehomeControlInterface:
 
     def wait_for_controller(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.cfg.socket.host, self.cfg.socket.port))
         print('Control: Initialized. Listening on', self.cfg.socket.port)
         self.sock.listen()
@@ -35,13 +36,17 @@ class VoicehomeControlInterface:
         return self.replies[-1]
 
     def new_command(self, command):
-        self.commands.append(command)
-        print('Control: New command:', self.last_command())
-        if self.last_command() == 'disconnect_controller':
-            self.disconnect_controller()
+        if command:
+            self.commands.append(command)
+            print('Control: New command:', self.last_command())
+            if self.last_command() == 'disconnect_controller':
+                self.disconnect_controller()
 
-        # Pass the command to the logic
-        self.engine.logic.on_command(command)
+            # Pass the command to the logic
+            self.engine.logic.on_command(command)
+        else:
+            self.disconnect_controller()
+            self.restart_listening()
 
     def new_reply(self, reply):
         self.controller.sendall(str.encode(reply))
