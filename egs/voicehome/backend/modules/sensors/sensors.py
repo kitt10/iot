@@ -1,4 +1,4 @@
-from modules.vh_module import VoicehomeModule
+from modules.voicehome_module import VoicehomeModule
 
 
 class Sensors(VoicehomeModule):

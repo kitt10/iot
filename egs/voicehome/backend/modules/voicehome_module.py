@@ -11,11 +11,12 @@ class VoicehomeModule:
 
         self.id = None
         self.version = None
-        self.actions = []
+        self.module_moves = []
 
         self.load_metadata()
+        self.register_actions()
 
-        print('Module', self.id, 'loaded.')
+        print('Module', self.id, 'loaded ('+str(len(self.module_moves))+' moves).' )
 
     def load_metadata(self):
         with open(join_path(self.dir_path, 'metadata.json'), 'r') as f:
@@ -23,4 +24,12 @@ class VoicehomeModule:
 
         self.id = metadata['module_id']
         self.version = metadata['version']
-        self.actions = metadata['actions']
+        self.module_moves = metadata['moves']
+
+    def register_actions(self):
+        for move in self.module_moves:
+            method = getattr(self, move['method_name'])
+            self.engine.logic.moves[move['move_id']] = (method, move['calls'])
+
+    def reply(self, msg):
+        self.engine.control.new_reply(msg)

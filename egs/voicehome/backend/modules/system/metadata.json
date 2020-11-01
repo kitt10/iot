@@ -1,9 +1,9 @@
 {
   "module_id": "system",
   "version": "1.0.0",
-  "actions": [
+  "moves": [
     {
-      "action_id": "system_01.test_mqtt",
+      "move_id": "system_01.test_mqtt",
       "method_name": "test_mqtt",
       "calls": [
         ["otestuj", "mqtt"],
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "action_id": "system_02.test_database",
+      "move_id": "system_02.test_database",
       "method_name": "test_database",
       "calls": [
         ["otestuj", "databáze"],

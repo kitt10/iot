@@ -1,4 +1,4 @@
-from controller import VoicehomeController
+from voicehome_controller import VoicehomeController
 
 
 class KeyboardController(VoicehomeController):
@@ -6,8 +6,9 @@ class KeyboardController(VoicehomeController):
     def __init__(self):
         VoicehomeController.__init__(self)
 
-    def new_reply(self):
-        print('Reply:', self.last_reply())
+    @staticmethod
+    def got_reply(reply):
+        print('\nReply:', reply)
 
 
 if __name__ == '__main__':

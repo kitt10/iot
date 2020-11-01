@@ -7,7 +7,7 @@ from mqtt_client import VoicehomeMQTTClient
 from webserver import VoicehomeWebserver
 from database import VoicehomeDatabase
 from control import VoicehomeControlInterface
-from the_logic import VoicehomeLogic
+from logics.basic import BasicLogic
 from modules_port import VoicehomeModulesPort
 
 
@@ -21,7 +21,7 @@ class Engine:
         self.args_and_config()
 
         # The Logic
-        self.logic = VoicehomeLogic(engine=self)
+        self.logic = BasicLogic(engine=self)
 
         # MQTT Client (new thread)
         self.mqtt = None

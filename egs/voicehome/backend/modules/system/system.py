@@ -1,4 +1,4 @@
-from modules.vh_module import VoicehomeModule
+from modules.voicehome_module import VoicehomeModule
 
 
 class System(VoicehomeModule):
@@ -8,8 +8,8 @@ class System(VoicehomeModule):
 
     def test_mqtt(self):
         print('Testing MQTT on', self.cfg.mqtt.port)
-        pass
+        self.reply('MQTT tested.')
 
     def test_database(self):
         print('Testing Database on', self.cfg.mongo.port)
-        pass
+        self.reply('Database tested.')
