@@ -19,3 +19,9 @@ class VoicehomeModulesPort:
                 module = import_module('modules.'+dir_item+'.'+dir_item)
                 cls = getattr(module, dir_item.capitalize())
                 self.modules.append(cls(engine=self.engine, dir_path=dir_path))
+
+    def reload_modules(self):
+        self.modules = []
+        self.engine.logic.moves = {}
+        self.engine.webserver.packet['modules'] = []
+        self.load_modules()

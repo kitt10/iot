@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "moves": [
     {
-      "move_id": "system_01.test_mqtt",
-      "method_name": "test_mqtt",
+      "move_id": "system_01.reload_modules",
+      "method_name": "reload_modules",
       "calls": [
-        ["otestuj", "mqtt"],
-        ["mqtt", "test"],
-        ["zkus", "mqtt"]
+        ["načti", "moduly"],
+        ["aktualizuj", "moduly"],
+        ["přenačti", "moduly"]
       ]
     },
     {

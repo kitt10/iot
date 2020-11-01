@@ -41,7 +41,7 @@ class VoicehomeJsonHandler(TornadoRequestHandler, ABC):
         print('Webserver: New JsonHandler')
 
     def get(self):
-        self.write(dumps_json(self.application.packet))
+        self.write(dumps_json(self.application.webserver.packet))
 
 
 class VoicehomeTornadoApp(TornadoApplication):
@@ -50,7 +50,6 @@ class VoicehomeTornadoApp(TornadoApplication):
         self.webserver = webserver
         self.cfg = webserver.cfg
 
-        self.packet = {}
         self.ws_clients = []
 
         self.tornado_handlers = [
@@ -76,6 +75,10 @@ class VoicehomeWebserver:
     def __init__(self, engine):
         self.engine = engine
         self.cfg = engine.cfg
+
+        self.packet = {
+            'modules': []
+        }
 
         self.app = VoicehomeTornadoApp(webserver=self)
         self.app.listen(self.cfg.tornado.port)

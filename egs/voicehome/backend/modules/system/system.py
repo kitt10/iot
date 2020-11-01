@@ -6,9 +6,10 @@ class System(VoicehomeModule):
     def __init__(self, engine, dir_path):
         VoicehomeModule.__init__(self, engine, dir_path)
 
-    def test_mqtt(self):
-        print('Testing MQTT on', self.cfg.mqtt.port)
-        self.reply('MQTT tested.')
+    def reload_modules(self):
+        print('Module system: Reloading modules...')
+        self.engine.port.reload_modules()
+        self.reply('Modules reloaded.')
 
     def test_database(self):
         print('Testing Database on', self.cfg.mongo.port)

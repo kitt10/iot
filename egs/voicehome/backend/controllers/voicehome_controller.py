@@ -29,17 +29,19 @@ class VoicehomeController:
             print('ERR: Thread Controller Listener.')
 
     def args_and_config(self):
-        parser = ArgumentParser(description='Voicehome controller.')
-        parser.add_argument('-c', '--cfg_path', type=str, default='../config.yml', help='Path to the config file.')
+        cfg_path = '../config.yml'
+        self.cfg = Box.from_yaml(filename=cfg_path)
+        parser = ArgumentParser(description='Voicehome controller.', add_help=False)
+        parser.add_argument('-h', '--host', type=str, default=self.cfg.socket.host, help='Destination system IP.')
+        parser.add_argument('-p', '--port', type=int, default=self.cfg.socket.port, help='Destination system port.')
         self.args = parser.parse_args()
-        self.cfg = Box.from_yaml(filename=self.args.cfg_path)
 
-        print(py_version, 'Config file:', self.args.cfg_path)
+        print(py_version, 'Config file:', cfg_path)
         print('------------------------------------------------')
 
     def connect_and_listen(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.connect((self.cfg.socket.host, self.cfg.socket.port))
+        self.sock.connect((self.args.host, self.args.port))
 
         while not self.disconnected:
             try:
@@ -56,7 +58,7 @@ class VoicehomeController:
 
     def new_reply(self):
         if self.last_reply():
-            if self.last_reply() == 'disconnect_controller':
+            if self.last_reply() == 'exit':
                 self.disconnect_controller()
 
             self.got_reply(self.last_reply())
@@ -66,7 +68,7 @@ class VoicehomeController:
     def new_command(self, command):
         self.commands.append(command)
         self.sock.sendall(str.encode(command))
-        if self.last_command() == 'disconnect_controller':
+        if self.last_command() == 'exit':
             self.disconnect_controller()
 
     def disconnect_controller(self):

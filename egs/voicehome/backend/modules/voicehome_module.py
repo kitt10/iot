@@ -26,6 +26,8 @@ class VoicehomeModule:
         self.version = metadata['version']
         self.module_moves = metadata['moves']
 
+        self.engine.webserver.packet['modules'].append(metadata)
+
     def register_actions(self):
         for move in self.module_moves:
             method = getattr(self, move['method_name'])

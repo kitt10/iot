@@ -39,7 +39,7 @@ class VoicehomeControlInterface:
         if command:
             self.commands.append(command)
             print('Control: New command:', self.last_command())
-            if self.last_command() == 'disconnect_controller':
+            if self.last_command() == 'exit':
                 self.disconnect_controller()
 
             # Pass the command to the logic
@@ -52,7 +52,7 @@ class VoicehomeControlInterface:
         self.controller.sendall(str.encode(reply))
         self.replies.append(reply)
         print('Control: New reply:', self.last_reply())
-        if self.last_reply() == 'disconnect_controller':
+        if self.last_reply() == 'exit':
             self.disconnect_controller()
 
     def disconnect_controller(self):
