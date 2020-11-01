@@ -1,10 +1,12 @@
 {
   "module_id": "system",
+  "description":"System moves.",
   "version": "1.0.0",
   "moves": [
     {
       "move_id": "system_01.reload_modules",
       "method_name": "reload_modules",
+      "description": "Reloads all the modules again. A fresh refresh.",
       "calls": [
         ["načti", "moduly"],
         ["aktualizuj", "moduly"],
@@ -14,6 +16,7 @@
     {
       "move_id": "system_02.test_database",
       "method_name": "test_database",
+      "description": "Makes a testing write and read with the database.",
       "calls": [
         ["otestuj", "databáze"],
         ["databáze", "test"]

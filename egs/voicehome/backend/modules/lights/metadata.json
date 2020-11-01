@@ -1,6 +1,7 @@
 {
   "module_id": "lights",
   "version": "1.0.0",
+  "description": "Lightning system - LED for now.",
   "moves": [
   ]
 }
