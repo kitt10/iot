@@ -1,4 +1,5 @@
 from modules.voicehome_module import VoicehomeModule
+from datetime import datetime
 
 
 class System(VoicehomeModule):
@@ -12,11 +13,14 @@ class System(VoicehomeModule):
         self.reply('Modules reloaded.')
 
     def test_database(self):
-        print('Testing Database on', self.cfg.mongo.port)
-        self.reply('Database tested.')
-
-    def on_mqtt_message(self, msg):
-        pass
-
-    def on_websocket_message(self, msg):
-        pass
+        print('Testing Database on', self.cfg.mongo.host, ':', self.cfg.mongo.port)
+        try:
+            testing_payload = {
+                'key': 'test',
+                'datetime': datetime.now()
+            }
+            self.save_to_mongo(module_id=self.id, payload=testing_payload)
+            res = self.search_mongo(module_id=self.id, query={'key': 'test'})
+            self.reply('Module ' + self.id + ': Database tested. OK. Found items: '+str(len(res)))
+        except Exception as e:
+            self.reply('Module '+self.id+': Error testing database: '+str(e))

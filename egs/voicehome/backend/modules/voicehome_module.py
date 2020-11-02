@@ -1,6 +1,5 @@
 from json import load as load_json
 from os.path import join as join_path
-from abc import abstractmethod
 
 
 class VoicehomeModule:
@@ -55,10 +54,14 @@ class VoicehomeModule:
     def websocket_send(self, message):
         self.engine.webserver.app.ws_message(message)
 
-    @abstractmethod
+    def search_mongo(self, module_id, query):
+        return self.engine.db.read(module_id, query)
+
+    def save_to_mongo(self, module_id, payload):
+        self.engine.db.write(module_id, payload)
+
     def on_mqtt_message(self, msg):
         pass
 
-    @abstractmethod
     def on_websocket_message(self, msg):
         pass
