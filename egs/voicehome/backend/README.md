@@ -10,6 +10,8 @@ $ conda env create -f iotenv.yml
 $ conda activate iot
 ```
 
+> *Note*: Might need to install some packages not included in ```iotenv.yml```, the default needs are: ```paho-mqtt```, ```python-box```, ```pymongo```, ```tornado```
+
 #### RPi
 
 ##### Conda installation
