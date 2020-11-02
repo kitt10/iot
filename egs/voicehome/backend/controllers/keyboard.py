@@ -8,11 +8,11 @@ class KeyboardController(VoicehomeController):
 
     @staticmethod
     def got_reply(reply):
-        print('\nReply:', reply)
+        print('\n< '+reply+'\n> ', end='')
 
 
 if __name__ == '__main__':
     controller = KeyboardController()
     while not controller.disconnected:
-        command = input('Enter your command: ')
+        command = input('> ')
         controller.new_command(command)
