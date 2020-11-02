@@ -5,4 +5,4 @@ JOSEF ŠANDA
 Faculty of Applied Sciences\
 Department of Cybernetics
 
-<img src="../../.img/vh_project_design.png" width="544px" height="325px" />
+<img src="../../.img/vh_project_design.png" width="900px" />
