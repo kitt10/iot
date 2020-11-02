@@ -30,8 +30,8 @@ function onSocketClose() {
 
 function sendToServer(message) {
     let payload = {
-        message: message,
-        second_param: [1, 2]
+        passport: "system/test",
+        message: message
     }
     ws.send(JSON.stringify(payload))
 }

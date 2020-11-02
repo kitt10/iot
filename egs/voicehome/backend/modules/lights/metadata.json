@@ -20,7 +20,7 @@
       "method_name": "turn_led_off",
       "description": "Switch off the onboard LED.",
       "calls": [
-        ["zhasi", "vestavěnou", "ledku"],
+        ["zhasni", "vestavěnou", "ledku"],
         ["zhasni", "ledku"],
         ["led", "off"]
       ]
