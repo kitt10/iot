@@ -1,5 +1,6 @@
 from paho.mqtt.client import Client as MQTTClient
 from threading import Thread, ThreadError
+from json import dumps as dumps_json
 
 
 class VoicehomeMQTTClient(MQTTClient):
@@ -17,13 +18,13 @@ class VoicehomeMQTTClient(MQTTClient):
     def run_loop(self):
         self.loop_forever()
 
-    def publish(self, payload, topic, qos=0, retain=False):
-        self.publish(payload, topic, qos, retain)
+    def new_publish(self, topic, payload, qos=0, retain=False):
+        self.publish(topic=topic, payload=dumps_json(payload), qos=qos, retain=retain)
         print('MQTT: Published to', topic)
 
     def on_connect(self, client, userdata, flags, rc):
         self.subscribe(self.cfg.mqtt.topic)
-        print('MQTT: Connected. Subscribed to', self.cfg.mqtt.topic)
+        print('MQTT Subscriber: Connected. Subscribed to', self.cfg.mqtt.topic)
 
     def on_message(self, client, userdata, msg):
         print('MQTT: New Message:', msg.payload)

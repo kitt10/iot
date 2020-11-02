@@ -48,11 +48,11 @@ class VoicehomeModule:
     def reply(self, message):
         self.engine.control.new_reply(message)
 
-    def mqtt_publish(self, payload, topic):
-        self.engine.mqtt.publish(payload, topic)
+    def mqtt_publish(self, topic, payload):
+        self.engine.mqtt.new_publish(topic, payload)
 
-    def websocket_send(self, message):
-        self.engine.webserver.app.ws_message(message)
+    def websocket_send(self, msg):
+        self.engine.webserver.app.ws_message(msg)
 
     def search_mongo(self, module_id, query):
         return self.engine.db.read(module_id, query)

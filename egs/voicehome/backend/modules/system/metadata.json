@@ -2,8 +2,8 @@
   "module_id": "system",
   "version": "1.0.0",
   "description":"System moves.",
-  "mqtt_topics": [],
-  "websocket_passports": [],
+  "mqtt_topics": ["voicehome/system/test"],
+  "websocket_passports": ["system/test"],
   "moves": [
     {
       "move_id": "system_01.reload_modules",
@@ -22,6 +22,26 @@
       "calls": [
         ["otestuj", "databáze"],
         ["databáze", "test"]
+      ]
+    },
+     {
+      "move_id": "system_03.test_mqtt",
+      "method_name": "test_mqtt",
+      "description": "Makes a testing MQTT publish to voicehome/system/test, which this module is also subscribing",
+      "calls": [
+        ["otestuj", "mqtt"],
+        ["test", "mqtt"],
+        ["vyzkoušej", "mqtt"]
+      ]
+    },
+    {
+      "move_id": "system_04.test_websocket",
+      "method_name": "test_websocket",
+      "description": "Sends a testing websocket message with passport system/test.",
+      "calls": [
+        ["otestuj", "websoket"],
+        ["test", "websocket"],
+        ["vyzkoušej", "websokety"]
       ]
     }
   ]
