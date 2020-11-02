@@ -1,9 +1,29 @@
 {
   "module_id": "lights",
   "version": "1.0.0",
-  "description": "Lightning system - LED for now.",
-  "mqtt_topics": ["voicehome/lights/led", "voicehome/sensors"],
+  "description": "Lightning system - one onboard LED on ESP8266 for now.",
+  "mqtt_topics": ["voicehome/lights/led"],
   "websocket_passports": ["lights"],
   "moves": [
+    {
+      "move_id": "lights_01.turn_led_on",
+      "method_name": "turn_led_on",
+      "description": "Switch on the onboard LED.",
+      "calls": [
+        ["zapni", "vestavěnou", "ledku"],
+        ["rozsviť", "ledku"],
+        ["led", "on"]
+      ]
+    },
+    {
+      "move_id": "lights_01.turn_led_off",
+      "method_name": "turn_led_off",
+      "description": "Switch off the onboard LED.",
+      "calls": [
+        ["zhasi", "vestavěnou", "ledku"],
+        ["zhasni", "ledku"],
+        ["led", "off"]
+      ]
+    }
   ]
 }

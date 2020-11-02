@@ -5,5 +5,15 @@
   "mqtt_topics": ["voicehome/sensors", "voicehome/sensors/temperature"],
   "websocket_passports": [],
   "moves": [
+    {
+      "move_id": "sensors_01.get_current_temperature",
+      "method_name": "get_current_temperature",
+      "description": "Sends a command via MQTT to measure the current temperature.",
+      "calls": [
+        ["kolik je stupňů"],
+        ["jaká je teplota"],
+        ["změř", "teplotu"]
+      ]
+    }
   ]
 }

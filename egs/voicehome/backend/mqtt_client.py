@@ -1,6 +1,6 @@
 from paho.mqtt.client import Client as MQTTClient
 from threading import Thread, ThreadError
-from json import dumps as dumps_json
+from json import dumps as dumps_json, loads as loads_json, decoder as json_decoder
 
 
 class VoicehomeMQTTClient(MQTTClient):
@@ -30,7 +30,12 @@ class VoicehomeMQTTClient(MQTTClient):
         print('MQTT: New Message:', msg.payload)
         for (module_id, method, subscribing_list) in self.subscriptions:
             if msg.topic in subscribing_list:
-                print('MQTT: Module', module_id, 'interested.')
+                #print('MQTT: Module', module_id, 'interested.')
+                try:
+                    msg = loads_json(msg)
+                except json_decoder.JSONDecodeError:
+                    pass
+
                 try:
                     t = Thread(target=method, args=(msg,))
                     t.setDaemon(True)
