@@ -25,4 +25,6 @@ Defines the way how the commands from the controller are absorbed, evaluated and
         for call_tuple in list_of_calls:
             if all(call in command for call in call_tuple):
                 print('Logic: Found Match. Running', move_id)
+                method()
+                break
     ```
