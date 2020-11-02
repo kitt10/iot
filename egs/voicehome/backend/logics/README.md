@@ -22,7 +22,7 @@ Defines the way how the commands from the controller are absorbed, evaluated and
     
     ```
     for move_id, (method, list_of_calls) in self.moves.items():
-    for call_tuple in list_of_calls:
-        if all(call in command for call in call_tuple):
-            print('Logic: Found Match. Running', move_id)
+        for call_tuple in list_of_calls:
+            if all(call in command for call in call_tuple):
+                print('Logic: Found Match. Running', move_id)
     ```
