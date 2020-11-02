@@ -1,6 +1,5 @@
 {
   "module_id": "sensors",
-  "version": "1.0.0",
   "description": "Sensory system - temperature, illuminance, pressure, motion",
   "mqtt_topics": ["voicehome/sensors", "voicehome/sensors/temperature"],
   "websocket_passports": [],

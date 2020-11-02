@@ -1,6 +1,6 @@
 # VOICE-ENABLED SMART HOME MODULES
 
-JOSEF ŠANDA
+JOSEF ŠANDA and MARTIN BULÍN
 
 Faculty of Applied Sciences\
 Department of Cybernetics

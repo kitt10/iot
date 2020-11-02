@@ -26,7 +26,6 @@ class VoicehomeModule:
             metadata = load_json(f)
 
         self.id = metadata['module_id']
-        self.version = metadata['version']
         self.module_moves = metadata['moves']
         self.mqtt_topics = metadata['mqtt_topics']
         self.websocket_passports = metadata['websocket_passports']

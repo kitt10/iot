@@ -1,6 +1,5 @@
 {
   "module_id": "system",
-  "version": "1.0.0",
   "description":"System moves.",
   "mqtt_topics": ["voicehome/system/test"],
   "websocket_passports": ["system/test"],
