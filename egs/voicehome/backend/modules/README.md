@@ -72,33 +72,35 @@
 
 #### Available methods for modules (so far)
 
-- ```def on_mqtt_message(self, msg)```
-    * ```msg: <paho-mqtt msg>```, access ```msg.topic```, ```msg.payload```
-    * called each time something is published to one of the topics this module is subscribing (defined in ```metadata.json```)
-
-- ```def on_websocket_message(self, msg)```
-    * ```msg: dict```, should include the "passport" key
-    * called each time a websocket is sent and includes one of the "passport" values defined in ```metadata.json```)v
-
-- ```def reply(self, message)```
-    * ```message: str```
-    * module's reply to the controller
-
-- ```def save_to_mongo(self, module_id, payload)```
-    * ```module_id: str```, every module has it on: ```self.id```, equals the <modoule_name>
-    * ```payload: dict```, structure is module-dependent
-    * will save your data to the database
-
-- ```def search_mongo(self, module_id, query)```
-    * ```module_id: str```, every module has it on: ```self.id```, equals the <modoule_name>
-    * ```query: dict```, just one (key, value) pair
-    * returns a list of all items from the database having the given (key, value) pair
+* You implement those (override parent):
+    - ```def on_mqtt_message(self, msg)```
+        * ```msg: <paho-mqtt msg>```, access ```msg.topic```, ```msg.payload```
+        * called each time something is published to one of the topics this module is subscribing (defined in ```metadata.json```)
     
-- ```def mqtt_publish(self, topic, payload)```
-    * ```topic: str```
-    * ```payload: dict or str```
-    * publish an MQTT message to the broker
+    - ```def on_websocket_message(self, msg)```
+        * ```msg: dict```, should include the "passport" key
+        * called each time a websocket is sent and includes one of the "passport" values defined in ```metadata.json```)v
+
+* You call those:
+    - ```self.reply(message)```
+        * ```message: str```
+        * module's reply to the controller
     
-- ```def websocket_send(self, msg)```
-    * ```msg: dict```, should include the "passport" key
-    * send a websocket message (from the server to the GUI)
+    - ```self.save_to_mongo(module_id, payload)```
+        * ```module_id: str```, every module has it on: ```self.id```, equals the <modoule_name>
+        * ```payload: dict```, structure is module-dependent
+        * will save your data to the database
+    
+    - ```self.search_mongo(module_id, query)```
+        * ```module_id: str```, every module has it on: ```self.id```, equals the <modoule_name>
+        * ```query: dict```, just one (key, value) pair
+        * returns a list of all items from the database having the given (key, value) pair
+        
+    - ```self.mqtt_publish(topic, payload)```
+        * ```topic: str```
+        * ```payload: dict or str```
+        * publish an MQTT message to the broker
+        
+    - ```self.websocket_send(msg)```
+        * ```msg: dict```, should include the "passport" key
+        * send a websocket message (from the server to the GUI)
