@@ -19,3 +19,10 @@ Defines the way how the commands from the controller are absorbed, evaluated and
      ["turn", "led", "on"]]    
     ```
 * based on the **BasicLogic**, the move is activated if and only if one of the given call options, considered as a set of words, is a subset of the command (considered as a set of words).
+    
+    ```
+    for move_id, (method, list_of_calls) in self.moves.items():
+    for call_tuple in list_of_calls:
+        if all(call in command for call in call_tuple):
+            print('Logic: Found Match. Running', move_id)
+    ```

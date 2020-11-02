@@ -1,6 +1,6 @@
 ### Voicehome Controller
 
-A general way of how to control the behavior of your modules. It is based on Python ```socket``` module.
+A general way of how to control the behavior of your modules. It is based on the ```socket``` module.
 
 ##### Keyboard Controller
 1. Run the controller:
