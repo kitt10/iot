@@ -5,13 +5,17 @@
 		<title>Voice-enabled smart home modules</title>
 
 		<!-- Styles -->
-		<link rel="stylesheet" href="style.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
 
 		<!-- Scripts -->
 		<script type="text/javascript">
 			let ws;
 		</script>
-		<script src="script.js" type="text/javascript"></script>
+		<script src="js/script.js" type="text/javascript"></script>
+		<script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
+		
+		<script src="js/time_graph.js"></script>
+		<script src="js/moment.js"></script>
 
 		<!-- Chart.js -->
 		<script
@@ -75,6 +79,13 @@
 			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 			crossorigin="anonymous"
 		></script>
+
+		<!-- Bootstrap Toggle -->
+		<link
+			href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	</head>
 	<body onload="onBodyLoad()">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -98,10 +109,10 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Features</a>
+						<a class="nav-link" href="#">Switches</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Pricing</a>
+						<a class="nav-link" href="#">Analytics</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a
@@ -112,187 +123,545 @@
 							aria-haspopup="true"
 							aria-expanded="false"
 						>
-							Dropdown link
+							Rooms
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
+							<a class="dropdown-item" href="#">Bedroom</a>
+							<a class="dropdown-item" href="#">Kitchen</a>
+							<a class="dropdown-item" href="#">Living room</a>
 						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Modules</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
 
-		<h2>Horizontal Scrollable Menu</h2>
+		<h2>row-card pro switche</h2>
 
-		<canvas id="myChart" width="400" height="400"></canvas>
-		<script>
-			var ctx = document.getElementById("myChart").getContext("2d");
-			var myChart = new Chart(ctx, {
-				type: "bar",
-				data: {
-					labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-					datasets: [
-						{
-							label: "# of Votes",
-							data: [12, 19, 3, 5, 2, 3],
-							backgroundColor: [
-								"rgba(255, 99, 132, 0.2)",
-								"rgba(54, 162, 235, 0.2)",
-								"rgba(255, 206, 86, 0.2)",
-								"rgba(75, 192, 192, 0.2)",
-								"rgba(153, 102, 255, 0.2)",
-								"rgba(255, 159, 64, 0.2)",
-							],
-							borderColor: [
-								"rgba(255, 99, 132, 1)",
-								"rgba(54, 162, 235, 1)",
-								"rgba(255, 206, 86, 1)",
-								"rgba(75, 192, 192, 1)",
-								"rgba(153, 102, 255, 1)",
-								"rgba(255, 159, 64, 1)",
-							],
-							borderWidth: 1,
-						},
-					],
-				},
-				options: {
-					scales: {
-						yAxes: [
-							{
-								ticks: {
-									beginAtZero: true,
+	
+		<!-- row -->
+		<div class="home-switches">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Lampicka</h5>
+							<p class="card-text">
+								<input
+									type="checkbox"
+									checked
+									data-toggle="toggle"
+									data-size="sm"
+								/>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Lampicka</h5>
+							<p class="card-text">
+								<input
+									type="checkbox"
+									checked
+									data-toggle="toggle"
+									data-size="sm"
+								/>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Lampicka</h5>
+							<p class="card-text">
+								<input
+									type="checkbox"
+									checked
+									data-toggle="toggle"
+									data-size="sm"
+								/>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Lampicka</h5>
+							<p class="card-text">
+								<input
+									type="checkbox"
+									checked
+									data-toggle="toggle"
+									data-size="sm"
+								/>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Lampicka</h5>
+							<p class="card-text">
+								<input
+									type="checkbox"
+									checked
+									data-toggle="toggle"
+									data-size="sm"
+								/>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Lampicka</h5>
+							<p class="card-text">
+								<input
+									type="checkbox"
+									checked
+									data-toggle="toggle"
+									data-size="sm"
+								/>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Lampicka</h5>
+							<p class="card-text">
+								<input
+									type="checkbox"
+									checked
+									data-toggle="toggle"
+									data-size="sm"
+								/>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Special title treatment</h5>
+							<p class="card-text">
+								With supporting text below as a natural lead-in to additional
+								content.
+							</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="home-analytics">
+			<h2>colums-card pro grafy</h2>
+
+			<!-- columns -->
+			<div class="card-columns">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Tohle je treba humidity</h5>
+						<p class="card-text">
+
+							<canvas id="myChart" width="4" height="4"></canvas>
+					<script>
+						var ctx = document.getElementById("myChart").getContext("2d");
+						var myChart = new Chart(ctx, {
+							type: "bar",
+							data: {
+								labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+								datasets: [
+									{
+										label: "# of Votes",
+										data: [12, 19, 3, 5, 2, 3],
+										backgroundColor: [
+											"rgba(255, 99, 132, 0.2)",
+											"rgba(54, 162, 235, 0.2)",
+											"rgba(255, 206, 86, 0.2)",
+											"rgba(75, 192, 192, 0.2)",
+											"rgba(153, 102, 255, 0.2)",
+											"rgba(255, 159, 64, 0.2)",
+										],
+										borderColor: [
+											"rgba(255, 99, 132, 1)",
+											"rgba(54, 162, 235, 1)",
+											"rgba(255, 206, 86, 1)",
+											"rgba(75, 192, 192, 1)",
+											"rgba(153, 102, 255, 1)",
+											"rgba(255, 159, 64, 1)",
+										],
+										borderWidth: 1,
+									},
+								],
+							},
+							options: {
+								scales: {
+									yAxes: [
+										{
+											ticks: {
+												beginAtZero: true,
+											},
+										},
+									],
 								},
 							},
+						});
+					</script>
+
+
+
+
+							
+						</p>
+					</div>
+				</div>
+				<div class="card p-3">
+					<blockquote class="blockquote mb-0 card-body">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+							posuere erat a ante.
+						</p>
+						<footer class="blockquote-footer">
+							<small class="text-muted">
+								Someone famous in <cite title="Source Title">Source Title</cite>
+							</small>
+						</footer>
+					</blockquote>
+				</div>
+				<div class="card">
+					<img class="card-img-top" src="..." alt="Card image cap" />
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">
+							This card has supporting text below as a natural lead-in to
+							additional content.
+						</p>
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+				<div class="card bg-primary text-white text-center p-3">
+					<blockquote class="blockquote mb-0">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+							posuere erat.
+						</p>
+						<footer class="blockquote-footer">
+							<small>
+								Someone famous in <cite title="Source Title">Source Title</cite>
+							</small>
+						</footer>
+					</blockquote>
+				</div>
+				<div class="card text-center">
+					<div class="card-body">
+						<h5 class="card-title">Tohle je treba teplota</h5>
+						<p class="card-text">
+							<div id="gaugeArea"></div>
+		<script>
+			// Element inside which you want to see the chart
+			let element = document.querySelector("#gaugeArea");
+
+			// Properties of the gauge
+			let chartWidth = 400;
+			let needleValue = 200;
+			let gaugeOptions = {
+				hasNeedle: true,
+				needleColor: "black",
+				needleStartValue: 30,
+				arcColors: ["rgb(255,84,84)", "rgb(239,214,19)", "rgb(61,204,91)"],
+				arcDelimiters: [40, 60],
+				rangeLabel: ["52", "8"],
+			};
+
+			// Drawing and updating the chart
+			GaugeChart.gaugeChart(element, 300, gaugeOptions).updateNeedle(50);
+		</script>
+						</p>
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+				<div class="card">
+					<img class="card-img" src="..." alt="Card image" />
+				</div>
+				<div class="card p-3 text-right">
+					<blockquote class="blockquote mb-0">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+							posuere erat a ante.
+						</p>
+						<footer class="blockquote-footer">
+							<small class="text-muted">
+								Someone famous in <cite title="Source Title">Source Title</cite>
+							</small>
+						</footer>
+					</blockquote>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">
+							
+
+<script>
+	data: [{
+    x: new Date(),
+    y: 1
+}, {
+    t: new Date(),
+    y: 10
+}]
+
+var chart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'time',
+                time: {
+                    displayFormats: {
+                        quarter: 'MMM YYYY'
+                    }
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+
+
+
+
+
+							
+						</p>
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+		<h1>
+			end of Page
+			<br>
+			<br>
+			<br>
+		</h1>
+
+
+
+		
+
+
+
+
+		<div style="width:75%;">
+			<canvas id="canvas"></canvas>
+		</div>
+		<br>
+		<br>
+		<button id="randomizeData">Randomize Data</button>
+		<button id="addDataset">Add Dataset</button>
+		<button id="removeDataset">Remove Dataset</button>
+		<button id="addData">Add Data</button>
+		<button id="removeData">Remove Data</button>
+		<script>
+			var timeFormat = 'MM/DD/YYYY HH:mm';
+	
+			function newDate(days) {
+				return moment().add(days, 'd').toDate();
+			}
+	
+			function newDateString(days) {
+				return moment().add(days, 'd').format(timeFormat);
+			}
+	
+			var color = Chart.helpers.color;
+			var config = {
+				type: 'line',
+				data: {
+					labels: [ // Date Objects
+						newDate(0),
+						newDate(1),
+						newDate(2),
+						newDate(3),
+						newDate(4),
+						newDate(5),
+						newDate(6)
+					],
+					datasets: [{
+						label: 'My First dataset',
+						backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+						borderColor: window.chartColors.red,
+						fill: false,
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
 						],
-					},
+					}, {
+						label: 'My Second dataset',
+						backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+						borderColor: window.chartColors.blue,
+						fill: false,
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+					}, {
+						label: 'Dataset with point data',
+						backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
+						borderColor: window.chartColors.green,
+						fill: false,
+						data: [{
+							x: newDateString(0),
+							y: randomScalingFactor()
+						}, {
+							x: newDateString(5),
+							y: randomScalingFactor()
+						}, {
+							x: newDateString(7),
+							y: randomScalingFactor()
+						}, {
+							x: newDateString(15),
+							y: randomScalingFactor()
+						}],
+					}]
 				},
+				options: {
+					title: {
+						text: 'Chart.js Time Scale'
+					},
+					scales: {
+						xAxes: [{
+							type: 'time',
+							time: {
+								parser: timeFormat,
+								// round: 'day'
+								tooltipFormat: 'll HH:mm'
+							},
+							scaleLabel: {
+								display: true,
+								labelString: 'Date'
+							}
+						}],
+						yAxes: [{
+							scaleLabel: {
+								display: true,
+								labelString: 'value'
+							}
+						}]
+					},
+				}
+			};
+	
+			window.onload = function() {
+				var ctx = document.getElementById('canvas').getContext('2d');
+				window.myLine = new Chart(ctx, config);
+	
+			};
+	
+			document.getElementById('randomizeData').addEventListener('click', function() {
+				config.data.datasets.forEach(function(dataset) {
+					dataset.data.forEach(function(dataObj, j) {
+						if (typeof dataObj === 'object') {
+							dataObj.y = randomScalingFactor();
+						} else {
+							dataset.data[j] = randomScalingFactor();
+						}
+					});
+				});
+	
+				window.myLine.update();
+			});
+	
+			var colorNames = Object.keys(window.chartColors);
+			document.getElementById('addDataset').addEventListener('click', function() {
+				var colorName = colorNames[config.data.datasets.length % colorNames.length];
+				var newColor = window.chartColors[colorName];
+				var newDataset = {
+					label: 'Dataset ' + config.data.datasets.length,
+					borderColor: newColor,
+					backgroundColor: color(newColor).alpha(0.5).rgbString(),
+					data: [],
+				};
+	
+				for (var index = 0; index < config.data.labels.length; ++index) {
+					newDataset.data.push(randomScalingFactor());
+				}
+	
+				config.data.datasets.push(newDataset);
+				window.myLine.update();
+			});
+	
+			document.getElementById('addData').addEventListener('click', function() {
+				if (config.data.datasets.length > 0) {
+					config.data.labels.push(newDate(config.data.labels.length));
+	
+					for (var index = 0; index < config.data.datasets.length; ++index) {
+						if (typeof config.data.datasets[index].data[0] === 'object') {
+							config.data.datasets[index].data.push({
+								x: newDate(config.data.datasets[index].data.length),
+								y: randomScalingFactor(),
+							});
+						} else {
+							config.data.datasets[index].data.push(randomScalingFactor());
+						}
+					}
+	
+					window.myLine.update();
+				}
+			});
+	
+			document.getElementById('removeDataset').addEventListener('click', function() {
+				config.data.datasets.splice(0, 1);
+				window.myLine.update();
+			});
+	
+			document.getElementById('removeData').addEventListener('click', function() {
+				config.data.labels.splice(-1, 1); // remove the label first
+	
+				config.data.datasets.forEach(function(dataset) {
+					dataset.data.pop();
+				});
+	
+				window.myLine.update();
 			});
 		</script>
-
-		<p>Resize the browser window to see the effect.</p>
-
-		<!-- row -->
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Special title treatment</h5>
-						<p class="card-text">
-							With supporting text below as a natural lead-in to additional
-							content.
-						</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Special title treatment</h5>
-						<p class="card-text">
-							With supporting text below as a natural lead-in to additional
-							content.
-						</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- columns -->
-		<div class="card-columns" id="home-analitics">
-			<div class="card">
-				<img class="card-img-top" src="..." alt="Card image cap" />
-				<div class="card-body">
-					<h5 class="card-title">Card title that wraps to a new line</h5>
-					<p class="card-text">
-						This is a longer card with supporting text below as a natural
-						lead-in to additional content. This content is a little bit longer.
-					</p>
-				</div>
-			</div>
-			<div class="card p-3">
-				<blockquote class="blockquote mb-0 card-body">
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-						posuere erat a ante.
-					</p>
-					<footer class="blockquote-footer">
-						<small class="text-muted">
-							Someone famous in <cite title="Source Title">Source Title</cite>
-						</small>
-					</footer>
-				</blockquote>
-			</div>
-			<div class="card">
-				<img class="card-img-top" src="..." alt="Card image cap" />
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">
-						This card has supporting text below as a natural lead-in to
-						additional content.
-					</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-			<div class="card bg-primary text-white text-center p-3">
-				<blockquote class="blockquote mb-0">
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-						posuere erat.
-					</p>
-					<footer class="blockquote-footer">
-						<small>
-							Someone famous in <cite title="Source Title">Source Title</cite>
-						</small>
-					</footer>
-				</blockquote>
-			</div>
-			<div class="card text-center">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">
-						This card has supporting text below as a natural lead-in to
-						additional content.
-					</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-			<div class="card">
-				<img class="card-img" src="..." alt="Card image" />
-			</div>
-			<div class="card p-3 text-right">
-				<blockquote class="blockquote mb-0">
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-						posuere erat a ante.
-					</p>
-					<footer class="blockquote-footer">
-						<small class="text-muted">
-							Someone famous in <cite title="Source Title">Source Title</cite>
-						</small>
-					</footer>
-				</blockquote>
-			</div>
-			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">
-						This is a wider card with supporting text below as a natural lead-in
-						to additional content. This card has even longer content than the
-						first to show that equal height action.
-					</p>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
-				</div>
-			</div>
-		</div>
 	</body>
 </html>

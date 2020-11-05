@@ -22,6 +22,24 @@ body {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#home-analitics{
-    margin-top: 30pt;
+#home-analytics {
+	margin-top: 30pt;
 }
+
+.home-switches div.col-sm-3 {
+	/* margin-right: 300px; */
+    padding-bottom: 10px;
+}
+
+/* @media (max-width:992px) {
+    .home-switches div.col-sm-2{
+        margin-right: 300px; 
+        padding: 20px 40px;
+    }
+  }
+  */
+
+
+
+
+  
