@@ -22,6 +22,6 @@ MQTT = dict(
     OWNER = 'pn',
     QUANTITY = 'illuminance',
     TOPIC_SENSOR = 'test_sensor',
-    TOPIC_SUBSCRIBE = 'test_subscribe',
+    TOPIC_SUBSCRIBE = 'voicehome/lights/led',
     KEEPALIVE = 60,
     PORT = 1883)

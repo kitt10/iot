@@ -5,7 +5,7 @@ import time
 import machine
 import usocket
 import os
-from json import dumps
+from json import dumps, loads
 from ntptime import settime
 from umqtt.simple import MQTTClient
 import config
@@ -75,11 +75,12 @@ class Client:
     def connect(self):
         def sub_cb(topic, msg):
             print((topic, msg))
-            if msg == b"on":
+            msg1 = loads(msg)
+            if msg1['set'] == 1:
                 self.led.value(0)
                 self.state = 1
                 print("1")
-            elif msg == b"off":
+            elif msg1['set'] == 0:
                 self.led.value(1)
                 self.state = 0
                 print("0")
