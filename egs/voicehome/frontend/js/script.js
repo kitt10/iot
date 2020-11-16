@@ -5,8 +5,7 @@ function onBodyLoad() {
     ws.onopen = onSocketOpen
     ws.onmessage = onSocketMessage
     ws.onclose = onSocketClose
-
-    fillModules()
+    //fillModules()
 }
 
 function onSocketOpen() {
