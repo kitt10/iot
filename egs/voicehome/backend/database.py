@@ -24,7 +24,7 @@ class VoicehomeDatabase:
         print('Database: Initialized.')
 
     def write(self, module_id, payload):
-        self.db[module_id].insert_one(payload)
+        self.db[module_id].insert(payload)
         print('Saved to mongo.')
 
     def read(self, module_id, query):

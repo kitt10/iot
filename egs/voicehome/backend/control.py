@@ -44,6 +44,14 @@ class VoicehomeControlInterface:
 
             # Pass the command to the logic
             self.engine.logic.on_command(command)
+
+            # Pass the command to the web
+            ws_msg = {'passport': 'communication',
+                      'message': command,
+                      'source': 'keyboard',  # TODO: keyboard/voicekit
+                      'IP': self.controller.getsockname()}
+            self.engine.webserver.app.ws_message(ws_msg)
+
         else:
             self.disconnect_controller()
             self.restart_listening()
@@ -54,6 +62,13 @@ class VoicehomeControlInterface:
         print('Control: New reply:', self.last_reply())
         if self.last_reply() == 'exit':
             self.disconnect_controller()
+
+        # Pass the reply to the web
+        ws_msg = {'passport': 'communication',
+                  'message': reply,
+                  'source': 'engine',
+                  'module_name': 'system'}  # TODO: module sending this reply...
+        self.engine.webserver.app.ws_message(ws_msg)
 
     def disconnect_controller(self):
         self.disconnected = True
