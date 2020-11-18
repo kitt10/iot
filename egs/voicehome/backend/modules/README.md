@@ -70,7 +70,85 @@
         * describe your module
 3. Run ```$ python voicehome/backend/engine.py```. The module will be automatically loaded. You can then test your commands (e.g. from the Keyboard controller - see ```voicehome/backend/controllers/README.md```) and check it from the GUI (by default automatically passed via JSON handler ```engine.webserver.packet["modules"]```)
 
-#### Available methods for modules (so far)
+#### Tools - specifications
+
+##### MQTT
+- broker access info on Google Drive
+- topic structure: ```voicehome/<module_name>/<module-specific_category>```
+- send data to broker (example):
+```
+topic = 'voicehome/lights/led'
+payload = {'led_color': 'red', 'set_state': 'on'}
+self.mqtt_publish(topic, payload)
+```
+- subscribe from broker
+    - in ```<module_name>/metadata.json```, list the topics you want to subscribe (```mqtt_topics```)
+    - in ```<module_name>/<module_name>.py```, implement ```def on_mqtt_message(self, msg)```
+
+##### Mongo Database
+
+- save item to the database:
+    ```
+    item = {
+      "key": "voicehome/<module_name>/<module-specific_category>", 
+      "payload": {<your_structured_data>}
+    }
+    self.save_to_mongo(self.id, item)
+    ```
+    - ```item``` example:
+        ```
+        {
+          "key": "voicehome/sensors/temperature", 
+          "payload": {
+            "sensor_id": "livingroom_ds18b20",
+            "timestamp": "2019-12-02 10:46:30",
+            "value": 25.2,
+            "status": "ok"
+          }
+        }
+        ```             
+- read from the database
+    ```
+    query = {'key': 'voicehome/<module_name>/<module-specific_category>'}
+    res = self.search_mongo(self.id, query)
+    ```
+    - ```query``` example
+    ```
+    {'key': 'voicehome/sensors/temperature'}
+    ```
+    - returns (what we get in ```res```) - list of items fitting the key in query
+    ```
+        [{"sensor_id": "livingroom_ds18b20",
+                   "timestamp": "2019-12-02 10:47:30",
+                   "value": 25.2,
+                   "status": "ok"},
+         {"sensor_id": "livingroom_ds18b20",
+                   "timestamp": "2019-12-02 10:48:30",
+                   "value": 25.9,
+                   "status": "ok"},
+         ...]
+    ```
+  
+##### Tornado Webserver with WebSockets
+- asynchronous communication with your frontend
+- send a message to the frontend:
+    ```
+    msg = {'passport': '<required_key_of_msg>', ...<your_structure>...}
+    self.websocket_send(msg)
+    ```
+    - example
+        ```
+        msg = {'passport': 'sensors/temperature',
+               'current_value': 24,
+               'day_average': 21
+        }
+        self.websocket_send(msg)
+        ```
+- catch messages from the frontend
+    - in ```<module_name>/metadata.json```, list the passports you want to catch (```websocket_passports```)
+    - in ```<module_name>/<module_name>.py```, implement ```def on_websocket_message(self, msg)```
+               
+#### System methods for modules (so far)
 
 * You implement those (override parent):
     - ```def on_mqtt_message(self, msg)```
@@ -86,9 +164,9 @@
         * ```message: str```
         * module's reply to the controller
     
-    - ```self.save_to_mongo(module_id, payload)```
+    - ```self.save_to_mongo(module_id, item)```
         * ```module_id: str```, every module has it on: ```self.id```, equals the <modoule_name>
-        * ```payload: dict```, structure is module-dependent
+        * ```item: dict```, structure is module-dependent
         * will save your data to the database
     
     - ```self.search_mongo(module_id, query)```

@@ -29,10 +29,10 @@ $ sudo chown -R <user> /home/<user>/miniconda3    # if needed
 $ conda config --add channels rpi
 $ conda create -n iot python=3.6    # highest supported on RPi
 $ source activate iot
-$ python -m easy_install paho-mqtt
-$ python -m easy_install python-box
-$ python -m easy_install pymongo
-$ python -m easy_install tornado
+(iot) $ python -m easy_install paho-mqtt
+(iot) $ python -m easy_install python-box
+(iot) $ python -m easy_install pymongo
+(iot) $ python -m easy_install tornado
 ```
 
 ##### Config file ```config.yml```
@@ -44,8 +44,8 @@ $ python -m easy_install tornado
 ##### Run engine
 ```
 $ conda activate iot    # (RPi: $ source activate iot)
-$ cd iot/egs/voicehome/backend
-$ python engine.py
+(iot) $ cd iot/egs/voicehome/backend
+(iot) $ python engine.py
 ```
 
 ##### Run controller
@@ -53,20 +53,24 @@ $ python engine.py
 - keyboard controller (from anywhere): 
 ```
 $ conda activate iot    # (RPi: $ source activate iot)
-$ cd iot/egs/voicehome/backend/controllers
-$ python keyboard.py
+(iot) $ cd iot/egs/voicehome/backend/controllers
+(iot) $ python keyboard.py
 ```
 
 - VoiceKit controller (from anywhere): 
 
-COMING SOON
-
+    - connect the VoiceKit (data USB port) to your laptop
+    - wait for VoiceKit initialization (3-5 minutes)
+    - when initialized, check the status at ```voicekit.local:8889``` (the log)
+    - in ``` http://voicekit.local:8888/edit/voicekit_controller.py ``` set up the correct ```host``` (IP address) and sockets ```port``` of the engine, save ```voicekit_controller.py```
+    - start the dialog by pushing the button
+    
 ##### Web GUI Access
 
 - Your PC: ```localhost:8881```
 - RPi (from anywhere): ```147.228.124.230:8881```
 
-### Development
+### Development - project extension
 
 - **Frontend**: see ```voicehome/frontend/README.md```
 - **Modules**: see ```voicehome/backend/modules/README.md```
