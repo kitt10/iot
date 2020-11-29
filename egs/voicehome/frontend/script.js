@@ -5,7 +5,8 @@ function onBodyLoad() {
     ws.onopen = onSocketOpen
     ws.onmessage = onSocketMessage
     ws.onclose = onSocketClose
-    //fillModules()
+
+    fillModules()
 }
 
 function onSocketOpen() {
@@ -29,8 +30,8 @@ function onSocketClose() {
 
 function sendToServer(message) {
     let payload = {
-        passport: "system/test",
-        message: message
+        message: message,
+        second_param: [1, 2]
     }
     ws.send(JSON.stringify(payload))
 }
