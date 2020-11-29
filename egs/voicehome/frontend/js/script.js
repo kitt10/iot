@@ -69,7 +69,7 @@ function fillModules() {
 		moduleToggle.type = "checkbox";
 		moduleToggle.checked = true;
 		moduleToggle.setAttribute("data-toggle", "toggle");
-		moduleToggle.attribute("data-size", "sm");
+		moduleToggle.setAttribute("data-size", "sm");
 		// <input type="checkbox" checked data-toggle="toggle" data-size="sm" />
 
 		// for more information of module uncomment following
