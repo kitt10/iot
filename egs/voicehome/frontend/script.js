@@ -47,7 +47,7 @@ function loadJsonHandler() {
 }
 
 function fillModules() {
-	let modules = loadJsonHandler();
+	let modules = loadJsonHandler().modules;
 	let divModules = document.getElementById("modules");
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
