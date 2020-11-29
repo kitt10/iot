@@ -53,6 +53,7 @@ function fillModules() {
 
 	let moduleList = document.createElement("ul");
 	moduleList.className = "list-group";
+	divModules.appendChild(moduleList);
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
 		let moduleListItem = document.createElement("li");
