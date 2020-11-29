@@ -65,11 +65,11 @@ function fillModules() {
 		moduleTitle.innerHTML = modules[i_module].module_id;
 		moduleListItem.appendChild(moduleTitle);
 
-		// let moduleToggle = document.createElement("input");
-		// moduleToggle.type = "checkbox";
-		// moduleToggle.checked = true;
-		// moduleToggle.attribute("data-toggle") = "toggle";
-		// moduleToggle.attribute("data-size") = "sm";
+		let moduleToggle = document.createElement("input");
+		moduleToggle.type = "checkbox";
+		moduleToggle.checked = true;
+		moduleToggle.setAttribute("data-toggle", "toggle");
+		moduleToggle.attribute("data-size", "sm");
 		// <input type="checkbox" checked data-toggle="toggle" data-size="sm" />
 
 		// for more information of module uncomment following
