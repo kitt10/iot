@@ -51,15 +51,15 @@ function fillModules() {
 	let modules = loadJsonHandler().modules;
 	let divModules = document.getElementById("modules");
 
-	let moduleList = document.createElement("ul");
-	moduleList.className = "list-group";
+	let moduleList = document.createElement("div");
+	// moduleList.className = "list-group";
 	divModules.appendChild(moduleList);
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
 		let moduleListItem = document.createElement("div");
 		moduleListItem.className =
-			"list-group-item d-flex justify-content-between align-items-center";
-		moduleList.appendChild(moduleListItem);
+			// "list-group-item d-flex justify-content-between align-items-center";
+			moduleList.appendChild(moduleListItem);
 
 		let moduleTitle = document.createElement("div");
 		moduleTitle.innerHTML = modules[i_module].module_id;
