@@ -47,12 +47,13 @@ function loadJsonHandler() {
 }
 
 function fillModules() {
+	console.log("Loading modules");
 	let modules = loadJsonHandler().modules;
 	let divModules = document.getElementById("modules");
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
 		let moduleDiv = document.createElement("DIV");
-		moduleDiv.className = "module";
+		moduleDiv.className = "i_module";
 
 		let moduleTitleDiv = document.createElement("DIV");
 		moduleTitleDiv.className = "module_title";
