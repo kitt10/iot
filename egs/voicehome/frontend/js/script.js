@@ -56,12 +56,12 @@ function fillModules() {
 	divModules.appendChild(moduleList);
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
-		let moduleListItem = document.createElement("li");
+		let moduleListItem = document.createElement("div");
 		moduleListItem.className =
 			"list-group-item d-flex justify-content-between align-items-center";
 		moduleList.appendChild(moduleListItem);
 
-		let moduleTitle = document.createElement("h5");
+		let moduleTitle = document.createElement("div");
 		moduleTitle.innerHTML = modules[i_module].module_id;
 		moduleListItem.appendChild(moduleTitle);
 
