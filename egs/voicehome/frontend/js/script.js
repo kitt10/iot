@@ -61,9 +61,9 @@ function fillModules() {
 			"list-group-item d-flex justify-content-between align-items-center";
 		moduleList.appendChild(moduleListItem);
 
-		// let moduleTitle = document.createElement("h5");
-		// moduleTitle.innerHTML = modules[i_module].module_id;
-		// moduleListItem.appendChild(moduleTitle);
+		let moduleTitle = document.createElement("h5");
+		moduleTitle.innerHTML = modules[i_module].module_id;
+		moduleListItem.appendChild(moduleTitle);
 
 		let moduleSpanToggle = document.createElement("div");
 		moduleSpanToggle.className = "checkbox";
@@ -71,13 +71,13 @@ function fillModules() {
 
 		let moduleToggle = document.createElement("input");
 		moduleToggle.type = "checkbox";
-		moduleToggle.id = "toggle-demo";
+		moduleToggle.id = modules[i_module].module_id;
 		moduleToggle.checked = true;
 		moduleToggle.setAttribute("data-toggle", "toggle");
 		moduleToggle.setAttribute("data-size", "sm");
 		moduleSpanToggle.appendChild(moduleToggle);
 
-		$("#toggle-demo").bootstrapToggle();
+		$(modules[i_module].module_id).bootstrapToggle();
 
 		// for more information of module uncomment following
 
