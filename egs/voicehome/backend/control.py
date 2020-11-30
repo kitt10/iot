@@ -41,6 +41,11 @@ class VoicehomeControlInterface:
             print('Control: New command:', self.last_command())
             if self.last_command() == 'exit':
                 self.disconnect_controller()
+            if self.last_command() == 'temperature':
+                query = {'key': 'voicehome/sensors/temperature'}
+                res = self.search_mongo(self.id, query)
+                print("res = ")
+                print(res)
 
             # Pass the command to the logic
             self.engine.logic.on_command(command)
