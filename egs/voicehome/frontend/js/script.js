@@ -71,7 +71,7 @@ function fillModules() {
 
 		let moduleToggle = document.createElement("input");
 		moduleToggle.type = "checkbox";
-		moduleToggle.id = modules[i_module].module_id;
+		moduleToggle.id = "toggle-demo";
 		moduleToggle.checked = true;
 		moduleToggle.setAttribute("data-toggle", "toggle");
 		moduleToggle.setAttribute("data-size", "sm");
