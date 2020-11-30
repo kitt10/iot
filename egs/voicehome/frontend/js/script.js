@@ -19,8 +19,7 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	console.log(typeof data);
-	if (typeof data == Object) {
+	if (data.constructor === objectConstructor) {
 		var today = new Date();
 		var time =
 			today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -33,6 +32,7 @@ function onSocketMessage(message) {
 		divEventLog.appendChild(eventLogItem);
 	}
 	console.log("WS message:", data);
+	console.log(typeof data);
 	sendToServer("Hi from browser. Got your message.");
 }
 
