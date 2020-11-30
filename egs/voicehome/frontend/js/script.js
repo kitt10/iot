@@ -20,10 +20,15 @@ function onSocketMessage(message) {
 		data = message.data;
 	}
 
+	var today = new Date();
+	var time =
+		today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
 	let divEventLog = document.getElementById("eventLog");
 	let eventLogItem = document.createElement("div");
 	eventLogItem.className = "alert alert-info";
-	eventLogItem.innerHTML = data;
+	eventLogItem.innerHTML =
+		time + "source: <strong>" + data.source + "</strong> => " + data.message;
 	console.log(data.length);
 	divEventLog.appendChild(eventLogItem);
 
