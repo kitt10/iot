@@ -19,18 +19,19 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	// if (typeof data == Object) {
-	var today = new Date();
-	var time =
-		today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	console.log(typeof data);
+	if (typeof data == object) {
+		var today = new Date();
+		var time =
+			today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-	let divEventLog = document.getElementById("eventLog");
-	let eventLogItem = document.createElement("div");
-	eventLogItem.className = "alert alert-info";
-	eventLogItem.innerHTML =
-		time + "source: <strong>" + data.source + "</strong> => " + data.message;
-	divEventLog.appendChild(eventLogItem);
-	// }
+		let divEventLog = document.getElementById("eventLog");
+		let eventLogItem = document.createElement("div");
+		eventLogItem.className = "alert alert-info";
+		eventLogItem.innerHTML =
+			time + "source: <strong>" + data.source + "</strong> => " + data.message;
+		divEventLog.appendChild(eventLogItem);
+	}
 	console.log("WS message:", data);
 	sendToServer("Hi from browser. Got your message.");
 }
