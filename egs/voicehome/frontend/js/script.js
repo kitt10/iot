@@ -65,12 +65,16 @@ function fillModules() {
 		moduleTitle.innerHTML = modules[i_module].module_id;
 		moduleListItem.appendChild(moduleTitle);
 
+		let moduleSpanToggle = document.createElement("span");
+		moduleSpanToggle.className = "badge";
+		moduleListItem.appendChild(moduleSpanToggle);
+
 		let moduleToggle = document.createElement("label");
 		moduleToggle.type = "checkbox";
 		moduleToggle.checked = true;
 		moduleToggle.setAttribute("data-toggle", "toggle");
 		moduleToggle.setAttribute("data-size", "sm");
-		moduleListItem.appendChild(moduleToggle);
+		moduleSpanToggle.appendChild(moduleToggle);
 		// <input type="checkbox" checked data-toggle="toggle" data-size="sm" />
 
 		// for more information of module uncomment following
