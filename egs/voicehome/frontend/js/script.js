@@ -20,7 +20,7 @@ function onSocketMessage(message) {
 		data = message.data;
 	}
 	console.log(typeof data);
-	if (typeof data == object) {
+	if (typeof data == Object) {
 		var today = new Date();
 		var time =
 			today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
