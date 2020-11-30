@@ -21,7 +21,8 @@ function onSocketMessage(message) {
 	}
 	if (data.constructor === {}.constructor && data.source == "keyboard") {
 		var today = new Date();
-		var time = today.getHours + ":" + today.getMinutes + ":" + today.getSeconds;
+		var time =
+			today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
 		let divEventLog = document.getElementById("eventLog");
 		if (divEventLog.childNodes.length >= 5) {
