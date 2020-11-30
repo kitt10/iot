@@ -19,6 +19,13 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
+
+	let divEventLog = document.getElementById("eventLog");
+	let eventLogItem = document.createElement("div");
+	eventLogItem.className("alert alert-info");
+	eventLogItem.innerHTML = data;
+	divEventLog.appendChild(eventLogItem);
+
 	console.log("WS message:", data);
 	sendToServer("Hi from browser. Got your message.");
 }
