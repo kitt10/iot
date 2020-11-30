@@ -19,7 +19,7 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	if (data.constructor === objectConstructor) {
+	if (data.constructor === {}.constructor) {
 		var today = new Date();
 		var time =
 			today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
