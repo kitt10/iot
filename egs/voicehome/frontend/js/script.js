@@ -28,7 +28,7 @@ function onSocketMessage(message) {
 		let eventLogItem = document.createElement("div");
 		eventLogItem.className = "alert alert-info";
 		eventLogItem.innerHTML =
-			time + "source: <strong>" + data.source + "</strong> => " + data.message;
+			time + " <strong>" + data.source + "</strong> => " + data.message;
 		divEventLog.appendChild(eventLogItem);
 	}
 	console.log("WS message:", data);
