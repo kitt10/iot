@@ -71,10 +71,15 @@ function fillModules() {
 
 		let moduleToggle = document.createElement("input");
 		moduleToggle.type = "checkbox";
+		moduleToggle.id = modules[i_module].module_id;
 		moduleToggle.checked = true;
 		moduleToggle.setAttribute("data-toggle", "toggle");
 		moduleToggle.setAttribute("data-size", "sm");
 		moduleSpanToggle.appendChild(moduleToggle);
+
+		$(function () {
+			$(modules[i_module].module_id).bootstrapToggle();
+		});
 
 		// for more information of module uncomment following
 
