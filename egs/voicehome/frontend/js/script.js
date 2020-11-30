@@ -66,7 +66,7 @@ function fillModules() {
 		moduleListItem.appendChild(moduleTitle);
 
 		let moduleSpanToggle = document.createElement("span");
-		moduleSpanToggle.className = "badge";
+		moduleSpanToggle.className = "badge checkbox";
 		moduleListItem.appendChild(moduleSpanToggle);
 
 		let moduleToggle = document.createElement("input");
