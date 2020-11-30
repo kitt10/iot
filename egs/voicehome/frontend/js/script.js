@@ -77,7 +77,7 @@ function fillModules() {
 		moduleToggle.setAttribute("data-size", "sm");
 		moduleSpanToggle.appendChild(moduleToggle);
 
-		$(modules[i_module].module_id).bootstrapToggle();
+		$("#".concat(modules[i_module].module_id)).bootstrapToggle();
 
 		// for more information of module uncomment following
 
