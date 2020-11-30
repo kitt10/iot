@@ -51,21 +51,21 @@ function fillModules() {
 	let modules = loadJsonHandler().modules;
 	let divModules = document.getElementById("modules");
 
-	let moduleList = document.createElement("div");
-	// moduleList.className = "list-group";
+	let moduleList = document.createElement("ul");
+	moduleList.className = "list-group";
 	divModules.appendChild(moduleList);
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
-		let moduleListItem = document.createElement("div");
+		let moduleListItem = document.createElement("li");
 		moduleListItem.className =
-			// "list-group-item d-flex justify-content-between align-items-center";
-			moduleList.appendChild(moduleListItem);
+			"list-group-item d-flex justify-content-between align-items-center";
+		moduleList.appendChild(moduleListItem);
 
-		let moduleTitle = document.createElement("div");
+		let moduleTitle = document.createElement("h5");
 		moduleTitle.innerHTML = modules[i_module].module_id;
 		moduleListItem.appendChild(moduleTitle);
 
-		let moduleToggle = document.createElement("input");
+		let moduleToggle = document.createElement("label");
 		moduleToggle.type = "checkbox";
 		moduleToggle.checked = true;
 		moduleToggle.setAttribute("data-toggle", "toggle");
