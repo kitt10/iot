@@ -19,16 +19,22 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	if (data.constructor === {}.constructor) {
+	if (data.constructor === {}.constructor && data.source == "keyboard") {
 		var today = new Date();
-		var time =
-			today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
 		let divEventLog = document.getElementById("eventLog");
+		if (divEventLog.childNodes.length >= 5) {
+			divEventLog.removeChild(divEventLog.firstChild);
+		}
+
 		let eventLogItem = document.createElement("div");
 		eventLogItem.className = "alert alert-info";
 		eventLogItem.innerHTML =
-			time + " <strong>" + data.source + "</strong> => " + data.message;
+			formatDate(today, "hh:mm:tt") +
+			" <strong>" +
+			data.source +
+			"</strong> => " +
+			data.message;
 		divEventLog.appendChild(eventLogItem);
 	}
 	console.log("WS message:", data);
