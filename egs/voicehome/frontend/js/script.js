@@ -22,7 +22,7 @@ function onSocketMessage(message) {
 
 	let divEventLog = document.getElementById("eventLog");
 	let eventLogItem = document.createElement("div");
-	eventLogItem.className("alert alert-info");
+	eventLogItem.className = "alert alert-info";
 	eventLogItem.innerHTML = data;
 	divEventLog.appendChild(eventLogItem);
 
