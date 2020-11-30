@@ -30,7 +30,7 @@ function onSocketMessage(message) {
 		let eventLogItem = document.createElement("div");
 		eventLogItem.className = "alert alert-info";
 		eventLogItem.innerHTML =
-			formatDate(today, "hh:mm:tt") +
+			dateFormat(today, "hh:mm:tt") +
 			" <strong>" +
 			data.source +
 			"</strong> => " +
