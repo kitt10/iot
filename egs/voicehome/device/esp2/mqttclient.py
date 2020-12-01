@@ -2,21 +2,13 @@
 # coding: utf-8
 
 import time
-import machine
 import usocket
-import os
 from json import dumps, loads
 from ntptime import settime
 from umqtt.simple import MQTTClient
 import config
-import tsl2591
 from machine import Pin, I2C
-from bme280 import BME280
 from ds18b20 import tempSensorDS
-
-import ubinascii
-import machine
-import micropython
 
 class Client:
     
@@ -24,41 +16,32 @@ class Client:
         self.client = MQTTClient(config.MQTT['SENSOR_ID'], config.MQTT['SERVER'], config.MQTT['PORT'], config.MQTT['USER'], config.MQTT['PASSWD'])
         self.last_minute_sent = 99
 
-        self.tsl = tsl2591.Tsl2591(scl_pin_nb=5, sda_pin_nb=4)
         self.led = Pin(2, Pin.OUT, value=1)
         self.state = 0
 
         self.tempSensorDS = tempSensorDS(pin_nb=0)
-
-
-        # self.i2c_bme = I2C(scl=Pin(14, Pin.IN), sda=Pin(12, Pin.IN))
-        # self.bme = BME280(i2c=self.i2c_bme)
           
     def send2broker(self):
-        illuminance = self.tsl.sample()
-        # pressure = self.bme.pressure
-        # print(pressure)
-        # temperature = self.bme.temperature
-        # print(temperature)
-        # humidity = self.bme.humidity
-        # print(humidity)
+        
         tempSensorDS = self.tempSensorDS.measure_temp()
-        if illuminance == -1:
-            status = 'sensor_error'
-        else:
-            status = 'ok'    
-        structure = {'sensor_id': config.MQTT['SENSOR_ID'], \
-                'timestamp': self.sync_time(), \
-                'illuminance_value': float(illuminance), \
-                # 'pressure_value': float(pressure), \
-                # 'temperature_value': float(temperature), \
-                # 'humidity_value': float(humidity), \
-                'tempSensorDS_value': float(tempSensorDS), \
-                'status': status, \
-                'quantity': config.MQTT['QUANTITY'], \
-                'location': config.MQTT['LOCATION'], \
-                'owner': config.MQTT['OWNER']}
-        self.mqtt_msg(structure)
+
+        # if illuminance == -1:
+        #     status = 'sensor_error'
+        # else:
+        status = 'ok'
+
+        msg_structure_temperature = {'sensor_id': config.MQTT['SENSOR_ID'], \
+            'timestamp': self.sync_time(), \
+            'temperature_value': float(tempSensorDS), \
+            'status': status, \
+            'quantity': config.MQTT['QUANTITY_TEMPERATURE'], \
+            'location': config.MQTT['LOCATION'], \
+            'owner': config.MQTT['OWNER']}
+
+
+        self.mqtt_msg(msg_structure_temperature, config.MQTT['TOPIC_TEMPERATURE'])
+
+        self.last_minute_sent = self.get_min()
 
     def sync_time(self):
         GMT = time.mktime(time.localtime()) + 3600
@@ -92,18 +75,17 @@ class Client:
                 print("toggle")
         self.client.set_callback(sub_cb)
         self.client.connect()
-        print(bytearray(config.MQTT['TOPIC_SUBSCRIBE']))
-        self.client.subscribe(bytearray(config.MQTT['TOPIC_SUBSCRIBE']))
-        print("Connected to %s, subscribed to %s topic" % (config.MQTT['SERVER'], config.MQTT['TOPIC_SUBSCRIBE']))
+        print(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LED']))
+        self.client.subscribe(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LED']))
+        print("Connected to %s, subscribed to %s topic" % (config.MQTT['SERVER'], config.MQTT['TOPIC_SUBSCRIBE_LED']))
 
     def subscribe(self):
         print("subscribe")
         self.client.check_msg()
     
-    def mqtt_msg(self, structure):
+    def mqtt_msg(self, msg_structure, topic):
         try:
-            self.client.publish(config.MQTT['TOPIC_SENSOR'], dumps(structure))
-            self.last_minute_sent = self.get_min()
+            self.client.publish(topic, dumps(msg_structure))
         except:
             print("mqtt_msg error")
             pass
