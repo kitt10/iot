@@ -21,6 +21,8 @@ div.scrollmenu a:hover {
 body {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	overflow-x: hidden;
+	/* min-width: 1000px;
+	_width: expression(document.body.clientWidth > 1000 ? "900px": "auto"); */
 }
 body* {
 	max-width: none;
@@ -28,6 +30,12 @@ body* {
 
 #home-analytics {
 	margin-top: 30pt;
+}
+
+.sticky-top-4 {
+	position: sticky;
+	top: 3.5rem;
+	z-index: 1000;
 }
 
 .home-switches div.col-sm-3 {

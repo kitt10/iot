@@ -74,7 +74,7 @@ function fillModules() {
 	let divModulesInformation = document.getElementById("modules_information");
 
 	let moduleList = document.createElement("ul");
-	moduleList.className = "list-group sticky-top";
+	moduleList.className = "list-group sticky-top-4";
 	divModules.appendChild(moduleList);
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
@@ -108,7 +108,7 @@ function fillModules() {
 		// moduleDiv.style.overflowY = "scroll";
 
 		let moduleHeaderDiv = document.createElement("div");
-		moduleHeaderDiv.className = "custom-card-header sticky-top";
+		moduleHeaderDiv.className = "custom-card-header sticky-top-4";
 		moduleDiv.appendChild(moduleHeaderDiv);
 
 		let moduleTitleDiv = document.createElement("h5");

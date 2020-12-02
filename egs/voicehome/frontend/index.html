@@ -48,7 +48,7 @@
 
 	<body onload="onBodyLoad()">
 		
-			<nav class="navbar navbar-expand-md navbar-light bg-light">
+			<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 				<a class="navbar-brand" href="#">IOT</a>
 				<button
 					class="navbar-toggler"
@@ -138,10 +138,13 @@
 			<div id="header">The VOICEHOME project. Coming soon.</div>
 			<div id="eventLog"></div>
 			<div class="row">
-				<div id="modules" class="col-3"></div>
-				<div id="modules_information" class="col-9"></div>
+				<div id="modules" class="col-md-4 col-lg-3 d-none d-md-block"></div>
+				<div id="modules_information" class="col-md-8 col-lg-9 col-12"></div>
 			</div>
 		</div>
+
+		https://getbootstrap.com/docs/4.1/components/collapse/
+		https://jsfiddle.net/KyleMit/S9hhP/
 
 		<!--<script src="js/time_graph.js"></script>-->
 		<script src="js/moment.js"></script>
