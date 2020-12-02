@@ -47,95 +47,101 @@
 	</head>
 
 	<body onload="onBodyLoad()">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#">IOT</a>
-			<button
-				class="navbar-toggler"
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbarNavDropdown"
-				aria-controls="navbarNavDropdown"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item active">
-						<a class="nav-link" href="#"
-							>Home<span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Switches</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Analytics</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a
-							class="nav-link dropdown-toggle"
-							href="#"
-							id="navbarDropdownMenuLink"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false"
-						>
-							Rooms
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Bedroom</a>
-							<a class="dropdown-item" href="#">Kitchen</a>
-							<a class="dropdown-item" href="#">Living room</a>
+		
+			<nav class="navbar navbar-expand-md navbar-light bg-light">
+				<a class="navbar-brand" href="#">IOT</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="#"
+								>Home<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Switches</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Analytics</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a
+								class="nav-link dropdown-toggle"
+								href="#"
+								id="navbarDropdownMenuLink"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+							>
+								Rooms
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="#">Bedroom</a>
+								<a class="dropdown-item" href="#">Kitchen</a>
+								<a class="dropdown-item" href="#">Living room</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Modules</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			<!-- row -->
+			<div class="home-switches">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Lampicka</h5>
+								<p class="card-text">
+									<input
+										type="checkbox"
+										checked
+										data-toggle="toggle"
+										data-size="sm"
+									/>
+								</p>
+							</div>
 						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Modules</a>
-					</li>
-				</ul>
+					</div>
+					<div class="col-sm-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Lampicka</h5>
+								<p class="card-text">
+									<input
+										type="checkbox"
+										checked
+										data-toggle="toggle"
+										data-size="sm"
+									/>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</nav>
 
-		<!-- row -->
-		<div class="home-switches">
+		
+			<div id="header">The VOICEHOME project. Coming soon.</div>
+			<div id="eventLog"></div>
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Lampicka</h5>
-							<p class="card-text">
-								<input
-									type="checkbox"
-									checked
-									data-toggle="toggle"
-									data-size="sm"
-								/>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Lampicka</h5>
-							<p class="card-text">
-								<input
-									type="checkbox"
-									checked
-									data-toggle="toggle"
-									data-size="sm"
-								/>
-							</p>
-						</div>
-					</div>
-				</div>
+				<div id="modules" class="col-3"></div>
+				<div id="modules_information" class="col-9"></div>
 			</div>
 		</div>
-
-		<div id="header">The VOICEHOME project. Coming soon.</div>
-		<div id="modules"></div>
-		<div id="eventLog"></div>
 
 		<!--<script src="js/time_graph.js"></script>-->
 		<script src="js/moment.js"></script>
