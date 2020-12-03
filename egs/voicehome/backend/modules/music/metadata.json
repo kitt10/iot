@@ -1,0 +1,44 @@
+{
+	"module_id": "music",
+	"description": "music system (comming soon) - play music, stop music, play radio, stop radio, shutup",
+	"mqtt_topics": ["voicehome/music", "voicehome/radio"],
+	"websocket_passports": ["music", "radio"],
+	"moves": [
+		{
+			"move_id": "music.play_music",
+			"method_name": "play_music",
+			"description": "Send a command via MQTT to start playing music",
+			"calls": [["pusť", "muziku"], ["hraj", "muziku"], ["plej mjuzik"]]
+		},
+		{
+			"move_id": "music.stop_music",
+			"method_name": "stop_music",
+			"description": "Send a command via MQTT to stop playing music.",
+			"calls": [
+				["zastav", "muziku"],
+				["vypni", "muziku"]
+			]
+		},
+		{
+			"move_id": "music.play_radio",
+			"method_name": "play_radio",
+			"description": "Send a command via MQTT to start playing radio",
+			"calls": [["pusť", "rádio"], ["hraj", "rádio"], ["plej rejdiou"]]
+		},
+		{
+			"move_id": "music.stop_radio",
+			"method_name": "stop_radio",
+			"description": "Send a command via MQTT to stop playing radio",
+			"calls": [
+				["zastav", "rádio"],
+				["vypni", "rádio"]
+			]
+		},
+		{
+			"move_id": "music.shutup",
+			"method_name": "shutup",
+			"description": "Send a command via MQTT to stop playing radio and music",
+			"calls": [["buď sticha"], ["ticho"]]
+		}
+	]
+}

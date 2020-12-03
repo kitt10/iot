@@ -20,6 +20,13 @@ class Lights(VoicehomeModule):
         }
         self.mqtt_publish(topic='voicehome/lights/led', payload=payload)
 
+    def binking_led(self):
+        payload = {
+            'led_id': 'onboard',
+            'set': 'blinking'
+        }
+        self.mqtt_publish(topic='voicehome/lights/led', payload=payload)
+
     def on_mqtt_message(self, msg):
         pass
 

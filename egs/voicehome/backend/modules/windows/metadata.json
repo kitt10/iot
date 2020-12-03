@@ -1,0 +1,29 @@
+{
+	"module_id": "windows",
+	"description": "windows system (comming soon) - pull blinds, expand blinds, check windows",
+	"mqtt_topics": ["voicehome/windows", "voicehome/windows/windowsr"],
+	"websocket_passports": ["windows"],
+	"moves": [
+		{
+			"move_id": "windows.pull_blinds",
+			"method_name": "pull_blinds",
+			"description": "Send a command via MQTT to pull blinds.",
+			"calls": [["zatáhni", "žaluzije"], ["zatáhni", "rolety"], ["zatáhni"]]
+		},
+		{
+			"move_id": "windows.expand_blinds",
+			"method_name": "expand_blinds",
+			"description": "Send a command via MQTT to expand blinds.",
+			"calls": [["roztáhni", "žaluzije"], ["roztáhni", "rolety"], ["roztáhni"]]
+		},
+		{
+			"move_id": "windows.check_windows",
+			"method_name": "check_windows",
+			"description": "Send a command via MQTT to check windows",
+			"calls": [
+				["zkontroluj", "okna"],
+				["zavřená", "okna"]
+			]
+		}
+	]
+}

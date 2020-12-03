@@ -1,28 +1,39 @@
 {
-  "module_id": "lights",
-  "description": "Lightning system - one onboard LED on ESP8266 for now.",
-  "mqtt_topics": ["voicehome/lights/led"],
-  "websocket_passports": ["lights"],
-  "moves": [
-    {
-      "move_id": "lights_01.turn_led_on",
-      "method_name": "turn_led_on",
-      "description": "Switch on the onboard LED.",
-      "calls": [
-        ["zapni", "vestavěnou", "ledku"],
-        ["rozsviť", "ledku"],
-        ["led", "on"]
-      ]
-    },
-    {
-      "move_id": "lights_01.turn_led_off",
-      "method_name": "turn_led_off",
-      "description": "Switch off the onboard LED.",
-      "calls": [
-        ["zhasni", "vestavěnou", "ledku"],
-        ["zhasni", "ledku"],
-        ["led", "off"]
-      ]
-    }
-  ]
+	"module_id": "lights",
+	"description": "Lightning system - one onboard LED on ESP8266 for now.",
+	"mqtt_topics": ["voicehome/lights/led"],
+	"websocket_passports": ["lights"],
+	"moves": [
+		{
+			"move_id": "lights_01.turn_led_on",
+			"method_name": "turn_led_on",
+			"description": "Switch on the onboard LED.",
+			"calls": [
+				["zapni", "vestavěnou", "ledku"],
+				["rozsviť", "ledku"],
+				["led", "on"]
+			]
+		},
+		{
+			"move_id": "lights_01.turn_led_off",
+			"method_name": "turn_led_off",
+			"description": "Switch off the onboard LED.",
+			"calls": [
+				["zhasni", "vestavěnou", "ledku"],
+				["zhasni", "ledku"],
+				["vypni", "ledku"],
+				["led", "off"]
+			]
+		},
+		{
+			"move_id": "lights_01.binking_led",
+			"method_name": "binking_led",
+			"description": " (comming soon) Blink the onboard LED.",
+			"calls": [
+				["zablikej", "vestavěnou", "ledkou"],
+				["zablikej", "ledkou"],
+				["led", "blink"]
+			]
+		}
+	]
 }
