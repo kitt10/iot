@@ -24,7 +24,7 @@ class Sensors(VoicehomeModule):
         res = self.search_mongo(self.id, query)
         print('after res')
         # msg['message'] = res
-
-        self.websocket_send(res)
+        print(res)
+        # self.websocket_send(res)
         print("message sended")
         pass
