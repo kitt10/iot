@@ -19,4 +19,12 @@ class Sensors(VoicehomeModule):
             self.reply(message='Aktuální teplota je: '+str(msg['value']))
 
     def on_websocket_message(self, msg):
+        print("start sending message")
+        query = {'key': 'voicehome/test/test_sensor'}
+        res = self.search_mongo(self.id, query)
+        print('after res')
+        msg['message'] = res
+
+        self.websocket_send(msg)
+        print("message sended")
         pass

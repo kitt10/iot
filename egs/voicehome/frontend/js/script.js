@@ -1,6 +1,7 @@
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
-	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
+	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
@@ -48,8 +49,16 @@ function onSocketClose() {
 	console.log("WS client: Websocket closed.");
 }
 
-function sendToServer(message) {
+function testData() {
+	msg = {'message': 'ahoj',
+		'day_average': 21
+	}
+	sendToServer(msg, 'voicehome/sensors')
+}
+
+function sendToServer(message, passport='') {
 	let payload = {
+		passport: passport,
 		message: message,
 		second_param: [1, 2],
 	};
