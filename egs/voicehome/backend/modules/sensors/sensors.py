@@ -1,5 +1,5 @@
 from modules.voicehome_module import VoicehomeModule
-
+import json
 
 class Sensors(VoicehomeModule):
 
@@ -23,8 +23,8 @@ class Sensors(VoicehomeModule):
         query = {'key': 'voicehome/sensors/pressure'}
         res = self.search_mongo(self.id, query)
         print('after res')
-        # msg['message'] = res
-        print(res)
-        # self.websocket_send(res)
+        msg['message'] = res
+        print('after msg=res')
+        self.websocket_send(json.dumps(msg))
         print("message sended")
         pass
