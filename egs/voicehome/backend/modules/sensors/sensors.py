@@ -20,7 +20,7 @@ class Sensors(VoicehomeModule):
 
     def on_websocket_message(self, msg):
         print("start sending message")
-        query = {'key': 'voicehome/test/test_sensor'}
+        query = {'key': 'voicehome/sensors/pressure'}
         res = self.search_mongo(self.id, query)
         print('after res')
         msg['message'] = res
