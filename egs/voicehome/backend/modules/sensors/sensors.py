@@ -22,7 +22,8 @@ class Sensors(VoicehomeModule):
         print("Sensors: start sending websocket")
         print(msg)
         if msg['message'] == "whole_temperature_data":
-            self.websocket_send(self.whole_temperature_data(msg))
+            msg['reply'] = self.whole_temperature_data(msg)
+            self.websocket_send(msg)
         print("Sensors: websocket sended")
         pass
 

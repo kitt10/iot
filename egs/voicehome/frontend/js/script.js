@@ -26,6 +26,19 @@ function onSocketMessage(message) {
 	console.log("WS message:", data);
 	console.log(typeof data);
 	sendToServer("Hi from browser. Got your message.");
+	switch (data["message"]) {
+		case "whole_temperature_data":
+			fill_whole_temperature_data(data);
+
+		default:
+			console.log("pass on onSocketMessage");
+	}
+}
+
+function fill_whole_temperature_data(data) {
+	data = data["reply"];
+	console.log("fill_whole_temperature_data");
+	console.log(data);
 }
 
 function displayInDivEventLog(data) {
@@ -49,12 +62,12 @@ function onSocketClose() {
 	console.log("WS client: Websocket closed.");
 }
 
-function testData() {
-	msg = "whole_temperature_data"
-	sendToServer(msg, 'voicehome/sensors')
+function request_whole_temperature_data() {
+	msg = "whole_temperature_data";
+	sendToServer(msg, "voicehome/sensors");
 }
 
-function sendToServer(message, passport='') {
+function sendToServer(message, passport = "") {
 	let payload = {
 		passport: passport,
 		message: message,
