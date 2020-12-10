@@ -50,7 +50,7 @@ function onSocketClose() {
 }
 
 function testData() {
-	msg = {'message': 'whole_temperature_data'}
+	msg = "whole_temperature_data"
 	sendToServer(msg, 'voicehome/sensors')
 }
 
