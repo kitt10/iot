@@ -25,6 +25,6 @@ class Sensors(VoicehomeModule):
         print('after res')
         msg['message'] = res
         print('after msg=res')
-        self.websocket_send(json.dumps(msg))
+        self.websocket_send(msg)
         print("message sended")
         pass
