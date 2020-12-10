@@ -103,8 +103,6 @@ function loadJsonHandler() {
 	return JSON.parse(xmlhttp.responseText);
 }
 
-var $lastToggledModuleId = "";
-
 function fillModules() {
 	console.log("Loading modules");
 	let modules = loadJsonHandler().modules;
@@ -168,7 +166,7 @@ function fillModules() {
 		moduleDiv.appendChild(moduleMovesDiv);
 
 		$("#" + modules[i_module].module_id + "Li").click(function () {
-			if ($lastToggledModuleId != "") {
+			if (typeof $lastToggledModuleId !== "undefined") {
 				$($lastToggledModuleId).toggleClass("d-none");
 				$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
 				$($lastToggledModuleId).toggleClass("d-none");
