@@ -19,12 +19,18 @@ class Sensors(VoicehomeModule):
             self.reply(message='Aktuální teplota je: '+str(msg['value']))
 
     def on_websocket_message(self, msg):
-        print("start sending message")
+        print("Sensors: start sending websocket")
+        if msg['message'] == "whole_temperature_data":
+            self.websocket_send(self.whole_temperature_data(msg))
+        print("Sensors: websocket sended")
+        pass
+
+    def whole_temperature_data(self, msg):
+        print("Sensors: sending whole temperature data")
         query = {'key': 'voicehome/sensors/test'}
         res = self.search_mongo(self.id, query)
-        print('after res')
-        # msg['message'] = res
-        print(res)
-        # self.websocket_send(res)
-        print("message sended")
-        pass
+        buffer = []
+        for res_i in res:
+            result_i = res_i["payload"].decode("utf8")
+            buffer.append(json.loads(result_i))
+        return buffer
