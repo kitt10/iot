@@ -162,7 +162,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
 
 		<script>
-			window.chartColors = {
+			chartColors = {
 				red: "rgb(255, 99, 132)",
 				orange: "rgb(255, 159, 64)",
 				yellow: "rgb(255, 205, 86)",
@@ -218,10 +218,8 @@
 					datasets: [
 						{
 							label: "Dataset with point data",
-							backgroundColor: color(window.chartColors.green)
-								.alpha(0.5)
-								.rgbString(),
-							borderColor: window.chartColors.green,
+							backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
+							borderColor: chartColors.green,
 							fill: false,
 							data: [],
 						},
@@ -279,13 +277,13 @@
 					window.myLine.update();
 				});
 
-			var colorNames = Object.keys(window.chartColors);
+			var colorNames = Object.keys(chartColors);
 			document
 				.getElementById("addDataset")
 				.addEventListener("click", function () {
 					var colorName =
 						colorNames[config.data.datasets.length % colorNames.length];
-					var newColor = window.chartColors[colorName];
+					var newColor = chartColors[colorName];
 					var newDataset = {
 						label: "Dataset " + config.data.datasets.length,
 						borderColor: newColor,
