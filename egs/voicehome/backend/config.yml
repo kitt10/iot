@@ -14,6 +14,7 @@ tornado:
   debug: True
   frontend_relative: "../frontend/"
   index_page: "index.html"
+  analytics_page: "analytics.html"
 
 # --- Mongo database configuration --- #
 mongo:

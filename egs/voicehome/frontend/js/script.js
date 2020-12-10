@@ -9,6 +9,16 @@ function onBodyLoad() {
 	fillModules();
 }
 
+function onBodyLoadAnalytics() {
+	console.log("onBodyLoadAnalytics");
+	console.log("Web GUI loaded.");
+	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
+	ws.onopen = onSocketOpen;
+	ws.onmessage = onSocketMessage;
+	ws.onclose = onSocketClose;
+}
+
 function onSocketOpen() {
 	console.log("WS client: Websocket opened.");
 }
@@ -36,8 +46,15 @@ function onSocketMessage(message) {
 
 function fill_whole_temperature_data(data) {
 	data = data["reply"];
+	data_temperature = [];
 	console.log("fill_whole_temperature_data");
 	console.log(data);
+	data.array.forEach((element) => {
+		data_temperature.push({
+			x: element.timestamp,
+			y: element.temperature_value,
+		});
+	});
 }
 
 function displayInDivEventLog(data) {
@@ -86,8 +103,9 @@ function loadJsonHandler() {
 	return JSON.parse(xmlhttp.responseText);
 }
 
+var $lastToggledModuleId = "";
+
 function fillModules() {
-	var $lastToggledModuleId = "";
 	console.log("Loading modules");
 	let modules = loadJsonHandler().modules;
 	let divModules = document.getElementById("modules");
@@ -125,6 +143,8 @@ function fillModules() {
 		$("#".concat(modules[i_module].module_id)).bootstrapToggle();
 
 		let moduleDiv = document.createElement("DIV");
+		moduleDiv.id = modules[i_module].module_id + "Div";
+		moduleDiv.className = "d-none";
 		// moduleDiv.className = "overflow-scroll";
 		// moduleDiv.style.overflowY = "scroll";
 
@@ -144,14 +164,20 @@ function fillModules() {
 
 		let moduleMovesDiv = document.createElement("DIV");
 		moduleMovesDiv.className =
-			"module_moves d-none d-flex flex-row flex-wrap justify-content-start";
-		moduleMovesDiv.id = modules[i_module].module_id + "Div";
+			"module_moves d-flex flex-row flex-wrap justify-content-start";
 		moduleDiv.appendChild(moduleMovesDiv);
 
 		$("#" + modules[i_module].module_id + "Li").click(function () {
-			$(lastToggledModuleId).toggleClass("d-none");
-			$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
-			$("#" + modules[i_module].module_id + "Div").toggleClass("d-none");
+			if ($lastToggledModuleId != "") {
+				$($lastToggledModuleId).toggleClass("d-none");
+				$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
+				$($lastToggledModuleId).toggleClass("d-none");
+				console.log($lastToggledModuleId);
+			} else {
+				$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
+				$("#" + modules[i_module].module_id + "Div").toggleClass("d-none");
+				console.log($lastToggledModuleId);
+			}
 		});
 
 		divModulesInformation.appendChild(moduleDiv);

@@ -16,6 +16,15 @@ class VoicehomeMainHandler(TornadoRequestHandler, ABC):
     def get(self):
         self.render(join_path(self.application.cfg.tornado.frontend_relative, self.application.cfg.tornado.index_page))
 
+class VoicehomeAnalyticsHandler(TornadoRequestHandler, ABC):
+
+    @staticmethod
+    def initialize():
+        print('Webserver: New MainHandler.')
+
+    def get(self):
+        self.render(join_path(self.application.cfg.tornado.frontend_relative, self.application.cfg.tornado.analytics_page))
+
 
 class VoicehomeWebSocketHandler(WebSocketHandler, ABC):
 
@@ -69,6 +78,7 @@ class VoicehomeTornadoApp(TornadoApplication):
 
         self.tornado_handlers = [
             (r'/', VoicehomeMainHandler),
+            (r'/analytics', VoicehomeAnalyticsHandler),
             (r'/websocket', VoicehomeWebSocketHandler),
             (r'/packet', VoicehomeJsonHandler),
             (r'/(.*)', StaticFileHandler, {
