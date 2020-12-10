@@ -87,6 +87,7 @@ function loadJsonHandler() {
 }
 
 function fillModules() {
+	var $lastToggledModuleId = "";
 	console.log("Loading modules");
 	let modules = loadJsonHandler().modules;
 	let divModules = document.getElementById("modules");
@@ -101,6 +102,7 @@ function fillModules() {
 		let moduleListItem = document.createElement("li");
 		moduleListItem.className =
 			"list-group-item d-flex justify-content-between align-items-center";
+		moduleMovesDiv.id = modules[i_module].module_id + "Li";
 		moduleList.appendChild(moduleListItem);
 
 		let moduleTitle = document.createElement("h5");
@@ -142,8 +144,15 @@ function fillModules() {
 
 		let moduleMovesDiv = document.createElement("DIV");
 		moduleMovesDiv.className =
-			"module_moves d-flex flex-row flex-wrap justify-content-start";
+			"module_moves d-none d-flex flex-row flex-wrap justify-content-start";
+		moduleMovesDiv.id = modules[i_module].module_id + "Div";
 		moduleDiv.appendChild(moduleMovesDiv);
+
+		$("#" + modules[i_module].module_id + "Li").click(function () {
+			$(lastToggledModuleId).toggleClass("d-none");
+			$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
+			$("#" + modules[i_module].module_id + "Div").toggleClass("d-none");
+		});
 
 		divModulesInformation.appendChild(moduleDiv);
 

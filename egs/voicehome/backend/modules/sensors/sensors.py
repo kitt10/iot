@@ -29,7 +29,7 @@ class Sensors(VoicehomeModule):
 
     def whole_temperature_data(self, msg):
         print("Sensors: sending whole temperature data")
-        query = {'key': 'voicehome/sensors/temperature'}
+        query = {'key': 'voicehome/sensors/test'}
         res = self.search_mongo(self.id, query)
         buffer = []
         for res_i in res:
