@@ -30,8 +30,7 @@ function onSocketMessage(message) {
 		case "whole_temperature_data":
 			fill_whole_temperature_data(data);
 
-		default:
-			console.log("pass on onSocketMessage");
+			otherwise: console.log("pass on onSocketMessage");
 	}
 }
 
@@ -186,57 +185,5 @@ function fillModules() {
 				moveCallsDiv.appendChild(moveCallDiv);
 			}
 		}
-
-		// fill in modules information
-		// let divModulesInformationItem = document.createElement("div");
-		// divModulesInformation.appendChild(divModulesInformationItem);
-
-		// for more information of module uncomment following
-
-		//  let moduleDescriptionDiv = document.createElement("DIV");
-		// moduleDescriptionDiv.className = "module_description";
-		// moduleDescriptionDiv.innerHTML = modules[i_module].description;
-		// moduleList.appendChild(moduleDescriptionDiv);
-
-		// let moduleMovesDiv = document.createElement("DIV");
-		// moduleMovesDiv.className = "module_moves";
-		// moduleList.appendChild(moduleMovesDiv);
-
-		// divModules.appendChild(moduleList);
-
-		// for (let i_move = 0; i_move < modules[i_module].moves.length; i_move++) {
-		// 	let moveDiv = document.createElement("DIV");
-		// 	moveDiv.className = "move";
-
-		// 	let moveTitleDiv = document.createElement("DIV");
-		// 	moveTitleDiv.className = "move_title";
-		// 	moveTitleDiv.innerHTML = modules[i_module].moves[i_move].method_name;
-		// 	moveDiv.appendChild(moveTitleDiv);
-
-		// 	let moveDescriptionDiv = document.createElement("DIV");
-		// 	moveDescriptionDiv.className = "move_description";
-		// 	moveDescriptionDiv.innerHTML =
-		// 		modules[i_module].moves[i_move].description;
-		// 	moveDiv.appendChild(moveDescriptionDiv);
-
-		// 	let moveCallsDiv = document.createElement("DIV");
-		// 	moveCallsDiv.className = "move_calls";
-		// 	moveDiv.appendChild(moveCallsDiv);
-
-		// 	moduleMovesDiv.appendChild(moveDiv);
-
-		// 	for (
-		// 		let i_call = 0;
-		// 		i_call < modules[i_module].moves[i_move].calls.length;
-		// 		i_call++
-		// 	) {
-		// 		let moveCallDiv = document.createElement("DIV");
-		// 		moveCallDiv.className = "move_call";
-		// 		moveCallDiv.innerHTML = modules[i_module].moves[i_move].calls[i_call]
-		// 			.toString()
-		// 			.replace(",", " ");
-		// 		moveCallsDiv.appendChild(moveCallDiv);
-		// 	}
-		// }
 	}
 }
