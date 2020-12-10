@@ -17,6 +17,8 @@ function onBodyLoadAnalytics() {
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
+
+	request_whole_temperature_data();
 }
 
 function onSocketOpen() {
