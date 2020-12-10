@@ -102,7 +102,7 @@ function fillModules() {
 		let moduleListItem = document.createElement("li");
 		moduleListItem.className =
 			"list-group-item d-flex justify-content-between align-items-center";
-		moduleMovesDiv.id = modules[i_module].module_id + "Li";
+		moduleListItem.id = modules[i_module].module_id + "Li";
 		moduleList.appendChild(moduleListItem);
 
 		let moduleTitle = document.createElement("h5");
