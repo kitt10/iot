@@ -156,7 +156,7 @@
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 		<!-- chartjs graph -->
-		<script src="js/time_graph.js"></script>
+		<!-- <script src="js/time_graph.js"></script> -->
 		<script src="js/moment.js"></script>
 		<script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
@@ -172,8 +172,6 @@
 			function newDateString(days) {
 				return moment().add(days, "d").format(timeFormat);
 			}
-
-			var color = Chart.helpers.color;
 			var config = {
 				type: "line",
 				data: {
@@ -181,10 +179,10 @@
 					datasets: [
 						{
 							label: "Dataset with point data",
-							backgroundColor: color(window.chartColors.green)
+							backgroundColor: color("rgb(75, 192, 192)")
 								.alpha(0.5)
 								.rgbString(),
-							borderColor: window.chartColors.green,
+							borderColor: "rgb(75, 192, 192)",
 							fill: false,
 							data: [],
 						},
@@ -225,82 +223,6 @@
 				var ctx = document.getElementById("canvas").getContext("2d");
 				window.myLine = new Chart(ctx, config);
 			};
-
-			document
-				.getElementById("randomizeData")
-				.addEventListener("click", function () {
-					config.data.datasets.forEach(function (dataset) {
-						dataset.data.forEach(function (dataObj, j) {
-							if (typeof dataObj === "object") {
-								dataObj.y = randomScalingFactor();
-							} else {
-								dataset.data[j] = randomScalingFactor();
-							}
-						});
-					});
-
-					window.myLine.update();
-				});
-
-			var colorNames = Object.keys(window.chartColors);
-			document
-				.getElementById("addDataset")
-				.addEventListener("click", function () {
-					var colorName =
-						colorNames[config.data.datasets.length % colorNames.length];
-					var newColor = window.chartColors[colorName];
-					var newDataset = {
-						label: "Dataset " + config.data.datasets.length,
-						borderColor: newColor,
-						backgroundColor: color(newColor).alpha(0.5).rgbString(),
-						data: [],
-					};
-
-					for (var index = 0; index < config.data.labels.length; ++index) {
-						newDataset.data.push(randomScalingFactor());
-					}
-
-					config.data.datasets.push(newDataset);
-					window.myLine.update();
-				});
-
-			document.getElementById("addData").addEventListener("click", function () {
-				if (config.data.datasets.length > 0) {
-					config.data.labels.push(newDate(config.data.labels.length));
-
-					for (var index = 0; index < config.data.datasets.length; ++index) {
-						if (typeof config.data.datasets[index].data[0] === "object") {
-							config.data.datasets[index].data.push({
-								x: newDate(config.data.datasets[index].data.length),
-								y: randomScalingFactor(),
-							});
-						} else {
-							config.data.datasets[index].data.push(randomScalingFactor());
-						}
-					}
-
-					window.myLine.update();
-				}
-			});
-
-			document
-				.getElementById("removeDataset")
-				.addEventListener("click", function () {
-					config.data.datasets.splice(0, 1);
-					window.myLine.update();
-				});
-
-			document
-				.getElementById("removeData")
-				.addEventListener("click", function () {
-					config.data.labels.splice(-1, 1); // remove the label first
-
-					config.data.datasets.forEach(function (dataset) {
-						dataset.data.pop();
-					});
-
-					window.myLine.update();
-				});
 		</script>
 	</body>
 </html>
