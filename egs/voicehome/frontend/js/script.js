@@ -103,8 +103,8 @@ function fill_whole_temperature_data(data) {
 			datasets: [
 				{
 					label: "Dataset with point data",
-					backgroundColor: color(rgb(75, 192, 192)).alpha(0.5).rgbString(),
-					borderColor: rgb(75, 192, 192),
+					backgroundColor: color("rgb(75, 192, 192)").alpha(0.5).rgbString(),
+					borderColor: "rgb(75, 192, 192)",
 					fill: false,
 					data: data_temperature,
 				},
