@@ -95,6 +95,15 @@ function fill_whole_temperature_data(data) {
 	// 	window.chart.data = chartJsData(data_temperature);
 	// 	window.chart.update();
 	// } else {
+	chartColors = {
+		red: "rgb(255, 99, 132)",
+		orange: "rgb(255, 159, 64)",
+		yellow: "rgb(255, 205, 86)",
+		green: "rgb(75, 192, 192)",
+		blue: "rgb(54, 162, 235)",
+		purple: "rgb(153, 102, 255)",
+		grey: "rgb(201, 203, 207)",
+	};
 	var color = Chart.helpers.color;
 	window.chart = new Chart(document.getElementById("myChart"), {
 		type: "line",
@@ -103,8 +112,8 @@ function fill_whole_temperature_data(data) {
 			datasets: [
 				{
 					label: "Dataset with point data",
-					backgroundColor: color("rgb(75, 192, 192)").alpha(0.5).rgbString(),
-					borderColor: "rgb(75, 192, 192)",
+					backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
+					borderColor: chartColors.green,
 					fill: false,
 					data: data_temperature,
 				},
