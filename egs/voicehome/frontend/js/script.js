@@ -97,7 +97,7 @@ function fill_whole_temperature_data(data) {
 	// } else {
 	window.chart = new Chart(document.getElementById("myChart"), {
 		type: "line",
-		data: data,
+		data: data_temperature,
 		options: {
 			title: {
 				text: "Chart.js Time Scale",
