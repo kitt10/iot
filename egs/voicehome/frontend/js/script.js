@@ -98,6 +98,7 @@ function fill_whole_temperature_data(data) {
 	window.chart = new Chart(document.getElementById("myChart"), {
 		type: "line",
 		data: data,
+		options: options,
 	});
 	// }
 }
