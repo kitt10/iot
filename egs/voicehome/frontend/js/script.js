@@ -51,7 +51,7 @@ function fill_whole_temperature_data(data) {
 	data_temperature = [];
 	console.log("fill_whole_temperature_data");
 	console.log(data);
-	data.array.forEach((element) => {
+	data.forEach((element) => {
 		data_temperature.push({
 			x: element.timestamp,
 			y: element.temperature_value,
