@@ -109,7 +109,7 @@ function fill_whole_temperature_data(data) {
 						time: {
 							parser: "YYYY-MM-DD HH:mm:ss",
 							// round: 'day'
-							tooltipFormat: "ll HH:mm",
+							// tooltipFormat: "ll HH:mm",
 						},
 						scaleLabel: {
 							display: true,
@@ -128,7 +128,6 @@ function fill_whole_temperature_data(data) {
 			},
 		},
 	});
-	// }
 }
 
 function displayInDivEventLog(data) {
