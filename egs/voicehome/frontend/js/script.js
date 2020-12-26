@@ -91,15 +91,15 @@ function fill_whole_temperature_data(data) {
 			y: element.temperature_value,
 		});
 	});
-	if (window.chart) {
-		window.chart.data = chartJsData(data_temperature);
-		window.chart.update();
-	} else {
-		window.chart = new Chart(document.getElementById("chart-canvas"), {
-			type: "line",
-			data: data,
-		});
-	}
+	// if (window.chart) {
+	// 	window.chart.data = chartJsData(data_temperature);
+	// 	window.chart.update();
+	// } else {
+	window.chart = new Chart(document.getElementById("myChart"), {
+		type: "line",
+		data: data,
+	});
+	// }
 }
 
 function displayInDivEventLog(data) {
