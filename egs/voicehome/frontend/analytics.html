@@ -7,21 +7,6 @@
 		<!-- Styles -->
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
 
-		<!-- Chart.js -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css"
-			integrity="sha512-C7hOmCgGzihKXzyPU/z4nv97W0d9bv4ALuuEbSf6hm93myico9qa0hv4dODThvCsqQUmKmLcJmlpRmCaApr83g=="
-			crossorigin="anonymous"
-		/>
-
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"
-			integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w=="
-			crossorigin="anonymous"
-		/>
-
 		<!-- AwesomeFont -->
 		<link
 			rel="stylesheet"
@@ -97,35 +82,49 @@
 			</div>
 		</nav>
 
-		<!-- https://getbootstrap.com/docs/4.1/components/collapse/
-		https://jsfiddle.net/KyleMit/S9hhP/ -->
+		<div
+			class="chart-container"
+			style="position: relative; height: 40vh; width: 80vw"
+		>
+			<canvas id="myChart"></canvas>
+		</div>
+		<!-- Script for myChart -->
+		<script>
+			var ctx = document.getElementById("myChart").getContext("2d");
+			var chart = new Chart(ctx, {
+				// The type of chart we want to create
+				type: "line",
 
-		<!--<script src="js/time_graph.js"></script>-->
-		<script src="js/moment.js"></script>
-		<script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
+				// The data for our dataset
+				data: {
+					labels: [
+						"January",
+						"February",
+						"March",
+						"April",
+						"May",
+						"June",
+						"July",
+					],
+					datasets: [
+						{
+							label: "My First dataset",
+							backgroundColor: "rgb(255, 99, 132)",
+							borderColor: "rgb(255, 99, 132)",
+							data: [0, 10, 5, 2, 20, 30, 45],
+						},
+					],
+				},
+
+				// Configuration options go here
+				options: {},
+			});
+		</script>
 
 		<!-- Chart.js -->
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
-			integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"
-			integrity="sha512-zO8oeHCxetPn1Hd9PdDleg5Tw1bAaP0YmNvPY8CwcRyUk7d7/+nyElmFrB6f7vg4f7Fv4sui1mcep8RIEShczg=="
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"
-			integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA=="
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"
-			integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw=="
-			crossorigin="anonymous"
-		></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+		<!-- Bootstrap -->
 		<!-- jQuery and JS bundle w/ Popper.js -->
 		<script
 			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
