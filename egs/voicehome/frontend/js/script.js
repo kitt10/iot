@@ -46,6 +46,40 @@ function onSocketMessage(message) {
 	}
 }
 
+var chartJsData = function (resultSet) {
+	return {
+		datasets: [
+			{
+				label: "Temperature",
+				data: resultSet,
+				backgroundColor: "rgb(255, 99, 132)",
+			},
+		],
+	};
+};
+var options = {
+	scales: {
+		xAxes: [
+			{
+				type: "time",
+				time: {
+					displayFormats: {
+						hour: "YYYY-MM-DD HH:mm:ss",
+					},
+					tooltipFormat: "YYYY-MM-DD HH:mm:ss",
+				},
+			},
+		],
+		yAxes: [
+			{
+				ticks: {
+					// beginAtZero: true,
+				},
+			},
+		],
+	},
+};
+
 function fill_whole_temperature_data(data) {
 	data = data["reply"];
 	data_temperature = [];
@@ -57,7 +91,16 @@ function fill_whole_temperature_data(data) {
 			y: element.temperature_value,
 		});
 	});
-	console.log(data_temperature);
+	if (window.chart) {
+		window.chart.data = chartJsData(data_temperature);
+		window.chart.update();
+	} else {
+		window.chart = new Chart(document.getElementById("chart-canvas"), {
+			type: "line",
+			options: options,
+			data: data,
+		});
+	}
 }
 
 function displayInDivEventLog(data) {
