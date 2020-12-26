@@ -95,6 +95,7 @@ function fill_whole_temperature_data(data) {
 	// 	window.chart.data = chartJsData(data_temperature);
 	// 	window.chart.update();
 	// } else {
+	var color = Chart.helpers.color;
 	window.chart = new Chart(document.getElementById("myChart"), {
 		type: "line",
 		data: {
