@@ -44,11 +44,6 @@
 			href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 			rel="stylesheet"
 		/>
-		<!-- Scripts -->
-		<script type="text/javascript">
-			let ws;
-		</script>
-		<script src="js/script.js" type="text/javascript"></script>
 	</head>
 
 	<body onload="onBodyLoadAnalytics()">
@@ -102,22 +97,12 @@
 			</div>
 		</nav>
 
-		<div id="graph_temperature">
-			<div>
-				<div class="chart-container">
-					<canvas id="canvas"></canvas>
-				</div>
-				<br />
-				<br />
-				<button id="randomizeData">Randomize Data</button>
-				<button id="addDataset">Add Dataset</button>
-				<button id="removeDataset">Remove Dataset</button>
-				<button id="addData">Add Data</button>
-				<button id="removeData">Remove Data</button>
-			</div>
-		</div>
 		<!-- https://getbootstrap.com/docs/4.1/components/collapse/
 		https://jsfiddle.net/KyleMit/S9hhP/ -->
+
+		<!--<script src="js/time_graph.js"></script>-->
+		<script src="js/moment.js"></script>
+		<script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
 
 		<!-- Chart.js -->
 		<script
@@ -154,188 +139,10 @@
 		></script>
 		<!-- Bootstrap Toggle -->
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
-		<!-- chartjs graph -->
-		<!-- <script src="js/time_graph.js"></script> -->
-		<script src="js/moment.js"></script>
-		<script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-
-		<script>
-			chartColors = {
-				red: "rgb(255, 99, 132)",
-				orange: "rgb(255, 159, 64)",
-				yellow: "rgb(255, 205, 86)",
-				green: "rgb(75, 192, 192)",
-				blue: "rgb(54, 162, 235)",
-				purple: "rgb(153, 102, 255)",
-				grey: "rgb(201, 203, 207)",
-			};
-
-			var MONTHS = [
-				"January",
-				"February",
-				"March",
-				"April",
-				"May",
-				"June",
-				"July",
-				"August",
-				"September",
-				"October",
-				"November",
-				"December",
-			];
-
-			var COLORS = [
-				"#4dc9f6",
-				"#f67019",
-				"#f53794",
-				"#537bc4",
-				"#acc236",
-				"#166a8f",
-				"#00a950",
-				"#58595b",
-				"#8549ba",
-			];
-
-			// var timeFormat = "MM/DD/YYYY HH:mm";
-			var timeFormat = "YYYY-MM-DD HH:mm:ss";
-
-			function newDate(days) {
-				return moment().add(days, "d").toDate();
-			}
-
-			function newDateString(days) {
-				return moment().add(days, "d").format(timeFormat);
-			}
-
-			var color = Chart.helpers.color;
-			var config = {
-				type: "line",
-				data: {
-					labels: [],
-					datasets: [
-						{
-							label: "Dataset with point data",
-							backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
-							borderColor: chartColors.green,
-							fill: false,
-							data: [],
-						},
-					],
-				},
-				options: {
-					title: {
-						text: "Chart.js Time Scale",
-					},
-					scales: {
-						xAxes: [
-							{
-								type: "time",
-								time: {
-									parser: timeFormat,
-									// round: 'day'
-									tooltipFormat: "ll HH:mm",
-								},
-								scaleLabel: {
-									display: true,
-									labelString: "Date",
-								},
-							},
-						],
-						yAxes: [
-							{
-								scaleLabel: {
-									display: true,
-									labelString: "value",
-								},
-							},
-						],
-					},
-				},
-			};
-
-			window.onload = function () {
-				var ctx = document.getElementById("canvas").getContext("2d");
-				window.myLine = new Chart(ctx, config);
-			};
-
-			document
-				.getElementById("randomizeData")
-				.addEventListener("click", function () {
-					config.data.datasets.forEach(function (dataset) {
-						dataset.data.forEach(function (dataObj, j) {
-							if (typeof dataObj === "object") {
-								dataObj.y = randomScalingFactor();
-							} else {
-								dataset.data[j] = randomScalingFactor();
-							}
-						});
-					});
-
-					window.myLine.update();
-				});
-
-			var colorNames = Object.keys(chartColors);
-			document
-				.getElementById("addDataset")
-				.addEventListener("click", function () {
-					var colorName =
-						colorNames[config.data.datasets.length % colorNames.length];
-					var newColor = chartColors[colorName];
-					var newDataset = {
-						label: "Dataset " + config.data.datasets.length,
-						borderColor: newColor,
-						backgroundColor: color(newColor).alpha(0.5).rgbString(),
-						data: [],
-					};
-
-					for (var index = 0; index < config.data.labels.length; ++index) {
-						newDataset.data.push(randomScalingFactor());
-					}
-
-					config.data.datasets.push(newDataset);
-					window.myLine.update();
-				});
-
-			document.getElementById("addData").addEventListener("click", function () {
-				if (config.data.datasets.length > 0) {
-					config.data.labels.push(newDate(config.data.labels.length));
-
-					for (var index = 0; index < config.data.datasets.length; ++index) {
-						if (typeof config.data.datasets[index].data[0] === "object") {
-							config.data.datasets[index].data.push({
-								x: newDate(config.data.datasets[index].data.length),
-								y: randomScalingFactor(),
-							});
-						} else {
-							config.data.datasets[index].data.push(randomScalingFactor());
-						}
-					}
-
-					window.myLine.update();
-				}
-			});
-
-			document
-				.getElementById("removeDataset")
-				.addEventListener("click", function () {
-					config.data.datasets.splice(0, 1);
-					window.myLine.update();
-				});
-
-			document
-				.getElementById("removeData")
-				.addEventListener("click", function () {
-					config.data.labels.splice(-1, 1); // remove the label first
-
-					config.data.datasets.forEach(function (dataset) {
-						dataset.data.pop();
-					});
-
-					window.myLine.update();
-				});
+		<!-- Scripts -->
+		<script type="text/javascript">
+			let ws;
 		</script>
+		<script src="js/script.js" type="text/javascript"></script>
 	</body>
 </html>
