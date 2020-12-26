@@ -1,74 +1,114 @@
+<!DOCTYPE html>
 <html>
-	<head> </head>
+	<head>
+		<title>Line Chart</title>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+		<style>
+			canvas {
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+			}
+		</style>
+	</head>
+
 	<body>
-		<div class="container">
-			<canvas id="examChart"></canvas>
+		<div style="width: 75%">
+			<canvas id="canvas"></canvas>
 		</div>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-
 		<script>
-			var ctx = document.getElementById("examChart").getContext("2d");
+			var timeFormat = "DD/MM/YYYY";
 
-			var myChart = new Chart(ctx, {
+			var config = {
 				type: "line",
 				data: {
-					labels: [
-						// new Date("2015-3-15 13:3").toLocaleString(),
-						// new Date("2015-3-25 13:2").toLocaleString(),
-						// new Date("2015-4-25 14:12").toLocaleString(),
-					],
 					datasets: [
 						{
-							label: "Demo",
+							label: "US Dates",
 							data: [
 								{
-									t: new Date("2015-3-15 13:3"),
-									y: 12,
+									x: "04/01/2014",
+									y: 175,
 								},
 								{
-									t: new Date("2015-3-25 13:2"),
-									y: 21,
+									x: "10/01/2014",
+									y: 175,
 								},
 								{
-									t: new Date("2015-4-25 14:12"),
-									y: 32,
+									x: "04/01/2015",
+									y: 178,
 								},
 								{
-									t: new Date("2016-4-25 14:12"),
-									y: 60,
+									x: "10/01/2015",
+									y: 178,
 								},
 							],
-							backgroundColor: [
-								"rgba(255, 99, 132, 0.2)",
-								"rgba(54, 162, 235, 0.2)",
-								"rgba(255, 206, 86, 0.2)",
-								"rgba(75, 192, 192, 0.2)",
-								"rgba(153, 102, 255, 0.2)",
-								"rgba(255, 159, 64, 0.2)",
+							fill: false,
+							borderColor: "red",
+						},
+						{
+							label: "UK Dates",
+							data: [
+								{
+									x: "01/04/2014",
+									y: 175,
+								},
+								{
+									x: "01/10/2014",
+									y: 175,
+								},
+								{
+									x: "01/04/2015",
+									y: 178,
+								},
+								{
+									x: "01/10/2015",
+									y: 178,
+								},
 							],
-							borderColor: [
-								"rgba(255,99,132,1)",
-								"rgba(54, 162, 235, 1)",
-								"rgba(255, 206, 86, 1)",
-								"rgba(75, 192, 192, 1)",
-								"rgba(153, 102, 255, 1)",
-								"rgba(255, 159, 64, 1)",
-							],
-							borderWidth: 1,
+							fill: false,
+							borderColor: "blue",
 						},
 					],
 				},
 				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: "Chart.js Time Scale",
+					},
 					scales: {
 						xAxes: [
 							{
 								type: "time",
+								time: {
+									format: timeFormat,
+									tooltipFormat: "ll",
+								},
+								scaleLabel: {
+									display: true,
+									labelString: "Date",
+								},
+							},
+						],
+						yAxes: [
+							{
+								scaleLabel: {
+									display: true,
+									labelString: "value",
+								},
 							},
 						],
 					},
 				},
-			});
+			};
+
+			window.onload = function () {
+				var ctx = document.getElementById("canvas").getContext("2d");
+				window.myLine = new Chart(ctx, config);
+			};
 		</script>
 	</body>
 </html>

@@ -57,6 +57,7 @@ function fill_whole_temperature_data(data) {
 			y: element.temperature_value,
 		});
 	});
+	console.log(data_temperature);
 }
 
 function displayInDivEventLog(data) {
