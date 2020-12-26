@@ -97,7 +97,18 @@ function fill_whole_temperature_data(data) {
 	// } else {
 	window.chart = new Chart(document.getElementById("myChart"), {
 		type: "line",
-		data: data_temperature,
+		data: {
+			labels: [],
+			datasets: [
+				{
+					label: "Dataset with point data",
+					backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
+					borderColor: chartColors.green,
+					fill: false,
+					data: data_temperature,
+				},
+			],
+		},
 		options: {
 			title: {
 				text: "Chart.js Time Scale",
