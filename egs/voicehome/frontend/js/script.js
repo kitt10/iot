@@ -98,7 +98,35 @@ function fill_whole_temperature_data(data) {
 	window.chart = new Chart(document.getElementById("myChart"), {
 		type: "line",
 		data: data,
-		options: options,
+		options: {
+					title: {
+						text: "Chart.js Time Scale",
+					},
+					scales: {
+						xAxes: [
+							{
+								type: "time",
+								time: {
+									parser: "YYYY-MM-DD HH:mm:ss",
+									// round: 'day'
+									tooltipFormat: "ll HH:mm",
+								},
+								scaleLabel: {
+									display: true,
+									labelString: "Date",
+								},
+							},
+						],
+						yAxes: [
+							{
+								scaleLabel: {
+									display: true,
+									labelString: "value",
+								},
+							},
+						],
+					},
+				},,
 	});
 	// }
 }
