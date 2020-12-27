@@ -94,7 +94,7 @@ function restructureTemperatureData(data) {
 				case "room_1":
 					var x = new Date(element.timestamp);
 					var y = element.temperature_value;
-					data_temperature.push([x, y]);
+					data_temperature.push([x, y,]);
 					break;
 
 				case "room_2":
