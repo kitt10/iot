@@ -87,7 +87,7 @@ function fill_whole_temperature_data(data) {
 	console.log(data);
 	data.forEach((element) => {
 		if (element.temperature_value < 100) {
-			var x = new.Date(element.timestamp);
+			var x = new Date(element.timestamp);
 			var y = element.temperature_value;
 			data_temperature.push(
 				// x: element.timestamp,
