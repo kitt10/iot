@@ -86,10 +86,12 @@ function fill_whole_temperature_data(data) {
 	console.log("fill_whole_temperature_data");
 	console.log(data);
 	data.forEach((element) => {
-		data_temperature.push({
-			x: element.timestamp,
-			y: element.temperature_value,
-		});
+		if (element.temperature_value < 100) {
+			data_temperature.push({
+				x: element.timestamp,
+				y: element.temperature_value,
+			});
+		}
 	});
 	// if (window.chart) {
 	// 	window.chart.data = chartJsData(data_temperature);
@@ -146,7 +148,7 @@ function fill_whole_temperature_data(data) {
 						},
 						ticks: {
 							suggestedMin: 0,
-							max: 100,
+							max: 45,
 						},
 					},
 				],
