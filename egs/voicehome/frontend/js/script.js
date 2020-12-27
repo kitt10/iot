@@ -87,75 +87,99 @@ function fill_whole_temperature_data(data) {
 	console.log(data);
 	data.forEach((element) => {
 		if (element.temperature_value < 100) {
-			data_temperature.push({
-				x: element.timestamp,
-				y: element.temperature_value,
-			});
+			data_temperature.push(
+				// x: element.timestamp,
+				// y: element.temperature_value,
+				[new.Date(element.timestamp), element.temperature_value]
+			);
 		}
 	});
+
+	var g = new Dygraph(document.getElementById("div_g"), data_temperature, {
+		rollPeriod: 1,
+		showRoller: true,
+		// customBars: true,
+		title: "Daily Temperatures in New York vs. San Francisco",
+		legend: "always",
+		showRangeSelector: true,
+		rangeSelectorHeight: 30,
+		labels: ["Time", "Temperature value"],
+	});
+	// // It sucks that these things aren't objects, and we need to store state in window.
+	// window.intervalId = setInterval(function () {
+	// 	var x = new Date(); // current time
+	// 	var y = Math.random();
+	// 	data.push([x, y]);
+	// 	g.updateOptions({
+	// 		file: data,
+	// 	});
+	// }, 3000);
+
 	// if (window.chart) {
 	// 	window.chart.data = chartJsData(data_temperature);
 	// 	window.chart.update();
 	// } else {
-	chartColors = {
-		red: "rgb(255, 99, 132)",
-		orange: "rgb(255, 159, 64)",
-		yellow: "rgb(255, 205, 86)",
-		green: "rgb(75, 192, 192)",
-		blue: "rgb(54, 162, 235)",
-		purple: "rgb(153, 102, 255)",
-		grey: "rgb(201, 203, 207)",
-	};
-	var color = Chart.helpers.color;
-	window.chart = new Chart(document.getElementById("myChart"), {
-		type: "line",
-		data: {
-			labels: [],
-			datasets: [
-				{
-					label: "Dataset with point data",
-					backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
-					borderColor: chartColors.green,
-					fill: false,
-					data: data_temperature,
-				},
-			],
-		},
-		options: {
-			title: {
-				text: "Chart.js Time Scale",
-			},
-			scales: {
-				xAxes: [
-					{
-						type: "time",
-						time: {
-							parser: "YYYY-MM-DD HH:mm:ss",
-							// round: 'day'
-							// tooltipFormat: "ll HH:mm",
-							min: "2020-12-05 00:00:00",
-							max: "2020-12-06 00:00:00",
-						},
-						scaleLabel: {
-							display: true,
-							labelString: "Date",
-						},
-					},
-				],
-				yAxes: [
-					{
-						scaleLabel: {
-							display: true,
-							labelString: "value",
-						},
-						ticks: {
-							suggestedMin: 0,
-						},
-					},
-				],
-			},
-		},
-	});
+
+	// chartColors = {
+	// 	red: "rgb(255, 99, 132)",
+	// 	orange: "rgb(255, 159, 64)",
+	// 	yellow: "rgb(255, 205, 86)",
+	// 	green: "rgb(75, 192, 192)",
+	// 	blue: "rgb(54, 162, 235)",
+	// 	purple: "rgb(153, 102, 255)",
+	// 	grey: "rgb(201, 203, 207)",
+	// };
+	// var color = Chart.helpers.color;
+	// window.chart = new Chart(document.getElementById("myChart"), {
+	// 	type: "line",
+	// 	data: {
+	// 		labels: [],
+	// 		datasets: [
+	// 			{
+	// 				label: "Dataset with point data",
+	// 				backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
+	// 				borderColor: chartColors.green,
+	// 				fill: false,
+	// 				data: data_temperature,
+	// 			},
+	// 		],
+	// 	},
+	// 	options: {
+	// 		title: {
+	// 			text: "Chart.js Time Scale",
+	// 		},
+	// 		scales: {
+	// 			xAxes: [
+	// 				{
+	// 					type: "time",
+	// 					distribution: "linear",
+	// 					time: {
+	// 						parser: "YYYY-MM-DD HH:mm:ss",
+	// 						// round: 'day'
+	// 						// tooltipFormat: "ll HH:mm",
+	// 						min: "2020-12-05 00:00:00",
+	// 						max: "2020-12-06 00:00:00",
+	// 					},
+	// 					scaleLabel: {
+	// 						display: true,
+	// 						labelString: "Date",
+	// 					},
+	// 				},
+	// 			],
+	// 			yAxes: [
+	// 				{
+	// 					scaleLabel: {
+	// 						display: true,
+	// 						labelString: "value",
+	// 					},
+	// 					ticks: {
+	// 						suggestedMin: 0,
+	// 					},
+	// 				},
+	// 			],
+	// 		},
+	// 	},
+	// });
 }
 
 function displayInDivEventLog(data) {
