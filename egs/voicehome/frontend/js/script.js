@@ -106,6 +106,10 @@ function fill_whole_temperature_data(data) {
 		showRangeSelector: true,
 		rangeSelectorHeight: 30,
 		labels: ["Time", "Temperature value"],
+		dateWindow: [
+			new Date("2020-12-05 00:00:00"),
+			new Date("2020-12-05 12:00:00"),
+		],
 	});
 	// // It sucks that these things aren't objects, and we need to store state in window.
 	// window.intervalId = setInterval(function () {
