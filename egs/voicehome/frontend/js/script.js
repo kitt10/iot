@@ -98,8 +98,7 @@ function fill_whole_temperature_data(data) {
 	});
 
 	var g = new Dygraph(document.getElementById("div_g"), data_temperature, {
-		rollPeriod: 30,
-		errorBars: true,
+		rollPeriod: 1,
 		showRoller: true,
 		valueRange: [50, 125],
 		// customBars: true,
