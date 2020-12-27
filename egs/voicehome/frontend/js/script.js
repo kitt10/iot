@@ -119,21 +119,21 @@ function restructureTemperatureData(data) {
 function drawTemperatureGraph() {
 	var g = new Dygraph(document.getElementById("div_g"), temperatureData, {
 		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
-		height: 320,
-		width: 480,
+		// height: 320,
+		// width: 480,
 		rollPeriod: 1,
 		showRoller: true,
 		title: "Temperature data",
 		legend: "always",
-		stackedGraph: true,
-		highlightCircleSize: 2,
-		strokeWidth: 1,
-		strokeBorderWidth: null,
-		highlightSeriesOpts: {
-			strokeWidth: 3,
-			strokeBorderWidth: 1,
-			highlightCircleSize: 5,
-		},
+		// stackedGraph: true,
+		// highlightCircleSize: 2,
+		// strokeWidth: 1,
+		// strokeBorderWidth: null,
+		// highlightSeriesOpts: {
+		// 	strokeWidth: 3,
+		// 	strokeBorderWidth: 1,
+		// 	highlightCircleSize: 5,
+		// },
 		showRangeSelector: true,
 		rangeSelectorHeight: 30,
 		// dateWindow: [
