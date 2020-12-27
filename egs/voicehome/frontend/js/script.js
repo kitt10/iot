@@ -92,17 +92,21 @@ function restructureTemperatureData(data) {
 		if (element.temperature_value < 100) {
 			switch (element.location) {
 				case "room_1":
-					dataElement = []
-					dataElement[0] = new Date(element.timestamp);
-					dataElement[1] = element.temperature_value;
-					data_temperature.push(dataElement);
+					dataElement =
+						new Date(element.timestamp).toString() +
+						"," +
+						element.temperature_value.toString() +
+						",\n";
+					data_temperature += dataElement;
 					break;
 
 				case "room_2":
-					dataElement = []
-					dataElement[0] = new Date(element.timestamp);
-					dataElement[2] = element.temperature_value;
-					data_temperature.push(dataElement);
+					dataElement =
+						new Date(element.timestamp).toString() +
+						",," +
+						element.temperature_value.toString() +
+						"\n";
+					data_temperature += dataElement;
 					break;
 				default:
 					break;
