@@ -143,8 +143,10 @@ function fill_whole_temperature_data(data) {
 						scaleLabel: {
 							display: true,
 							labelString: "value",
+						},
+						ticks: {
 							suggestedMin: 0,
-							max: 40,
+							max: 100,
 						},
 					},
 				],
