@@ -133,6 +133,8 @@ function fill_whole_temperature_data(data) {
 							parser: "YYYY-MM-DD HH:mm:ss",
 							// round: 'day'
 							// tooltipFormat: "ll HH:mm",
+							min: "2020-12-05 00:00:00",
+							max: "2020-12-06 00:00:00",
 						},
 						scaleLabel: {
 							display: true,
@@ -148,7 +150,6 @@ function fill_whole_temperature_data(data) {
 						},
 						ticks: {
 							suggestedMin: 0,
-							max: 45,
 						},
 					},
 				],
