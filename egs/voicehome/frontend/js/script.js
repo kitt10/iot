@@ -118,6 +118,9 @@ function restructureTemperatureData(data) {
 
 function drawTemperatureGraph() {
 	var g = new Dygraph(document.getElementById("div_g"), temperatureData, {
+		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
+		height: 320,
+		width: 480,
 		rollPeriod: 1,
 		showRoller: true,
 		title: "Temperature data",
@@ -125,7 +128,7 @@ function drawTemperatureGraph() {
 		stackedGraph: true,
 		highlightCircleSize: 2,
 		strokeWidth: 1,
-		strokeBorderWidth: 1,
+		strokeBorderWidth: null,
 		highlightSeriesOpts: {
 			strokeWidth: 3,
 			strokeBorderWidth: 1,
@@ -133,7 +136,6 @@ function drawTemperatureGraph() {
 		},
 		showRangeSelector: true,
 		rangeSelectorHeight: 30,
-		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
 		// dateWindow: [
 		// 	new Date("2020-12-05 00:00:00"),
 		// 	new Date("2020-12-05 12:00:00"),
