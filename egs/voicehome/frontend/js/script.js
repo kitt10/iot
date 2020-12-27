@@ -1,3 +1,6 @@
+// Global variables
+var temperatureData;
+
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
 	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
@@ -40,7 +43,7 @@ function onSocketMessage(message) {
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "whole_temperature_data":
-			fill_whole_temperature_data(data);
+			restructureTemperatureData(data);
 
 			otherwise: console.log("pass on onSocketMessage");
 	}
@@ -80,113 +83,47 @@ var options = {
 	},
 };
 
-function fill_whole_temperature_data(data) {
+function restructureTemperatureData(data) {
 	data = data["reply"];
 	data_temperature = [];
-	console.log("fill_whole_temperature_data");
+	console.log("restructureTemperatureData");
 	console.log(data);
 	data.forEach((element) => {
 		if (element.temperature_value < 100) {
-			var x = new Date(element.timestamp);
-			var y = element.temperature_value;
-			data_temperature.push(
-				// x: element.timestamp,
-				// y: element.temperature_value,
-				[x, y]
-			);
+			switch (element.location) {
+				case "room_1":
+					var x = new Date(element.timestamp);
+					var y = element.temperature_value;
+					data_temperature.push([x, y]);
+					break;
+
+				case "room_2":
+					var x = new Date(element.timestamp);
+					var y = element.temperature_value;
+					data_temperature.push([x, , y]);
+					break;
+				default:
+					break;
+			}
 		}
 	});
+	temperatureData = data_temperature;
+}
 
+function drawTemperatureGraph() {
 	var g = new Dygraph(document.getElementById("div_g"), data_temperature, {
 		rollPeriod: 1,
 		showRoller: true,
-		valueRange: [50, 125],
-		// customBars: true,
-		title: "Daily Temperatures in New York vs. San Francisco",
+		title: "Temperature data",
 		legend: "always",
 		showRangeSelector: true,
 		rangeSelectorHeight: 30,
-		labels: ["Time", "Temperature value"],
-		dateWindow: [
-			new Date("2020-12-05 00:00:00"),
-			new Date("2020-12-05 12:00:00"),
-		],
+		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
+		// dateWindow: [
+		// 	new Date("2020-12-05 00:00:00"),
+		// 	new Date("2020-12-05 12:00:00"),
+		// ],
 	});
-	// // It sucks that these things aren't objects, and we need to store state in window.
-	// window.intervalId = setInterval(function () {
-	// 	var x = new Date(); // current time
-	// 	var y = Math.random();
-	// 	data.push([x, y]);
-	// 	g.updateOptions({
-	// 		file: data,
-	// 	});
-	// }, 3000);
-
-	// if (window.chart) {
-	// 	window.chart.data = chartJsData(data_temperature);
-	// 	window.chart.update();
-	// } else {
-
-	// chartColors = {
-	// 	red: "rgb(255, 99, 132)",
-	// 	orange: "rgb(255, 159, 64)",
-	// 	yellow: "rgb(255, 205, 86)",
-	// 	green: "rgb(75, 192, 192)",
-	// 	blue: "rgb(54, 162, 235)",
-	// 	purple: "rgb(153, 102, 255)",
-	// 	grey: "rgb(201, 203, 207)",
-	// };
-	// var color = Chart.helpers.color;
-	// window.chart = new Chart(document.getElementById("myChart"), {
-	// 	type: "line",
-	// 	data: {
-	// 		labels: [],
-	// 		datasets: [
-	// 			{
-	// 				label: "Dataset with point data",
-	// 				backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
-	// 				borderColor: chartColors.green,
-	// 				fill: false,
-	// 				data: data_temperature,
-	// 			},
-	// 		],
-	// 	},
-	// 	options: {
-	// 		title: {
-	// 			text: "Chart.js Time Scale",
-	// 		},
-	// 		scales: {
-	// 			xAxes: [
-	// 				{
-	// 					type: "time",
-	// 					distribution: "linear",
-	// 					time: {
-	// 						parser: "YYYY-MM-DD HH:mm:ss",
-	// 						// round: 'day'
-	// 						// tooltipFormat: "ll HH:mm",
-	// 						min: "2020-12-05 00:00:00",
-	// 						max: "2020-12-06 00:00:00",
-	// 					},
-	// 					scaleLabel: {
-	// 						display: true,
-	// 						labelString: "Date",
-	// 					},
-	// 				},
-	// 			],
-	// 			yAxes: [
-	// 				{
-	// 					scaleLabel: {
-	// 						display: true,
-	// 						labelString: "value",
-	// 					},
-	// 					ticks: {
-	// 						suggestedMin: 0,
-	// 					},
-	// 				},
-	// 			],
-	// 		},
-	// 	},
-	// });
 }
 
 function displayInDivEventLog(data) {
