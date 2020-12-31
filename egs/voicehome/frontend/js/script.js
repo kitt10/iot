@@ -1,6 +1,6 @@
 // Global variables
-var temperatureData;
-var sensorsListFull;
+var temperatureData = [];
+var sensorsListFull = [];
 
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
@@ -22,6 +22,7 @@ function onBodyLoadAnalytics() {
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
 
+	request_sensorsList();
 	request_whole_temperature_data();
 }
 
@@ -51,7 +52,7 @@ function onSocketMessage(message) {
 			drawSensorsList(sensorsList);
 			break;
 		case "whole_temperature_data":
-			restructureTemperatureData(data);
+			data_temperature = data;
 			break;
 
 			otherwise: console.log("pass on onSocketMessage");
@@ -111,12 +112,12 @@ function drawSensorsList(data) {
 	});
 	filterDiv.insertAdjacentHTML(
 		"beforeend",
-		`<button type="submit" class="btn btn-primary">Submit</button>`
+		`<button type="submit" class="btn btn-primary" onclick="drawGraphs()" >Submit</button>`
 	);
 }
 
-function restructureTemperatureData(data) {
-	data = data["reply"];
+function restructureTemperatureData() {
+	data = data_temperature;
 	data_temperature = [];
 	console.log("restructureTemperatureData");
 	console.log(data);
@@ -151,7 +152,12 @@ function restructureTemperatureData(data) {
 	temperatureData = data_temperature;
 }
 
+function drawGraphs() {
+	drawTemperatureGraph();
+}
+
 function drawTemperatureGraph() {
+	restructureTemperatureData();
 	var g = new Dygraph(document.getElementById("div_g"), temperatureData, {
 		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
 		// height: 320,
