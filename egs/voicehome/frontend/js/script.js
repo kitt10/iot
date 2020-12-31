@@ -46,12 +46,12 @@ function onSocketMessage(message) {
 
 	if (data == "Server ready.") {
 		request_sensorsList();
+		request_whole_temperature_data();
 		request_whole_pressure_data();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "sensorsList":
-			console.log("call method to show sensorsList!!!");
 			console.log(data["reply"]);
 			sensorsList = Object.assign({}, data["reply"]);
 			sensorsListFull = Object.assign({}, data["reply"]);
