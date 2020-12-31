@@ -41,7 +41,11 @@ function onSocketMessage(message) {
 		displayInDivEventLog(data);
 	}
 	console.log("WS message:", data);
-	console.log(data);
+
+	if (data == "Server ready.") {
+		request_sensorsList();
+		request_whole_temperature_data();
+	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "sensorsList":
