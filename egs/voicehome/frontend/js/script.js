@@ -56,7 +56,7 @@ function onSocketMessage(message) {
 			drawSensorsList(sensorsList);
 			break;
 		case "whole_temperature_data":
-			data_temperature = data;
+			data_temperature = Object.assign({}, data["reply"]);
 			break;
 
 			otherwise: console.log("pass on onSocketMessage");
