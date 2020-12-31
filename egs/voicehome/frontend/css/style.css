@@ -67,7 +67,7 @@ body* {
 	width: 80vw;
 } */
 
-.graph {
+div.graph {
 	position: relative;
 	margin: auto;
 	height: 40vh;

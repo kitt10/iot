@@ -206,6 +206,7 @@ function drawGraphs() {
 function drawTemperatureGraph() {
 	restructureTemperatureData();
 	let graph = document.createElement("div");
+	graph.className = "graph";
 	graphContainer.appendChild(graph);
 	var g = new Dygraph(graph, dataTemperature, {
 		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
