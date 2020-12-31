@@ -123,7 +123,7 @@ function restructureTemperatureData(data) {
 	data.forEach((element) => {
 		if (
 			element.temperature_value < 100 &&
-			sensorsList.temperature.some((e) => element.room === e.room)
+			sensorsList.temperature.some((e) => element.location === e.room)
 		) {
 			switch (element.location) {
 				case "room_1":
