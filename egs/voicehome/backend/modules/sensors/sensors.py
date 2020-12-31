@@ -26,11 +26,20 @@ class Sensors(VoicehomeModule):
         if msg['message'] == "whole_temperature_data":
             msg['reply'] = self.whole_temperature_data(msg)
             self.websocket_send(msg)
+        if msg['message'] == "whole_pressure_data":
+            msg['reply'] = self.whole_pressure_data(msg)
+            self.websocket_send(msg)
         if msg['message'] == "sensorsList":
             msg['reply'] = self.sensorsList(msg)
             self.websocket_send(msg)
         print("Sensors: websocket sended")
         pass
+
+    # call function from string in json
+    # def omg():
+    #     print("hi")
+    # test = eval("omg")
+    # test()
 
     def sensorsList(self, msg):
         print("Sensors: sensorsList")
@@ -44,6 +53,16 @@ class Sensors(VoicehomeModule):
     def whole_temperature_data(self, msg):
         print("Sensors: sending whole temperature data")
         query = {'key': 'voicehome/sensors/temperature'}
+        res = self.search_mongo(self.id, query)
+        buffer = []
+        for res_i in res:
+            result_i = res_i["payload"].decode("utf8")
+            buffer.append(json.loads(result_i))
+        return buffer
+
+    def whole_pressure_data(self, msg):
+        print("Sensors: sending whole pressure data")
+        query = {'key': 'voicehome/sensors/pressure'}
         res = self.search_mongo(self.id, query)
         buffer = []
         for res_i in res:

@@ -1,7 +1,8 @@
 // Global variables
-var temperatureData = [];
+var dataTemperature = [];
 var sensorsListFull = [];
 var dataTemperatureFull = [];
+var dataPressureFull = [];
 
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
@@ -45,7 +46,7 @@ function onSocketMessage(message) {
 
 	if (data == "Server ready.") {
 		request_sensorsList();
-		request_whole_temperature_data();
+		request_whole_pressure_data();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
@@ -58,6 +59,9 @@ function onSocketMessage(message) {
 			break;
 		case "whole_temperature_data":
 			dataTemperatureFull = data["reply"];
+			break;
+		case "whole_pressure_data":
+			dataPressureFull = data["reply"];
 			break;
 
 			otherwise: console.log("pass on onSocketMessage");
@@ -154,16 +158,76 @@ function restructureTemperatureData() {
 			}
 		}
 	});
-	temperatureData = dataTemperature;
+}
+
+function restructurePressureData() {
+	data = dataPressureFull;
+	dataPressure = [];
+	console.log("restructureTemperatureData");
+	console.log(data);
+	data.forEach((element) => {
+		if (sensorsList.temperature.some((e) => element.location === e.room)) {
+			switch (element.location) {
+				case "room_1":
+					dataElement =
+						new Date(element.timestamp).toString() +
+						"," +
+						element.pressure_value.toString() +
+						",\n";
+					dataPressure += dataElement;
+					break;
+
+				case "room_2":
+					dataElement =
+						new Date(element.timestamp).toString() +
+						",," +
+						element.pressure_value.toString() +
+						"\n";
+					dataPressure += dataElement;
+					break;
+				default:
+					break;
+			}
+		}
+	});
 }
 
 function drawGraphs() {
 	drawTemperatureGraph();
+	drawPressureGraph();
 }
 
 function drawTemperatureGraph() {
 	restructureTemperatureData();
-	var g = new Dygraph(document.getElementById("div_g"), temperatureData, {
+	var g = new Dygraph(document.getElementById("div_g"), dataTemperature, {
+		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
+		// height: 320,
+		// width: 480,
+		rollPeriod: 1,
+		showRoller: true,
+		title: "Temperature data",
+		legend: "always",
+		// stackedGraph: true,
+		// highlightCircleSize: 2,
+		// strokeWidth: 1,
+		// strokeBorderWidth: null,
+		// highlightSeriesOpts: {
+		// 	strokeWidth: 3,
+		// 	strokeBorderWidth: 1,
+		// 	highlightCircleSize: 5,
+		// },
+		showRangeSelector: true,
+		rangeSelectorHeight: 30,
+		// dateWindow: [
+		// 	new Date("2020-12-05 00:00:00"),
+		// 	new Date("2020-12-05 12:00:00"),
+		// ],
+	});
+}
+
+function drawPressureGraph() {
+	restructurePressureData();
+	var g = new Dygraph(document.getElementById("div_g"), dataPressure, {
 		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
 		// height: 320,
 		// width: 480,
