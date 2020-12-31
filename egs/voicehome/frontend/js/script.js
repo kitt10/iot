@@ -169,7 +169,7 @@ function restructurePressureData() {
 		if (
 			1 < element.pressure_value &&
 			element.pressure_value < 5000 &&
-			sensorsList.temperature.some((e) => element.location === e.room)
+			sensorsList.pressure.some((e) => element.location === e.room)
 		) {
 			switch (element.location) {
 				case "room_1":
