@@ -74,9 +74,9 @@ div.dyGraphs {
 	width: 80vw;
 }
 
-canvas {
+/* canvas {
 	border: 1px dotted red;
-}
+} */
 
 div.filter-container {
 	margin: auto;
@@ -95,10 +95,6 @@ small {
 	font-size: calc(
 		12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))
 	) !important;
-}
-
-.bold-text {
-	color: !important;
 }
 
 .mt-55 {
