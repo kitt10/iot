@@ -199,8 +199,14 @@ function restructurePressureData() {
 function drawGraphs() {
 	graphContainer = document.getElementById("graph-confainer");
 	graphContainer.innerHTML = "";
-	drawTemperatureGraph();
-	drawPressureGraph();
+	if (dataTemperatureFull.length == 0 || dataPressureFull == 0) {
+		alert(
+			"Data from server are still not fully downloaded. Please try again in a moment."
+		);
+	} else {
+		drawTemperatureGraph();
+		drawPressureGraph();
+	}
 }
 
 function drawTemperatureGraph() {
