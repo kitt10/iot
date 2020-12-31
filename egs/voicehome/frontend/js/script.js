@@ -22,8 +22,8 @@ function onBodyLoadAnalytics() {
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
 
-	request_sensorsList();
-	request_whole_temperature_data();
+	// request_sensorsList();
+	// request_whole_temperature_data();
 }
 
 function onSocketOpen() {
@@ -41,7 +41,7 @@ function onSocketMessage(message) {
 		displayInDivEventLog(data);
 	}
 	console.log("WS message:", data);
-	console.log(typeof data);
+	console.log(data);
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "sensorsList":
