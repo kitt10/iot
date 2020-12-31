@@ -1,10 +1,11 @@
 // Global variables
 var temperatureData;
+var sensorsListFull;
 
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
-	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	// ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
+	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
@@ -15,8 +16,8 @@ function onBodyLoad() {
 function onBodyLoadAnalytics() {
 	console.log("onBodyLoadAnalytics");
 	console.log("Web GUI loaded.");
-	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	// ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
+	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
@@ -43,48 +44,76 @@ function onSocketMessage(message) {
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "sensorsList":
-			console.log("call method to show sensorsList!!!")
-			console.log(data["reply"])
+			console.log("call method to show sensorsList!!!");
+			console.log(data["reply"]);
+			sensorsList = Object.assign({}, data["reply"]);
+			sensorsListFull = Object.assign({}, data["reply"]);
+			drawSensorsList(sensorsList);
+			break;
 		case "whole_temperature_data":
 			restructureTemperatureData(data);
+			break;
 
-		otherwise: console.log("pass on onSocketMessage");
+			otherwise: console.log("pass on onSocketMessage");
 	}
 }
 
-var chartJsData = function (resultSet) {
-	return {
-		datasets: [
-			{
-				label: "Temperature",
-				data: resultSet,
-				backgroundColor: "rgb(255, 99, 132)",
-			},
-		],
-	};
-};
-var options = {
-	scales: {
-		xAxes: [
-			{
-				type: "time",
-				time: {
-					displayFormats: {
-						hour: "YYYY-MM-DD HH:mm:ss",
-					},
-					tooltipFormat: "YYYY-MM-DD HH:mm:ss",
-				},
-			},
-		],
-		yAxes: [
-			{
-				ticks: {
-					// beginAtZero: true,
-				},
-			},
-		],
-	},
-};
+function toggleFilter(element) {
+	let key = element.getAttribute("key");
+	let value = element.getAttribute("room");
+	if (element.checked) {
+		let element = sensorsListFull[key].find((element) => element.room == value);
+		sensorsList[key].push(element);
+	} else {
+		sensorsList[key] = sensorsList[key].filter((item) => item.room !== value);
+	}
+}
+
+function drawSensorsList(data) {
+	console.log("drawSensorsList");
+	filterDiv = document.getElementById("filter-container");
+	filterDiv.innerHTML = "";
+	Object.keys(data).forEach((key) => {
+		let keyFilterDiv = document.createElement("div");
+		keyFilterDiv.className = "form-group";
+		keyFilterDiv.id = key;
+		filterDiv.appendChild(keyFilterDiv);
+
+		let titleFilter = document.createElement("h3");
+		titleFilter.innerHTML = key[0].toUpperCase() + key.slice(1);
+		keyFilterDiv.appendChild(titleFilter);
+
+		data[key].forEach((element) => {
+			elementFilterDiv = document.createElement("div");
+			elementFilterDiv.id = element.room + key + "Div";
+			elementFilterDiv.className = "custom-control custom-switch";
+			keyFilterDiv.appendChild(elementFilterDiv);
+
+			elementFilterCheckbox = document.createElement("input");
+			elementFilterCheckbox.className = "custom-control-input";
+			elementFilterCheckbox.type = "checkbox";
+
+			// elementFilterCheckbox.setAttribute("value", "");
+			elementFilterCheckbox.id = element.room + key + "Checkbox";
+			elementFilterCheckbox.setAttribute("key", key);
+			elementFilterCheckbox.setAttribute("room", element.room);
+			elementFilterCheckbox.setAttribute("onclick", "toggleFilter(this)");
+			elementFilterCheckbox.checked = true;
+			elementFilterDiv.appendChild(elementFilterCheckbox);
+
+			elementFilterLabel = document.createElement("label");
+			elementFilterLabel.className = "custom-control-label";
+			elementFilterLabel.id = element.room + key + "Label";
+			elementFilterLabel.setAttribute("for", element.room + key + "Checkbox");
+			elementFilterLabel.innerHTML = element.room;
+			elementFilterDiv.appendChild(elementFilterLabel);
+		});
+	});
+	filterDiv.insertAdjacentHTML(
+		"beforeend",
+		`<button type="submit" class="btn btn-primary">Submit</button>`
+	);
+}
 
 function restructureTemperatureData(data) {
 	data = data["reply"];
