@@ -279,6 +279,11 @@ function request_whole_temperature_data() {
 	sendToServer(msg, "voicehome/sensors");
 }
 
+function request_whole_pressure_data() {
+	msg = "whole_pressure_data";
+	sendToServer(msg, "voicehome/sensors");
+}
+
 function request_sensorsList() {
 	msg = "sensorsList";
 	sendToServer(msg, "voicehome/sensors");
