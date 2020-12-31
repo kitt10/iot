@@ -205,7 +205,7 @@ function drawGraphs() {
 
 function drawTemperatureGraph() {
 	restructureTemperatureData();
-	if (length(dataTemperature) == 0) return 0;
+	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
 	graphContainer.appendChild(graph);
@@ -237,7 +237,7 @@ function drawTemperatureGraph() {
 
 function drawPressureGraph() {
 	restructurePressureData();
-	if (length(dataPressure) == 0) return 0;
+	if (dataPressure.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
 	graphContainer.appendChild(graph);
