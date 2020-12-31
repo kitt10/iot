@@ -193,13 +193,17 @@ function restructurePressureData() {
 }
 
 function drawGraphs() {
+	let graphContainer = document.getElementById("graph-confainer");
+	graphContainer.innerHTML = "";
 	drawTemperatureGraph();
 	drawPressureGraph();
 }
 
 function drawTemperatureGraph() {
 	restructureTemperatureData();
-	var g = new Dygraph(document.getElementById("div_g"), dataTemperature, {
+	let graph = document.createElement("div");
+	graphContainer.appendChild(graph);
+	var g = new Dygraph(graph, dataTemperature, {
 		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
 		// height: 320,
 		// width: 480,
@@ -227,13 +231,15 @@ function drawTemperatureGraph() {
 
 function drawPressureGraph() {
 	restructurePressureData();
-	var g = new Dygraph(document.getElementById("div_g"), dataPressure, {
-		labels: ["Time", "Temperature value room_1", "Temperature value room_2"],
+	let graph = document.createElement("div");
+	graphContainer.appendChild(graph);
+	var g = new Dygraph(graph, dataPressure, {
+		labels: ["Time", "Pressure value room_1", "Pressure value room_2"],
 		// height: 320,
 		// width: 480,
 		rollPeriod: 1,
 		showRoller: true,
-		title: "Temperature data",
+		title: "Pressure data",
 		legend: "always",
 		// stackedGraph: true,
 		// highlightCircleSize: 2,
