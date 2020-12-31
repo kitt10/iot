@@ -42,10 +42,13 @@ function onSocketMessage(message) {
 	console.log(typeof data);
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
+		case "sensorsList":
+			console.log("call method to show sensorsList!!!")
+			console.log(data["reply"])
 		case "whole_temperature_data":
 			restructureTemperatureData(data);
 
-			otherwise: console.log("pass on onSocketMessage");
+		otherwise: console.log("pass on onSocketMessage");
 	}
 }
 
@@ -166,6 +169,11 @@ function onSocketClose() {
 
 function request_whole_temperature_data() {
 	msg = "whole_temperature_data";
+	sendToServer(msg, "voicehome/sensors");
+}
+
+function request_sensorsList() {
+	msg = "sensorsList";
 	sendToServer(msg, "voicehome/sensors");
 }
 

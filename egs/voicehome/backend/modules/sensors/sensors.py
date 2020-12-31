@@ -1,5 +1,7 @@
 from modules.voicehome_module import VoicehomeModule
 import json
+import os
+
 
 class Sensors(VoicehomeModule):
 
@@ -24,8 +26,20 @@ class Sensors(VoicehomeModule):
         if msg['message'] == "whole_temperature_data":
             msg['reply'] = self.whole_temperature_data(msg)
             self.websocket_send(msg)
+        if msg['message'] == "sensorsList":
+            msg['reply'] = self.sensorsList(msg)
+            self.websocket_send(msg)
         print("Sensors: websocket sended")
         pass
+
+    def sensorsList(self, msg):
+        print("Sensors: sensorsList")
+        # print(os.getcwd())
+        with open('modules/sensors/sensorsList.json') as json_file:
+            data = json.load(json_file)
+            print(data)
+        return data
+        # return 1
 
     def whole_temperature_data(self, msg):
         print("Sensors: sending whole temperature data")

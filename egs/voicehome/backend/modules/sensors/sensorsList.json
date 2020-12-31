@@ -1,0 +1,22 @@
+{
+   "temperature":[
+      {
+         "room":"room_1",
+         "sensor_id":111
+      },
+      {
+         "room":"room_2",
+         "sensor_id":112
+      }
+   ],
+   "pressure":[
+      {
+         "room":"room_2",
+         "sensor_id":121
+      },
+      {
+         "room":"room_3",
+         "sensor_id":122
+      }
+   ]
+}
