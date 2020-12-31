@@ -193,7 +193,7 @@ function restructurePressureData() {
 }
 
 function drawGraphs() {
-	let graphContainer = document.getElementById("graph-confainer");
+	graphContainer = document.getElementById("graph-confainer");
 	graphContainer.innerHTML = "";
 	drawTemperatureGraph();
 	drawPressureGraph();
