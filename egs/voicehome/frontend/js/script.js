@@ -236,6 +236,7 @@ function drawTemperatureGraph() {
 function drawPressureGraph() {
 	restructurePressureData();
 	let graph = document.createElement("div");
+	graph.className = "graph";
 	graphContainer.appendChild(graph);
 	var g = new Dygraph(graph, dataPressure, {
 		labels: ["Time", "Pressure value room_1", "Pressure value room_2"],
