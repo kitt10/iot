@@ -167,7 +167,8 @@ function restructurePressureData() {
 	console.log(data);
 	data.forEach((element) => {
 		if (
-			1 < element.pressure_value < 5000 &&
+			1 < element.pressure_value &&
+			element.pressure_value < 5000 &&
 			sensorsList.temperature.some((e) => element.location === e.room)
 		) {
 			switch (element.location) {
