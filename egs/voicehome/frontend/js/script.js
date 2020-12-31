@@ -1,6 +1,7 @@
 // Global variables
 var temperatureData = [];
 var sensorsListFull = [];
+var dataTemperatureFull = [];
 
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
@@ -56,7 +57,7 @@ function onSocketMessage(message) {
 			drawSensorsList(sensorsList);
 			break;
 		case "whole_temperature_data":
-			data_temperature = data["reply"];
+			dataTemperatureFull = data["reply"];
 			break;
 
 			otherwise: console.log("pass on onSocketMessage");
@@ -121,8 +122,8 @@ function drawSensorsList(data) {
 }
 
 function restructureTemperatureData() {
-	data = data_temperature;
-	data_temperature = [];
+	data = dataTemperatureFull;
+	dataTemperature = [];
 	console.log("restructureTemperatureData");
 	console.log(data);
 	data.forEach((element) => {
@@ -137,7 +138,7 @@ function restructureTemperatureData() {
 						"," +
 						element.temperature_value.toString() +
 						",\n";
-					data_temperature += dataElement;
+					dataTemperature += dataElement;
 					break;
 
 				case "room_2":
@@ -146,14 +147,14 @@ function restructureTemperatureData() {
 						",," +
 						element.temperature_value.toString() +
 						"\n";
-					data_temperature += dataElement;
+					dataTemperature += dataElement;
 					break;
 				default:
 					break;
 			}
 		}
 	});
-	temperatureData = data_temperature;
+	temperatureData = dataTemperature;
 }
 
 function drawGraphs() {
