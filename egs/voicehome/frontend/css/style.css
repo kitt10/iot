@@ -78,10 +78,6 @@ div.dyGraphs {
 	border: 1px dotted red;
 } */
 
-div.filter-container {
-	margin: auto;
-}
-
 .container-fluid {
 	overflow: hidden;
 	margin-top: 250px;
