@@ -166,7 +166,10 @@ function restructurePressureData() {
 	console.log("restructureTemperatureData");
 	console.log(data);
 	data.forEach((element) => {
-		if (sensorsList.temperature.some((e) => element.location === e.room)) {
+		if (
+			element.pressure_value < 5000 &&
+			sensorsList.temperature.some((e) => element.location === e.room)
+		) {
 			switch (element.location) {
 				case "room_1":
 					dataElement =
