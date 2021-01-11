@@ -21,7 +21,7 @@ class Sensors(VoicehomeModule):
             self.reply(message='Aktuální teplota je: '+str(msg['value']))
 
     def on_websocket_message(self, msg):
-        print("Sensors: start sending websocket")
+        print('Module '+self.id+": start sending websocket")
         print(msg)
         if msg['message'] == "whole_temperature_data":
             msg['reply'] = self.whole_temperature_data(msg)
@@ -42,7 +42,7 @@ class Sensors(VoicehomeModule):
     # test()
 
     def sensorsList(self, msg):
-        print("Sensors: sensorsList")
+        print('Module '+self.id+": sensorsList")
         # print(os.getcwd())
         with open('modules/sensors/sensorsList.json') as json_file:
             data = json.load(json_file)
@@ -51,7 +51,7 @@ class Sensors(VoicehomeModule):
         # return 1
 
     def whole_temperature_data(self, msg):
-        print("Sensors: sending whole temperature data")
+        print('Module '+self.id+": sending whole temperature data")
         query = {'key': 'voicehome/sensors/temperature'}
         res = self.search_mongo(self.id, query)
         buffer = []
@@ -61,7 +61,7 @@ class Sensors(VoicehomeModule):
         return buffer
 
     def whole_pressure_data(self, msg):
-        print("Sensors: sending whole pressure data")
+        print('Module '+self.id+": sending whole pressure data")
         query = {'key': 'voicehome/sensors/pressure'}
         res = self.search_mongo(self.id, query)
         buffer = []
