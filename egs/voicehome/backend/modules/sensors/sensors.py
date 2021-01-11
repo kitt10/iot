@@ -20,7 +20,7 @@ class Sensors(VoicehomeModule):
         print("ted")
         msg=msg.payload.decode('utf8').replace("'", '"')
         print(msg)
-        if msg['key'] == 'current_temperature':
+        if msg["key"] == "current_temperature":
             self.reply(message='Aktuální teplota je: '+str(msg['value']))
 
     def on_websocket_message(self, msg):
