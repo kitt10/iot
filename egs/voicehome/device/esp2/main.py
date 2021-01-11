@@ -6,6 +6,7 @@ from mqttclient import Client
 
 # initialization
 mqtt_client = Client()
+# mqtt_client_commands = Client()
 gc.disable()
 # gc.enable()
 gc.collect()
@@ -22,7 +23,8 @@ while True:
     # subscribe selected topic
     mqtt_client.subscribe()
     # publish value every minute
-    if(mqtt_client.last_minute_sent != mqtt_client.get_min() and mqtt_client.get_sec() in range(30,33)):
+    if(mqtt_client.last_minute_sent != mqtt_client.get_min() and mqtt_client.get_sec() in range(30, 33)):
         mqtt_client.publish()
+        mqtt_client.measure_temperature_now = False
     # except:
     #     mqtt_client.client.disconnect()
