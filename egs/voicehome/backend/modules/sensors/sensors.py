@@ -19,7 +19,7 @@ class Sensors(VoicehomeModule):
     def on_mqtt_message(self, msg):
         print("ted")
         print(msg)
-        msg=msg.decode('utf8').replace("'", '"')
+        msg=msg.payload.decode('utf8').replace("'", '"')
         if msg['key'] == 'current_temperature':
             self.reply(message='Aktuální teplota je: '+str(msg['value']))
 
