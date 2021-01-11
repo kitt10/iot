@@ -19,6 +19,7 @@ class Sensors(VoicehomeModule):
     def on_mqtt_message(self, msg):
         print("ted")
         msg=msg.payload.decode('utf8').replace("'", '"')
+        msg=json.loads(msg)
         print(msg)
         print("co je key?" + msg["key"])
         # if msg["key"] == "current_temperature":
