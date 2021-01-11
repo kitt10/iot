@@ -39,7 +39,7 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	if (data.constructor === {}.constructor && data.source == "keyboard") {
+	if (data.constructor === {}.constructor && (data.source == "keyboard"|| data.source == "engine")) {
 		displayInDivEventLog(data);
 	}
 	console.log("WS message:", data);
