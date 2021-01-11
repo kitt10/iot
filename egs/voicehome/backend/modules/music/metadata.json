@@ -1,6 +1,6 @@
 {
 	"module_id": "music",
-	"description": "music system (comming soon) - play music, stop music, play radio, stop radio, shutup",
+	"description": "music system - play music, stop music, play radio, stop radio, shutup",
 	"mqtt_topics": ["voicehome/music", "voicehome/radio"],
 	"websocket_passports": ["music", "radio"],
 	"moves": [

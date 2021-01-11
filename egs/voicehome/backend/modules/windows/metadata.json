@@ -1,6 +1,6 @@
 {
 	"module_id": "windows",
-	"description": "windows system (comming soon) - pull blinds, expand blinds, check windows",
+	"description": "windows system - pull blinds, expand blinds, check windows",
 	"mqtt_topics": ["voicehome/windows", "voicehome/windows/windowsr"],
 	"websocket_passports": ["windows"],
 	"moves": [

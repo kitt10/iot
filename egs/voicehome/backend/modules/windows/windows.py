@@ -6,10 +6,25 @@ class Windows(VoicehomeModule):
         VoicehomeModule.__init__(self, engine, dir_path)
 
     def pull_blinds(self):
-        print("Pulling blinds")
+        payload = {
+            'type': 'blinds',
+            'set': 'pull'
+        }
+        self.mqtt_publish(topic='voicehome/windows', payload=payload)
+        print('Module ' + self.id + ': command to pull blinds.')
 
     def expand_blinds(self):
-        print("Expand blinds")
+        payload = {
+            'type': 'blinds',
+            'set': 'expand'
+        }
+        self.mqtt_publish(topic='voicehome/windows', payload=payload)
+        print('Module ' + self.id + ': command to expand blinds.')
         
     def check_windows(self):
-        print("Checking windows")
+        payload = {
+            'type': 'windows',
+            'set': 'check'
+        }
+        self.mqtt_publish(topic='voicehome/windows', payload=payload)
+        print('Module ' + self.id + ': command to check windows.')
