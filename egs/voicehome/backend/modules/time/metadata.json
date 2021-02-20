@@ -5,25 +5,25 @@
 	"websocket_passports": ["time"],
 	"moves": [
 		{
-			"move_id": "time.get_time",
+			"move_id": "time_01.get_time",
 			"method_name": "get_time",
 			"description": "Send a command via MQTT to ask server for current time.",
 			"calls": [["kolik je hodin"], ["tajm"]]
 		},
 		{
-			"move_id": "time.get_day",
+			"move_id": "time_02.get_day",
 			"method_name": "get_day",
 			"description": "Send a command via MQTT to ask server for current day of year.",
 			"calls": [["dnešní den"], ["datum"]]
 		},
 		{
-			"move_id": "time.set_timer",
+			"move_id": "time_03.set_timer",
 			"method_name": "set_timer",
 			"description": "Send a command via MQTT to start timer on 3 minute",
 			"calls": [["zapni časovač"], ["start tajmr"]]
 		},
 		{
-			"move_id": "time.stop_timer",
+			"move_id": "time_04.stop_timer",
 			"method_name": "stop_timer",
 			"description": "Send a command via MQTT to stop timer",
 			"calls": [["vypni časovač"], ["zastav časovač"], ["stop tajmr"]]

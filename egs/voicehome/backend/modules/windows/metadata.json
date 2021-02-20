@@ -5,19 +5,19 @@
 	"websocket_passports": ["windows"],
 	"moves": [
 		{
-			"move_id": "windows.pull_blinds",
+			"move_id": "windows_01.pull_blinds",
 			"method_name": "pull_blinds",
 			"description": "Send a command via MQTT to pull blinds.",
 			"calls": [["zatáhni", "žaluzije"], ["zatáhni", "rolety"], ["zatáhni"]]
 		},
 		{
-			"move_id": "windows.expand_blinds",
+			"move_id": "windows_02.expand_blinds",
 			"method_name": "expand_blinds",
 			"description": "Send a command via MQTT to expand blinds.",
 			"calls": [["roztáhni", "žaluzije"], ["roztáhni", "rolety"], ["roztáhni"]]
 		},
 		{
-			"move_id": "windows.check_windows",
+			"move_id": "windows_03.check_windows",
 			"method_name": "check_windows",
 			"description": "Send a command via MQTT to check windows",
 			"calls": [

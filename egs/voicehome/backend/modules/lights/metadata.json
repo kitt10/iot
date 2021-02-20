@@ -15,7 +15,7 @@
 			]
 		},
 		{
-			"move_id": "lights_01.turn_led_off",
+			"move_id": "lights_02.turn_led_off",
 			"method_name": "turn_led_off",
 			"description": "Switch off the onboard LED.",
 			"calls": [
@@ -26,7 +26,7 @@
 			]
 		},
 		{
-			"move_id": "lights_01.binking_led",
+			"move_id": "lights_03.binking_led",
 			"method_name": "binking_led",
 			"description": " (comming soon) Blink the onboard LED.",
 			"calls": [
