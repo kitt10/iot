@@ -13,15 +13,6 @@
         ["jaká je teplota"],
         ["změř", "teplotu"]
       ]
-    },
-    {
-      "move_id": "sensors_02.get_todays_average_temperature",
-      "method_name": "get_todays_average_temperature",
-      "description": "Sends a command to calculate todays average temperature.",
-      "calls": [
-        ["průměrná teplota dnes"],
-        ["jaká je dnešní průměrná teplota teplota"]
-      ]
     }
   ]
 }
