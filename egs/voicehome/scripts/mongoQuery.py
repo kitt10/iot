@@ -9,10 +9,9 @@ mycol = mydb["sensors"]
 # myquery = { "key": "voicehome/sensors/temperature" }
 # find by id
 # myquery = { "_id": ObjectId('600b66a74b673e62da5d999f') }
-# find all
-myquery = { "_id": '' }
 
-mydoc = mycol.find(myquery)
+
+mydoc = mycol.find()
 
 for x in mydoc:
   print(x)
