@@ -5,7 +5,7 @@ mydb = myclient["voicehome"]
 mycol = mydb["sensors"]
 
 # myquery = { "key": "voicehome/sensors/temperature" }
-myquery = { "_id": '600b671f4b673e62da5d99a3' }
+myquery = { "_id": ObjectId('600b66a74b673e62da5d999f') }
 
 mydoc = mycol.find(myquery)
 
