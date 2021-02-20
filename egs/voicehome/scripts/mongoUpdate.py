@@ -7,10 +7,8 @@ mycol = mydb["sensors"]
 
 # myquery = { "address": { "$regex": "^S" } }
 myquery = { "_id": ObjectId('600b66a74b673e62da5d999f') }
-newvalues = { "$set": { "payload": b'{"location": "room_1", "owner": "jsanda", "status": "ok", "sensor_id": "room_1", "quantity": "degrees", "timestamp": "2021-01-23 00:58:31", "temperature_value": 18.83333}' } }
+newvalues = { "$set": { "payload": '{"location": "room_1", "owner": "jsanda", "status": "ok", "sensor_id": "room_1", "quantity": "degrees", "timestamp": "2021-01-23 00:58:31", "temperature_value": 18.83333}' } }
 
-mycol.update_one(myquery, newvalues)
+x = mycol.update_many(myquery, newvalues)
 
-#print "customers" after the update:
-for x in mycol.find():
-  print(x)
+print(x.modified_count, "documents updated.")
