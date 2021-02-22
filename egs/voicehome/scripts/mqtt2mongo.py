@@ -11,7 +11,7 @@ TOPIC = 'voicehome/#'
 def save2mongo(msg, db_collection):
     item = {
         'key': msg.topic,
-        'payload': msg.payload
+        'payload': msg.payload.decode("utf8")
     }
     db_collection.insert(item)
     print('Saved to mongo:', item)

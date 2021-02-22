@@ -59,7 +59,8 @@ class Sensors(VoicehomeModule):
         res = self.search_mongo(self.id, query)
         buffer = []
         for res_i in res:
-            result_i = res_i["payload"].decode("utf8")
+            # result_i = res_i["payload"].decode("utf8")
+            result_i = res_i["payload"]
             buffer.append(json.loads(result_i))
         return buffer
 
@@ -69,6 +70,7 @@ class Sensors(VoicehomeModule):
         res = self.search_mongo(self.id, query)
         buffer = []
         for res_i in res:
-            result_i = res_i["payload"].decode("utf8")
+            # result_i = res_i["payload"].decode("utf8")
+            result_i = res_i["payload"]
             buffer.append(json.loads(result_i))
         return buffer
