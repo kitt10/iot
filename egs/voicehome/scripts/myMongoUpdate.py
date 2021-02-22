@@ -24,7 +24,7 @@ with open('mongo_update_wrong_status.txt', 'w') as f:
         res_dec = res["payload"].decode("utf8")
         res_json = json.loads(res_dec)
 
-        if res_json['location'] == 'room1':
+        if res_json['location'] == 'room_1':
             res_json['sensor_id'] = 'bme280_1'
             # res_json.pop('status')
             if "humidity_value" in res_json:
@@ -41,7 +41,7 @@ with open('mongo_update_wrong_status.txt', 'w') as f:
                     f.write("%s\n" % res['_id'])
 
 
-        if res_json['location'] == 'room2':
+        if res_json['location'] == 'room_2':
             res_json['sensor_id'] = 'ds18b20_1'
             if "temperature_value" in res_json:
                 if res_json["temperature_value"] < -55 or res_json["temperature_value"] >125:
