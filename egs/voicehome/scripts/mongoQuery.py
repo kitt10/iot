@@ -13,5 +13,7 @@ mycol = mydb["sensors"]
 
 mydoc = mycol.find()
 
-for x in mydoc:
-  print(x)
+with open('mongo_query_output.txt', 'w') as f:
+    for x in mydoc:
+      print(x)
+      f.write("%s\n" % x['_id'])
