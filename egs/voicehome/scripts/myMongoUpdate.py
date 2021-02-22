@@ -63,7 +63,7 @@ with open('mongo_update_no_location.txt', 'w') as f1:
                     "payload": json.dumps(res_json)
                     }
                 }
-                # x = mycol.update(myquery, newvalues)
+                x = mycol.update(myquery, newvalues)
                 print(res['_id'], " data updated.")
                 print('newvalues ', newvalues)
             else:
