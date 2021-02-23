@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import time
+import machine
 import usocket
 from json import dumps, loads
 from ntptime import settime
@@ -17,7 +18,11 @@ class Client:
         self.client = MQTTClient(config.MQTT['SENSOR_ID'], config.MQTT['SERVER'], config.MQTT['PORT'], config.MQTT['USER'], config.MQTT['PASSWD'])
         self.last_minute_sent = 99
 
-        self.tsl = tsl2591.Tsl2591(scl_pin_nb=5, sda_pin_nb=4)
+        try:
+            self.tsl = tsl2591.Tsl2591(scl_pin_nb=5, sda_pin_nb=4)
+        except:
+            print('can not init tsl2591')
+            machine.reset()
         self.led = Pin(2, Pin.OUT, value=1)
         self.state = 0
 
@@ -26,17 +31,20 @@ class Client:
         # self.bme = BME280(i2c=self.i2c_bme)
           
     def send2broker(self):
-        illuminance = float(self.tsl.sample())
+
+        status = 'ok'
+        try:
+            illuminance = float(self.tsl.sample())
+        except:
+            status = 'error'
+            illuminance=-1
+            pass
         # pressure = float(self.bme.pressure)
         # print(pressure)
         # temperature = float(self.bme.temperature)
         # print(temperature)
         # humidity = float(self.bme.humidity)
         # print(humidity)
-        if illuminance <= 0:
-            status = 'error'
-        else:
-            status = 'ok'
 
 
         print('illuminance = ', illuminance)
@@ -153,8 +161,12 @@ class Client:
     def publish(self):
         print("publish")
         try:
-            a = usocket.getaddrinfo('www.google.com',80)[0][-1]
-            settime()
+            try:
+                a = usocket.getaddrinfo('www.google.com',80)[0][-1]
+                settime()
+            except:
+                print('Exception in usocket get www.google.com')
+                machine.reset()
             self.send2broker()
         except:
             print("Exception in publish")

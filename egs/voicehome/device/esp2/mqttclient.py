@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import time
+import machine
 import usocket
 from json import dumps, loads
 from ntptime import settime
@@ -24,11 +25,19 @@ class Client:
         self.led = Pin(2, Pin.OUT, value=1)
         self.state = 0
 
-        self.tempSensorDS = tempSensorDS(pin_nb=0)
+        try:
+            self.tempSensorDS = tempSensorDS(pin_nb=0)
+        except:
+            print('can not init ds18b20')
+            machine.reset()
 
     def send2broker_current_temperature(self):
 
-        tempSensorDS = float(self.tempSensorDS.measure_temp())
+        try:
+            tempSensorDS = float(self.tempSensorDS.measure_temp())
+        except:
+            tempSensorDS = -9999
+            pass
 
         if tempSensorDS < -55 or tempSensorDS > 125:
             status = 'error'
@@ -50,8 +59,12 @@ class Client:
 
     def send2broker(self):
 
-        tempSensorDS = float(self.tempSensorDS.measure_temp())
-
+        try:
+            tempSensorDS = float(self.tempSensorDS.measure_temp())
+        except:
+            tempSensorDS = -9999
+            pass
+        print('tempSensorDS = ',tempSensorDS)
         if tempSensorDS < -55 or tempSensorDS > 125:
             status = 'error'
         else:
@@ -139,8 +152,12 @@ class Client:
     def publish(self):
         print("publish")
         try:
-            a = usocket.getaddrinfo('www.google.com', 80)[0][-1]
-            settime()
+            try:
+                a = usocket.getaddrinfo('www.google.com',80)[0][-1]
+                settime()
+            except:
+                print('Exception in usocket get www.google.com')
+                machine.reset()
             self.send2broker()
         except:
             print("Exception in publish")
