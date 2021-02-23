@@ -28,12 +28,12 @@ class Client:
 
     def send2broker_current_temperature(self):
 
-        tempSensorDS = self.tempSensorDS.measure_temp()
+        tempSensorDS = float(self.tempSensorDS.measure_temp())
 
-        # if illuminance == -1:
-        #     status = 'sensor_error'
-        # else:
-        status = 'ok'
+        if tempSensorDS < -55 or tempSensorDS > 125:
+            status = 'error'
+        else:
+            status = 'ok'
 
         msg_structure_temperature = {'key': 'current_temperature',
                                      'sensor_id': config.MQTT['SENSOR_ID'],
@@ -50,16 +50,16 @@ class Client:
 
     def send2broker(self):
 
-        tempSensorDS = self.tempSensorDS.measure_temp()
+        tempSensorDS = float(self.tempSensorDS.measure_temp())
 
-        # if illuminance == -1:
-        #     status = 'sensor_error'
-        # else:
-        status = 'ok'
+        if tempSensorDS < -55 or tempSensorDS > 125:
+            status = 'error'
+        else:
+            status = 'ok'
 
         msg_structure_temperature = {'sensor_id': config.MQTT['SENSOR_ID'],
                                      'timestamp': self.sync_time(),
-                                     'temperature_value': float(tempSensorDS),
+                                     'temperature_value': tempSensorDS,
                                      'status': status,
                                      'quantity': config.MQTT['QUANTITY_TEMPERATURE'],
                                      'location': config.MQTT['LOCATION'],
@@ -121,7 +121,10 @@ class Client:
 
     def subscribe(self):
         print("subscribe")
-        self.client.check_msg()
+        try:
+            self.client.check_msg()
+        except:
+            print("Subscribe exception occurred")
 
     def mqtt_msg(self, msg_structure, topic):
         try:

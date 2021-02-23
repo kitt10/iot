@@ -27,16 +27,13 @@ class Client:
           
     def send2broker(self):
         # illuminance = self.tsl.sample()
-        pressure = self.bme.pressure
+        pressure = float(self.bme.pressure)
         print(pressure)
-        temperature = self.bme.temperature
+        temperature = float(self.bme.temperature)
         print(temperature)
-        humidity = self.bme.humidity
+        humidity = float(self.bme.humidity)
         print(humidity)
-        # if illuminance == -1:
-        #     status = 'sensor_error'
-        # else:
-        status = 'ok'    
+
         # msg_structure_illuminance = {'sensor_id': config.MQTT['SENSOR_ID'], \
         #     'timestamp': self.sync_time(), \
         #     'illuminance_value': float(illuminance), \
@@ -45,25 +42,40 @@ class Client:
         #     'location': config.MQTT['LOCATION'], \
         #     'owner': config.MQTT['OWNER']}
 
+        if pressure < 300 or pressure > 1100:
+            status = 'error'
+        else:
+            status = 'ok'
+
         msg_structure_pressure = {'sensor_id': config.MQTT['SENSOR_ID'], \
             'timestamp': self.sync_time(), \
-            'pressure_value': float(pressure), \
+            'pressure_value': pressure, \
             'status': status, \
             'quantity': config.MQTT['QUANTITY_PRESSURE'], \
             'location': config.MQTT['LOCATION'], \
             'owner': config.MQTT['OWNER']}
 
+        if temperature < -40 or temperature > 85:
+            status = 'error'
+        else:
+            status = 'ok'
+
         msg_structure_temperature = {'sensor_id': config.MQTT['SENSOR_ID'], \
             'timestamp': self.sync_time(), \
-            'temperature_value': float(temperature), \
+            'temperature_value': temperature, \
             'status': status, \
             'quantity': config.MQTT['QUANTITY_TEMPERATURE'], \
             'location': config.MQTT['LOCATION'], \
             'owner': config.MQTT['OWNER']}
+
+        if humidity <= 0 or humidity > 100:
+            status = 'error'
+        else:
+            status = 'ok'
         
         msg_structure_humidity = {'sensor_id': config.MQTT['SENSOR_ID'], \
             'timestamp': self.sync_time(), \
-            'humidity_value': float(humidity), \
+            'humidity_value': humidity, \
             'status': status, \
             'quantity': config.MQTT['QUANTITY_HUMIDITY'], \
             'location': config.MQTT['LOCATION'], \
@@ -116,7 +128,10 @@ class Client:
 
     def subscribe(self):
         print("subscribe")
-        self.client.check_msg()
+        try:
+            self.client.check_msg()
+        except:
+            print("Subscribe exception occurred")
     
     def mqtt_msg(self, msg_structure, topic):
         try:
