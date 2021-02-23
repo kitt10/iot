@@ -9,6 +9,7 @@ class VoicehomeControlInterface:
 
         self.sock = None
         self.controller = None
+        self.controller_id = ''
         self.disconnected = False
         self.commands = []
         self.replies = []
@@ -37,6 +38,14 @@ class VoicehomeControlInterface:
 
     def new_command(self, command):
         if command:
+            if 'controller_handshake_id' in command:
+                self.controller_id = command.split('_')[3]
+                # Send to web...
+                ws_msg = {'passport': 'controller_connected',
+                          'controller_id': self.controller_id}
+                self.engine.webserver.app.ws_message(ws_msg)
+                return
+
             self.commands.append(command)
             print('Control: New command:', self.last_command())
             if self.last_command() == 'exit':
@@ -53,7 +62,7 @@ class VoicehomeControlInterface:
             # Pass the command to the web
             ws_msg = {'passport': 'communication',
                       'message': command,
-                      'source': 'keyboard',  # TODO: keyboard/voicekit
+                      'source': self.controller_id,
                       'IP': self.controller.getsockname()}
             self.engine.webserver.app.ws_message(ws_msg)
 
@@ -78,6 +87,12 @@ class VoicehomeControlInterface:
     def disconnect_controller(self):
         self.disconnected = True
         print('Control: Controller disconnected from', self.controller.getsockname())
+
+        # Send to web...
+        ws_msg = {'passport': 'controller_disconnected',
+                  'controller_id': self.controller_id}
+        self.engine.webserver.app.ws_message(ws_msg)
+
         self.controller.close()
         self.sock.close()
 

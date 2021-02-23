@@ -23,6 +23,8 @@ class VoicehomeController:
         self.replies = []
         self.commands = []
 
+        self.controller_id = ''
+
         try:
             t = Thread(target=self.connect_and_listen)
             t.setDaemon(False)
@@ -33,6 +35,9 @@ class VoicehomeController:
     def connect_and_listen(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((self.host, self.port))
+
+        # handshake - log self
+        self.sock.sendall(str.encode('controller_handshake_id_' + self.controller_id))
 
         while not self.disconnected:
             try:
@@ -77,6 +82,7 @@ class VoiceKitController(VoicehomeController):
 
     def __init__(self, sc_dialog):
         VoicehomeController.__init__(self)
+        self.controller_id = 'voicekit'
 
         self.sc = sc_dialog
         self.loop = asyncio.get_event_loop()
