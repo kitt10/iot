@@ -16,6 +16,7 @@ class VoicehomeMainHandler(TornadoRequestHandler, ABC):
     def get(self):
         self.render(join_path(self.application.cfg.tornado.frontend_relative, self.application.cfg.tornado.index_page))
 
+
 class VoicehomeAnalyticsHandler(TornadoRequestHandler, ABC):
 
     @staticmethod
@@ -40,6 +41,15 @@ class VoicehomeWebSocketHandler(WebSocketHandler, ABC):
         try:
             msg = json_loads(msg)
             print('Webserver: Received WS message, passport:', msg['passport'])
+
+            # Modules ON/OFF from web
+            if msg['passport'] == 'module_on':
+                self.application.webserver.engine.port.turn_module_on(module_id=msg['module_id'])
+                return
+
+            elif msg['passport'] == 'module_off':
+                self.application.webserver.engine.port.turn_module_off(module_id=msg['module_id'])
+                return
 
             for (module_id, method, subscribing_list) in self.application.webserver.subscriptions:
                 if msg['passport'] in subscribing_list:

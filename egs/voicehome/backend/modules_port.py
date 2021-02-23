@@ -10,12 +10,13 @@ class VoicehomeModulesPort:
         self.cfg = engine.cfg
 
         self.modules = []
+        self.modules_off = []
         self.load_modules()
 
     def load_modules(self):
         for dir_item in listdir('modules'):
             dir_path = join_path('modules', dir_item)
-            if isdir(dir_path) and dir_item not in ('__pycache__',):
+            if isdir(dir_path) and dir_item not in ['__pycache__']+self.modules_off:
                 module = import_module('modules.'+dir_item+'.'+dir_item)
                 cls = getattr(module, dir_item.capitalize())
                 self.modules.append(cls(engine=self.engine, dir_path=dir_path))
@@ -27,3 +28,19 @@ class VoicehomeModulesPort:
         self.engine.webserver.subscriptions = []
         self.engine.mqtt.subscriptions = []
         self.load_modules()
+
+    def turn_module_on(self, module_id):
+        print('Turning on', module_id)
+        try:
+            self.modules_off.remove(module_id)
+        except ValueError:
+            return
+
+        self.reload_modules()
+
+    def turn_module_off(self, module_id):
+        print('Turning off', module_id)
+        if module_id not in self.modules_off:
+            self.modules_off.append(module_id)
+
+        self.reload_modules()
