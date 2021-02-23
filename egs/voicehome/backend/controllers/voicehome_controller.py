@@ -21,6 +21,8 @@ class VoicehomeController:
         self.replies = []
         self.commands = []
 
+        self.controller_id = ''
+
         try:
             t = Thread(target=self.connect_and_listen)
             t.setDaemon(False)
@@ -42,6 +44,9 @@ class VoicehomeController:
     def connect_and_listen(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((self.args.host, self.args.port))
+
+        # handshake - log self
+        self.sock.sendall(str.encode('controller_handshake_id_'+self.controller_id))
 
         while not self.disconnected:
             try:

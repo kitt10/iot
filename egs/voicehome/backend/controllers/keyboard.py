@@ -5,6 +5,7 @@ class KeyboardController(VoicehomeController):
 
     def __init__(self):
         VoicehomeController.__init__(self)
+        self.controller_id = 'keyboard'
 
     @staticmethod
     def got_reply(reply):
