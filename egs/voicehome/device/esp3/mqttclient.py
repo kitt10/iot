@@ -7,9 +7,9 @@ from json import dumps, loads
 from ntptime import settime
 from umqtt.simple import MQTTClient
 import config
-# import tsl2591
+import tsl2591
 from machine import Pin, I2C
-from bme280 import BME280
+# from bme280 import BME280
 
 class Client:
     
@@ -17,76 +17,82 @@ class Client:
         self.client = MQTTClient(config.MQTT['SENSOR_ID'], config.MQTT['SERVER'], config.MQTT['PORT'], config.MQTT['USER'], config.MQTT['PASSWD'])
         self.last_minute_sent = 99
 
-        # self.tsl = tsl2591.Tsl2591(scl_pin_nb=5, sda_pin_nb=4)
+        self.tsl = tsl2591.Tsl2591(scl_pin_nb=5, sda_pin_nb=4)
         self.led = Pin(2, Pin.OUT, value=1)
         self.state = 0
 
 
-        self.i2c_bme = I2C(scl=Pin(14, Pin.IN), sda=Pin(12, Pin.IN))
-        self.bme = BME280(i2c=self.i2c_bme)
+        # self.i2c_bme = I2C(scl=Pin(14, Pin.IN), sda=Pin(12, Pin.IN))
+        # self.bme = BME280(i2c=self.i2c_bme)
           
     def send2broker(self):
-        # illuminance = self.tsl.sample()
-        pressure = float(self.bme.pressure)
-        print(pressure)
-        temperature = float(self.bme.temperature)
-        print(temperature)
-        humidity = float(self.bme.humidity)
-        print(humidity)
+        illuminance = float(self.tsl.sample())
+        # pressure = float(self.bme.pressure)
+        # print(pressure)
+        # temperature = float(self.bme.temperature)
+        # print(temperature)
+        # humidity = float(self.bme.humidity)
+        # print(humidity)
+        if illuminance <= 0:
+            status = 'error'
+        else:
+            status = 'ok'
 
-        # msg_structure_illuminance = {'sensor_id': config.MQTT['SENSOR_ID'], \
+
+        print('illuminance = ', illuminance)
+        msg_structure_illuminance = {'sensor_id': config.MQTT['SENSOR_ID'], \
+            'timestamp': self.sync_time(), \
+            'illuminance_value': illuminance, \
+            'status': status, \
+            'quantity': config.MQTT['QUANTITY_ILLUMINANCE'], \
+            'location': config.MQTT['LOCATION'], \
+            'owner': config.MQTT['OWNER']}
+
+        # if pressure < 300 or pressure > 1100:
+        #     status = 'error'
+        # else:
+        #     status = 'ok'
+        #
+        # msg_structure_pressure = {'sensor_id': config.MQTT['SENSOR_ID'], \
         #     'timestamp': self.sync_time(), \
-        #     'illuminance_value': float(illuminance), \
+        #     'pressure_value': pressure, \
         #     'status': status, \
-        #     'quantity': config.MQTT['QUANTITY_ILLUMINANCE'], \
+        #     'quantity': config.MQTT['QUANTITY_PRESSURE'], \
+        #     'location': config.MQTT['LOCATION'], \
+        #     'owner': config.MQTT['OWNER']}
+        #
+        # if temperature < -40 or temperature > 85:
+        #     status = 'error'
+        # else:
+        #     status = 'ok'
+        #
+        # msg_structure_temperature = {'sensor_id': config.MQTT['SENSOR_ID'], \
+        #     'timestamp': self.sync_time(), \
+        #     'temperature_value': temperature, \
+        #     'status': status, \
+        #     'quantity': config.MQTT['QUANTITY_TEMPERATURE'], \
+        #     'location': config.MQTT['LOCATION'], \
+        #     'owner': config.MQTT['OWNER']}
+        #
+        # if humidity <= 0 or humidity > 100:
+        #     status = 'error'
+        # else:
+        #     status = 'ok'
+        #
+        # msg_structure_humidity = {'sensor_id': config.MQTT['SENSOR_ID'], \
+        #     'timestamp': self.sync_time(), \
+        #     'humidity_value': humidity, \
+        #     'status': status, \
+        #     'quantity': config.MQTT['QUANTITY_HUMIDITY'], \
         #     'location': config.MQTT['LOCATION'], \
         #     'owner': config.MQTT['OWNER']}
 
-        if pressure < 300 or pressure > 1100:
-            status = 'error'
-        else:
-            status = 'ok'
-
-        msg_structure_pressure = {'sensor_id': config.MQTT['SENSOR_ID'], \
-            'timestamp': self.sync_time(), \
-            'pressure_value': pressure, \
-            'status': status, \
-            'quantity': config.MQTT['QUANTITY_PRESSURE'], \
-            'location': config.MQTT['LOCATION'], \
-            'owner': config.MQTT['OWNER']}
-
-        if temperature < -40 or temperature > 85:
-            status = 'error'
-        else:
-            status = 'ok'
-
-        msg_structure_temperature = {'sensor_id': config.MQTT['SENSOR_ID'], \
-            'timestamp': self.sync_time(), \
-            'temperature_value': temperature, \
-            'status': status, \
-            'quantity': config.MQTT['QUANTITY_TEMPERATURE'], \
-            'location': config.MQTT['LOCATION'], \
-            'owner': config.MQTT['OWNER']}
-
-        if humidity <= 0 or humidity > 100:
-            status = 'error'
-        else:
-            status = 'ok'
-        
-        msg_structure_humidity = {'sensor_id': config.MQTT['SENSOR_ID'], \
-            'timestamp': self.sync_time(), \
-            'humidity_value': humidity, \
-            'status': status, \
-            'quantity': config.MQTT['QUANTITY_HUMIDITY'], \
-            'location': config.MQTT['LOCATION'], \
-            'owner': config.MQTT['OWNER']}
 
 
-
-        # self.mqtt_msg(msg_structure_illuminance, config.MQTT['TOPIC_ILLUMINANCE'])
-        self.mqtt_msg(msg_structure_pressure, config.MQTT['TOPIC_PRESSURE'])
-        self.mqtt_msg(msg_structure_temperature, config.MQTT['TOPIC_TEMPERATURE'])
-        self.mqtt_msg(msg_structure_humidity, config.MQTT['TOPIC_HUMIDITY'])
+        self.mqtt_msg(msg_structure_illuminance, config.MQTT['TOPIC_ILLUMINANCE'])
+        # self.mqtt_msg(msg_structure_pressure, config.MQTT['TOPIC_PRESSURE'])
+        # self.mqtt_msg(msg_structure_temperature, config.MQTT['TOPIC_TEMPERATURE'])
+        # self.mqtt_msg(msg_structure_humidity, config.MQTT['TOPIC_HUMIDITY'])
 
         self.last_minute_sent = self.get_min()
 

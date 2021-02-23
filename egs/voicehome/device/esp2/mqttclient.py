@@ -125,12 +125,15 @@ class Client:
             self.client.check_msg()
         except:
             print("Subscribe exception occurred")
+            self.client.connect()
+            pass
 
     def mqtt_msg(self, msg_structure, topic):
         try:
             self.client.publish(topic, dumps(msg_structure))
         except:
             print("mqtt_msg error")
+            self.client.connect()
             pass
 
     def publish(self):
