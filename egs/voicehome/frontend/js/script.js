@@ -198,8 +198,8 @@ function restructureData(data) {
 	data.forEach((element) => {
 		loc = element.location;
 		if (
-			sensorsList.temperature.some((e) => element.location !== e.room) &&
-			element.status == "error" &&
+			sensorsList.temperature.some((e) => element.location !== e.room) ||
+			element.status == "error" ||
 			pattern.test(loc) == false
 		) {
 			return;
@@ -292,13 +292,13 @@ function drawGraphs() {
 		);
 	} else {
 		drawTemperatureGraph();
-		// drawPressureGraph();
-		// drawIlluminanceGraph();
+		drawPressureGraph();
+		drawIlluminanceGraph();
 	}
 }
 
 function drawIlluminanceGraph() {
-	// restructureTemperatureData();
+	var dataIlluminance = restructureData(dataIlluminanceFull);
 	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
@@ -364,7 +364,7 @@ function drawTemperatureGraph() {
 }
 
 function drawPressureGraph() {
-	// restructurePressureData();
+	var dataPressure = restructureData(dataPressureFull);
 	if (dataPressure.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
