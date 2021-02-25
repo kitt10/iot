@@ -260,7 +260,7 @@ function drawTemperatureGraph() {
 }
 
 function drawPressureGraph() {
-	restructurePressureData();
+	// restructurePressureData();
 	if (dataPressure.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
