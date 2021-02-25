@@ -190,7 +190,7 @@ function drawSensorsList(data) {
 // }
 
 function restructureTemperatureData() {
-	console.log("restructureData");
+	console.log("restructureTemperatureData");
 	data = dataTemperatureFull;
 	dataTemperature = "";
 	// console.log(data);
@@ -206,8 +206,8 @@ function restructureTemperatureData() {
 			return;
 		}
 		loc = parseInt(loc.replace("room_", ""));
-		dataTemp =
-			dataTemp +
+		dataTemperature =
+			dataTemperature +
 			(element.timestamp.replace("-", "/") +
 				",".repeat(loc) +
 				element.temperature_value.toString() +
