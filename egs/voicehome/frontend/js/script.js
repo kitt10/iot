@@ -194,12 +194,19 @@ function restructureTemperatureData() {
 	console.log("restructureTemperatureData");
 	data = dataTemperatureFull;
 	dataTemperature = "";
-	console.log(data);
 	pattern = /^(room_)\d+$/gm;
 
 	data.forEach((element) => {
-		console.log(element);
 		loc = element.location;
+		if (sensorsList.temperature.some((e) => element.location !== e.room)) {
+			console.log("omg1");
+		}
+		if (element.status == "error") {
+			console.log("omg2");
+		}
+		if (pattern.test(loc) == false) {
+			console.log("omg3");
+		}
 		if (
 			sensorsList.temperature.some((e) => element.location !== e.room) ||
 			element.status == "error" ||
