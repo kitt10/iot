@@ -278,9 +278,9 @@ function drawGraphs() {
 	graphContainer = document.getElementById("graph-confainer");
 	graphContainer.innerHTML = "";
 	if (
-		dataTemperature.length == 0 ||
-		dataPressure.length == 0 ||
-		dataIlluminance.length == 0
+		dataTemperatureFull.length == 0 ||
+		dataPressureFull.length == 0 ||
+		dataIlluminanceFull.length == 0
 	) {
 		alert(
 			"Data from server are still not fully downloaded. Please try again in a moment."
