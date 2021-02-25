@@ -202,7 +202,8 @@ function restructureTemperatureData() {
 			return;
 		}
 		loc = parseInt(loc.replace("room_", ""));
-
+		console.log("loc = " + loc.toString());
+		console.log("MAXROOM = " + MAXROOM.toString());
 		dataTemperature =
 			dataTemperature +
 			(element.timestamp.replace("-", "/") +
