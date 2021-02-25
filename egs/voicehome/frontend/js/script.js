@@ -2,6 +2,7 @@
 // var dataTemperature = [];
 var sensorsListFull = [];
 var dataTemperatureFull = [];
+var dataTemperature = "";
 var dataPressureFull = [];
 var dataIlluminanceFull = [];
 var MAXROOM;
