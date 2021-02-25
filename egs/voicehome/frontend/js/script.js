@@ -189,23 +189,20 @@ function drawSensorsList(data) {
 // 	});
 // }
 
-function restructureTemperatureData() {
-	console.log("restrucrestructureTemperatureDatature");
-	data = dataTemperatureFull;
-	dataTemperature = [];
+function restructureData(data) {
+	console.log("restructureData");
+	dataTemp = [];
 	console.log(data);
 	pattern = /^(room_)\d+$/gm;
 	dataTemperature = "";
 
 	data.forEach((element) => {
-		if (sensorsList.temperature.some((e) => element.location === e.room)) {
-			return;
-		}
-		if (element.status == "error") {
-			return;
-		}
 		loc = element.location;
-		if (pattern.test(loc) == false) {
+		if (
+			sensorsList.temperature.some((e) => element.location !== e.room) &&
+			element.status == "error" &&
+			pattern.test(loc) == false
+		) {
 			return;
 		}
 		loc = parseInt(loc.replace("room_", ""));
@@ -244,6 +241,7 @@ function restructureTemperatureData() {
 		// 	}
 		// }
 	});
+	return dataTemp;
 }
 
 // function restructurePressureData() {
@@ -333,7 +331,7 @@ function drawIlluminanceGraph() {
 }
 
 function drawTemperatureGraph() {
-	restructureTemperatureData();
+	dataTemperature = restructureData(dataTemperatureFull);
 	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
