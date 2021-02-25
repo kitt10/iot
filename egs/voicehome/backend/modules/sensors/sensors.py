@@ -1,6 +1,7 @@
 from modules.voicehome_module import VoicehomeModule
 import json
 import os
+import re
 
 
 class Sensors(VoicehomeModule):
@@ -73,16 +74,16 @@ class Sensors(VoicehomeModule):
             roomList.append(i['room'])
         maxRoomNum = sensorsListFile['max_room']
         query = {'key': 'voicehome/sensors/temperature'}
+        pattern = re.compile("^(room_)(\d)+$")
         res = self.search_mongo(self.id, query)
         buffer = ''
         for res_i in res:
             # result_i = res_i["payload"].decode("utf8")
             result_i = json.loads(res_i["payload"])
 
-
-
-
             loc = result_i['location']
+            if not pattern.match(loc):
+               continue
             loc = loc.replace('room_', '')
             print(loc)
             type(loc)
