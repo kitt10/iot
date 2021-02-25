@@ -1,18 +1,25 @@
 {
+   "max_room": 2,
    "temperature":[
       {
          "room":"room_1",
-         "sensor_id":111
+         "sensor_id":"bme280_1"
       },
       {
          "room":"room_2",
-         "sensor_id":112
+         "sensor_id":"ds18b20_1"
       }
    ],
    "pressure":[
       {
          "room":"room_1",
-         "sensor_id":121
+         "sensor_id":"bme280_1"
+      }
+   ],
+   "illuminance": [
+      {
+         "room": "room_1",
+         "sensor_id": "tsl2591_1"
       }
    ]
 }

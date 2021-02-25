@@ -53,15 +53,41 @@ class Sensors(VoicehomeModule):
         return data
         # return 1
 
+    # def whole_temperature_data(self, msg):
+    #     print('Module '+self.id+": sending whole temperature data")
+    #     query = {'key': 'voicehome/sensors/temperature'}
+    #     res = self.search_mongo(self.id, query)
+    #     buffer = []
+    #     for res_i in res:
+    #         # result_i = res_i["payload"].decode("utf8")
+    #         result_i = res_i["payload"]
+    #         buffer.append(json.loads(result_i))
+    #     return buffer
+
     def whole_temperature_data(self, msg):
         print('Module '+self.id+": sending whole temperature data")
+        sensorsListFile = self.sensorsList('')
+        sensorsTemperatureList = sensorsListFile['temperature']
+        roomList = []
+        for i in sensorsTemperatureList:
+            roomList.append(i['room'])
+        maxRoomNum = sensorsListFile['max_room']
         query = {'key': 'voicehome/sensors/temperature'}
         res = self.search_mongo(self.id, query)
-        buffer = []
+        buffer = ''
         for res_i in res:
             # result_i = res_i["payload"].decode("utf8")
-            result_i = res_i["payload"]
-            buffer.append(json.loads(result_i))
+            result_i = json.loads(res_i["payload"])
+
+
+
+
+            loc = result_i['location']
+            loc = int(loc.replace('room_', ''))
+
+            buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['temperature_value']) + (
+                        maxRoomNum - loc) * ',' + '\n')
+
         return buffer
 
     def whole_pressure_data(self, msg):

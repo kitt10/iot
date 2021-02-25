@@ -1,7 +1,7 @@
 // Global variables
 var dataTemperature = [];
 var sensorsListFull = [];
-var dataTemperatureFull = [];
+// var dataTemperatureFull = [];
 var dataPressureFull = [];
 
 function onBodyLoad() {
@@ -34,6 +34,9 @@ function onBodyLoadAnalytics() {
 
 	// request_sensorsList();
 	// request_whole_temperature_data();
+	request_sensorsList();
+	request_whole_temperature_data();
+	request_whole_pressure_data();
 }
 
 function onSocketOpen() {
@@ -53,9 +56,9 @@ function onSocketMessage(message) {
 	console.log("WS message:", data);
 
 	if (data == "Server ready.") {
-		request_sensorsList();
-		request_whole_temperature_data();
-		request_whole_pressure_data();
+		// request_sensorsList();
+		// request_whole_temperature_data();
+		// request_whole_pressure_data();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
@@ -66,7 +69,7 @@ function onSocketMessage(message) {
 			drawSensorsList(sensorsList);
 			break;
 		case "whole_temperature_data":
-			dataTemperatureFull = data["reply"];
+			dataTemperature = data["reply"];
 			break;
 		case "whole_pressure_data":
 			dataPressureFull = data["reply"];
@@ -132,41 +135,43 @@ function drawSensorsList(data) {
 		`<button type="submit" class="btn btn-primary" onclick="drawGraphs()" >Submit</button>`
 	);
 }
-
-function restructureTemperatureData() {
-	data = dataTemperatureFull;
-	dataTemperature = [];
-	console.log("restructureTemperatureData");
-	console.log(data);
-	data.forEach((element) => {
-		if (
-			element.temperature_value < 100 &&
-			sensorsList.temperature.some((e) => element.location === e.room)
-		) {
-			switch (element.location) {
-				case "room_1":
-					dataElement =
-						new Date(element.timestamp).toString() +
-						"," +
-						element.temperature_value.toString() +
-						",\n";
-					dataTemperature += dataElement;
-					break;
-
-				case "room_2":
-					dataElement =
-						new Date(element.timestamp).toString() +
-						",," +
-						element.temperature_value.toString() +
-						"\n";
-					dataTemperature += dataElement;
-					break;
-				default:
-					break;
-			}
-		}
-	});
-}
+//
+// var room_array = ['room_1','room_2']
+//
+// function restructureTemperatureData() {
+// 	data = dataTemperatureFull;
+// 	dataTemperature = [];
+// 	console.log("restructureTemperatureData");
+// 	console.log(data);
+// 	data.forEach((element) => {
+// 		if (
+// 			element.temperature_value < 100 &&
+// 			sensorsList.temperature.some((e) => element.location === e.room)
+// 		) {
+// 			switch (element.location) {
+// 				case "room_1":
+// 					dataElement =
+// 						new Date(element.timestamp).toString() +
+// 						"," +
+// 						element.temperature_value.toString() +
+// 						",\n";
+// 					dataTemperature += dataElement;
+// 					break;
+//
+// 				case "room_2":
+// 					dataElement =
+// 						new Date(element.timestamp).toString() +
+// 						",," +
+// 						element.temperature_value.toString() +
+// 						"\n";
+// 					dataTemperature += dataElement;
+// 					break;
+// 				default:
+// 					break;
+// 			}
+// 		}
+// 	});
+// }
 
 function restructurePressureData() {
 	data = dataPressureFull;
@@ -218,7 +223,7 @@ function drawGraphs() {
 }
 
 function drawTemperatureGraph() {
-	restructureTemperatureData();
+	// restructureTemperatureData();
 	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
