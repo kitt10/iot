@@ -94,13 +94,42 @@ class Sensors(VoicehomeModule):
 
         return buffer
 
+    # def whole_pressure_data(self, msg):
+    #     print('Module '+self.id+": sending whole pressure data")
+    #     query = {'key': 'voicehome/sensors/pressure'}
+    #     res = self.search_mongo(self.id, query)
+    #     buffer = []
+    #     for res_i in res:
+    #         # result_i = res_i["payload"].decode("utf8")
+    #         result_i = res_i["payload"]
+    #         buffer.append(json.loads(result_i))
+    #     return buffer
+
     def whole_pressure_data(self, msg):
         print('Module '+self.id+": sending whole pressure data")
+        sensorsListFile = self.sensorsList('')
+        sensorsPressureList = sensorsListFile['pressure']
+        roomList = []
+        for i in sensorsPressureList:
+            roomList.append(i['room'])
+        maxRoomNum = sensorsListFile['max_room']
         query = {'key': 'voicehome/sensors/pressure'}
+        pattern = re.compile("^(room_)(\d)+$")
         res = self.search_mongo(self.id, query)
-        buffer = []
+        buffer = ''
         for res_i in res:
             # result_i = res_i["payload"].decode("utf8")
-            result_i = res_i["payload"]
-            buffer.append(json.loads(result_i))
+            result_i = json.loads(res_i["payload"])
+
+            if result_i['status']=='error':
+                continue
+            loc = result_i['location']
+            if not pattern.match(loc):
+               continue
+            loc = loc.replace('room_', '')
+            loc = int(loc)
+
+            buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['pressure_value']) + (
+                        maxRoomNum - loc) * ',' + '\n')
+
         return buffer

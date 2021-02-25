@@ -2,7 +2,7 @@
 var dataTemperature = [];
 var sensorsListFull = [];
 // var dataTemperatureFull = [];
-var dataPressureFull = [];
+// var dataPressureFull = [];
 
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
@@ -75,7 +75,7 @@ function onSocketMessage(message) {
 			dataTemperature = data["reply"];
 			break;
 		case "whole_pressure_data":
-			dataPressureFull = data["reply"];
+			dataPressure = data["reply"];
 			break;
 
 			otherwise: console.log("pass on onSocketMessage");
@@ -178,46 +178,46 @@ function drawSensorsList(data) {
 // 	});
 // }
 
-function restructurePressureData() {
-	data = dataPressureFull;
-	dataPressure = [];
-	console.log("restructureTemperatureData");
-	console.log(data);
-	data.forEach((element) => {
-		if (
-			1 < element.pressure_value &&
-			element.pressure_value < 5000 &&
-			sensorsList.pressure.some((e) => element.location === e.room)
-		) {
-			switch (element.location) {
-				case "room_1":
-					dataElement =
-						new Date(element.timestamp).toString() +
-						"," +
-						element.pressure_value.toString() +
-						",\n";
-					dataPressure += dataElement;
-					break;
+// function restructurePressureData() {
+// 	data = dataPressureFull;
+// 	dataPressure = [];
+// 	console.log("restructureTemperatureData");
+// 	console.log(data);
+// 	data.forEach((element) => {
+// 		if (
+// 			1 < element.pressure_value &&
+// 			element.pressure_value < 5000 &&
+// 			sensorsList.pressure.some((e) => element.location === e.room)
+// 		) {
+// 			switch (element.location) {
+// 				case "room_1":
+// 					dataElement =
+// 						new Date(element.timestamp).toString() +
+// 						"," +
+// 						element.pressure_value.toString() +
+// 						",\n";
+// 					dataPressure += dataElement;
+// 					break;
 
-				case "room_2":
-					dataElement =
-						new Date(element.timestamp).toString() +
-						",," +
-						element.pressure_value.toString() +
-						"\n";
-					dataPressure += dataElement;
-					break;
-				default:
-					break;
-			}
-		}
-	});
-}
+// 				case "room_2":
+// 					dataElement =
+// 						new Date(element.timestamp).toString() +
+// 						",," +
+// 						element.pressure_value.toString() +
+// 						"\n";
+// 					dataPressure += dataElement;
+// 					break;
+// 				default:
+// 					break;
+// 			}
+// 		}
+// 	});
+// }
 
 function drawGraphs() {
 	graphContainer = document.getElementById("graph-confainer");
 	graphContainer.innerHTML = "";
-	if (dataTemperature.length == 0 || dataPressureFull == 0) {
+	if (dataTemperature.length == 0 || dataPressure == 0) {
 		alert(
 			"Data from server are still not fully downloaded. Please try again in a moment."
 		);
