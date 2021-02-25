@@ -196,16 +196,16 @@ function restructureData(data) {
 	pattern = /^(room_)\d+$/gm;
 
 	data.forEach((element) => {
-		loc = element.location;
-		// if (sensorsList.temperature.some((e) => element.location != e.room)) {
-		// 	return;
-		// }
+		// loc = element.location;
+		if (sensorsList.temperature.some((e) => element.location !== e.room)) {
+			return;
+		}
 		if (element.status == "error") {
 			return;
 		}
-		if (pattern.test(loc) == false) {
-			return;
-		}
+		// if (pattern.test(loc) == false) {
+		// 	return;
+		// }
 		loc = parseInt(loc.replace("room_", ""));
 		dataTemp =
 			dataTemp +
