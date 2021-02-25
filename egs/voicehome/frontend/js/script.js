@@ -196,8 +196,7 @@ function restructureData(data) {
 	pattern = /^(room_)\d+$/gm;
 
 	data.forEach((element) => {
-		// loc = element.location;
-
+		loc = element.location;
 		if (element.status == "error") {
 			return;
 		}
