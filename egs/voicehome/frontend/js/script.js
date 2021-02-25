@@ -110,8 +110,6 @@ function drawSensorsList(data) {
 			return;
 		}
 		if (key == "max_room") {
-			console.log("MAXROOM init = ");
-			console.log(value);
 			MAXROOM = value;
 		} else {
 			let keyFilterDiv = document.createElement("div");
@@ -200,6 +198,9 @@ function restructureTemperatureData() {
 	dataTemperature = "";
 
 	data.forEach((element) => {
+		if (sensorsList.temperature.some((e) => element.location === e.room)) {
+			return;
+		}
 		if (element.status == "error") {
 			return;
 		}
@@ -208,8 +209,6 @@ function restructureTemperatureData() {
 			return;
 		}
 		loc = parseInt(loc.replace("room_", ""));
-		console.log("loc = " + loc.toString());
-		console.log("MAXROOM = " + MAXROOM.toString());
 		dataTemperature =
 			dataTemperature +
 			(element.timestamp.replace("-", "/") +
