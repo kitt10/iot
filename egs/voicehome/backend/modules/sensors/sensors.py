@@ -83,7 +83,10 @@ class Sensors(VoicehomeModule):
 
 
             loc = result_i['location']
-            loc = int(loc.replace('room_', ''))
+            loc = loc.replace('room_', '')
+            print(loc)
+            type(loc)
+            loc = int(loc)
 
             buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['temperature_value']) + (
                         maxRoomNum - loc) * ',' + '\n')
