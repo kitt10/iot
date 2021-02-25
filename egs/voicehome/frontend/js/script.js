@@ -142,6 +142,7 @@ function drawSensorsList(data) {
 			});
 		} else {
 			MAXROOM = data.key;
+			console.log("MAXROOM init = " + MAXROOM.toString());
 		}
 	});
 	filterDiv.insertAdjacentHTML(
