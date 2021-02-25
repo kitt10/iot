@@ -2,8 +2,11 @@
 // var dataTemperature = [];
 var sensorsListFull = [];
 var dataTemperatureFull = [];
+var dataTemperature = "";
 var dataPressureFull = [];
+var dataPressure = "";
 var dataIlluminanceFull = [];
+var dataIlluminance = "";
 var MAXROOM;
 
 function onBodyLoad() {
@@ -189,10 +192,10 @@ function drawSensorsList(data) {
 // 	});
 // }
 
-function restructureData(data) {
-	console.log("restructureData");
-	dataTemp = "";
-	// console.log(data);
+function restructureTemperatureData() {
+	data = dataTemperatureFull;
+	console.log("restructureTemperatureData");
+	dataTemperature = "";
 	pattern = /^(room_)\d+$/gm;
 
 	data.forEach((element) => {
@@ -205,43 +208,69 @@ function restructureData(data) {
 		// }
 		if (sensorsList.temperature.some((e) => element.location === e.room)) {
 			loc = parseInt(loc.replace("room_", ""));
-			dataTemp =
-				dataTemp +
+			dataTemperature =
+				dataTemperature +
 				(element.timestamp.replace("-", "/") +
 					",".repeat(loc) +
 					element.temperature_value.toString() +
 					",".repeat(MAXROOM - loc) +
 					"\n");
 		}
-
-		// if (
-		// 	element.temperature_value < 100 &&
-		// 	sensorsList.temperature.some((e) => element.location === e.room)
-		// ) {
-		// 	switch (element.location) {
-		// 		case "room_1":
-		// 			dataElement =
-		// 				new Date(element.timestamp).toString() +
-		// 				"," +
-		// 				element.temperature_value.toString() +
-		// 				",\n";
-		// 			dataTemperature += dataElement;
-		// 			break;
-
-		// 		case "room_2":
-		// 			dataElement =
-		// 				new Date(element.timestamp).toString() +
-		// 				",," +
-		// 				element.temperature_value.toString() +
-		// 				"\n";
-		// 			dataTemperature += dataElement;
-		// 			break;
-		// 		default:
-		// 			break;
-		// 	}
-		// }
 	});
-	return dataTemp;
+}
+
+function restructureIlluminanceData() {
+	data = dataIlluminanceFull;
+	console.log("restructureIlluminanceData");
+	dataIlluminance = "";
+	pattern = /^(room_)\d+$/gm;
+
+	data.forEach((element) => {
+		loc = element.location;
+		if (element.status == "error") {
+			return;
+		}
+		// if (pattern.test(loc) == false) {
+		// 	return;
+		// }
+		if (sensorsList.illuminance.some((e) => element.location === e.room)) {
+			loc = parseInt(loc.replace("room_", ""));
+			dataIlluminance =
+				dataIlluminance +
+				(element.timestamp.replace("-", "/") +
+					",".repeat(loc) +
+					element.illuminance_value.toString() +
+					",".repeat(MAXROOM - loc) +
+					"\n");
+		}
+	});
+}
+
+function restructurePressureData() {
+	data = dataPressureFull;
+	console.log("restructurePressureData");
+	dataPressure = "";
+	pattern = /^(room_)\d+$/gm;
+
+	data.forEach((element) => {
+		loc = element.location;
+		if (element.status == "error") {
+			return;
+		}
+		// if (pattern.test(loc) == false) {
+		// 	return;
+		// }
+		if (sensorsList.pressure.some((e) => element.location === e.room)) {
+			loc = parseInt(loc.replace("room_", ""));
+			dataPressure =
+				dataPressure +
+				(element.timestamp.replace("-", "/") +
+					",".repeat(loc) +
+					element.pressure_value.toString() +
+					",".repeat(MAXROOM - loc) +
+					"\n");
+		}
+	});
 }
 
 // function restructurePressureData() {
@@ -299,7 +328,7 @@ function drawGraphs() {
 }
 
 function drawIlluminanceGraph() {
-	// restructureTemperatureData();
+	restructureIlluminanceData();
 	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
@@ -331,7 +360,7 @@ function drawIlluminanceGraph() {
 }
 
 function drawTemperatureGraph() {
-	var dataTemperature = restructureData(dataTemperatureFull);
+	restructureTemperatureData();
 	console.log("dataTemperature = ");
 	console.log(dataTemperature);
 	if (dataTemperature.length == 0) return 0;
@@ -365,7 +394,7 @@ function drawTemperatureGraph() {
 }
 
 function drawPressureGraph() {
-	// restructurePressureData();
+	restructurePressureData();
 	if (dataPressure.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
