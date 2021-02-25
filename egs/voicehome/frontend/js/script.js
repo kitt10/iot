@@ -35,8 +35,6 @@ function onBodyLoadAnalytics() {
 	// request_sensorsList();
 	// request_whole_temperature_data();
 	request_sensorsList();
-	request_whole_temperature_data();
-	request_whole_pressure_data();
 }
 
 function onSocketOpen() {
@@ -70,6 +68,8 @@ function onSocketMessage(message) {
 			sensorsList = Object.assign({}, data["reply"]);
 			sensorsListFull = Object.assign({}, data["reply"]);
 			drawSensorsList(sensorsList);
+			request_whole_temperature_data();
+			request_whole_pressure_data();
 			break;
 		case "whole_temperature_data":
 			dataTemperature = data["reply"];
