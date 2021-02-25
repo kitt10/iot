@@ -104,7 +104,8 @@ function drawSensorsList(data) {
 	filterDiv = document.getElementById("filter-container");
 	filterDiv.innerHTML = "";
 	console.log(data);
-	Object.keys(data).forEach((key) => {
+	// Object.keys(data).forEach((key) => {
+	for (const [key, value] of Object.entries(data)) {
 		if (typeof data.key == "undefined") {
 			return;
 		}
@@ -118,7 +119,7 @@ function drawSensorsList(data) {
 			titleFilter.innerHTML = key[0].toUpperCase() + key.slice(1);
 			keyFilterDiv.appendChild(titleFilter);
 
-			data[key].forEach((element) => {
+			value.forEach((element) => {
 				elementFilterDiv = document.createElement("div");
 				elementFilterDiv.id = element.room + key + "Div";
 				elementFilterDiv.className = "custom-control custom-switch";
@@ -145,8 +146,8 @@ function drawSensorsList(data) {
 			});
 		} else {
 			console.log("MAXROOM init = ");
-			console.log(data.key);
-			MAXROOM = data.key;
+			console.log(value);
+			MAXROOM = value;
 		}
 	});
 	filterDiv.insertAdjacentHTML(
