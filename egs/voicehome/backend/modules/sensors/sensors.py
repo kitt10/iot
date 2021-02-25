@@ -85,8 +85,6 @@ class Sensors(VoicehomeModule):
             if not pattern.match(loc):
                continue
             loc = loc.replace('room_', '')
-            print(loc)
-            type(loc)
             loc = int(loc)
 
             buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['temperature_value']) + (

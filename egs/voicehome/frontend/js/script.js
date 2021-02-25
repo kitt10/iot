@@ -95,6 +95,9 @@ function drawSensorsList(data) {
 	filterDiv = document.getElementById("filter-container");
 	filterDiv.innerHTML = "";
 	Object.keys(data).forEach((key) => {
+		if (key == 'max_room'){
+			continue;
+		}
 		let keyFilterDiv = document.createElement("div");
 		keyFilterDiv.className = "form-group";
 		keyFilterDiv.id = key;
