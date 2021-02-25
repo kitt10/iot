@@ -4,6 +4,7 @@ var sensorsListFull = [];
 var dataTemperatureFull = [];
 var dataPressureFull = [];
 var dataIlluminanceFull = [];
+var MAXROOM;
 
 function onBodyLoad() {
 	console.log("Web GUI loaded.");
@@ -140,7 +141,7 @@ function drawSensorsList(data) {
 				elementFilterDiv.appendChild(elementFilterLabel);
 			});
 		} else {
-			var MAXROOM = data.key;
+			MAXROOM = data.key;
 		}
 	});
 	filterDiv.insertAdjacentHTML(
