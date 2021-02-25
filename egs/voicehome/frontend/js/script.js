@@ -106,10 +106,14 @@ function drawSensorsList(data) {
 	console.log(data);
 	// Object.keys(data).forEach((key) => {
 	for (const [key, value] of Object.entries(data)) {
-		if (typeof data.key == "undefined") {
+		if (typeof value == "undefined") {
 			return;
 		}
-		if (key != "max_room") {
+		if (key == "max_room") {
+			console.log("MAXROOM init = ");
+			console.log(value);
+			MAXROOM = value;
+		} else {
 			let keyFilterDiv = document.createElement("div");
 			keyFilterDiv.className = "form-group";
 			keyFilterDiv.id = key;
@@ -144,10 +148,6 @@ function drawSensorsList(data) {
 				elementFilterLabel.innerHTML = element.room;
 				elementFilterDiv.appendChild(elementFilterLabel);
 			});
-		} else {
-			console.log("MAXROOM init = ");
-			console.log(value);
-			MAXROOM = value;
 		}
 	}
 	filterDiv.insertAdjacentHTML(
