@@ -2,7 +2,6 @@
 // var dataTemperature = [];
 var sensorsListFull = [];
 var dataTemperatureFull = [];
-var dataTemperature = "";
 var dataPressureFull = [];
 var dataIlluminanceFull = [];
 var MAXROOM;
@@ -190,33 +189,24 @@ function drawSensorsList(data) {
 // 	});
 // }
 
-function restructureTemperatureData() {
-	console.log("restructureTemperatureData");
-	data = dataTemperatureFull;
-	dataTemperature = "";
+function restructureData(data) {
+	console.log("restructureData");
+	dataTemp = "";
+	// console.log(data);
 	pattern = /^(room_)\d+$/gm;
 
 	data.forEach((element) => {
 		loc = element.location;
-		if (sensorsList.temperature.some((e) => element.location !== e.room)) {
-			console.log("omg1");
-		}
-		if (element.status == "error") {
-			console.log("omg2");
-		}
-		if (pattern.test(loc) == false) {
-			console.log("omg3");
-		}
 		if (
-			sensorsList.temperature.some((e) => element.location !== e.room) ||
-			element.status == "error" ||
+			sensorsList.temperature.some((e) => element.location !== e.room) &&
+			element.status == "error" &&
 			pattern.test(loc) == false
 		) {
 			return;
 		}
 		loc = parseInt(loc.replace("room_", ""));
-		dataTemperature =
-			dataTemperature +
+		dataTemp =
+			dataTemp +
 			(element.timestamp.replace("-", "/") +
 				",".repeat(loc) +
 				element.temperature_value.toString() +
@@ -250,6 +240,7 @@ function restructureTemperatureData() {
 		// 	}
 		// }
 	});
+	return dataTemp;
 }
 
 // function restructurePressureData() {
@@ -307,8 +298,8 @@ function drawGraphs() {
 }
 
 function drawIlluminanceGraph() {
-	var dataIlluminance = restructureData(dataIlluminanceFull);
-	if (dataIlluminance.length == 0) return 0;
+	// restructureTemperatureData();
+	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
 	graphContainer.appendChild(graph);
@@ -339,7 +330,7 @@ function drawIlluminanceGraph() {
 }
 
 function drawTemperatureGraph() {
-	restructureTemperatureData();
+	var dataTemperature = restructureData(dataTemperatureFull);
 	console.log("dataTemperature = ");
 	console.log(dataTemperature);
 	if (dataTemperature.length == 0) return 0;
@@ -373,7 +364,7 @@ function drawTemperatureGraph() {
 }
 
 function drawPressureGraph() {
-	var dataPressure = restructureData(dataPressureFull);
+	// restructurePressureData();
 	if (dataPressure.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
