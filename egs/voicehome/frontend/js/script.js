@@ -34,7 +34,7 @@ function onBodyLoadAnalytics() {
 
 	// request_sensorsList();
 	// request_whole_temperature_data();
-	request_sensorsList();
+	// request_sensorsList();
 	// request_whole_temperature_data();
 	// request_whole_pressure_data();
 }
@@ -59,7 +59,7 @@ function onSocketMessage(message) {
 	console.log("WS message:", data);
 
 	if (data == "Server ready.") {
-		// request_sensorsList();
+		request_sensorsList();
 		// request_whole_temperature_data();
 		// request_whole_pressure_data();
 	}
