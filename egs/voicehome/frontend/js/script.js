@@ -17,10 +17,10 @@ function onBodyLoad() {
 
 function turnModuleOnOff(on, module_id) {
 	let payload = {
-		passport: on ? 'module_on' : 'module_off',
-		module_id: module_id
-	}
-	ws.send(JSON.stringify(payload))
+		passport: on ? "module_on" : "module_off",
+		module_id: module_id,
+	};
+	ws.send(JSON.stringify(payload));
 }
 
 function onBodyLoadAnalytics() {
@@ -50,7 +50,10 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	if (data.constructor === {}.constructor && (data.source == "keyboard"|| data.source == "engine")) {
+	if (
+		data.constructor === {}.constructor &&
+		(data.source == "keyboard" || data.source == "engine")
+	) {
 		displayInDivEventLog(data);
 	}
 	console.log("WS message:", data);
@@ -95,11 +98,11 @@ function drawSensorsList(data) {
 	filterDiv = document.getElementById("filter-container");
 	filterDiv.innerHTML = "";
 	Object.keys(data).forEach((key) => {
-		if (key == 'max_room'){
+		if (key == "max_room") {
 			continue;
-		}.console.log(key);
-		console.log('key = ')
-		console
+		}
+		console.log("key = ");
+		console.log(key);
 		let keyFilterDiv = document.createElement("div");
 		keyFilterDiv.className = "form-group";
 		keyFilterDiv.id = key;
