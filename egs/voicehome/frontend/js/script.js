@@ -98,45 +98,44 @@ function drawSensorsList(data) {
 	filterDiv = document.getElementById("filter-container");
 	filterDiv.innerHTML = "";
 	Object.keys(data).forEach((key) => {
-		if (key === "max_room") {
-			return;
+		if (key !== "max_room") {
+			console.log("key = ");
+			console.log(key);
+			let keyFilterDiv = document.createElement("div");
+			keyFilterDiv.className = "form-group";
+			keyFilterDiv.id = key;
+			filterDiv.appendChild(keyFilterDiv);
+
+			let titleFilter = document.createElement("h3");
+			titleFilter.innerHTML = key[0].toUpperCase() + key.slice(1);
+			keyFilterDiv.appendChild(titleFilter);
+
+			data[key].forEach((element) => {
+				elementFilterDiv = document.createElement("div");
+				elementFilterDiv.id = element.room + key + "Div";
+				elementFilterDiv.className = "custom-control custom-switch";
+				keyFilterDiv.appendChild(elementFilterDiv);
+
+				elementFilterCheckbox = document.createElement("input");
+				elementFilterCheckbox.className = "custom-control-input";
+				elementFilterCheckbox.type = "checkbox";
+
+				// elementFilterCheckbox.setAttribute("value", "");
+				elementFilterCheckbox.id = element.room + key + "Checkbox";
+				elementFilterCheckbox.setAttribute("key", key);
+				elementFilterCheckbox.setAttribute("room", element.room);
+				elementFilterCheckbox.setAttribute("onclick", "toggleFilter(this)");
+				elementFilterCheckbox.checked = true;
+				elementFilterDiv.appendChild(elementFilterCheckbox);
+
+				elementFilterLabel = document.createElement("label");
+				elementFilterLabel.className = "custom-control-label";
+				elementFilterLabel.id = element.room + key + "Label";
+				elementFilterLabel.setAttribute("for", element.room + key + "Checkbox");
+				elementFilterLabel.innerHTML = element.room;
+				elementFilterDiv.appendChild(elementFilterLabel);
+			});
 		}
-		console.log("key = ");
-		console.log(key);
-		let keyFilterDiv = document.createElement("div");
-		keyFilterDiv.className = "form-group";
-		keyFilterDiv.id = key;
-		filterDiv.appendChild(keyFilterDiv);
-
-		let titleFilter = document.createElement("h3");
-		titleFilter.innerHTML = key[0].toUpperCase() + key.slice(1);
-		keyFilterDiv.appendChild(titleFilter);
-
-		data[key].forEach((element) => {
-			elementFilterDiv = document.createElement("div");
-			elementFilterDiv.id = element.room + key + "Div";
-			elementFilterDiv.className = "custom-control custom-switch";
-			keyFilterDiv.appendChild(elementFilterDiv);
-
-			elementFilterCheckbox = document.createElement("input");
-			elementFilterCheckbox.className = "custom-control-input";
-			elementFilterCheckbox.type = "checkbox";
-
-			// elementFilterCheckbox.setAttribute("value", "");
-			elementFilterCheckbox.id = element.room + key + "Checkbox";
-			elementFilterCheckbox.setAttribute("key", key);
-			elementFilterCheckbox.setAttribute("room", element.room);
-			elementFilterCheckbox.setAttribute("onclick", "toggleFilter(this)");
-			elementFilterCheckbox.checked = true;
-			elementFilterDiv.appendChild(elementFilterCheckbox);
-
-			elementFilterLabel = document.createElement("label");
-			elementFilterLabel.className = "custom-control-label";
-			elementFilterLabel.id = element.room + key + "Label";
-			elementFilterLabel.setAttribute("for", element.room + key + "Checkbox");
-			elementFilterLabel.innerHTML = element.room;
-			elementFilterDiv.appendChild(elementFilterLabel);
-		});
 	});
 	filterDiv.insertAdjacentHTML(
 		"beforeend",
