@@ -85,6 +85,8 @@ function onSocketMessage(message) {
 			break;
 		case "whole_illuminance_data":
 			dataIlluminanceFull = data["reply"];
+			console.log("dataIlluminanceFull=");
+			console.log(dataIlluminanceFull);
 			break;
 
 			otherwise: console.log("pass on onSocketMessage");
@@ -322,14 +324,16 @@ function drawGraphs() {
 		);
 	} else {
 		drawTemperatureGraph();
-		// drawPressureGraph();
-		// drawIlluminanceGraph();
+		drawPressureGraph();
+		drawIlluminanceGraph();
 	}
 }
 
 function drawIlluminanceGraph() {
 	restructureIlluminanceData();
-	if (dataTemperature.length == 0) return 0;
+	console.log("dataIlluminance=");
+	console.log(dataIlluminance);
+	if (dataIlluminance.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
 	graphContainer.appendChild(graph);
@@ -395,6 +399,8 @@ function drawTemperatureGraph() {
 
 function drawPressureGraph() {
 	restructurePressureData();
+	console.log("dataPressure= ");
+	console.log(dataPressure);
 	if (dataPressure.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
