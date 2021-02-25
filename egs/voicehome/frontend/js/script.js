@@ -197,23 +197,23 @@ function restructureData(data) {
 
 	data.forEach((element) => {
 		// loc = element.location;
-		if (sensorsList.temperature.some((e) => element.location != e.room)) {
-			return;
-		}
+
 		if (element.status == "error") {
 			return;
 		}
 		// if (pattern.test(loc) == false) {
 		// 	return;
 		// }
-		loc = parseInt(loc.replace("room_", ""));
-		dataTemp =
-			dataTemp +
-			(element.timestamp.replace("-", "/") +
-				",".repeat(loc) +
-				element.temperature_value.toString() +
-				",".repeat(MAXROOM - loc) +
-				"\n");
+		if (sensorsList.temperature.some((e) => element.location === e.room)) {
+			loc = parseInt(loc.replace("room_", ""));
+			dataTemp =
+				dataTemp +
+				(element.timestamp.replace("-", "/") +
+					",".repeat(loc) +
+					element.temperature_value.toString() +
+					",".repeat(MAXROOM - loc) +
+					"\n");
+		}
 
 		// if (
 		// 	element.temperature_value < 100 &&
