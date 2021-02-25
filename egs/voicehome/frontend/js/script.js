@@ -60,8 +60,8 @@ function onSocketMessage(message) {
 
 	if (data == "Server ready.") {
 		request_sensorsList();
-		// request_whole_temperature_data();
-		// request_whole_pressure_data();
+		request_whole_temperature_data();
+		request_whole_pressure_data();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
@@ -99,8 +99,6 @@ function drawSensorsList(data) {
 	filterDiv.innerHTML = "";
 	Object.keys(data).forEach((key) => {
 		if (key !== "max_room") {
-			console.log("key = ");
-			console.log(key);
 			let keyFilterDiv = document.createElement("div");
 			keyFilterDiv.className = "form-group";
 			keyFilterDiv.id = key;
