@@ -299,7 +299,7 @@ function drawGraphs() {
 
 function drawIlluminanceGraph() {
 	var dataIlluminance = restructureData(dataIlluminanceFull);
-	if (dataTemperature.length == 0) return 0;
+	if (dataIlluminance.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
 	graphContainer.appendChild(graph);
