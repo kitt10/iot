@@ -197,9 +197,9 @@ function restructureData(data) {
 
 	data.forEach((element) => {
 		loc = element.location;
-		if (sensorsList.temperature.some((e) => element.location !== e.room)) {
-			return;
-		}
+		// if (sensorsList.temperature.some((e) => element.location != e.room)) {
+		// 	return;
+		// }
 		if (element.status == "error") {
 			return;
 		}
