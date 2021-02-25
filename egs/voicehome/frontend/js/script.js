@@ -192,7 +192,7 @@ function drawSensorsList(data) {
 function restructureData(data) {
 	console.log("restructureData");
 	dataTemp = [];
-	console.log(data);
+	// console.log(data);
 	pattern = /^(room_)\d+$/gm;
 	dataTemperature = "";
 
@@ -331,7 +331,9 @@ function drawIlluminanceGraph() {
 }
 
 function drawTemperatureGraph() {
-	dataTemperature = restructureData(dataTemperatureFull);
+	var dataTemperature = restructureData(dataTemperatureFull);
+	console.log("dataTemperature = ");
+	console.log(dataTemperature);
 	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
