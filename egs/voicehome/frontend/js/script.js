@@ -191,10 +191,9 @@ function drawSensorsList(data) {
 
 function restructureData(data) {
 	console.log("restructureData");
-	dataTemp = [];
+	dataTemp = "";
 	// console.log(data);
 	pattern = /^(room_)\d+$/gm;
-	dataTemperature = "";
 
 	data.forEach((element) => {
 		loc = element.location;
@@ -206,8 +205,8 @@ function restructureData(data) {
 			return;
 		}
 		loc = parseInt(loc.replace("room_", ""));
-		dataTemperature =
-			dataTemperature +
+		dataTemp =
+			dataTemp +
 			(element.timestamp.replace("-", "/") +
 				",".repeat(loc) +
 				element.temperature_value.toString() +
