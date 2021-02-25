@@ -1,5 +1,5 @@
 // Global variables
-var dataTemperature = [];
+// var dataTemperature = [];
 var sensorsListFull = [];
 // var dataTemperatureFull = [];
 // var dataPressureFull = [];
@@ -62,6 +62,7 @@ function onSocketMessage(message) {
 		request_sensorsList();
 		request_whole_temperature_data();
 		request_whole_pressure_data();
+		request_whole_illuminance_data();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
@@ -76,6 +77,9 @@ function onSocketMessage(message) {
 			break;
 		case "whole_pressure_data":
 			dataPressure = data["reply"];
+			break;
+		case "whole_illuminance_data":
+			dataIlluminance = data["reply"];
 			break;
 
 			otherwise: console.log("pass on onSocketMessage");
@@ -217,14 +221,51 @@ function drawSensorsList(data) {
 function drawGraphs() {
 	graphContainer = document.getElementById("graph-confainer");
 	graphContainer.innerHTML = "";
-	if (dataTemperature.length == 0 || dataPressure == 0) {
+	if (
+		dataTemperature.length == 0 ||
+		dataPressure.length == 0 ||
+		dataIlluminance.length == 0
+	) {
 		alert(
 			"Data from server are still not fully downloaded. Please try again in a moment."
 		);
 	} else {
 		drawTemperatureGraph();
 		drawPressureGraph();
+		drawIlluminanceGraph();
 	}
+}
+
+function drawIlluminanceGraph() {
+	// restructureTemperatureData();
+	if (dataTemperature.length == 0) return 0;
+	let graph = document.createElement("div");
+	graph.className = "dyGraphs";
+	graphContainer.appendChild(graph);
+	var g = new Dygraph(graph, dataIlluminance, {
+		labels: ["Time", "Illuminance value room_1", "Illuminance value room_2"],
+		// height: 320,
+		// width: 480,
+		rollPeriod: 1,
+		showRoller: true,
+		title: "Illuminance data",
+		legend: "always",
+		// stackedGraph: true,
+		// highlightCircleSize: 2,
+		// strokeWidth: 1,
+		// strokeBorderWidth: null,
+		// highlightSeriesOpts: {
+		// 	strokeWidth: 3,
+		// 	strokeBorderWidth: 1,
+		// 	highlightCircleSize: 5,
+		// },
+		showRangeSelector: true,
+		rangeSelectorHeight: 30,
+		// dateWindow: [
+		// 	new Date("2020-12-05 00:00:00"),
+		// 	new Date("2020-12-05 12:00:00"),
+		// ],
+	});
 }
 
 function drawTemperatureGraph() {
@@ -319,6 +360,11 @@ function request_whole_temperature_data() {
 
 function request_whole_pressure_data() {
 	msg = "whole_pressure_data";
+	sendToServer(msg, "voicehome/sensors");
+}
+
+function request_whole_illuminance_data() {
+	msg = "whole_illuminance_data";
 	sendToServer(msg, "voicehome/sensors");
 }
 

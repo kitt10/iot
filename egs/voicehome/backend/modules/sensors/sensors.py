@@ -33,6 +33,9 @@ class Sensors(VoicehomeModule):
         if msg['message'] == "whole_pressure_data":
             msg['reply'] = self.whole_pressure_data(msg)
             self.websocket_send(msg)
+        if msg['message'] == "whole_illuminance_data":
+            msg['reply'] = self.whole_illuminance_data(msg)
+            self.websocket_send(msg)
         if msg['message'] == "sensorsList":
             msg['reply'] = self.sensorsList(msg)
             self.websocket_send(msg)
@@ -90,6 +93,35 @@ class Sensors(VoicehomeModule):
             loc = int(loc)
 
             buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['temperature_value']) + (
+                        maxRoomNum - loc) * ',' + '\n')
+
+        return buffer
+
+    def whole_illuminance_data(self, msg):
+        print('Module '+self.id+": sending whole illuminance data")
+        sensorsListFile = self.sensorsList('')
+        sensorsIlluminanceList = sensorsListFile['illuminance']
+        roomList = []
+        for i in sensorsIlluminanceList:
+            roomList.append(i['room'])
+        maxRoomNum = sensorsListFile['max_room']
+        query = {'key': 'voicehome/sensors/illuminance'}
+        pattern = re.compile("^(room_)(\d)+$")
+        res = self.search_mongo(self.id, query)
+        buffer = ''
+        for res_i in res:
+            # result_i = res_i["payload"].decode("utf8")
+            result_i = json.loads(res_i["payload"])
+
+            if result_i['status']=='error':
+                continue
+            loc = result_i['location']
+            if not pattern.match(loc):
+               continue
+            loc = loc.replace('room_', '')
+            loc = int(loc)
+
+            buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['illuminance_value']) + (
                         maxRoomNum - loc) * ',' + '\n')
 
         return buffer
