@@ -1,4 +1,5 @@
 {
+   "max_room": 2,
    "temperature":[
       {
          "room":"room_1",

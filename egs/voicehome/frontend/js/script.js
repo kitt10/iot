@@ -98,7 +98,7 @@ function drawSensorsList(data) {
 	filterDiv = document.getElementById("filter-container");
 	filterDiv.innerHTML = "";
 	Object.keys(data).forEach((key) => {
-		if (key == "max_room") {
+		if (key === "max_room") {
 			continue;
 		}
 		console.log("key = ");
