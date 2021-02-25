@@ -81,6 +81,8 @@ class Sensors(VoicehomeModule):
             # result_i = res_i["payload"].decode("utf8")
             result_i = json.loads(res_i["payload"])
 
+            if result_i['status']=='error':
+                continue
             loc = result_i['location']
             if not pattern.match(loc):
                continue
