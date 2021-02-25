@@ -114,7 +114,7 @@ function drawSensorsList(data) {
 			titleFilter.innerHTML = key[0].toUpperCase() + key.slice(1);
 			keyFilterDiv.appendChild(titleFilter);
 
-			data.key.forEach((element) => {
+			data[key].forEach((element) => {
 				elementFilterDiv = document.createElement("div");
 				elementFilterDiv.id = element.room + key + "Div";
 				elementFilterDiv.className = "custom-control custom-switch";
