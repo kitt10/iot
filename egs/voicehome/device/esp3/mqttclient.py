@@ -134,8 +134,13 @@ class Client:
                 self.led.value(self.state)
                 self.state = 1 - self.state
                 print("toggle")
+
         self.client.set_callback(sub_cb)
-        self.client.connect()
+        try:
+            self.client.connect()
+        except:
+            print('Exception in connecting to MQTT')
+            machine.reset()
         print(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LED']))
         self.client.subscribe(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LED']))
         print("Connected to %s, subscribed to %s topic" % (config.MQTT['SERVER'], config.MQTT['TOPIC_SUBSCRIBE_LED']))
@@ -146,7 +151,7 @@ class Client:
             self.client.check_msg()
         except:
             print("Subscribe exception occurred")
-            self.client.connect()
+            machine.reset()
             pass
     
     def mqtt_msg(self, msg_structure, topic):
@@ -154,7 +159,7 @@ class Client:
             self.client.publish(topic, dumps(msg_structure))
         except:
             print("mqtt_msg error")
-            self.client.connect()
+            machine.reset()
             pass
         
         
@@ -162,7 +167,7 @@ class Client:
         print("publish")
         try:
             try:
-                a = usocket.getaddrinfo('www.google.com',80)[0][-1]
+                a = usocket.getaddrinfo('8.8.8.8',80)[0][-1]
                 settime()
             except:
                 print('Exception in usocket get www.google.com')

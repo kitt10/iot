@@ -22,4 +22,8 @@ def connect():
             time.sleep_ms(500)
     print('network config:', sta_if.ifconfig())
 
-connect()
+try:
+    connect()
+except:
+    print('can not connect wifi')
+    machine.reset()
