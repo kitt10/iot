@@ -141,8 +141,9 @@ function drawSensorsList(data) {
 				elementFilterDiv.appendChild(elementFilterLabel);
 			});
 		} else {
+			console.log("MAXROOM init = ");
+			console.log(data.key);
 			MAXROOM = data.key;
-			console.log("MAXROOM init = " + data.key.toString());
 		}
 	});
 	filterDiv.insertAdjacentHTML(
