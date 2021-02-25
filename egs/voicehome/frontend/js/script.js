@@ -189,9 +189,10 @@ function drawSensorsList(data) {
 // 	});
 // }
 
-function restructureData(data) {
+function restructureTemperatureData() {
 	console.log("restructureData");
-	dataTemp = "";
+	data = dataTemperatureFull;
+	dataTemperature = "";
 	// console.log(data);
 	pattern = /^(room_)\d+$/gm;
 
@@ -240,7 +241,6 @@ function restructureData(data) {
 		// 	}
 		// }
 	});
-	return dataTemp;
 }
 
 // function restructurePressureData() {
@@ -292,8 +292,8 @@ function drawGraphs() {
 		);
 	} else {
 		drawTemperatureGraph();
-		drawPressureGraph();
-		drawIlluminanceGraph();
+		// drawPressureGraph();
+		// drawIlluminanceGraph();
 	}
 }
 
@@ -330,7 +330,7 @@ function drawIlluminanceGraph() {
 }
 
 function drawTemperatureGraph() {
-	var dataTemperature = restructureData(dataTemperatureFull);
+	restructureTemperatureData();
 	console.log("dataTemperature = ");
 	console.log(dataTemperature);
 	if (dataTemperature.length == 0) return 0;
