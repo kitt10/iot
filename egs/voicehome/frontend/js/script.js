@@ -198,8 +198,8 @@ function restructureData(data) {
 	data.forEach((element) => {
 		loc = element.location;
 		if (
-			sensorsList.temperature.some((e) => element.location !== e.room) &&
-			element.status == "error" &&
+			sensorsList.temperature.some((e) => element.location !== e.room) ||
+			element.status == "error" ||
 			pattern.test(loc) == false
 		) {
 			return;
