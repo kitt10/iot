@@ -149,7 +149,7 @@ function drawSensorsList(data) {
 			console.log(value);
 			MAXROOM = value;
 		}
-	});
+	}
 	filterDiv.insertAdjacentHTML(
 		"beforeend",
 		`<button type="submit" class="btn btn-primary" onclick="drawGraphs()" >Submit</button>`
