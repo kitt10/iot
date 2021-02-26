@@ -94,6 +94,7 @@ class VoicehomeControlInterface:
         ws_msg = {'passport': 'controller_disconnected',
                   'controller_id': self.controller_id}
         self.engine.webserver.app.ws_message(ws_msg)
+        self.engine.webserver.packet['controller_id'] = 'none'
 
         self.controller.close()
         self.sock.close()

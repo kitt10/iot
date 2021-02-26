@@ -115,7 +115,7 @@ class VoicehomeWebserver:
         self.packet = {
             'modules': [],
             'modules_off': [],
-            'controller_id': ''
+            'controller_id': 'none'
         }
 
         self.app = VoicehomeTornadoApp(webserver=self)
