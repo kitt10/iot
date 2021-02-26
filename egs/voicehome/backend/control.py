@@ -40,6 +40,8 @@ class VoicehomeControlInterface:
         if command:
             if 'controller_handshake_id' in command:
                 self.controller_id = command.split('_')[3]
+                self.engine.webserver.packet['controller_id'] = self.controller_id
+
                 # Send to web...
                 ws_msg = {'passport': 'controller_connected',
                           'controller_id': self.controller_id}

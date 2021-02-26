@@ -17,6 +17,8 @@ function onBodyLoad() {
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
 
+	console.log('Controller:', get_controller_id())
+
 	fillModules();
 }
 
@@ -26,6 +28,10 @@ function turnModuleOnOff(on, module_id) {
 		module_id: module_id,
 	};
 	ws.send(JSON.stringify(payload));
+}
+
+function get_controller_id() {
+	return loadJsonHandler().controller_id
 }
 
 function onBodyLoadAnalytics() {
