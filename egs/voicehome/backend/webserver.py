@@ -113,7 +113,8 @@ class VoicehomeWebserver:
 
         self.subscriptions = []
         self.packet = {
-            'modules': []
+            'modules': [],
+            'modules_off': []
         }
 
         self.app = VoicehomeTornadoApp(webserver=self)

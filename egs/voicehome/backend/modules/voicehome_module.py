@@ -30,7 +30,10 @@ class VoicehomeModule:
         self.mqtt_topics = metadata['mqtt_topics']
         self.websocket_passports = metadata['websocket_passports']
 
-        self.engine.webserver.packet['modules'].append(metadata)
+        if self.id in self.engine.port.modules_off_names:
+            self.engine.webserver.packet['modules_off'].append(metadata)
+        else:
+            self.engine.webserver.packet['modules'].append(metadata)
 
     def register_moves(self):
         for move in self.module_moves:
