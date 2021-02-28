@@ -4,18 +4,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Voice-enabled smart home modules</title>
 
+		<!-- Styles -->
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+
 		<!-- AwesomeFont -->
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 			crossorigin="anonymous"
-		/>
-
-		<!-- Dygraph -->
-		<link
-			rel="stylesheet"
-			href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css"
 		/>
 
 		<!-- Bootstrap -->
@@ -32,18 +29,9 @@
 			href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 			rel="stylesheet"
 		/>
-
-		<!-- Styles -->
-		<link rel="stylesheet" href="css/style.css" type="text/css" />
-
-		<!-- Scripts -->
-		<script type="text/javascript">
-			var ws = 0;
-		</script>
-		<script src="js/script.js" type="text/javascript"></script>
 	</head>
 
-	<body onload="onBodyLoadAnalytics()">
+	<body onload="onBodyLoadModules()">
 		<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 			<a class="navbar-brand" href="/index.html">IOT</a>
 			<button
@@ -66,58 +54,22 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="/analytics.html">Analytics</a>
+						<a class="nav-link" href="/analytics.html">Analytics</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="/modules.html">Modules</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
 
-		<div id="filter-container" class="m-3"></div>
-		<div id="graph-confainer"></div>
-		<!-- Script for myChart -->
-		<!-- <script>
-			var ctx = document.getElementById("myChart").getContext("2d");
-			var chart = new Chart(ctx, {
-				// The type of chart we want to create
-				type: "line",
-
-				// The data for our dataset
-				data: {
-					labels: [
-						"January",
-						"February",
-						"March",
-						"April",
-						"May",
-						"June",
-						"July",
-					],
-					datasets: [
-						{
-							label: "My First dataset",
-							backgroundColor: "rgb(255, 99, 132)",
-							borderColor: "rgb(255, 99, 132)",
-							data: [0, 10, 5, 2, 20, 30, 45],
-						},
-					],
-				},
-
-				// Configuration options go here
-				options: {},
-			});
-		</script> -->
-
-		<!-- Chart.js -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-		<!-- used for parsing date in Chart.js -->
-		<script src="js/moment.js"></script>
-
-		<!-- Dygraph -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
-
+		<div id="eventLog"></div>
+		<div class="row">
+			<div id="modules" class="col-md-4 col-lg-3 d-md-block"></div>
+			<!-- <div id="modules" class="col-md-4 col-lg-3 d-none d-md-block"></div> -->
+			<div id="modules_information" class="col-md-8 col-lg-9 col-12"></div>
+			<!--<button onclick="turnModuleOnOff(true, 'sensors')">turn_on_off</button> -->
+		</div>
 		<!-- Bootstrap -->
 		<!-- jQuery and JS bundle w/ Popper.js -->
 		<script
@@ -132,5 +84,10 @@
 		></script>
 		<!-- Bootstrap Toggle -->
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+		<!-- Scripts -->
+		<script type="text/javascript">
+			let ws;
+		</script>
+		<script src="js/script.js" type="text/javascript"></script>
 	</body>
 </html>

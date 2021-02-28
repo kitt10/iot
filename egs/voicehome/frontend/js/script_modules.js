@@ -8,10 +8,8 @@ var dataPressure = "";
 var dataIlluminanceFull = [];
 var dataIlluminance = "";
 var MAXROOM;
-var page = "home";
 
 function onBodyLoadModules() {
-	page = "modules";
 	console.log("Web GUI loaded.");
 	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
 	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
@@ -24,18 +22,6 @@ function onBodyLoadModules() {
 	fillModules();
 }
 
-function onBodyLoad() {
-	page = "home";
-	console.log("Web GUI loaded.");
-	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
-	ws.onopen = onSocketOpen;
-	ws.onmessage = onSocketMessage;
-	ws.onclose = onSocketClose;
-
-	console.log("Controller:", get_controller_id());
-}
-
 function turnModuleOnOff(on, module_id) {
 	let payload = {
 		passport: on ? "module_on" : "module_off",
@@ -46,23 +32,6 @@ function turnModuleOnOff(on, module_id) {
 
 function get_controller_id() {
 	return loadJsonHandler().controller_id;
-}
-
-function onBodyLoadAnalytics() {
-	page = "analytics";
-	console.log("onBodyLoadAnalytics");
-	console.log("Web GUI loaded.");
-	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
-	ws.onopen = onSocketOpen;
-	ws.onmessage = onSocketMessage;
-	ws.onclose = onSocketClose;
-
-	// request_sensorsList();
-	// request_whole_temperature_data();
-	// request_sensorsList();
-	// request_whole_temperature_data();
-	// request_whole_pressure_data();
 }
 
 function onSocketOpen() {
@@ -84,12 +53,6 @@ function onSocketMessage(message) {
 	}
 	console.log("WS message:", data);
 
-	if (data == "Server ready." && page == "analytics") {
-		request_sensorsList();
-		request_whole_temperature_data();
-		request_whole_pressure_data();
-		request_whole_illuminance_data();
-	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "sensorsList":
@@ -463,7 +426,6 @@ function displayInDivEventLog(data) {
 	}
 
 	let eventLogItem = document.createElement("div");
-	eventLogItem.id = "eventLogItem";
 	eventLogItem.className = "alert alert-info";
 	eventLogItem.innerHTML =
 		time + " <strong>" + data.source + "</strong> => " + data.message;
@@ -581,11 +543,11 @@ function fillModules() {
 				$($lastToggledModuleId).toggleClass("d-none");
 				$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
 				$($lastToggledModuleId).toggleClass("d-none");
-				// console.log($lastToggledModuleId);
+				console.log($lastToggledModuleId);
 			} else {
 				$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
 				$("#" + modules[i_module].module_id + "Div").toggleClass("d-none");
-				// console.log($lastToggledModuleId);
+				console.log($lastToggledModuleId);
 			}
 		});
 
