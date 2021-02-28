@@ -52,8 +52,8 @@ function onBodyLoadAnalytics() {
 	page = "analytics";
 	console.log("onBodyLoadAnalytics");
 	console.log("Web GUI loaded.");
-	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	// ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
+	// ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
