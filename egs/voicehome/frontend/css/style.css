@@ -19,7 +19,7 @@ div.scrollmenu a:hover {
 
 /* BODY */
 body {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	/* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 	overflow-x: hidden;
 	/* min-width: 1000px;
 	_width: expression(document.body.clientWidth > 1000 ? "900px": "auto"); */
@@ -85,6 +85,61 @@ div.dyGraphs {
 	color: #627482 !important;
 	margin-bottom: 0;
 	padding-bottom: 0;
+}
+
+div.alert.alert-info#eventLogItem {
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+div#light_div {
+	height: 242px;
+}
+
+div.measured_values_item {
+	margin-left: 10px;
+	margin-top: 30px;
+}
+
+div.sensors.row {
+	margin: 10px;
+}
+
+div#eventLogContainer#eventLog {
+	height: 200px;
+}
+
+main.container {
+	min-width: 90%;
+}
+
+div.card-body.sensors {
+	font-size: 2.5em;
+}
+
+span.sensors.room {
+	font-size: 1.3em;
+}
+
+div.border-5 {
+	border-style: solid;
+	border-width: 5px;
+}
+
+img.sensors {
+	width: 70px;
+}
+
+div#eventLogContainer {
+	height: 242px;
+}
+div#eventLogContainer #title {
+	height: 36px;
+}
+
+span.title {
+	font-size: 1.3em;
+	font-weight: bold;
 }
 
 small {
