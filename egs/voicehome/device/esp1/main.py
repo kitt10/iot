@@ -22,7 +22,7 @@ while True:
     # subscribe selected topic
     mqtt_client.subscribe()
     # publish value every minute
-    if(mqtt_client.last_minute_sent != mqtt_client.get_min() and mqtt_client.get_sec() in range(30,33)):
+    if(mqtt_client.last_minute_sent != mqtt_client.get_min() and mqtt_client.get_sec() in range(10,13)):
         mqtt_client.publish()
     # except:
     #     mqtt_client.client.disconnect()
