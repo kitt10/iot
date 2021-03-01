@@ -12,7 +12,9 @@ class VoicehomeModulesPort:
         self.modules = []
         self.modules_off = []
         self.modules_off_names = []
+        # self.status = 'init'
         self.load_modules()
+        # self.status = 'running'
 
     def load_modules(self):
         for dir_item in listdir('modules'):
@@ -20,10 +22,13 @@ class VoicehomeModulesPort:
             if isdir(dir_path) and dir_item not in ['__pycache__']:
                 module = import_module('modules.'+dir_item+'.'+dir_item)
                 cls = getattr(module, dir_item.capitalize())
-                if dir_item not in self.modules_off_names:
-                    self.modules_off.append(cls(engine=self.engine, dir_path=dir_path))
-                else:
+                if len(self.modules_off_names)==0:
                     self.modules.append(cls(engine=self.engine, dir_path=dir_path))
+                else:
+                    if dir_item not in self.modules_off_names.id:
+                        self.modules_off.append(cls(engine=self.engine, dir_path=dir_path))
+                    else:
+                        self.modules.append(cls(engine=self.engine, dir_path=dir_path))
 
     def reload_modules(self):
         self.modules = []

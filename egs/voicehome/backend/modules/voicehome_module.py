@@ -36,6 +36,7 @@ class VoicehomeModule:
             else:
                 self.engine.webserver.packet['modules'].append(metadata)
         except AttributeError:
+            self.engine.webserver.packet['modules'].append(metadata)
             pass
             # Initial modules load : all ON by default
 
