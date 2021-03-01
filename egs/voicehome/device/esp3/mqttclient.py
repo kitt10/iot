@@ -36,9 +36,10 @@ class Client:
         try:
             illuminance = float(self.tsl.sample())
         except:
-            status = 'error'
             illuminance=-1
             pass
+        if illuminance < 0:
+            status = 'error'
         # pressure = float(self.bme.pressure)
         # print(pressure)
         # temperature = float(self.bme.temperature)
