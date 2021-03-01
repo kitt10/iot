@@ -10,11 +10,13 @@ var dataIlluminance = "";
 var MAXROOM;
 var page = "home";
 
+// var ws_address = "ws://147.228.124.230:8881/websocket";
+var ws_address = "ws://127.0.0.1:8881/websocket";
+
 function onBodyLoadModules() {
 	page = "modules";
 	console.log("Web GUI loaded.");
-	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	// ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket(ws_address); // ws is a global variable (index.html)
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
@@ -27,8 +29,7 @@ function onBodyLoadModules() {
 function onBodyLoad() {
 	page = "home";
 	console.log("Web GUI loaded.");
-	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	// ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket(ws_address); // ws is a global variable (index.html)
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
@@ -52,8 +53,7 @@ function onBodyLoadAnalytics() {
 	page = "analytics";
 	console.log("onBodyLoadAnalytics");
 	console.log("Web GUI loaded.");
-	ws = new WebSocket("ws://147.228.124.230:8881/websocket"); // ws is a global variable (index.html)
-	// ws = new WebSocket("ws://127.0.0.1:8881/websocket"); // ws is a global variable (index.html)
+	ws = new WebSocket(ws_address); // ws is a global variable (index.html)
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
@@ -517,117 +517,130 @@ function loadJsonHandler() {
 function fillModules() {
 	console.log("Loading modules");
 	let modules = loadJsonHandler().modules;
-	let divModules = document.getElementById("modules");
-	let divModulesInformation = document.getElementById("modules_information");
+	let modules_off = loadJsonHandler().modules_off;
 
+	let divModules = document.getElementById("modules");
 	let moduleList = document.createElement("ul");
 	moduleList.className = "list-group sticky-top-4";
 	divModules.appendChild(moduleList);
 
 	for (let i_module = 0; i_module < modules.length; i_module++) {
 		// fill in table of modules with toggles
-		let moduleListItem = document.createElement("li");
-		moduleListItem.className =
-			"list-group-item d-flex justify-content-between align-items-center";
-		moduleListItem.id = modules[i_module].module_id + "Li";
-		moduleList.appendChild(moduleListItem);
+		drawModule(moduleList, modules[i_module], true);
+	}
+	for (let i_module = 0; i_module < modules_off.length; i_module++) {
+		// fill in table of modules with toggles
+		drawModule(moduleList, modules_off[i_module], false);
+	}
+}
 
-		let moduleTitle = document.createElement("h5");
-		moduleTitle.innerHTML = modules[i_module].module_id;
-		moduleListItem.appendChild(moduleTitle);
+function drawModule(moduleList, module, checked) {
+	let divModulesInformation = document.getElementById("modules_information");
 
-		let moduleSpanToggle = document.createElement("div");
-		moduleSpanToggle.className = "checkbox";
-		moduleListItem.appendChild(moduleSpanToggle);
+	let moduleListItem = document.createElement("li");
+	moduleListItem.className =
+		"list-group-item d-flex justify-content-between align-items-center";
+	moduleListItem.id = module.module_id + "Li";
+	moduleList.appendChild(moduleListItem);
 
-		let moduleToggle = document.createElement("input");
-		moduleToggle.type = "checkbox";
-		moduleToggle.id = modules[i_module].module_id;
-		moduleToggle.checked = true;
-		moduleToggle.setAttribute("data-toggle", "toggle");
-		moduleToggle.setAttribute("data-size", "sm");
-		moduleSpanToggle.appendChild(moduleToggle);
+	let moduleTitle = document.createElement("h5");
+	moduleTitle.innerHTML = module.module_id;
+	moduleListItem.appendChild(moduleTitle);
 
-		//init of bootstrap toogles
-		$("#".concat(modules[i_module].module_id)).bootstrapToggle();
+	let moduleSpanToggle = document.createElement("div");
+	moduleSpanToggle.className = "checkbox";
+	moduleListItem.appendChild(moduleSpanToggle);
 
-		let moduleDiv = document.createElement("DIV");
-		moduleDiv.id = modules[i_module].module_id + "Div";
-		moduleDiv.className = "d-none";
-		// moduleDiv.className = "overflow-scroll";
-		// moduleDiv.style.overflowY = "scroll";
+	let moduleToggle = document.createElement("input");
+	moduleToggle.type = "checkbox";
+	moduleToggle.id = module.module_id;
 
-		let moduleHeaderDiv = document.createElement("div");
-		moduleHeaderDiv.className = "custom-card-header sticky-top-4";
-		moduleDiv.appendChild(moduleHeaderDiv);
+	moduleToggle.checked = checked;
+	moduleToggle.setAttribute("data-toggle", "toggle");
+	moduleToggle.setAttribute("data-size", "sm");
+	moduleSpanToggle.appendChild(moduleToggle);
 
-		let moduleTitleDiv = document.createElement("h5");
-		moduleTitleDiv.className = "card-desk-title";
-		moduleTitleDiv.innerHTML = modules[i_module].module_id;
-		moduleHeaderDiv.appendChild(moduleTitleDiv);
+	//init of bootstrap toogles
+	// "#".concat(module.module_id);
+	$(moduleToggle).bootstrapToggle();
 
-		let moduleDescriptionDiv = document.createElement("p");
-		moduleDescriptionDiv.className = "card-desk-description";
-		moduleDescriptionDiv.innerHTML = modules[i_module].description;
-		moduleHeaderDiv.appendChild(moduleDescriptionDiv);
-
-		let moduleMovesDiv = document.createElement("DIV");
-		moduleMovesDiv.className =
-			"module_moves d-flex flex-row flex-wrap justify-content-start";
-		moduleDiv.appendChild(moduleMovesDiv);
-
-		$("#" + modules[i_module].module_id + "Li").click(function () {
-			if (typeof $lastToggledModuleId !== "undefined") {
-				$($lastToggledModuleId).toggleClass("d-none");
-				$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
-				$($lastToggledModuleId).toggleClass("d-none");
-				// console.log($lastToggledModuleId);
-			} else {
-				$lastToggledModuleId = "#" + modules[i_module].module_id + "Div";
-				$("#" + modules[i_module].module_id + "Div").toggleClass("d-none");
-				// console.log($lastToggledModuleId);
-			}
+	$(function () {
+		$(moduleToggle).change(function () {
+			turnModuleOnOff($(this).prop("checked"), $(this).attr("id"));
 		});
+	});
 
-		divModulesInformation.appendChild(moduleDiv);
+	let moduleDiv = document.createElement("DIV");
+	moduleDiv.id = module.module_id + "Div";
+	moduleDiv.className = "d-none";
+	// moduleDiv.className = "overflow-scroll";
+	// moduleDiv.style.overflowY = "scroll";
 
-		for (let i_move = 0; i_move < modules[i_module].moves.length; i_move++) {
-			let moveDiv = document.createElement("DIV");
-			moveDiv.className = "card m-3";
+	let moduleHeaderDiv = document.createElement("div");
+	moduleHeaderDiv.className = "custom-card-header sticky-top-4";
+	moduleDiv.appendChild(moduleHeaderDiv);
 
-			let moveDivBody = document.createElement("DIV");
-			moveDivBody.className = "card-body";
-			moveDiv.appendChild(moveDivBody);
+	let moduleTitleDiv = document.createElement("h5");
+	moduleTitleDiv.className = "card-desk-title";
+	moduleTitleDiv.innerHTML = module.module_id;
+	moduleHeaderDiv.appendChild(moduleTitleDiv);
 
-			let moveTitleDiv = document.createElement("h5");
-			moveTitleDiv.className = "card-title";
-			moveTitleDiv.innerHTML = modules[i_module].moves[i_move].method_name;
-			moveDivBody.appendChild(moveTitleDiv);
+	let moduleDescriptionDiv = document.createElement("p");
+	moduleDescriptionDiv.className = "card-desk-description";
+	moduleDescriptionDiv.innerHTML = module.description;
+	moduleHeaderDiv.appendChild(moduleDescriptionDiv);
 
-			let moveDescriptionDiv = document.createElement("span");
-			moveDescriptionDiv.className = "card-text";
-			moveDescriptionDiv.innerHTML =
-				modules[i_module].moves[i_move].description;
-			moveDivBody.appendChild(moveDescriptionDiv);
+	let moduleMovesDiv = document.createElement("DIV");
+	moduleMovesDiv.className =
+		"module_moves d-flex flex-row flex-wrap justify-content-start";
+	moduleDiv.appendChild(moduleMovesDiv);
 
-			let moveCallsDiv = document.createElement("DIV");
-			moveCallsDiv.className = "move_calls";
-			moveDivBody.appendChild(moveCallsDiv);
+	$("#" + module.module_id + "Li").click(function () {
+		if (typeof $lastToggledModuleId !== "undefined") {
+			$($lastToggledModuleId).toggleClass("d-none");
+			$lastToggledModuleId = "#" + module.module_id + "Div";
+			$($lastToggledModuleId).toggleClass("d-none");
+			// console.log($lastToggledModuleId);
+		} else {
+			$lastToggledModuleId = "#" + module.module_id + "Div";
+			$("#" + module.module_id + "Div").toggleClass("d-none");
+			// console.log($lastToggledModuleId);
+		}
+	});
 
-			moduleMovesDiv.appendChild(moveDiv);
+	divModulesInformation.appendChild(moduleDiv);
 
-			for (
-				let i_call = 0;
-				i_call < modules[i_module].moves[i_move].calls.length;
-				i_call++
-			) {
-				let moveCallDiv = document.createElement("span");
-				moveCallDiv.className = "badge badge-pill badge-primary m-1";
-				moveCallDiv.innerHTML = modules[i_module].moves[i_move].calls[i_call]
-					.toString()
-					.replace(",", " ");
-				moveCallsDiv.appendChild(moveCallDiv);
-			}
+	for (let i_move = 0; i_move < module.moves.length; i_move++) {
+		let moveDiv = document.createElement("DIV");
+		moveDiv.className = "card m-3";
+
+		let moveDivBody = document.createElement("DIV");
+		moveDivBody.className = "card-body";
+		moveDiv.appendChild(moveDivBody);
+
+		let moveTitleDiv = document.createElement("h5");
+		moveTitleDiv.className = "card-title";
+		moveTitleDiv.innerHTML = module.moves[i_move].method_name;
+		moveDivBody.appendChild(moveTitleDiv);
+
+		let moveDescriptionDiv = document.createElement("span");
+		moveDescriptionDiv.className = "card-text";
+		moveDescriptionDiv.innerHTML = module.moves[i_move].description;
+		moveDivBody.appendChild(moveDescriptionDiv);
+
+		let moveCallsDiv = document.createElement("DIV");
+		moveCallsDiv.className = "move_calls";
+		moveDivBody.appendChild(moveCallsDiv);
+
+		moduleMovesDiv.appendChild(moveDiv);
+
+		for (let i_call = 0; i_call < module.moves[i_move].calls.length; i_call++) {
+			let moveCallDiv = document.createElement("span");
+			moveCallDiv.className = "badge badge-pill badge-primary m-1";
+			moveCallDiv.innerHTML = module.moves[i_move].calls[i_call]
+				.toString()
+				.replace(",", " ");
+			moveCallsDiv.appendChild(moveCallDiv);
 		}
 	}
 }
