@@ -30,7 +30,7 @@ class VoicehomeMQTTClient(MQTTClient):
         print('MQTT: New Message:', msg.payload)
         for (module_id, method, subscribing_list) in self.subscriptions:
             if msg.topic in subscribing_list:
-                #print('MQTT: Module', module_id, 'interested.')
+                print('MQTT: Module', module_id, 'interested.')
 
                 try:
                     t = Thread(target=method, args=(msg,))

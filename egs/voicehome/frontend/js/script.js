@@ -1,6 +1,6 @@
 // Global variables
 // var dataTemperature = [];
-var sensorsListFull = [];
+var sensorsListFull = {};
 var dataTemperatureFull = [];
 var dataTemperature = "";
 var dataPressureFull = [];
@@ -10,8 +10,8 @@ var dataIlluminance = "";
 var MAXROOM;
 var page = "home";
 
-var ws_address = "ws://147.228.124.230:8881/websocket";
-// var ws_address = "ws://127.0.0.1:8881/websocket";
+// var ws_address = "ws://147.228.124.230:8881/websocket";
+var ws_address = "ws://127.0.0.1:8881/websocket";
 
 function onBodyLoadModules() {
 	page = "modules";
@@ -24,6 +24,7 @@ function onBodyLoadModules() {
 	console.log("Controller:", get_controller_id());
 
 	fillModules();
+	drawControllersStatus();
 }
 
 function onBodyLoad() {
@@ -35,6 +36,8 @@ function onBodyLoad() {
 	ws.onclose = onSocketClose;
 
 	console.log("Controller:", get_controller_id());
+
+	drawControllersStatus();
 }
 
 function turnModuleOnOff(on, module_id) {
@@ -58,6 +61,8 @@ function onBodyLoadAnalytics() {
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
 
+	drawControllersStatus();
+
 	// request_sensorsList();
 	// request_whole_temperature_data();
 	// request_sensorsList();
@@ -67,6 +72,23 @@ function onBodyLoadAnalytics() {
 
 function onSocketOpen() {
 	console.log("WS client: Websocket opened.");
+}
+
+function drawControllersStatus() {
+	switch (loadJsonHandler().controller_id) {
+		case "keyboard":
+			$("#controllers_status")
+				.attr("src", "/img/controller_icons/keyboard_on.svg")
+				.attr("alt", "keyboard_on");
+			break;
+		case "voicekit":
+			$("#controllers_status")
+				.attr("src", "/img/controller_icons/voicekit_on.svg")
+				.attr("alt", "voicekit_on");
+			break;
+		default:
+			break;
+	}
 }
 
 function onSocketMessage(message) {
@@ -90,6 +112,9 @@ function onSocketMessage(message) {
 		request_whole_pressure_data();
 		request_whole_illuminance_data();
 	}
+	if (data == "Server ready." && page == "home") {
+		request_sensorsStatus();
+	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "sensorsList":
@@ -106,10 +131,11 @@ function onSocketMessage(message) {
 			break;
 		case "whole_illuminance_data":
 			dataIlluminanceFull = data["reply"];
-			// console.log("dataIlluminanceFull=");
-			// console.log(dataIlluminanceFull);
 			break;
-
+		case "sensorsStatus":
+			sensorsStatus = data["reply"];
+			drawSensorsStatus(data["reply"]);
+			break;
 			otherwise: console.log("pass on onSocketMessage");
 	}
 }
@@ -123,6 +149,45 @@ function toggleFilter(element) {
 	} else {
 		sensorsList[key] = sensorsList[key].filter((item) => item.room !== value);
 	}
+}
+
+function drawSensorsStatus(sensorsStatus) {
+	$("#sensors_container").empty();
+	$.each(sensorsStatus, function (i, val) {
+		valDate = new Date(val.timestamp);
+		now = new Date();
+		const diffTime = Math.abs(now - valDate);
+		if (diffTime > 300000) {
+			//longer then 5 min
+			$("#sensors_container").append(
+				'<div><i style="color: red" class="bi bi-dash-circle-fill"></i><span>' +
+					i +
+					"</span><span> <" +
+					val.timestamp +
+					"> <b> the sensor did not responded for 5 minutes </b> </span></div>"
+			);
+			return;
+		}
+		if (val["status"] == "ok") {
+			$("#sensors_container").append(
+				'<div><i style="color: green" class="bi bi-check-circle-fill"></i><span>' +
+					i +
+					"</span><span> <" +
+					val.timestamp +
+					"> </span></div>"
+			);
+			return;
+		} else {
+			$("#sensors_container").append(
+				'<div><i style="color: red" class="bi bi-dash-circle-fill"></i><span>' +
+					i +
+					"</span><span> <" +
+					val.timestamp +
+					"> </span></div>"
+			);
+			return;
+		}
+	});
 }
 
 function drawSensorsList(data) {
@@ -481,6 +546,11 @@ function request_whole_temperature_data() {
 
 function request_whole_pressure_data() {
 	msg = "whole_pressure_data";
+	sendToServer(msg, "voicehome/sensors");
+}
+
+function request_sensorsStatus() {
+	msg = "sensorsStatus";
 	sendToServer(msg, "voicehome/sensors");
 }
 

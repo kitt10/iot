@@ -61,8 +61,11 @@
 				>
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav">
+				<div
+					class="collapse navbar-collapse order-1 dual-collapse2"
+					id="navbarNavDropdown"
+				>
+					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
 							<a class="nav-link active" href="/index.html"
 								>Home
@@ -74,6 +77,21 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="/modules.html">Modules</a>
+						</li>
+					</ul>
+				</div>
+				<div
+					class="collapse navbar-collapse order-2 dual-collapse2"
+					id="navbarNavDropdown"
+				>
+					<ul class="navbar-nav ml-auto text-right">
+						<li class="">
+							<img
+								id="controllers_status"
+								style="width: 40px; margin: 3px"
+								src=""
+								alt=""
+							/>
 						</li>
 					</ul>
 				</div>
@@ -219,33 +237,7 @@
 
 				<div id="sensors_status" class="card col border-5 overflow-auto">
 					<span class="title">Sensors status</span>
-					<div id="sensors_container">
-						<div>
-							<i style="color: green" class="bi bi-check-circle-fill"></i>
-							<span>bme280_1_humidity</span>
-							<span>[2021-01-23 00:58:31]</span>
-						</div>
-						<div>
-							<i style="color: red" class="bi bi-dash-circle-fill"></i>
-							<span>ds18b20_1_temperature</span>
-							<span>[2021-01-23 00:58:31]</span>
-						</div>
-						<div>
-							<i style="color: green" class="bi bi-check-circle-fill"></i>
-							<span>bme280_1_pressure</span>
-							<span>[2021-01-23 00:58:31]</span>
-						</div>
-						<div>
-							<i style="color: green" class="bi bi-check-circle-fill"></i>
-							<span>bme280_1_temperature</span>
-							<span>[2021-01-23 00:58:31]</span>
-						</div>
-						<div>
-							<i style="color: green" class="bi bi-check-circle-fill"></i>
-							<span>bme280_1_humidity</span>
-							<span>[2021-01-23 00:58:31]</span>
-						</div>
-					</div>
+					<div id="sensors_container"></div>
 				</div>
 			</div>
 			<div class="row border-5 card" id="row_3">

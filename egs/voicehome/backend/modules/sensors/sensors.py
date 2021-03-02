@@ -8,6 +8,12 @@ class Sensors(VoicehomeModule):
 
     def __init__(self, engine, dir_path):
         VoicehomeModule.__init__(self, engine, dir_path)
+        self.pattern_value = re.compile("^[a-z]+(_value)$")
+        self.sensorsList = {}
+        self.reloadSensorsList()
+        self.sensorsStatus = {}
+
+
 
     def get_current_temperature(self):
         payload = {
@@ -18,11 +24,19 @@ class Sensors(VoicehomeModule):
         print('Module '+self.id+': command to measure temperature sent.')
 
     def on_mqtt_message(self, msg):
-        print("ted")
         msg=msg.payload.decode('utf8').replace("'", '"')
         msg=json.loads(msg)
-        if msg["key"] == "current_temperature":
-            self.reply(message='Aktuální teplota je: '+str(msg['value']))
+        if "key" in msg.keys():
+            if msg["key"] == "current_temperature":
+                self.reply(message='Aktuální teplota je: '+str(msg['value']))
+                return
+        else:
+            if any(self.pattern_value.match(x) for x in msg.keys()):
+                self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
+                                                                            "timestamp": msg['timestamp']
+                                                                            }
+
+
 
     def on_websocket_message(self, msg):
         print('Module '+self.id+": start sending websocket")
@@ -37,25 +51,21 @@ class Sensors(VoicehomeModule):
             msg['reply'] = self.whole_illuminance_data(msg)
             self.websocket_send(msg)
         if msg['message'] == "sensorsList":
-            msg['reply'] = self.sensorsList(msg)
+            msg['reply'] = self.sensorsList
+            self.websocket_send(msg)
+        if msg['message'] == "sensorsStatus":
+            msg['reply'] = self.sensorsStatus
             self.websocket_send(msg)
         print("Sensors: websocket sended")
         pass
 
-    # call function from string in json
-    # def omg():
-    #     print("hi")
-    # test = eval("omg")
-    # test()
 
-    def sensorsList(self, msg):
+
+    def reloadSensorsList(self):
         print('Module '+self.id+": sensorsList")
         # print(os.getcwd())
         with open('modules/sensors/sensorsList.json') as json_file:
-            data = json.load(json_file)
-            print(data)
-        return data
-        # return 1
+            self.sensorsList = json.load(json_file)
 
     def whole_temperature_data(self, msg):
         print('Module '+self.id+": sending whole temperature data")
