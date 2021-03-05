@@ -5,13 +5,13 @@
 	"websocket_passports": ["music", "radio"],
 	"moves": [
 		{
-			"move_id": "music.play_music",
+			"move_id": "music_01.play_music",
 			"method_name": "play_music",
 			"description": "Send a command via MQTT to start playing music",
 			"calls": [["pusť", "muziku"], ["hraj", "muziku"], ["plej mjuzik"]]
 		},
 		{
-			"move_id": "music.stop_music",
+			"move_id": "music_02.stop_music",
 			"method_name": "stop_music",
 			"description": "Send a command via MQTT to stop playing music.",
 			"calls": [
@@ -20,13 +20,13 @@
 			]
 		},
 		{
-			"move_id": "music.play_radio",
+			"move_id": "music_03.play_radio",
 			"method_name": "play_radio",
 			"description": "Send a command via MQTT to start playing radio",
 			"calls": [["pusť", "rádio"], ["hraj", "rádio"], ["plej rejdiou"]]
 		},
 		{
-			"move_id": "music.stop_radio",
+			"move_id": "music_04.stop_radio",
 			"method_name": "stop_radio",
 			"description": "Send a command via MQTT to stop playing radio",
 			"calls": [
@@ -35,7 +35,7 @@
 			]
 		},
 		{
-			"move_id": "music.shutup",
+			"move_id": "music_05.shutup",
 			"method_name": "shutup",
 			"description": "Send a command via MQTT to stop playing radio and music",
 			"calls": [["buď sticha"], ["ticho"]]

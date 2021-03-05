@@ -1,0 +1,14 @@
+{
+	"module_id": "weather",
+	"description": "Weather system (comming soon)- get forecast for tomorrow, got forecast for today",
+	"mqtt_topics": ["voicehome/weather"],
+	"websocket_passports": ["weather"],
+	"moves": [
+		{
+			"move_id": "weather_01.get_forecast_today",
+			"method_name": "get_forecast_today",
+			"description": "Getting forecast for today by web scratch technic.",
+			"calls": [["dnešní předpověď"], ["předpověď"],["jak dneska bude"]]
+		}
+	]
+}

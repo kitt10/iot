@@ -5,6 +5,14 @@ class Music(VoicehomeModule):
     def __init__(self, engine, dir_path):
         VoicehomeModule.__init__(self, engine, dir_path)
 
+    def on_mqtt_message(self, msg):
+        print('Module ' + self.id + ": start sending mqtt")
+        pass
+
+    def on_websocket_message(self, msg):
+        print('Module '+self.id+": start sending websocket")
+        pass
+
     def play_music(self):
         payload = {
             'type': 'music',

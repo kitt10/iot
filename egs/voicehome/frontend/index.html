@@ -191,13 +191,10 @@
 					style="min-width: 20em"
 					class="border-5 card col-md-3 col-lg-3 col-3 text-center"
 				>
-					<div class="time">
-						<span> 11/05/2021 </span><br />
-						<span> 12:40 </span><br />
-					</div>
+					<div id="time"></div>
 					<div class="weather">
 						<div id="today">
-							<span>Today</span><br />
+							<!-- <span>Today</span><br />
 							<img
 								style="width: 3em; height: 3em"
 								src="/img/weather/sun.svg"
@@ -210,11 +207,11 @@
 								src="/img/weather/umbrella.svg"
 								alt="umbrella"
 							/>
-							<span style="margin: 0">20%</span><br />
+							<span style="margin: 0">20%</span><br /> -->
 						</div>
 
 						<div class="border-top border-3" id="tomorrow">
-							<span>Tomorrow</span><br />
+							<!-- <span>Tomorrow</span><br />
 							<img
 								style="width: 1.7em; height: 1.7 em"
 								src="/img/weather/sun.svg"
@@ -230,7 +227,7 @@
 								src="/img/weather/umbrella.svg"
 								alt="umbrella"
 							/>
-							<span style="margin: 0">20%</span><br />
+							<span style="margin: 0">20%</span><br /> -->
 						</div>
 					</div>
 				</div>
@@ -243,15 +240,15 @@
 			<div class="row border-5 card" id="row_3">
 				<div class="col">
 					<span class="title">Currently measured values</span>
-					<div id="sensors_container">
-						<div class="sensors row">
-							<span class="sensors room">room_1</span><br />
+					<div id="measured_value_container">
+						<div class="sensors row measured_value">
+							<span class="sensors room measured_value">room_1</span><br />
 							<div class="measured_values_item card border-2 col-auto">
 								<span class="card-title text-center title">bme280_1</span><br />
 								<div class="card-body sensors">
 									<span>32°C</span>
 									<img
-										class="sensors"
+										class="sensors measured_value"
 										src="/img/quantity/temperature.svg"
 										alt="temperature"
 									/>
@@ -259,10 +256,10 @@
 							</div>
 							<div class="measured_values_item card border-2 col-auto">
 								<span class="card-title text-center title">bme280_1</span><br />
-								<div class="card-body sensors">
+								<div class="card-body sensors measured_value">
 									<span>980hPa</span>
 									<img
-										class="sensors"
+										class="sensors measured_value"
 										src="/img/quantity/pressure.svg"
 										alt="pressure"
 									/>
@@ -271,25 +268,25 @@
 							<div class="measured_values_item card border-2 col-auto">
 								<span class="card-title text-center title">tsl2591_1</span
 								><br />
-								<div class="card-body sensors">
+								<div class="card-body sensors measured_value">
 									<span>20lx</span>
 									<img
-										class="sensors"
+										class="sensors measured_value"
 										src="/img/quantity/illuminance.svg"
 										alt="illuminance"
 									/>
 								</div>
 							</div>
 						</div>
-						<div class="sensors row">
+						<div class="sensors row measured_value">
 							<span class="sensors room">room_2</span><br />
 							<div class="measured_values_item card border-2 col-auto">
 								<span class="card-title text-center title">ds18b20_1</span
 								><br />
-								<div class="card-body sensors">
+								<div class="card-body sensors measured_value">
 									<span>32°C</span>
 									<img
-										class="sensors"
+										class="sensors measured_value"
 										src="/img/quantity/temperature.svg"
 										alt="temperature"
 									/>

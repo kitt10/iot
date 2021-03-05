@@ -1,6 +1,7 @@
 // Global variables
 // var dataTemperature = [];
 var sensorsListFull = {};
+var sensorsStatus = {};
 var dataTemperatureFull = [];
 var dataTemperature = "";
 var dataPressureFull = [];
@@ -21,8 +22,6 @@ function onBodyLoadModules() {
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
 
-	console.log("Controller:", get_controller_id());
-
 	fillModules();
 	drawControllersStatus();
 }
@@ -34,8 +33,6 @@ function onBodyLoad() {
 	ws.onopen = onSocketOpen;
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
-
-	console.log("Controller:", get_controller_id());
 
 	drawControllersStatus();
 }
@@ -75,7 +72,7 @@ function onSocketOpen() {
 }
 
 function drawControllersStatus() {
-	switch (loadJsonHandler().controller_id) {
+	switch (get_controller_id()) {
 		case "keyboard":
 			$("#controllers_status")
 				.attr("src", "/img/controller_icons/keyboard_on.svg")
@@ -114,14 +111,17 @@ function onSocketMessage(message) {
 	}
 	if (data == "Server ready." && page == "home") {
 		request_sensorsStatus();
+		request_sensorsList();
+		request_webWeatherOWM();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
 		case "sensorsList":
-			console.log(data["reply"]);
 			sensorsList = Object.assign({}, data["reply"]);
 			sensorsListFull = Object.assign({}, data["reply"]);
-			drawSensorsList(sensorsList);
+			if (page == "analytics") {
+				drawSensorsList(sensorsList);
+			}
 			break;
 		case "whole_temperature_data":
 			dataTemperatureFull = data["reply"];
@@ -132,11 +132,24 @@ function onSocketMessage(message) {
 		case "whole_illuminance_data":
 			dataIlluminanceFull = data["reply"];
 			break;
+		case "webWeatherOWM":
+			webWeatherOWM = data["reply"];
+			drawWebWeatherOWM();
+			break;
 		case "sensorsStatus":
 			sensorsStatus = data["reply"];
 			drawSensorsStatus(data["reply"]);
 			break;
 			otherwise: console.log("pass on onSocketMessage");
+	}
+
+	//if is home and sensorsListFull && sensorsStatus already came
+	if (
+		page == "home" &&
+		!jQuery.isEmptyObject(sensorsListFull) &&
+		!jQuery.isEmptyObject(sensorsStatus)
+	) {
+		drawCurrentlyMeasuredValue();
 	}
 }
 
@@ -151,6 +164,141 @@ function toggleFilter(element) {
 	}
 }
 
+function drawWebWeatherOWM() {
+	webWeatherOWM;
+	let unix_timestamp = webWeatherOWM.current_time;
+	// Create a new JavaScript Date object based on the timestamp
+	// multiplied by 1000 so that the argument is in milliseconds, not seconds.
+	date = new Date(unix_timestamp * 1000);
+	date_dd = String(date.getDate()).padStart(2, "0");
+	date_mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
+	date_yyyy = date.getFullYear();
+
+	date_full_date = date_dd + "/" + date_mm + "/" + date_yyyy;
+
+	$("#time").empty();
+	$("#time").append(
+		$("<span></span>").text(date_full_date),
+		$("</br>"),
+		$("<span></span>").text(date.getHours() + ":" + date.getMinutes())
+	);
+	$("#today").empty();
+	$("#today").append(
+		$("<span></span>").text("Today"),
+		$("</br>"),
+		$("<img/>")
+			.attr("style", "width: 3em; height: 3em")
+			.attr("src", "/img/weather/" + webWeatherOWM.today_icon + ".svg")
+			.attr("alt", "icon " + webWeatherOWM.today_icon),
+		$("<span></span>").text(webWeatherOWM.current_temperature),
+		$("<span></span>").text(
+			webWeatherOWM.today_temperature_day +
+				"°C/" +
+				webWeatherOWM.today_temperature_night +
+				"°C"
+		),
+		$(
+			'<img style="width: 2em; height: 2em; margin: 0; margin-left: 25px" src="/img/weather/umbrella.svg" alt="umbrella"/>'
+		),
+		$("<span></span>").text(webWeatherOWM.today_rain + "mm/h")
+	);
+	$("#tomorrow").empty();
+	$("#tomorrow").append(
+		$("<span></span>").text("Tomorrow"),
+		$("</br>"),
+		$("<img/>")
+			.attr("style", "width: 1.7em; height: 1.7 em")
+			.attr("src", "/img/weather/" + webWeatherOWM.tomorrow_icon + ".svg")
+			.attr("alt", webWeatherOWM.tomorrow_icon),
+		$("<span></span>").text(
+			webWeatherOWM.tomorrow_temperature_day +
+				"°C/" +
+				webWeatherOWM.tomorrow_temperature_night +
+				"°C"
+		),
+		$(
+			'<img style="width: 1.3em;eight: 1.3em;margin: 0;margin-left: 25px;" src="/img/weather/umbrella.svg" alt="umbrella"/>'
+		),
+		$("<span></span>").text(webWeatherOWM.tomorrow_rain + "mm/h")
+	);
+}
+
+function drawCurrentlyMeasuredValue() {
+	$("#measured_value_container").empty();
+	rooms = [];
+	console.log("drawCurrentlyMeasuredValue");
+	// for (const [key, value] of Object.entries(sensorsListFull)) {
+	// 	if (Array.isArray(value)) {
+	// 		//just quantity are array
+	// 		value.forEach((element) => {
+	// 			if (typeof element !== "undefined") {
+	// 				if (rooms.includes(element.room) == false) {
+	// 					rooms.push(element.room);
+	// 					$("#measured_value_container").append(
+	// 						$("<div/>")
+	// 							.addClass("sensors row measured_value")
+	// 							.attr("id", element.room)
+	// 					);
+	// 					$(".sensors.row.measured_value#" + element.room).append(
+	// 						$("<span></span>")
+	// 							.addClass("sensors room measured_value")
+	// 							.text(element.room)
+	// 					);
+	// 				}
+	// 				$(".sensors.row.measured_value#" + element.room).append(
+	// 					$("<div/>")
+	// 						.addClass("measured_values_item card border-2 col-auto")
+	// 						.append(
+	// 							$("<span></span>")
+	// 								.addClass("card-title text-center title")
+	// 								.text(element.sensor_id),
+	// 							$("<div/>")
+	// 								.addClass("card-body sensors measured_value")
+	// 								.attr("id", element.sensor_id + " " + element.room)
+	// 								.append($("<span></span").text())
+	// 						)
+	// 				);
+	// 			}
+	// 		});
+	// 	}
+	// }
+
+	for (const [key, value] of Object.entries(sensorsStatus)) {
+		if (rooms.includes(value.location) == false) {
+			rooms.push(value.location);
+			$("#measured_value_container").append(
+				$("<div/>")
+					.addClass("sensors row measured_value")
+					.attr("id", value.location)
+			);
+			$(".sensors.row.measured_value#" + value.location).append(
+				$("<span></span>")
+					.addClass("sensors room measured_value")
+					.text(value.location)
+			);
+		}
+		$(".sensors.row.measured_value#" + value.location).append(
+			$("<div/>")
+				.addClass("measured_values_item card border-2 col-auto")
+				.append(
+					$("<span></span>")
+						.addClass("card-title text-center title")
+						.text(value.sensor_id),
+					$("<div/>")
+						.addClass("card-body sensors measured_value")
+						.attr("id", value.sensor_id + " " + value.location)
+						.append(
+							$("<span></span").text(value.value),
+							$("<img/>")
+								.addClass("sensors measured_value")
+								.attr("src", "/img/quantity/" + key.split("-")[1] + ".svg")
+								.attr("alt", key.split("-")[1])
+						)
+				)
+		);
+	}
+}
+
 function drawSensorsStatus(sensorsStatus) {
 	$("#sensors_container").empty();
 	$.each(sensorsStatus, function (i, val) {
@@ -162,7 +310,7 @@ function drawSensorsStatus(sensorsStatus) {
 			$("#sensors_container").append(
 				'<div><i style="color: red" class="bi bi-dash-circle-fill"></i><span>' +
 					i +
-					"</span><span> <" +
+					+"</span><span> <" +
 					val.timestamp +
 					"> <b> the sensor did not responded for 5 minutes </b> </span></div>"
 			);
@@ -541,27 +689,32 @@ function onSocketClose() {
 
 function request_whole_temperature_data() {
 	msg = "whole_temperature_data";
-	sendToServer(msg, "voicehome/sensors");
+	sendToServer(msg, "sensors");
 }
 
 function request_whole_pressure_data() {
 	msg = "whole_pressure_data";
-	sendToServer(msg, "voicehome/sensors");
+	sendToServer(msg, "sensors");
 }
 
 function request_sensorsStatus() {
 	msg = "sensorsStatus";
-	sendToServer(msg, "voicehome/sensors");
+	sendToServer(msg, "sensors");
 }
 
 function request_whole_illuminance_data() {
 	msg = "whole_illuminance_data";
-	sendToServer(msg, "voicehome/sensors");
+	sendToServer(msg, "sensors");
 }
 
 function request_sensorsList() {
 	msg = "sensorsList";
-	sendToServer(msg, "voicehome/sensors");
+	sendToServer(msg, "sensors");
+}
+
+function request_webWeatherOWM() {
+	msg = "webWeatherOWM";
+	sendToServer(msg, "weather");
 }
 
 function sendToServer(message, passport = "") {
@@ -584,10 +737,18 @@ function loadJsonHandler() {
 	return JSON.parse(xmlhttp.responseText);
 }
 
+function getModules() {
+	return loadJsonHandler().modules;
+}
+
+function getModules_off() {
+	return loadJsonHandler().modules_off;
+}
+
 function fillModules() {
 	console.log("Loading modules");
-	let modules = loadJsonHandler().modules;
-	let modules_off = loadJsonHandler().modules_off;
+	let modules = getModules();
+	let modules_off = getModules_off();
 
 	let divModules = document.getElementById("modules");
 	let moduleList = document.createElement("ul");

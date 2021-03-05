@@ -101,7 +101,7 @@ div.measured_values_item {
 	margin-top: 30px;
 }
 
-div.sensors.row {
+div.sensors.row.measured_value {
 	margin: 10px;
 }
 
@@ -113,11 +113,11 @@ main.container {
 	min-width: 90%;
 }
 
-div.card-body.sensors {
+div.card-body.sensors.measured_value {
 	font-size: 2.5em;
 }
 
-span.sensors.room {
+span.sensors.room.measured_value {
 	font-size: 1.3em;
 }
 
@@ -126,7 +126,7 @@ div.border-5 {
 	border-width: 5px;
 }
 
-img.sensors {
+img.sensors.measured_value {
 	width: 70px;
 }
 

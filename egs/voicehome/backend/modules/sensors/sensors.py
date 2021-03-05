@@ -31,10 +31,17 @@ class Sensors(VoicehomeModule):
                 self.reply(message='Aktuální teplota je: '+str(msg['value']))
                 return
         else:
-            if any(self.pattern_value.match(x) for x in msg.keys()):
-                self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
-                                                                            "timestamp": msg['timestamp']
-                                                                            }
+            if any((match:=self.pattern_value.match(x)) for x in msg.keys()):
+                self.sensorsStatus[msg['sensor_id']+"-"+match.string.split("_")[0]] = {"status": msg['status'],
+                                                        "timestamp": msg['timestamp'],
+                                                        "quantity":msg["quantity"],
+                                                                                       "sensor_id":msg["sensor_id"],
+                                                                                       "location":msg["location"],
+                                                                                       "value":msg[match.string]
+                                                        }
+                # self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
+                #                                                             "timestamp": msg['timestamp']
+                #                                                             }
 
 
 

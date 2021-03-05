@@ -40,4 +40,9 @@ class System(VoicehomeModule):
         self.websocket_send(msg=testing_payload)
 
     def on_mqtt_message(self, msg):
-        print('Module '+self.id+': Got MQTT message:', msg.payload)
+        print('Module ' + self.id + ": start sending mqtt")
+        pass
+
+    def on_websocket_message(self, msg):
+        print('Module ' + self.id + ": start sending websocket")
+        pass

@@ -7,6 +7,14 @@ class Time(VoicehomeModule):
     def __init__(self, engine, dir_path):
         VoicehomeModule.__init__(self, engine, dir_path)
 
+    def on_mqtt_message(self, msg):
+        print('Module ' + self.id + ": start sending mqtt")
+        pass
+
+    def on_websocket_message(self, msg):
+        print('Module ' + self.id + ": start sending websocket")
+        pass
+
     def get_time(self):
         now = datetime.datetime.now()
         reply = f"Právě je {now.hour} hodin {now.minute} minut a {now.second} sekund"

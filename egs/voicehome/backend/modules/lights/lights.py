@@ -28,7 +28,9 @@ class Lights(VoicehomeModule):
         self.mqtt_publish(topic='voicehome/lights/led', payload=payload)
 
     def on_mqtt_message(self, msg):
+        print('Module ' + self.id + ": start sending mqtt")
         pass
 
     def on_websocket_message(self, msg):
+        print('Module ' + self.id + ": start sending websocket")
         pass
