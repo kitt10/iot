@@ -11,8 +11,8 @@ var dataIlluminance = "";
 var MAXROOM;
 var page = "home";
 
-// var ws_address = "ws://147.228.124.230:8881/websocket";
-var ws_address = "ws://127.0.0.1:8881/websocket";
+var ws_address = "ws://147.228.124.230:8881/websocket";
+// var ws_address = "ws://127.0.0.1:8881/websocket";
 
 function onBodyLoadModules() {
 	page = "modules";
