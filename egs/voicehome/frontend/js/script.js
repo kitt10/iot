@@ -191,6 +191,7 @@ function drawWebWeatherOWM() {
 			.attr("src", "/img/weather/" + webWeatherOWM.today_icon + ".svg")
 			.attr("alt", "icon " + webWeatherOWM.today_icon),
 		$("<span></span>").text(webWeatherOWM.current_temperature),
+		$("</br>"),
 		$("<span></span>").text(
 			webWeatherOWM.today_temperature_day +
 				"°C/" +
