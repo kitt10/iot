@@ -13,40 +13,39 @@ class Sensors(VoicehomeModule):
         self.reloadSensorsList()
         self.sensorsStatus = {}
 
-
-
     def get_current_temperature(self):
         payload = {
             'command': 'measure_now',
             'quantity': 'temperature'
         }
         self.mqtt_publish(topic='voicehome/sensors/commands', payload=payload)
-        print('Module '+self.id+': command to measure temperature sent.')
+        print('Module ' + self.id + ': command to measure temperature sent.')
 
     def on_mqtt_message(self, msg):
-        msg=msg.payload.decode('utf8').replace("'", '"')
-        msg=json.loads(msg)
+        msg = msg.payload.decode('utf8').replace("'", '"')
+        msg = json.loads(msg)
         if "key" in msg.keys():
             if msg["key"] == "current_temperature":
-                self.reply(message='Aktuální teplota je: '+str(msg['value']))
+                self.reply(message='Aktuální teplota je: ' + str(msg['value']))
                 return
         else:
-            if any((match:=self.pattern_value.match(x)) for x in msg.keys()):
-                self.sensorsStatus[msg['sensor_id']+"-"+match.string.split("_")[0]] = {"status": msg['status'],
-                                                        "timestamp": msg['timestamp'],
-                                                        "quantity":msg["quantity"],
-                                                                                       "sensor_id":msg["sensor_id"],
-                                                                                       "location":msg["location"],
-                                                                                       "value":msg[match.string]
-                                                        }
-                # self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
-                #                                                             "timestamp": msg['timestamp']
-                #                                                             }
-
-
+            for x in msg.keys():
+                x_match = self.pattern_value.match(x)
+                if (x_match):
+                    self.sensorsStatus[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"status": msg['status'],
+                                                                                               "timestamp": msg['timestamp'],
+                                                                                               "quantity": msg["quantity"],
+                                                                                               "sensor_id": msg["sensor_id"],
+                                                                                               "location": msg["location"],
+                                                                                               "value": msg[x_match.string]
+                                                                                               }
+                    # self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
+                    #                                                             "timestamp": msg['timestamp']
+                    #                                                             }
+                    break
 
     def on_websocket_message(self, msg):
-        print('Module '+self.id+": start sending websocket")
+        print('Module ' + self.id + ": start sending websocket")
         print(msg)
         if msg['message'] == "whole_temperature_data":
             msg['reply'] = self.whole_temperature_data(msg)
@@ -66,16 +65,14 @@ class Sensors(VoicehomeModule):
         print("Sensors: websocket sended")
         pass
 
-
-
     def reloadSensorsList(self):
-        print('Module '+self.id+": sensorsList")
+        print('Module ' + self.id + ": sensorsList")
         # print(os.getcwd())
         with open('modules/sensors/sensorsList.json') as json_file:
             self.sensorsList = json.load(json_file)
 
     def whole_temperature_data(self, msg):
-        print('Module '+self.id+": sending whole temperature data")
+        print('Module ' + self.id + ": sending whole temperature data")
         query = {'key': 'voicehome/sensors/temperature'}
         res = self.search_mongo(self.id, query)
         buffer = []
@@ -86,7 +83,7 @@ class Sensors(VoicehomeModule):
         return buffer
 
     def whole_illuminance_data(self, msg):
-        print('Module '+self.id+": sending whole illuminance data")
+        print('Module ' + self.id + ": sending whole illuminance data")
         query = {'key': 'voicehome/sensors/illuminance'}
         res = self.search_mongo(self.id, query)
         buffer = []
@@ -155,7 +152,7 @@ class Sensors(VoicehomeModule):
     #     return buffer
 
     def whole_pressure_data(self, msg):
-        print('Module '+self.id+": sending whole pressure data")
+        print('Module ' + self.id + ": sending whole pressure data")
         query = {'key': 'voicehome/sensors/pressure'}
         res = self.search_mongo(self.id, query)
         buffer = []
