@@ -53,19 +53,14 @@ class Weather(VoicehomeModule):
             "tomorrow_temperature_night": data_owm["daily"][1]['temp']['night']
         }
         if 'rain' in data_owm["daily"][1].keys():
-            print('ano')
             buffer["tomorrow_rain"]= data_owm["daily"][1]['rain']
         else:
-            print('ne')
             buffer["tomorrow_rain"]= '0'
 
         if 'rain' in data_owm["daily"][0].keys():
             buffer["today_rain"]= data_owm["daily"][0]['rain']
         else:
             buffer["today_rain"]= '0'
-
-
-        print(buffer)
 
         print('Module ' + self.id + ": ending sending webWeather from OWM")
         return buffer

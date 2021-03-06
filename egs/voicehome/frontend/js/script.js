@@ -176,11 +176,23 @@ function drawWebWeatherOWM() {
 
 	date_full_date = date_dd + "/" + date_mm + "/" + date_yyyy;
 
+	if (date.getHours() < 10) {
+		data_full_hours = "0" + date.getHours().toString();
+	} else {
+		data_full_hours = date.getHours().toString();
+	}
+
+	if (date.getMinutes() < 10) {
+		data_full_minutes = "0" + date.getMinutes().toString();
+	} else {
+		data_full_minutes = date.getMinutes().toString();
+	}
+
 	$("#time").empty();
 	$("#time").append(
 		$("<span></span>").text(date_full_date),
 		$("</br>"),
-		$("<span></span>").text(date.getHours() + ":" + date.getMinutes())
+		$("<span></span>").text(data_full_hours + ":" + data_full_minutes)
 	);
 	$("#today").empty();
 	$("#today").append(
@@ -190,7 +202,7 @@ function drawWebWeatherOWM() {
 			.attr("style", "width: 3em; height: 3em")
 			.attr("src", "/img/weather/" + webWeatherOWM.today_icon + ".svg")
 			.attr("alt", "icon " + webWeatherOWM.today_icon),
-		$("<span></span>").text(webWeatherOWM.current_temperature),
+		$("<span></span>").text(webWeatherOWM.current_temperature + "°C"),
 		$("</br>"),
 		$("<span></span>").text(
 			webWeatherOWM.today_temperature_day +
