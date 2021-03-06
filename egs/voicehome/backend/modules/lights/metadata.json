@@ -66,9 +66,7 @@
 			"method_name": "ESP_turn_on_light_onboard_2",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["zapni", "vestavěnou", "ledku","ESP 2"],
-				["rozsviť", "ledku","ESP 2"],
-				["led", "on","ESP 2"]
+				["on","ESP 2"]
 			]
 		},
 		{
@@ -76,10 +74,7 @@
 			"method_name": "ESP_turn_off_light_onboard_2",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["zhasni", "vestavěnou", "ledku","ESP 2"],
-				["zhasni", "ledku","ESP 2"],
-				["vypni", "ledku","ESP 2"],
-				["led", "off","ESP 2"]
+				["off","ESP 2"]
 			]
 		},
 		{
@@ -87,9 +82,7 @@
 			"method_name": "ESP_turn_on_light_onboard_3",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["zapni", "vestavěnou", "ledku","ESP 3"],
-				["rozsviť", "ledku","ESP 3"],
-				["led", "on","ESP 3"]
+				[ "on","ESP 3"]
 			]
 		},
 		{
@@ -97,10 +90,7 @@
 			"method_name": "ESP_turn_off_light_onboard_3",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["zhasni", "vestavěnou", "ledku","ESP 3"],
-				["zhasni", "ledku","ESP 3"],
-				["vypni", "ledku","ESP 3"],
-				["led", "off","ESP 3"]
+				["off","ESP 3"]
 			]
 		}
 	]
