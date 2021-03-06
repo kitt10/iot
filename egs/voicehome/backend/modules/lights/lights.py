@@ -61,13 +61,13 @@ class Lights(VoicehomeModule):
 
     def ESP_turn_off_light_onboard_1(self):
         print('Module ' + self.id + ": turning ESP id = 1 onboard light off")
-        self.ESP_turn_on_light_onboard(1)
+        self.ESP_turn_off_light_onboard(1)
 
     def ESP_turn_off_light_onboard_2(self):
-        self.ESP_turn_on_light_onboard(2)
+        self.ESP_turn_off_light_onboard(2)
 
     def ESP_turn_off_light_onboard_3(self):
-        self.ESP_turn_on_light_onboard(3)
+        self.ESP_turn_off_light_onboard(3)
 
     def turn_on_ESP_onboard_led(self):
         self.ESP_turn_on_light_onboard('all')
