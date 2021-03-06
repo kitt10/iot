@@ -32,7 +32,7 @@
 			"calls": [
 				["zapni","obýváku", "světlo"],
 				["rozsviť","obýváku", "světlo"],
-				["light 1", "on"]
+				["on","light 1"]
 			]
 		},
 		{
@@ -42,7 +42,7 @@
 			"calls": [
 				["vypni","obýváku", "světlo"],
 				["zhasni","obýváku", "světlo"],
-				["light 1", "off"]
+				["off","light 1"]
 			]
 		},
 		{
