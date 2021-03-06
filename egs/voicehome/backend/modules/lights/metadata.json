@@ -5,9 +5,9 @@
 	"websocket_passports": ["lights"],
 	"moves": [
 		{
-			"move_id": "lights_01.turn_ESP_onboard_led_on",
-			"method_name": "turn_ESP_onboard_led_on",
-			"description": "Switch on the onboard LED.",
+			"move_id": "lights_01.turn_on_ESP_onboard_led",
+			"method_name": "turn_on_ESP_onboard_led",
+			"description": "Turn on the onboard LED.",
 			"calls": [
 				["zapni", "vestavěnou", "ledku"],
 				["rozsviť", "ledku"],
@@ -15,14 +15,34 @@
 			]
 		},
 		{
-			"move_id": "lights_02.turn_ESP_onboard_led_off",
-			"method_name": "turn_ESP_onboard_led_off",
-			"description": "Switch off the onboard LED.",
+			"move_id": "lights_02.turn_off_ESP_onboard_led",
+			"method_name": "turn_off_ESP_onboard_led",
+			"description": "Turn off the onboard LED.",
 			"calls": [
 				["zhasni", "vestavěnou", "ledku"],
 				["zhasni", "ledku"],
 				["vypni", "ledku"],
 				["led", "off"]
+			]
+		},
+		{
+			"move_id": "lights_03.ESP_turn_on_light_1",
+			"method_name": "ESP_turn_on_light_1",
+			"description": "Turning on light 1",
+			"calls": [
+				["zapni","obýváku", "světlo"],
+				["rozsviť","obýváku", "světlo"],
+				["light 1", "on"]
+			]
+		},
+		{
+			"move_id": "lights_03.ESP_turn_off_light_1",
+			"method_name": "ESP_turn_off_light_1",
+			"description": "Turning off light 1",
+			"calls": [
+				["vypni","obýváku", "světlo"],
+				["zhasni","obýváku", "světlo"],
+				["light 1", "off"]
 			]
 		}
 	]

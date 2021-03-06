@@ -3,6 +3,8 @@
 
 import time
 import machine
+import ntptime
+import utime
 import usocket
 from json import dumps, loads
 from ntptime import settime
@@ -78,7 +80,7 @@ class Client:
                                      'quantity': config.MQTT['QUANTITY_TEMPERATURE'],
                                      'location': config.MQTT['LOCATION'],
                                      'owner': config.MQTT['OWNER']}
-
+        print(msg_structure_temperature)
         self.mqtt_msg(msg_structure_temperature,
                       config.MQTT['TOPIC_TEMPERATURE'])
 
@@ -103,17 +105,18 @@ class Client:
             msg = loads(msg)
             if topic == bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']):
                 if msg['type'] == 'ESP_onboard':
-                    if msg['ID'] == config.MQTT['ESP_ID']:
+                    if msg['ID'] == config.MQTT['ESP_ID'] or msg['ID'] == 'all':
                         if msg['set'] == 1:
                             self.ESPled.value(0)
                         elif msg['set'] == 0:
                             self.ESPled.value(1)
                 if msg['type'] == 'light':
                     if msg['ID'] in config.MQTT['LightsID']:
-                        if msg['set'] == 1:
-                            self.light1.value(0)
-                        elif msg['set'] == 0:
-                            self.light1.value(1)
+                        if msg['ID'] ==1:
+                            if msg['set'] == 1:
+                                self.light1.value(0)
+                            elif msg['set'] == 0:
+                                self.light1.value(1)
             elif 'command' in msg:
                 if msg['command'] == 'measure_now':
                     if msg['quantity'] == 'temperature':
@@ -156,7 +159,7 @@ class Client:
         print("publish")
         try:
             try:
-                a = usocket.getaddrinfo('8.8.8.8',80)[0][-1]
+                # a = usocket.getaddrinfo('8.8.8.8',80)[0][-1]
                 settime()
             except:
                 print('Exception in usocket get www.google.com')

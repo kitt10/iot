@@ -2,7 +2,6 @@
 # coding: utf-8
 import time
 import gc
-import machine
 from mqttclient import Client
 
 # initialization
