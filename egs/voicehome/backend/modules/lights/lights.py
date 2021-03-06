@@ -42,38 +42,38 @@ class Lights(VoicehomeModule):
 
     def ESP_turn_on_light_1(self):
         print('Module ' + self.id + ": turning light 1 on")
-        self.ESP_turn_light_on(1)
+        self.ESP_turn_on_light(1)
         self.reply('Rozsvicuji světlo 1')
 
     def ESP_turn_off_light_1(self):
         print('Module ' + self.id + ": turning light 1 off")
-        self.ESP_turn_light_off(1)
+        self.ESP_turn_off_light(1)
 
     def ESP_turn_on_light_onboard_1(self):
-        self.ESP_turn_light_on_onboard(1)
+        self.ESP_turn_on_light_onboard(1)
 
     def ESP_turn_on_light_onboard_2(self):
         print('Module ' + self.id + ": turning ESP id = 1 onboard light on")
-        self.ESP_turn_light_on_onboard(2)
+        self.ESP_turn_on_light_onboard(2)
 
     def ESP_turn_on_light_onboard_3(self):
-        self.ESP_turn_light_on_onboard(3)
+        self.ESP_turn_on_light_onboard(3)
 
     def ESP_turn_off_light_onboard_1(self):
         print('Module ' + self.id + ": turning ESP id = 1 onboard light off")
-        self.ESP_turn_light_on_onboard(1)
+        self.ESP_turn_on_light_onboard(1)
 
     def ESP_turn_off_light_onboard_2(self):
-        self.ESP_turn_light_on_onboard(2)
+        self.ESP_turn_on_light_onboard(2)
 
     def ESP_turn_off_light_onboard_3(self):
-        self.ESP_turn_light_on_onboard(3)
+        self.ESP_turn_on_light_onboard(3)
 
     def turn_on_ESP_onboard_led(self):
-        self.ESP_turn_light_on_onboard('all')
+        self.ESP_turn_on_light_onboard('all')
 
     def turn_off_ESP_onboard_led(self):
-        self.ESP_turn_light_off_onboard('all')
+        self.ESP_turn_off_light_onboard('all')
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
