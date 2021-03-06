@@ -50,9 +50,7 @@
 			"method_name": "ESP_turn_on_light_onboard_1",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["zapni", "vestavěnou", "ledku","ESP 1"],
-				["rozsviť", "ledku","ESP 1"],
-				["led", "on","ESP 1"]
+				["on","esp 1"]
 			]
 		},
 		{
@@ -60,10 +58,7 @@
 			"method_name": "ESP_turn_off_light_onboard_1",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["zhasni", "vestavěnou", "ledku","ESP 1"],
-				["zhasni", "ledku","ESP 1"],
-				["vypni", "ledku","ESP 1"],
-				["led", "off","ESP 1"]
+				["off","esp 1"]
 			]
 		},
 		{
