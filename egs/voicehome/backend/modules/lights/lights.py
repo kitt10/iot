@@ -69,12 +69,10 @@ class Lights(VoicehomeModule):
         self.ESP_turn_light_on_onboard(3)
 
     def turn_ESP_onboard_led_on(self):
-        for esp in self.lightsList['ESP_ID']:
-            self.ESP_turn_light_on_onboard(esp['ID'])
+        self.ESP_turn_light_on_onboard('all')
 
     def turn_ESP_onboard_led_off(self):
-        for esp in self.lightsList['ESP_ID']:
-            self.ESP_turn_light_off_onboard(esp['ID'])
+        self.ESP_turn_light_off_onboard('all')
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")

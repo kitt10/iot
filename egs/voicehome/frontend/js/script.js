@@ -325,7 +325,7 @@ function drawSensorsStatus(sensorsStatus) {
 					i +
 					+"</span><span> <" +
 					val.timestamp +
-					"> <b> the sensor did not responded for 5 minutes </b> </span></div>"
+					"> <b> Sensor did not responded for more than 5 minutes </b> </span></div>"
 			);
 			return;
 		}
