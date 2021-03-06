@@ -11,7 +11,7 @@ class Lights(VoicehomeModule):
     def ESP_turn_light_on_onboard(self, ESP_ID):
         payload = {
             'ID':ESP_ID,
-            'led_id': 'ESP_onboard',
+            'type': 'ESP_onboard',
             'set': 1
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
@@ -19,7 +19,7 @@ class Lights(VoicehomeModule):
     def ESP_turn_light_off_onboard(self, ESP_ID):
         payload = {
             'ID':ESP_ID,
-            'led_id': 'ESP_onboard',
+            'type': 'ESP_onboard',
             'set': 0
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
@@ -27,7 +27,7 @@ class Lights(VoicehomeModule):
     def ESP_turn_light_on(self, light_ID):
         payload = {
             'ID':light_ID,
-            'led_id': 'light',
+            'type': 'light',
             'set': 1
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
@@ -35,7 +35,7 @@ class Lights(VoicehomeModule):
     def ESP_turn_light_off(self, light_ID):
         payload = {
             'ID':light_ID,
-            'led_id': 'light',
+            'type': 'light',
             'set': 0
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
