@@ -5,8 +5,8 @@
 	"websocket_passports": ["lights"],
 	"moves": [
 		{
-			"move_id": "lights_01.turn_led_on",
-			"method_name": "turn_led_on",
+			"move_id": "lights_01.turn_ESP_onboard_led_on",
+			"method_name": "turn_ESP_onboard_led_on",
 			"description": "Switch on the onboard LED.",
 			"calls": [
 				["zapni", "vestavěnou", "ledku"],
@@ -15,24 +15,14 @@
 			]
 		},
 		{
-			"move_id": "lights_02.turn_led_off",
-			"method_name": "turn_led_off",
+			"move_id": "lights_02.turn_ESP_onboard_led_off",
+			"method_name": "turn_ESP_onboard_led_off",
 			"description": "Switch off the onboard LED.",
 			"calls": [
 				["zhasni", "vestavěnou", "ledku"],
 				["zhasni", "ledku"],
 				["vypni", "ledku"],
 				["led", "off"]
-			]
-		},
-		{
-			"move_id": "lights_03.binking_led",
-			"method_name": "binking_led",
-			"description": " (comming soon) Blink the onboard LED.",
-			"calls": [
-				["zablikej", "vestavěnou", "ledkou"],
-				["zablikej", "ledkou"],
-				["led", "blink"]
 			]
 		}
 	]

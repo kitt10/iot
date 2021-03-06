@@ -2,6 +2,7 @@
 # coding: utf-8
 import time
 import gc
+import machine
 from mqttclient import Client
 
 # initialization
@@ -11,6 +12,7 @@ gc.disable()
 # gc.enable()
 gc.collect()
 mqtt_client.connect()
+
 
 # main loop
 while True:
@@ -24,6 +26,7 @@ while True:
     mqtt_client.subscribe()
     # publish value every minute
     if(mqtt_client.last_minute_sent != mqtt_client.get_min() and mqtt_client.get_sec() in range(20, 23)):
+
         mqtt_client.publish()
         mqtt_client.measure_temperature_now = False
     # except:

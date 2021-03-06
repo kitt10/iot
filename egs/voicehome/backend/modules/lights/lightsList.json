@@ -1,0 +1,22 @@
+{
+   "ESP_ID": [
+     {
+       "ID": 1,
+       "description": "prvni ESP"
+     },
+     {
+       "ID": 2,
+       "description": "druhe ESP"
+     },
+     {
+       "ID": 3,
+       "description": "treti ESP"
+     }
+   ],
+  "LightsID": [
+    {
+      "ID": 1,
+      "description": "obyvaci pokoj"
+    }
+  ]
+}

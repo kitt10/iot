@@ -22,8 +22,9 @@ class Client:
         self.measure_temperature_now = False
         self.measure_temperature_now_last_msg = ''
 
-        self.led = Pin(2, Pin.OUT, value=1)
-        self.state = 0
+        self.ESPled = Pin(2, Pin.OUT, value=1)
+
+        light1 = machine.Pin(15, machine.Pin.OUT)
 
         try:
             self.tempSensorDS = tempSensorDS(pin_nb=0)
@@ -99,42 +100,40 @@ class Client:
     def connect(self):
         def sub_cb(topic, msg):
             print((topic, msg))
-            msg1 = loads(msg)
-            if 'command' in msg1:
-                if msg1['command'] == 'measure_now':
-                    if msg1['quantity'] == 'temperature':
+            msg = loads(msg)
+            if topic == bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']):
+                if msg['type'] == 'ESP_onboard':
+                    if msg['ID'] == config.MQTT['ESP_ID']:
+                        if msg['set'] == 1:
+                            self.ESPled.value(0)
+                        elif msg['set'] == 0:
+                            self.ESPled.value(1)
+                if msg['type'] == 'light':
+                    if msg['ID'] in config.MQTT['LightsID']:
+                        if msg['set'] == 1:
+                            self.light1.value(0)
+                        elif msg['set'] == 0:
+                            self.light1.value(1)
+            elif 'command' in msg:
+                if msg['command'] == 'measure_now':
+                    if msg['quantity'] == 'temperature':
                         print('merim loool')
                         self.measure_temperature_now = True
-                        measure_temperature_now_last_msg = msg1
+                        measure_temperature_now_last_msg = msg
                         self.send2broker_current_temperature()
-            if 'led_id' in msg1:
-                if msg1['led_id'] == 'onboard':
-                    if msg1['set'] == 1:
-                        self.led.value(0)
-                        self.state = 1
-                        print("1")
-                    elif msg1['set'] == 0:
-                        self.led.value(1)
-                        self.state = 0
-                        print("0")
-                    elif msg == b"toggle":
-                        # LED is inversed, so setting it to current state
-                        # value will make it toggle
-                        self.led.value(self.state)
-                        self.state = 1 - self.state
-                        print("toggle")
+
         self.client.set_callback(sub_cb)
         try:
             self.client.connect()
         except:
             print('Exception in connecting to MQTT')
             machine.reset()
-        print(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LED']))
-        self.client.subscribe(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LED']))
+        print(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']))
+        self.client.subscribe(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']))
         self.client.subscribe(
             bytearray(config.MQTT['TOPIC_SUBSCRIBE_COMMAND']))
         print("Connected to %s, subscribed to %s topic" %
-              (config.MQTT['SERVER'], config.MQTT['TOPIC_SUBSCRIBE_LED']))
+              (config.MQTT['SERVER'], config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']))
 
     def subscribe(self):
         print("subscribe")

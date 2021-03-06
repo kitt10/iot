@@ -66,7 +66,7 @@ class Sensors(VoicehomeModule):
         pass
 
     def reloadSensorsList(self):
-        print('Module ' + self.id + ": sensorsList")
+        print('Module ' + self.id + ": reloadSensorsList")
         # print(os.getcwd())
         with open('modules/sensors/sensorsList.json') as json_file:
             self.sensorsList = json.load(json_file)

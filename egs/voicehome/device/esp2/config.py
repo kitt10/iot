@@ -14,6 +14,8 @@ WIFI = dict(
     PASSWD='PodlahajehnedaStropjebily730')
 
 MQTT = dict(
+    ESP_ID=2,
+    LightsID=[1],
     SERVER='147.228.124.230',
     USER='sanda',
     PASSWD='denmark',
@@ -23,7 +25,7 @@ MQTT = dict(
     QUANTITY_TEMPERATURE='degrees',
     TOPIC_TEMPERATURE='voicehome/sensors/temperature',
     TOPIC_CURRENT_TEMPERATURE_COMMAND='voicehome/sensors',
-    TOPIC_SUBSCRIBE_LED='voicehome/lights/led',
+    TOPIC_SUBSCRIBE_LIGHTS='voicehome/lights/command',
     TOPIC_SUBSCRIBE_COMMAND='voicehome/sensors/commands',
     KEEPALIVE=60,
     PORT=1883)
