@@ -26,7 +26,7 @@ class Client:
 
         self.ESPled = Pin(2, Pin.OUT, value=1)
 
-        light1 = machine.Pin(15, machine.Pin.OUT)
+        self.light1 = machine.Pin(15, machine.Pin.OUT)
 
         try:
             self.tempSensorDS = tempSensorDS(pin_nb=0)
@@ -112,11 +112,11 @@ class Client:
                             self.ESPled.value(1)
                 if msg['type'] == 'light':
                     if msg['ID'] in config.MQTT['LightsID']:
-                        if msg['ID'] ==1:
+                        if msg['ID'] == 1:
                             if msg['set'] == 1:
-                                self.light1.value(0)
-                            elif msg['set'] == 0:
                                 self.light1.value(1)
+                            elif msg['set'] == 0:
+                                self.light1.value(0)
             elif 'command' in msg:
                 if msg['command'] == 'measure_now':
                     if msg['quantity'] == 'temperature':

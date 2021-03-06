@@ -36,13 +36,76 @@
 			]
 		},
 		{
-			"move_id": "lights_03.ESP_turn_off_light_1",
+			"move_id": "lights_04.ESP_turn_off_light_1",
 			"method_name": "ESP_turn_off_light_1",
 			"description": "Turning off light 1",
 			"calls": [
 				["vypni","obýváku", "světlo"],
 				["zhasni","obýváku", "světlo"],
 				["light 1", "off"]
+			]
+		},
+		{
+			"move_id": "lights_05.ESP_turn_on_light_onboard_1",
+			"method_name": "ESP_turn_on_light_onboard_1",
+			"description": "Turn on the onboard LED.",
+			"calls": [
+				["zapni", "vestavěnou", "ledku","ESP 1"],
+				["rozsviť", "ledku","ESP 1"],
+				["led", "on","ESP 1"]
+			]
+		},
+		{
+			"move_id": "lights_06.ESP_turn_off_light_onboard_1",
+			"method_name": "ESP_turn_off_light_onboard_1",
+			"description": "Turn off the onboard LED.",
+			"calls": [
+				["zhasni", "vestavěnou", "ledku","ESP 1"],
+				["zhasni", "ledku","ESP 1"],
+				["vypni", "ledku","ESP 1"],
+				["led", "off","ESP 1"]
+			]
+		},
+		{
+			"move_id": "lights_07.ESP_turn_on_light_onboard_2",
+			"method_name": "ESP_turn_on_light_onboard_2",
+			"description": "Turn on the onboard LED.",
+			"calls": [
+				["zapni", "vestavěnou", "ledku","ESP 2"],
+				["rozsviť", "ledku","ESP 2"],
+				["led", "on","ESP 2"]
+			]
+		},
+		{
+			"move_id": "lights_08.ESP_turn_off_light_onboard_2",
+			"method_name": "ESP_turn_off_light_onboard_2",
+			"description": "Turn off the onboard LED.",
+			"calls": [
+				["zhasni", "vestavěnou", "ledku","ESP 2"],
+				["zhasni", "ledku","ESP 2"],
+				["vypni", "ledku","ESP 2"],
+				["led", "off","ESP 2"]
+			]
+		},
+		{
+			"move_id": "lights_09.ESP_turn_on_light_onboard_3",
+			"method_name": "ESP_turn_on_light_onboard_3",
+			"description": "Turn on the onboard LED.",
+			"calls": [
+				["zapni", "vestavěnou", "ledku","ESP 3"],
+				["rozsviť", "ledku","ESP 3"],
+				["led", "on","ESP 3"]
+			]
+		},
+		{
+			"move_id": "lights_10.ESP_turn_off_light_onboard_3",
+			"method_name": "ESP_turn_off_light_onboard_3",
+			"description": "Turn off the onboard LED.",
+			"calls": [
+				["zhasni", "vestavěnou", "ledku","ESP 3"],
+				["zhasni", "ledku","ESP 3"],
+				["vypni", "ledku","ESP 3"],
+				["led", "off","ESP 3"]
 			]
 		}
 	]
