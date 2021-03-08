@@ -1,5 +1,5 @@
 {
-   "ESP_ID": [
+   "ESP_onboard": [
      {
        "ID": 1,
        "description": "prvni ESP"
@@ -13,7 +13,7 @@
        "description": "treti ESP"
      }
    ],
-  "LightsID": [
+  "light": [
     {
       "ID": 1,
       "description": "obyvaci pokoj"

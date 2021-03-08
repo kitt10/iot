@@ -1,8 +1,8 @@
 {
 	"module_id": "lights",
 	"description": "Lightning system - one onboard LED on ESP8266 for now.",
-	"mqtt_topics": ["voicehome/lights/led"],
-	"websocket_passports": ["lights"],
+	"mqtt_topics": ["voicehome/lights/led","voicehome/lights/state/receive"],
+	"websocket_passports": ["lights","lights/state"],
 	"moves": [
 		{
 			"move_id": "lights_01.turn_on_ESP_onboard_led",
