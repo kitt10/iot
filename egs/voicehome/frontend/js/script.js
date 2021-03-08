@@ -11,8 +11,8 @@ var dataIlluminance = "";
 var MAXROOM;
 var page = "home";
 
-var ws_address = "ws://147.228.124.230:8881/websocket";
-// var ws_address = "ws://127.0.0.1:8881/websocket";
+// var ws_address = "ws://147.228.124.230:8881/websocket";
+var ws_address = "ws://127.0.0.1:8881/websocket";
 
 function onBodyLoadModules() {
 	page = "modules";
@@ -113,6 +113,7 @@ function onSocketMessage(message) {
 		request_sensorsStatus();
 		request_sensorsList();
 		request_webWeatherOWM();
+		request_lightsList();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	switch (data["message"]) {
@@ -136,6 +137,10 @@ function onSocketMessage(message) {
 			webWeatherOWM = data["reply"];
 			drawWebWeatherOWM();
 			break;
+		case "lightsList":
+			lightsList = data["reply"];
+			// drawLightsList()
+			break;
 		case "sensorsStatus":
 			sensorsStatus = data["reply"];
 			drawSensorsStatus(data["reply"]);
@@ -150,6 +155,48 @@ function onSocketMessage(message) {
 		!jQuery.isEmptyObject(sensorsStatus)
 	) {
 		drawCurrentlyMeasuredValue();
+	}
+}
+
+function drawLightsList() {
+	$("#light_container").empty();
+	for (const [key, value] of Object.entries(lightsList)) {
+		for (var light in value) {
+			if ("state" in value[light]) {
+				if (value[light]["state"] == 1) {
+					$("#light_container").append(
+						$("<img></img>")
+							.attr("src", "/img/light/lightbulbon.svg")
+							.attr("alt", "lightbulbon"),
+						$("<span></span>").text(
+							"key = " + key + " id = " + value[light]["ID"]
+						),
+						$("</br>")
+					);
+				}
+				if (value[light]["state"] == 0) {
+					$("#light_container").append(
+						$("<img></img>")
+							.attr("src", "/img/light/lightbulboff.svg")
+							.attr("alt", "lightbulboff"),
+						$("<span></span>").text(
+							"key = " + key + " id = " + value[light]["ID"]
+						),
+						$("</br>")
+					);
+				}
+			} else {
+				$("#light_container").append(
+					$("<img></img>")
+						.attr("src", "/img/light/lightbulbunenable.svg")
+						.attr("alt", "lightbulbunenable"),
+					$("<span></span>").text(
+						"key = " + key + " id = " + value[light]["ID"]
+					),
+					$("</br>")
+				);
+			}
+		}
 	}
 }
 
@@ -723,6 +770,11 @@ function request_whole_illuminance_data() {
 function request_sensorsList() {
 	msg = "sensorsList";
 	sendToServer(msg, "sensors");
+}
+
+function request_lightsList() {
+	msg = "lightsList";
+	sendToServer(msg, "lights/state");
 }
 
 function request_webWeatherOWM() {
