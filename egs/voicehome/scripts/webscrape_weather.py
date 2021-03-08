@@ -6,7 +6,7 @@ import time
 from bs4 import BeautifulSoup
 
 # mac
-driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
+driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
 # linux
 # driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
 
