@@ -25,7 +25,7 @@ class Client:
 
     def __init__(self):
         self.client = MQTTClient(config.MQTT['SENSOR_ID'], config.MQTT['SERVER'],
-                                 config.MQTT['PORT'], config.MQTT['USER'], config.MQTT['PASSWD'])
+                                 config.MQTT['PORT'], config.MQTT['USER'], config.MQTT['PASSWD'], config.MQTT['KEEPALIVE'])
         self.last_minute_sent = 99
 
         # self.measure_temperature_now = False
@@ -34,6 +34,7 @@ class Client:
         self.ESPled = Pin(2, Pin.OUT, value=1)
 
         self.light1 = machine.Pin(15, machine.Pin.OUT)
+
 
         # (date(2000, 1, 1) - date(1900, 1, 1)).days * 24*60*60
         self.NTP_DELTA = 3155673600
@@ -55,7 +56,7 @@ class Client:
             print("Display RTC Time")
             # print out RTC datetime
             print(machine.RTC().datetime())
-            print("itume time")
+            print("utime time")
             print(utime.localtime())
         except:
             print('Exception in __init__ ntptime')
@@ -189,44 +190,50 @@ class Client:
                 state = 'error'
                 if msg['type'] == 'ESP_onboard':
                     if msg['ID'] == config.MQTT['ESP_ID']:
-                        if msg['set'] == 1:
-                            self.ESPled.value(0)
-                            state =  self.ESPled.value()
-                        elif msg['set'] == 0:
-                            self.ESPled.value(1)
-                            state =  self.ESPled.value()
+                        self.ESPled.value(msg['set'])
+                        msg_structure_state = {'ID': msg['ID'],
+                                               'type': msg['type'],
+                                               'state': msg['set']
+                                               }
+                        print(msg_structure_state)
+                        self.mqtt_msg(msg_structure_state,
+                                      config.MQTT['TOPIC_LIGHTS_STATE'])
                 if msg['type'] == 'light':
                     if msg['ID'] in config.MQTT['LightsID']:
                         if msg['ID'] == 1:
-                            if msg['set'] == 1:
-                                self.light1.value(1)
-                                state = self.light1.value()
-                            elif msg['set'] == 0:
-                                self.light1.value(0)
-                                state = self.light1.value()
-                msg_structure_state = {'ID': msg['ID'],
-                                        'type': msg['type'],
-                                        'state': state
-                                        }
-                print(msg_structure_state)
-                self.mqtt_msg(msg_structure_state,
-                              config.MQTT['TOPIC_LIGHTS_STATE'])
+                            self.light1.value(msg['set'])
+                            msg_structure_state = {'ID': msg['ID'],
+                                                   'type': msg['type'],
+                                                   'state': msg['set']
+                                                   }
+                            print(msg_structure_state)
+                            self.mqtt_msg(msg_structure_state,
+                                          config.MQTT['TOPIC_LIGHTS_STATE'])
+
             elif topic == bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS_STATE']):
                 state = 'error'
                 if msg['type'] == 'ESP_onboard':
                     if msg['ID'] == config.MQTT['ESP_ID']:
                         state = self.ESPled.value()
+                        msg_structure_state = {'ID': msg['ID'],
+                                               'type': msg['type'],
+                                               'state': state
+                                               }
+                        print(msg_structure_state)
+                        self.mqtt_msg(msg_structure_state,
+                                      config.MQTT['TOPIC_LIGHTS_STATE'])
                 if msg['type'] == 'light':
                     if msg['ID'] in config.MQTT['LightsID']:
                         if msg['ID'] == 1:
                             state = self.light1.value()
-                msg_structure_state = {'ID': msg['ID'],
-                                             'type': msg['type'],
-                                             'state': state
-                                             }
-                print(msg_structure_state)
-                self.mqtt_msg(msg_structure_state,
-                              config.MQTT['TOPIC_LIGHTS_STATE'])
+                            msg_structure_state = {'ID': msg['ID'],
+                                                   'type': msg['type'],
+                                                   'state': state
+                                                   }
+                            print(msg_structure_state)
+                            self.mqtt_msg(msg_structure_state,
+                                          config.MQTT['TOPIC_LIGHTS_STATE'])
+
 
 
             elif topic == bytearray(config.MQTT['TOPIC_MEASURE_COMMAND']):
@@ -235,8 +242,6 @@ class Client:
                         if 'timestamp' not in msg:
                             if msg['sensor_ID'] == config.MQTT['SENSOR_ID']:
                                 self.send2broker_measure_now(msg)
-                                # self.measure_temperature_now = True
-                                # self.measure_temperature_now_last_msg = msg
                             
 
         self.client.set_callback(sub_cb)
@@ -260,7 +265,7 @@ class Client:
             self.client.check_msg()
             self.num_subscribe_error = 0
         except:
-            if self.num_subscribe_error > 20: # check if it is just unique error
+            if self.num_subscribe_error > 5: # check if it is just unique error
                 print("Subscribe exception occurred")
                 print('num_subscribe_error = ' + str(self.num_subscribe_error))
                 machine.reset()
@@ -288,7 +293,7 @@ class Client:
                 print("Display RTC Time")
                 # print out RTC datetime
                 print(machine.RTC().datetime())
-                print("itume time")
+                print("utime time")
                 print(utime.localtime())
             except:
                 print('Exception in ntptime')
