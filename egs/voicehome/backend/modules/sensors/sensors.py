@@ -16,33 +16,49 @@ class Sensors(VoicehomeModule):
     def get_current_temperature(self):
         payload = {
             'command': 'measure_now',
-            'quantity': 'temperature'
+            'sensor_ID': 'ds18b20_1',
+            'who_asking': 'voicekit'
         }
-        self.mqtt_publish(topic='voicehome/sensors/commands', payload=payload)
+        self.mqtt_publish(topic='voicehome/sensors/command', payload=payload)
         print('Module ' + self.id + ': command to measure temperature sent.')
 
     def on_mqtt_message(self, msg):
-        msg = msg.payload.decode('utf8').replace("'", '"')
-        msg = json.loads(msg)
-        if "key" in msg.keys():
-            if msg["key"] == "current_temperature":
-                self.reply(message='Aktuální teplota je: ' + str(msg['value']))
-                return
-        else:
-            for x in msg.keys():
-                x_match = self.pattern_value.match(x)
-                if (x_match):
-                    self.sensorsStatus[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"status": msg['status'],
-                                                                                               "timestamp": msg['timestamp'],
-                                                                                               "quantity": msg["quantity"],
-                                                                                               "sensor_id": msg["sensor_id"],
-                                                                                               "location": msg["location"],
-                                                                                               "value": msg[x_match.string]
-                                                                                               }
-                    # self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
-                    #                                                             "timestamp": msg['timestamp']
-                    #                                                             }
-                    break
+        print(msg)
+        if msg.topic == 'voicehome/sensors/command':
+            try:
+                msg = msg.payload.decode('utf8').replace("'", '"')
+            except:
+                msg = msg.payload.replace("'", '"')
+                pass
+            try:
+                msg = json.loads(msg)
+            except:
+                print('omg')
+                print(msg)
+            if "command" in msg.keys():
+                if msg["command"] == "measure_now":
+
+                    for x in msg.keys():
+                        x_match = self.pattern_value.match(x)
+                        if (x_match):
+                            self.reply(message='Aktuální teplota je: ' + str(msg[x_match.string]))
+                            break
+                    return
+            else:
+                for x in msg.keys():
+                    x_match = self.pattern_value.match(x)
+                    if (x_match):
+                        self.sensorsStatus[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"status": msg['status'],
+                                                                                                   "timestamp": msg['timestamp'],
+                                                                                                   "quantity": msg["quantity"],
+                                                                                                   "sensor_id": msg["sensor_id"],
+                                                                                                   "location": msg["location"],
+                                                                                                   "value": msg[x_match.string]
+                                                                                                   }
+                        # self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
+                        #                                                             "timestamp": msg['timestamp']
+                        #                                                             }
+                        break
 
     def on_websocket_message(self, msg):
         print('Module ' + self.id + ": start sending websocket")
