@@ -120,21 +120,21 @@ class Client:
     def connect(self):
         def sub_cb(topic, msg):
             print((topic, msg))
-            msg1 = loads(msg)
-            if msg1['set'] == 1:
-                self.led.value(0)
-                self.state = 1
-                print("1")
-            elif msg1['set'] == 0:
-                self.led.value(1)
-                self.state = 0
-                print("0")
-            elif msg == b"toggle":
-                # LED is inversed, so setting it to current state
-                # value will make it toggle
-                self.led.value(self.state)
-                self.state = 1 - self.state
-                print("toggle")
+            msg = loads(msg)
+            if topic == bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']):
+                if msg['type'] == 'ESP_onboard':
+                    if msg['ID'] == config.MQTT['ESP_ID'] or msg['ID'] == 'all':
+                        if msg['set'] == 1:
+                            self.ESPled.value(0)
+                        elif msg['set'] == 0:
+                            self.ESPled.value(1)
+                # if msg['type'] == 'light':
+                #     if msg['ID'] in config.MQTT['LightsID']:
+                #         if msg['ID'] == 2:
+                #             if msg['set'] == 1:
+                #                 self.light1.value(1)
+                #             elif msg['set'] == 0:
+                #                 self.light1.value(0)
 
         self.client.set_callback(sub_cb)
         try:
@@ -168,7 +168,7 @@ class Client:
         print("publish")
         try:
             try:
-                a = usocket.getaddrinfo('8.8.8.8',80)[0][-1]
+                # a = usocket.getaddrinfo('8.8.8.8',80)[0][-1]
                 settime()
             except:
                 print('Exception in usocket get www.google.com')

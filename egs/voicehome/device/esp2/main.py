@@ -27,6 +27,6 @@ while True:
     if(mqtt_client.last_minute_sent != mqtt_client.get_min() and mqtt_client.get_sec() in range(20, 23)):
 
         mqtt_client.publish()
-        mqtt_client.measure_temperature_now = False
+        # mqtt_client.measure_temperature_now = False
     # except:
     #     mqtt_client.client.disconnect()

@@ -6,8 +6,15 @@ import machine
 import ntptime
 import utime
 import usocket
+
+import socket
+import network
+import utime
+import socket
+import time
+import struct
+
 from json import dumps, loads
-from ntptime import settime
 from umqtt.simple import MQTTClient
 import config
 from machine import Pin, I2C
@@ -21,12 +28,19 @@ class Client:
                                  config.MQTT['PORT'], config.MQTT['USER'], config.MQTT['PASSWD'])
         self.last_minute_sent = 99
 
-        self.measure_temperature_now = False
-        self.measure_temperature_now_last_msg = ''
+        # self.measure_temperature_now = False
+        # self.measure_temperature_now_last_msg = ''
 
         self.ESPled = Pin(2, Pin.OUT, value=1)
 
         self.light1 = machine.Pin(15, machine.Pin.OUT)
+
+        # (date(2000, 1, 1) - date(1900, 1, 1)).days * 24*60*60
+        self.NTP_DELTA = 3155673600
+
+        self.host = "pool.ntp.org"
+
+        self.num_subscribe_error = 0
 
         try:
             self.tempSensorDS = tempSensorDS(pin_nb=0)
@@ -34,31 +48,98 @@ class Client:
             print('can not init ds18b20')
             machine.reset()
 
-    def send2broker_current_temperature(self):
+        try:
+            print("Get NTP Time")
+            # set the RTC using time from ntp
+            self.settime()
+            print("Display RTC Time")
+            # print out RTC datetime
+            print(machine.RTC().datetime())
+            print("itume time")
+            print(utime.localtime())
+        except:
+            print('Exception in __init__ ntptime')
+            machine.reset()
+
+    def getntptime(self):
+        NTP_QUERY = bytearray(48)
+        NTP_QUERY[0] = 0x1b
+        addr = socket.getaddrinfo(self.host, 123)[0][-1]
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.settimeout(1)
+        res = s.sendto(NTP_QUERY, addr)
+        msg = s.recv(48)
+        s.close()
+
+        val = struct.unpack("!I", msg[40:44])[0]
+        return val - self.NTP_DELTA
+
+    def settime(self):
+
+        t = self.getntptime()
+        tm = utime.localtime(t)
+        tm = tm[0:3] + (0,) + tm[3:6] + (0,)
+        machine.RTC().datetime(tm)
+
+    def send2broker_measure_now(self,msg):
+        #
+        # try:
+        #     tempSensorDS = float(self.tempSensorDS.measure_temp())
+        # except:
+        #     tempSensorDS = -9999
+        #     pass
+        #
+        # if tempSensorDS < -55 or tempSensorDS > 125:
+        #     state = 'error'
+        # else:
+        #     state = 'ok'
+        #
+        # msg['sensor_id']= config.MQTT['SENSOR_ID']
+        # msg['timestamp']= self.sync_time()
+        # msg['value']= float(tempSensorDS)
+        # msg['state']= state
+        # msg['quantity']= config.MQTT['QUANTITY_TEMPERATURE']
+        # msg['location']= config.MQTT['LOCATION']
+        # msg['owner']= config.MQTT['OWNER']
+        #
+        # self.mqtt_msg(msg,
+        #               config.MQTT['TOPIC_TEMPERATURE'])
+        # self.mqtt_msg(msg,
+        #               config.MQTT['TOPIC_CURRENT_TEMPERATURE_COMMAND'])
+        #
+        # # self.last_minute_sent = self.get_min()
+
+
+
 
         try:
             tempSensorDS = float(self.tempSensorDS.measure_temp())
         except:
             tempSensorDS = -9999
             pass
-
+        print('tempSensorDS = ',tempSensorDS)
         if tempSensorDS < -55 or tempSensorDS > 125:
-            status = 'error'
+            state = 'error'
         else:
-            status = 'ok'
+            state = 'ok'
 
-        msg_structure_temperature = {'key': 'current_temperature',
-                                     'sensor_id': config.MQTT['SENSOR_ID'],
-                                     'timestamp': self.sync_time(),
-                                     'value': float(tempSensorDS),
-                                     'status': status,
-                                     'location': config.MQTT['LOCATION'],
-                                     'owner': config.MQTT['OWNER']}
+        msg ['sensor_id']= config.MQTT['SENSOR_ID']
+        msg ['timestamp']= self.sync_time()
+        msg ['temperature_value']= tempSensorDS
+        msg ['state']= state
+        msg ['quantity_units']= config.MQTT['QUANTITY_UNITS_TEMPERATURE']
+        msg ['quantity_type']= config.MQTT['QUANTITY_TYPE_TEMPERATURE']
+        msg ['location']= config.MQTT['LOCATION']
+        msg ['owner']= config.MQTT['OWNER']
+        print(msg)
 
-        self.mqtt_msg(msg_structure_temperature,
-                      config.MQTT['TOPIC_CURRENT_TEMPERATURE_COMMAND'])
+        self.mqtt_msg(msg,
+                      config.MQTT['TOPIC_MEASURE_COMMAND'])
+        self.mqtt_msg(msg,
+                      config.MQTT['TOPIC_TEMPERATURE'])
 
-        self.last_minute_sent = self.get_min()
+        print('sended')
+        # self.last_minute_sent = self.get_min()
 
     def send2broker(self):
 
@@ -69,15 +150,16 @@ class Client:
             pass
         print('tempSensorDS = ',tempSensorDS)
         if tempSensorDS < -55 or tempSensorDS > 125:
-            status = 'error'
+            state = 'error'
         else:
-            status = 'ok'
+            state = 'ok'
 
         msg_structure_temperature = {'sensor_id': config.MQTT['SENSOR_ID'],
                                      'timestamp': self.sync_time(),
                                      'temperature_value': tempSensorDS,
-                                     'status': status,
-                                     'quantity': config.MQTT['QUANTITY_TEMPERATURE'],
+                                     'state': state,
+                                     'quantity_units': config.MQTT['QUANTITY_UNITS_TEMPERATURE'],
+                                     'quantity_type': config.MQTT['QUANTITY_TYPE_TEMPERATURE'],
                                      'location': config.MQTT['LOCATION'],
                                      'owner': config.MQTT['OWNER']}
         print(msg_structure_temperature)
@@ -104,26 +186,58 @@ class Client:
             print((topic, msg))
             msg = loads(msg)
             if topic == bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']):
+                state = 'error'
                 if msg['type'] == 'ESP_onboard':
-                    if msg['ID'] == config.MQTT['ESP_ID'] or msg['ID'] == 'all':
+                    if msg['ID'] == config.MQTT['ESP_ID']:
                         if msg['set'] == 1:
                             self.ESPled.value(0)
+                            state =  self.ESPled.value()
                         elif msg['set'] == 0:
                             self.ESPled.value(1)
+                            state =  self.ESPled.value()
                 if msg['type'] == 'light':
                     if msg['ID'] in config.MQTT['LightsID']:
                         if msg['ID'] == 1:
                             if msg['set'] == 1:
                                 self.light1.value(1)
+                                state = self.light1.value()
                             elif msg['set'] == 0:
                                 self.light1.value(0)
-            elif 'command' in msg:
-                if msg['command'] == 'measure_now':
-                    if msg['quantity'] == 'temperature':
-                        print('merim loool')
-                        self.measure_temperature_now = True
-                        measure_temperature_now_last_msg = msg
-                        self.send2broker_current_temperature()
+                                state = self.light1.value()
+                msg_structure_state = {'ID': msg['ID'],
+                                        'type': msg['type'],
+                                        'state': state
+                                        }
+                print(msg_structure_state)
+                self.mqtt_msg(msg_structure_state,
+                              config.MQTT['TOPIC_LIGHTS_STATE'])
+            elif topic == bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS_STATE']):
+                state = 'error'
+                if msg['type'] == 'ESP_onboard':
+                    if msg['ID'] == config.MQTT['ESP_ID']:
+                        state = self.ESPled.value()
+                if msg['type'] == 'light':
+                    if msg['ID'] in config.MQTT['LightsID']:
+                        if msg['ID'] == 1:
+                            state = self.light1.value()
+                msg_structure_state = {'ID': msg['ID'],
+                                             'type': msg['type'],
+                                             'state': state
+                                             }
+                print(msg_structure_state)
+                self.mqtt_msg(msg_structure_state,
+                              config.MQTT['TOPIC_LIGHTS_STATE'])
+
+
+            elif topic == bytearray(config.MQTT['TOPIC_MEASURE_COMMAND']):
+                if 'command' in msg:
+                    if msg['command'] == 'measure_now':
+                        if 'timestamp' not in msg:
+                            if msg['sensor_ID'] == config.MQTT['SENSOR_ID']:
+                                self.send2broker_measure_now(msg)
+                                # self.measure_temperature_now = True
+                                # self.measure_temperature_now_last_msg = msg
+                            
 
         self.client.set_callback(sub_cb)
         try:
@@ -134,7 +248,9 @@ class Client:
         print(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']))
         self.client.subscribe(bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']))
         self.client.subscribe(
-            bytearray(config.MQTT['TOPIC_SUBSCRIBE_COMMAND']))
+            bytearray(config.MQTT['TOPIC_MEASURE_COMMAND']))
+        self.client.subscribe(
+            bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS_STATE']))
         print("Connected to %s, subscribed to %s topic" %
               (config.MQTT['SERVER'], config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']))
 
@@ -142,9 +258,16 @@ class Client:
         print("subscribe")
         try:
             self.client.check_msg()
+            self.num_subscribe_error = 0
         except:
-            print("Subscribe exception occurred")
-            machine.reset()
+            if self.num_subscribe_error > 20: # check if it is just unique error
+                print("Subscribe exception occurred")
+                print('num_subscribe_error = ' + str(self.num_subscribe_error))
+                machine.reset()
+            else:
+                print("Subscribe exception occurred")
+                print('num_subscribe_error = ' + str(self.num_subscribe_error))
+                self.num_subscribe_error = self.num_subscribe_error + 1
             pass
 
     def mqtt_msg(self, msg_structure, topic):
@@ -159,12 +282,19 @@ class Client:
         print("publish")
         try:
             try:
-                # a = usocket.getaddrinfo('8.8.8.8',80)[0][-1]
-                settime()
+                print("Get NTP Time")
+                # set the RTC using time from ntp
+                self.settime()
+                print("Display RTC Time")
+                # print out RTC datetime
+                print(machine.RTC().datetime())
+                print("itume time")
+                print(utime.localtime())
             except:
-                print('Exception in usocket get www.google.com')
-                machine.reset()
+                print('Exception in ntptime')
+                # machine.reset()
+                pass
             self.send2broker()
         except:
             print("Exception in publish")
-            pass
+            machine.reset()

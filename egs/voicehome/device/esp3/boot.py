@@ -5,6 +5,34 @@ import machine
 import time
 import config
 
+import uasyncio as asyncio
+from machine import UART
+uart = UART(0, 115200)
+
+async def sender():
+    swriter = asyncio.StreamWriter(uart, {})
+    while True:
+        await swriter.awrite('Hello uart\n')
+        await asyncio.sleep(2)
+
+async def receiver():
+    sreader = asyncio.StreamReader(uart)
+    while True:
+        res = await sreader.readline()
+        print('Recieved', res)
+
+async def wait_and_kill(loop):
+    while True:
+        print('you have 3 sec')
+        await asyncio.sleep(3)
+        loop.stop()
+
+loop = asyncio.get_event_loop()
+loop.create_task(sender())
+loop.create_task(receiver())
+loop.create_task(wait_and_kill(loop))
+loop.run_forever()
+
 esp.osdebug(None)
 # esp.sleep_type(0)
 gc.collect()
