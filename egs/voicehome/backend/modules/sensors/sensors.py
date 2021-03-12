@@ -11,54 +11,91 @@ class Sensors(VoicehomeModule):
         self.pattern_value = re.compile("^[a-z]+(_value)$")
         self.sensorsList = {}
         self.reloadSensorsList()
-        self.sensorsStatus = {}
+        self.sensorsState = {}
+
+        self.voicekit_asked_current_measure_for_quantity = []
 
     def get_current_temperature(self):
+        self.sensorMeasureNow('ds18b20_1','temperature', 'voicekit')
+        self.voicekit_asked_current_measure_for_quantity.append('temperature')
+
+    def get_current_pressure(self):
+        self.sensorMeasureNow('bme280_1','pressure', 'voicekit')
+        self.voicekit_asked_current_measure_for_quantity.append('pressure')
+
+    def get_current_humidity(self):
+        self.sensorMeasureNow('bme280_1','humidity', 'voicekit')
+        self.voicekit_asked_current_measure_for_quantity.append('humidity')
+
+    def get_current_illuminance(self):
+        self.sensorMeasureNow('tsl2591_1','illuminance', 'voicekit')
+        self.voicekit_asked_current_measure_for_quantity.append('illuminance')
+
+
+
+
+    def sensorMeasureNow(self, SENSOR_ID,quantity_type, who_asking):
         payload = {
             'command': 'measure_now',
-            'sensor_ID': 'ds18b20_1',
-            'who_asking': 'voicekit'
+            'sensor_ID': SENSOR_ID,
+            'quantity_type': quantity_type,
+            'who_asking': who_asking
         }
         self.mqtt_publish(topic='voicehome/sensors/command', payload=payload)
-        print('Module ' + self.id + ': command to measure temperature sent.')
+        print('Module ' + self.id + ': command to measure sent for '+ SENSOR_ID+ 'sensor.')
 
     def on_mqtt_message(self, msg):
-        print(msg)
-        if msg.topic == 'voicehome/sensors/command':
-            try:
-                msg = msg.payload.decode('utf8').replace("'", '"')
-            except:
-                msg = msg.payload.replace("'", '"')
-                pass
-            try:
-                msg = json.loads(msg)
-            except:
-                print('omg')
-                print(msg)
+        topic = msg.topic
+        # if msg.topic == 'voicehome/sensors/command':
+        try:
+            msg = msg.payload.decode('utf8')
+        except:
+            msg = msg.payload #.replace("'", '"')
+            pass
+        # msg = msg.payload
+
+        msg = json.loads(msg)
+        if topic == 'voicehome/sensors/command':
             if "command" in msg.keys():
                 if msg["command"] == "measure_now":
+                    if msg['who_asking'] == 'voicekit':
+                        for x in msg.keys():
+                            x_match = self.pattern_value.match(x)
+                            if (x_match):
 
-                    for x in msg.keys():
-                        x_match = self.pattern_value.match(x)
-                        if (x_match):
-                            self.reply(message='Aktuální teplota je: ' + str(msg[x_match.string]))
-                            break
-                    return
-            else:
-                for x in msg.keys():
-                    x_match = self.pattern_value.match(x)
-                    if (x_match):
-                        self.sensorsStatus[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"status": msg['status'],
-                                                                                                   "timestamp": msg['timestamp'],
-                                                                                                   "quantity": msg["quantity"],
-                                                                                                   "sensor_id": msg["sensor_id"],
-                                                                                                   "location": msg["location"],
-                                                                                                   "value": msg[x_match.string]
-                                                                                                   }
-                        # self.sensorsStatus[msg['sensor_id']+"_"+msg["quantity"]] = {"status": msg['status'],
-                        #                                                             "timestamp": msg['timestamp']
-                        #                                                             }
-                        break
+                                if x_match.string.split('_')[0] == 'temperature' and 'temperature' in self.voicekit_asked_current_measure_for_quantity:
+                                    self.reply(message='Aktuální teplota je: ' + str(msg[x_match.string]))
+                                    self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'temperature', self.voicekit_asked_current_measure_for_quantity))
+                                    break
+                                elif x_match.string.split('_')[0] == 'pressure' and 'pressure' in self.voicekit_asked_current_measure_for_quantity:
+                                    self.reply(message='Aktuální tlak je: ' + str(msg[x_match.string]))
+                                    self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'pressure',
+                                                self.voicekit_asked_current_measure_for_quantity))
+                                    break
+                                elif x_match.string.split('_')[0] == 'humidity' and 'humidity' in self.voicekit_asked_current_measure_for_quantity:
+                                    self.reply(message='Aktuální vlhkost je: ' + str(msg[x_match.string]))
+                                    self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'humidity',
+                                                self.voicekit_asked_current_measure_for_quantity))
+                                    break
+                                elif x_match.string.split('_')[0] == 'illuminance' and 'illuminance' in self.voicekit_asked_current_measure_for_quantity:
+                                    self.reply(message='Aktuální intenzita světla je: ' + str(msg[x_match.string]))
+                                    self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'illuminance',
+                                                self.voicekit_asked_current_measure_for_quantity))
+                                    break
+                        return
+        for x in msg.keys():
+            x_match = self.pattern_value.match(x)
+            if (x_match):
+                self.sensorsState[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"state": msg['state'],
+                                                                                           "timestamp": msg['timestamp'],
+                                                                                           "sensor_id": msg["sensor_id"],
+                                                                                           "location": msg["location"],
+                                                                                           "value": msg[x_match.string]
+                                                                                           }
+                # self.sensorsState[msg['sensor_id']+"_"+msg["quantity"]] = {"state": msg['state'],
+                #                                                             "timestamp": msg['timestamp']
+                #                                                             }
+                break
 
     def on_websocket_message(self, msg):
         print('Module ' + self.id + ": start sending websocket")
@@ -75,8 +112,8 @@ class Sensors(VoicehomeModule):
         if msg['message'] == "sensorsList":
             msg['reply'] = self.sensorsList
             self.websocket_send(msg)
-        if msg['message'] == "sensorsStatus":
-            msg['reply'] = self.sensorsStatus
+        if msg['message'] == "sensorsState":
+            msg['reply'] = self.sensorsState
             self.websocket_send(msg)
         print("Sensors: websocket sended")
         pass
@@ -125,7 +162,7 @@ class Sensors(VoicehomeModule):
     #         result_i = res_i["payload"].decode("utf8")
     #         result_i = json.loads(res_i["payload"])
     #
-    #         if result_i['status']=='error':
+    #         if result_i['state']=='error':
     #             continue
     #         loc = result_i['location']
     #         if not pattern.match(loc):
@@ -154,7 +191,7 @@ class Sensors(VoicehomeModule):
     #         # result_i = res_i["payload"].decode("utf8")
     #         result_i = json.loads(res_i["payload"])
     #
-    #         if result_i['status']=='error':
+    #         if result_i['state']=='error':
     #             continue
     #         loc = result_i['location']
     #         if not pattern.match(loc):
@@ -194,7 +231,7 @@ class Sensors(VoicehomeModule):
     #         # result_i = res_i["payload"].decode("utf8")
     #         result_i = json.loads(res_i["payload"])
     #
-    #         if result_i['status']=='error':
+    #         if result_i['state']=='error':
     #             continue
     #         loc = result_i['location']
     #         if not pattern.match(loc):

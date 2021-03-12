@@ -7,12 +7,50 @@
     {
       "move_id": "sensors_01.get_current_temperature",
       "method_name": "get_current_temperature",
-      "description": "Sends a command via MQTT to measure the current temperature.",
+      "description": "Sends a command via MQTT to measure current temperature.",
       "calls": [
         ["kolik je stupňů"],
         ["jaká je teplota"],
         ["změř", "teplotu"]
       ]
+
+
+    },
+    {
+      "move_id": "sensors_02.get_current_pressure",
+      "method_name": "get_current_pressure",
+      "description": "Sends a command via MQTT to measure current pressure.",
+      "calls": [
+        ["kolik je tlak"],
+        ["jaký je tlak"],
+        ["změř", "tlak"]
+      ]
+
+
+    },
+    {
+      "move_id": "sensors_03.get_current_humidity",
+      "method_name": "get_current_humidity",
+      "description": "Sends a command via MQTT to measure current humidity.",
+      "calls": [
+        ["kolik je vlhkost"],
+        ["jaká je vlhkost"],
+        ["změř", "vlhkost"]
+      ]
+
+
+    },
+    {
+      "move_id": "sensors_04.get_current_illuminance",
+      "method_name": "get_current_illuminance",
+      "description": "Sends a command via MQTT to measure current illuminance.",
+      "calls": [
+        ["kolik je intenzity světla"],
+        ["jaká je intenzita světla"],
+        ["změř", "světlo"]
+      ]
+
+
     }
   ]
 }

@@ -87,7 +87,7 @@ class Client:
         machine.RTC().datetime(tm)
 
     def send2broker_measure_now(self, msg):
-
+        msg_temp = dumps(msg)
         # illuminance = self.tsl.sample()
         try:
             temperature,pressure,humidity = self.bme.values
@@ -115,7 +115,8 @@ class Client:
         self.mqtt_msg(msg, config.MQTT['TOPIC_PRESSURE'])
         self.mqtt_msg(msg,
                       config.MQTT['TOPIC_MEASURE_COMMAND'])
-
+        msg = None
+        msg = loads(msg_temp)
 
         if temperature < -40 or temperature > 85:
             state = 'error'
@@ -136,6 +137,8 @@ class Client:
         self.mqtt_msg(msg,
                       config.MQTT['TOPIC_MEASURE_COMMAND'])
 
+        msg = None
+        msg = loads(msg_temp)
 
         if humidity <= 0 or humidity > 100:
             state = 'error'
@@ -144,7 +147,7 @@ class Client:
 
         msg['sensor_id']= config.MQTT['SENSOR_ID']
         msg['timestamp']= self.sync_time()
-        msg['humidity_value']= pressure
+        msg['humidity_value']= humidity
         msg['state']= state
         msg['quantity_units']= config.MQTT['QUANTITY_UNITS_HUMIDITY']
         msg['quantity_type']= config.MQTT['QUANTITY_TYPE_HUMIDITY']
@@ -204,7 +207,7 @@ class Client:
 
         msg_structure_humidity = {'sensor_id': config.MQTT['SENSOR_ID'],
                                   'timestamp': self.sync_time(),
-                                  'humidity_value': pressure,
+                                  'humidity_value': humidity,
                                   'state': state,
                                   'quantity_units': config.MQTT['QUANTITY_UNITS_HUMIDITY'],
                                   'quantity_type': config.MQTT['QUANTITY_TYPE_HUMIDITY'],

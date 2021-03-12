@@ -30,7 +30,7 @@ class Lights(VoicehomeModule):
         payload = {
             'ID':ESP_ID,
             'type': 'ESP_onboard',
-            'set': 1
+            'set': 0
         }
         for esp in self.lightsList['ESP_onboard']:
             if esp['ID'] == ESP_ID:
@@ -41,7 +41,7 @@ class Lights(VoicehomeModule):
         payload = {
             'ID':ESP_ID,
             'type': 'ESP_onboard',
-            'set': 0
+            'set': 1
         }
         for esp in self.lightsList['ESP_onboard']:
             if esp['ID'] == ESP_ID:
