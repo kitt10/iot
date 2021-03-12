@@ -3,15 +3,34 @@
 import time
 import gc
 from mqttclient import Client
+import config
 
 # initialization
 mqtt_client = Client()
+
+
 # mqtt_client_commands = Client()
 gc.disable()
 # gc.enable()
 gc.collect()
 mqtt_client.connect()
 
+msg_structure_state = {'ID': config.MQTT['ESP_ID'],
+                       'type': 'ESP_onboard',
+                       'state': mqtt_client.ESPled.value()
+                       }
+print(msg_structure_state)
+mqtt_client.mqtt_msg(msg_structure_state,
+              config.MQTT['TOPIC_LIGHTS_STATE'])
+
+
+# msg_structure_state = {'ID': config.MQTT['LightsID'][0],
+#                        'type': 'light',
+#                        'state': mqtt_client.light1.value()
+#                        }
+# print(msg_structure_state)
+# mqtt_client.mqtt_msg(msg_structure_state,
+#               config.MQTT['TOPIC_LIGHTS_STATE'])
 
 # main loop
 while True:
