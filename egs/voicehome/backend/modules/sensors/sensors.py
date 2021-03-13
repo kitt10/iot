@@ -15,6 +15,11 @@ class Sensors(VoicehomeModule):
 
         self.voicekit_asked_current_measure_for_quantity = []
 
+        self.get_current_temperature(who_asking='')
+        self.get_current_pressure(who_asking='')
+        self.get_current_humidity(who_asking='')
+        self.get_current_illuminance(who_asking='')
+
     def get_current_temperature(self,who_asking='voicekit'):
         self.sensorMeasureNow('ds18b20_1','temperature', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('temperature')

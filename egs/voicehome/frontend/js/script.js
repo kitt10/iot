@@ -72,7 +72,7 @@ function onSocketOpen() {
 }
 
 function drawControllersState() {
-	if (typeof controller_state !== "undefined") {
+	if (!jQuery.isEmptyObject(controller_state)) {
 		if (controller_state.passport == "controller_connected") {
 			if (controller_state.controller_id == "keyboard") {
 				$("#controllers_state")
@@ -112,12 +112,12 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	if (
-		data.constructor === {}.constructor &&
-		(data.source == "keyboard" || data.source == "engine")
-	) {
-		displayInDivEventLog(data);
-	}
+	// if (
+	// 	data.constructor === {}.constructor &&
+	// 	(data.source == "keyboard" || data.source == "engine")
+	// ) {
+	// 	displayInDivEventLog(data);
+	// }
 	console.log("WS message:", data);
 
 	if (data == "Server ready." && page == "analytics") {
@@ -127,11 +127,11 @@ function onSocketMessage(message) {
 		request_whole_illuminance_data();
 	}
 	if (data == "Server ready." && page == "home") {
+		request_lightsList();
 		request_sensorsState();
 		request_sensorsList();
 		request_webWeatherOWM();
-		request_lightsList();
-		request_sensors_measure_now();
+		// request_sensors_measure_now();
 	}
 	sendToServer("Hi from browser. Got your message.");
 	// switch (data["message"]) {
@@ -228,6 +228,9 @@ function onSocketMessage(message) {
 			drawSensorsList(sensorsList);
 		}
 	}
+	if (data["passport"] == "communication") {
+		displayInDivEventLog(data);
+	}
 	if (data["message"] == "whole_temperature_data") {
 		dataTemperatureFull = data["reply"];
 	}
@@ -246,6 +249,7 @@ function onSocketMessage(message) {
 	}
 	if (data["message"] == "lightsList") {
 		lightsList = data["reply"];
+		drawLightsState();
 	}
 	// drawLightsList()
 	if (data["message"] == "sensorsState") {
@@ -271,42 +275,63 @@ function onSocketMessage(message) {
 	//if is home and sensorsListFull && sensorsState already came
 }
 
-function drawLightsList() {
+function drawLightsState() {
 	$("#light_container").empty();
 	for (const [key, value] of Object.entries(lightsList)) {
 		for (var light in value) {
 			if ("state" in value[light]) {
 				if (value[light]["state"] == 1) {
 					$("#light_container").append(
-						$("<img></img>")
-							.attr("src", "/img/light/lightbulbon.svg")
-							.attr("alt", "lightbulbon"),
-						$("<span></span>").text(
-							"key = " + key + " id = " + value[light]["ID"]
-						),
-						$("</br>")
+						$("<div/>").append(
+							$("<img></img>")
+								.attr("src", "/img/light/lightbulbon.svg")
+								.attr("alt", "lightbulbon")
+								.attr("style", "width: 2em; margin: 5px"),
+							$("<span></span>").text(
+								"key = " + key + " id = " + value[light]["ID"]
+							),
+							$("</br>")
+						)
+						// .click(function (this) {
+						// 	console.log(this);
+						// 	// request_lightCommand
+						// })
 					);
 				}
 				if (value[light]["state"] == 0) {
 					$("#light_container").append(
-						$("<img></img>")
-							.attr("src", "/img/light/lightbulboff.svg")
-							.attr("alt", "lightbulboff"),
-						$("<span></span>").text(
-							"key = " + key + " id = " + value[light]["ID"]
-						),
-						$("</br>")
+						$("<div/>").append(
+							$("<img></img>")
+								.attr("src", "/img/light/lightbulboff.svg")
+								.attr("alt", "lightbulboff")
+								.attr("style", "width: 2em; margin: 5px"),
+							$("<span></span>").text(
+								"key = " + key + " id = " + value[light]["ID"]
+							),
+							$("</br>")
+						)
+						// .click(function (this) {
+						// 	console.log(this);
+						// 	// request_lightCommand
+						// })
 					);
 				}
 			} else {
 				$("#light_container").append(
-					$("<img></img>")
-						.attr("src", "/img/light/lightbulbunenable.svg")
-						.attr("alt", "lightbulbunenable"),
-					$("<span></span>").text(
-						"key = " + key + " id = " + value[light]["ID"]
-					),
-					$("</br>")
+					$("<div/>").append(
+						$("<img></img>")
+							.attr("src", "/img/light/lightbulbunenable.svg")
+							.attr("alt", "lightbulbunenable")
+							.attr("style", "width: 2em; margin: 5px"),
+						$("<span></span>").text(
+							"key = " + key + " id = " + value[light]["ID"]
+						),
+						$("</br>")
+					)
+					// .click(function (this) {
+					// 	console.log(this);
+					// 	// request_lightCommand
+					// })
 				);
 			}
 		}
@@ -895,16 +920,26 @@ function request_lightsList() {
 	sendToServer(msg, "lights/state");
 }
 
+function request_lightCommand(type, id, set) {
+	second_param = {
+		ID: id,
+		type: type,
+		set: set,
+	};
+	msg = "lightCommand";
+	sendToServer(msg, "lights/state", second_param);
+}
+
 function request_webWeatherOWM() {
 	msg = "webWeatherOWM";
 	sendToServer(msg, "weather");
 }
 
-function sendToServer(message, passport = "") {
+function sendToServer(message, passport = "", second_param = "") {
 	let payload = {
 		passport: passport,
 		message: message,
-		second_param: [1, 2],
+		second_param: second_param,
 	};
 	ws.send(JSON.stringify(payload));
 }

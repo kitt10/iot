@@ -8,7 +8,7 @@ class Lights(VoicehomeModule):
         VoicehomeModule.__init__(self, engine, dir_path)
         self.lightsList = {}
         self.reloadLightsList()
-        # self.requestStateEachLight()
+        self.requestStateEachLight()
 
 
     def requestState(self,ID,type):
@@ -32,10 +32,8 @@ class Lights(VoicehomeModule):
             'type': 'ESP_onboard',
             'set': 0
         }
-        for esp in self.lightsList['ESP_onboard']:
-            if esp['ID'] == ESP_ID:
-                esp['state'] = 1
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
+        # self.requestState(ESP_ID, 'ESP_onboard')
 
     def ESP_turn_off_light_onboard(self, ESP_ID):
         payload = {
@@ -43,10 +41,8 @@ class Lights(VoicehomeModule):
             'type': 'ESP_onboard',
             'set': 1
         }
-        for esp in self.lightsList['ESP_onboard']:
-            if esp['ID'] == ESP_ID:
-                esp['state'] = 0
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
+        # self.requestState(ESP_ID, 'ESP_onboard')
 
     def ESP_turn_on_light(self, light_ID):
         payload = {
@@ -54,10 +50,8 @@ class Lights(VoicehomeModule):
             'type': 'light',
             'set': 1
         }
-        for light in self.lightsList['light']:
-            if light['ID'] == light_ID:
-                light['state'] = 1
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
+        # self.requestState(light_ID, 'light')
 
 
 
@@ -67,10 +61,8 @@ class Lights(VoicehomeModule):
             'type': 'light',
             'set': 0
         }
-        for light in self.lightsList['light']:
-            if light['ID'] == light_ID:
-                light['state'] = 0
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
+        # self.requestState(light_ID, 'light')
 
     def ESP_turn_on_light_1(self):
         print('Module ' + self.id + ": turning light 1 on")
@@ -116,14 +108,21 @@ class Lights(VoicehomeModule):
             if payload['type'] in self.lightsList.keys():
                 for light in self.lightsList[payload['type']]:
                     if payload['ID'] == light['ID']:
-                        light['state']=payload['state']
+                        if payload['type'] == 'ESP_onboard':
+                            if payload['state'] == 1:
+                                light['state']=0
+                            else:
+                                light['state']=1
+                        else:
+                            light['state']=payload['state']
 
-            msg={}
-            msg['passport'] = "lights/state"
-            msg['message'] = "lightsList"
-            msg['reply'] = self.lightsList
+
+            msg1={}
+            msg1['passport'] = "lights/state"
+            msg1['message'] = "lightsList"
+            msg1['reply'] = self.lightsList
             try:
-                self.websocket_send(msg)
+                self.websocket_send(msg1)
             except:
                 print('Unenable to send websocket at module Lights on_mqtt_message()')
                 pass
@@ -134,8 +133,23 @@ class Lights(VoicehomeModule):
         print(msg)
         if msg['passport'] == "lights/state":
             if msg['message'] == "lightsList":
-                msg['reply'] = self.lightsList
-                self.websocket_send(msg)
+                # self.requestStateEachLight()
+                msg1 = {}
+                msg1['passport'] = "lights/state"
+                msg1['message'] = "lightsList"
+                msg1['reply'] = self.lightsList
+                self.websocket_send(msg1)
+            if msg['message'] == "lightCommand":
+                if msg['second_param']['type'] == 'ESP_onboard':
+                    if msg['second_param']['set'] == 1:
+                        self.ESP_turn_on_light_onboard(msg['second_param']['ID'])
+                    if msg['second_param']['set'] == 0:
+                        self.ESP_turn_off_light_onboard(msg['second_param']['ID'])
+                if msg['message']['type'] == 'light':
+                    if msg['second_param']['set'] == 1:
+                        self.ESP_turn_on_light(msg['second_param']['ID'])
+                    if msg['second_param']['set'] == 0:
+                        self.ESP_turn_off_light(msg['second_param']['ID'])
         pass
 
     def reloadLightsList(self):
