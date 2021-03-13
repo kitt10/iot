@@ -44,6 +44,7 @@ class VoicehomeControlInterface:
 
                 # Send to web...
                 ws_msg = {'passport': 'controller_connected',
+                          'message': 'controller',
                           'controller_id': self.controller_id}
                 self.engine.webserver.app.ws_message(ws_msg)
                 return
@@ -92,6 +93,7 @@ class VoicehomeControlInterface:
 
         # Send to web...
         ws_msg = {'passport': 'controller_disconnected',
+                  'message': 'controller',
                   'controller_id': self.controller_id}
         self.engine.webserver.app.ws_message(ws_msg)
         self.engine.webserver.packet['controller_id'] = 'none'

@@ -1,7 +1,7 @@
 // Global variables
 // var dataTemperature = [];
 var sensorsListFull = {};
-var sensorsStatus = {};
+var sensorsState = {};
 var dataTemperatureFull = [];
 var dataTemperature = "";
 var dataPressureFull = [];
@@ -10,6 +10,7 @@ var dataIlluminanceFull = [];
 var dataIlluminance = "";
 var MAXROOM;
 var page = "home";
+var controller_state = {};
 
 // var ws_address = "ws://147.228.124.230:8881/websocket";
 var ws_address = "ws://127.0.0.1:8881/websocket";
@@ -23,7 +24,7 @@ function onBodyLoadModules() {
 	ws.onclose = onSocketClose;
 
 	fillModules();
-	drawControllersStatus();
+	drawControllersState();
 }
 
 function onBodyLoad() {
@@ -34,7 +35,7 @@ function onBodyLoad() {
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
 
-	drawControllersStatus();
+	drawControllersState();
 }
 
 function turnModuleOnOff(on, module_id) {
@@ -58,8 +59,7 @@ function onBodyLoadAnalytics() {
 	ws.onmessage = onSocketMessage;
 	ws.onclose = onSocketClose;
 
-	drawControllersStatus();
-
+	drawControllersState();
 	// request_sensorsList();
 	// request_whole_temperature_data();
 	// request_sensorsList();
@@ -71,20 +71,37 @@ function onSocketOpen() {
 	console.log("WS client: Websocket opened.");
 }
 
-function drawControllersStatus() {
-	switch (get_controller_id()) {
-		case "keyboard":
-			$("#controllers_status")
-				.attr("src", "/img/controller_icons/keyboard_on.svg")
-				.attr("alt", "keyboard_on");
-			break;
-		case "voicekit":
-			$("#controllers_status")
-				.attr("src", "/img/controller_icons/voicekit_on.svg")
-				.attr("alt", "voicekit_on");
-			break;
-		default:
-			break;
+function drawControllersState() {
+	if (typeof controller_state !== "undefined") {
+		if (controller_state.passport == "controller_connected") {
+			if (controller_state.controller_id == "keyboard") {
+				$("#controllers_state")
+					.attr("src", "/img/controller_icons/keyboard_on.svg")
+					.attr("alt", "keyboard_on");
+			} else {
+				$("#controllers_state")
+					.attr("src", "/img/controller_icons/voicekit_on.svg")
+					.attr("alt", "voicekit_on");
+			}
+		}
+		if (controller_state.passport == "controller_disconnected") {
+			$("#controllers_state").attr("src", "").attr("alt", "");
+		}
+	} else {
+		switch (get_controller_id()) {
+			case "keyboard":
+				$("#controllers_state")
+					.attr("src", "/img/controller_icons/keyboard_on.svg")
+					.attr("alt", "keyboard_on");
+				break;
+			case "voicekit":
+				$("#controllers_state")
+					.attr("src", "/img/controller_icons/voicekit_on.svg")
+					.attr("alt", "voicekit_on");
+				break;
+			default:
+				break;
+		}
 	}
 }
 
@@ -110,52 +127,148 @@ function onSocketMessage(message) {
 		request_whole_illuminance_data();
 	}
 	if (data == "Server ready." && page == "home") {
-		request_sensorsStatus();
+		request_sensorsState();
 		request_sensorsList();
 		request_webWeatherOWM();
 		request_lightsList();
+		request_sensors_measure_now();
 	}
 	sendToServer("Hi from browser. Got your message.");
-	switch (data["message"]) {
-		case "sensorsList":
-			sensorsList = Object.assign({}, data["reply"]);
-			sensorsListFull = Object.assign({}, data["reply"]);
-			if (page == "analytics") {
-				drawSensorsList(sensorsList);
-			}
-			break;
-		case "whole_temperature_data":
-			dataTemperatureFull = data["reply"];
-			break;
-		case "whole_pressure_data":
-			dataPressureFull = data["reply"];
-			break;
-		case "whole_illuminance_data":
-			dataIlluminanceFull = data["reply"];
-			break;
-		case "webWeatherOWM":
-			webWeatherOWM = data["reply"];
+	// switch (data["message"]) {
+	// 	case "sensorsList":
+	// 		sensorsList = Object.assign({}, data["reply"]);
+	// 		sensorsListFull = Object.assign({}, data["reply"]);
+	// 		if (page == "analytics") {
+	// 			drawSensorsList(sensorsList);
+	// 		}
+	// 		break;
+	// 	case "whole_temperature_data":
+	// 		dataTemperatureFull = data["reply"];
+	// 		break;
+	// 	case "whole_pressure_data":
+	// 		dataPressureFull = data["reply"];
+	// 		break;
+	// 	case "whole_illuminance_data":
+	// 		dataIlluminanceFull = data["reply"];
+	// 		break;
+	// 	case "webWeatherOWM":
+	// 		webWeatherOWM = data["reply"];
+
+	// 		if (!jQuery.isEmptyObject(webWeatherOWM)) {
+	// 			drawWebWeatherOWM();
+	// 		}
+
+	// 		break;
+	// 	case "lightsList":
+	// 		lightsList = data["reply"];
+	// 		// drawLightsList()
+	// 		break;
+	// 	case "sensorsState":
+	// 		sensorsState = data["reply"];
+	// 		if (!jQuery.isEmptyObject(sensorsState)) {
+	// 			drawSensorsState(data["reply"]);
+	// 		}
+	// 		if (
+	// 			page == "home" &&
+	// 			!jQuery.isEmptyObject(sensorsListFull) &&
+	// 			!jQuery.isEmptyObject(sensorsState)
+	// 		) {
+	// 			drawCurrentlyMeasuredValue();
+	// 		}
+	// 		break;
+	// 		otherwise: console.log("pass on onSocketMessage");
+	// }
+
+	// if (data["message"] == "sensorsList") {
+	// 	sensorsList = Object.assign({}, data["reply"]);
+	// 	sensorsListFull = Object.assign({}, data["reply"]);
+	// 	if (page == "analytics") {
+	// 		drawSensorsList(sensorsList);
+	// 	}
+	// } else if (data["message"] == "whole_temperature_data") {
+	// 	dataTemperatureFull = data["reply"];
+	// } else if (data["message"] == "whole_pressure_data") {
+	// 	dataPressureFull = data["reply"];
+	// } else if (data["message"] == "whole_illuminance_data") {
+	// 	dataIlluminanceFull = data["reply"];
+	// } else if (data["message"] == "webWeatherOWM") {
+	// 	webWeatherOWM = data["reply"];
+
+	// 	if (!jQuery.isEmptyObject(webWeatherOWM)) {
+	// 		drawWebWeatherOWM();
+	// 	}
+	// } else if (data["message"] == "lightsList") {
+	// 	lightsList = data["reply"];
+	// }
+	// // drawLightsList()
+	// else if (data["message"] == "sensorsState") {
+	// 	sensorsState = data["reply"];
+	// 	if (!jQuery.isEmptyObject(sensorsState)) {
+	// 		drawSensorsState(data["reply"]);
+	// 	}
+	// } else if (
+	// 	data["message"] == "sensorsState" ||
+	// 	data["message"] == "sensorsList"
+	// ) {
+	// 	if (
+	// 		page == "home" &&
+	// 		!jQuery.isEmptyObject(sensorsListFull) &&
+	// 		!jQuery.isEmptyObject(sensorsState)
+	// 	) {
+	// 		drawCurrentlyMeasuredValue();
+	// 	}
+	// } else {
+	// 	console.log("pass on onSocketMessage");
+	// }
+
+	if (data["message"] == "sensorsList") {
+		sensorsList = Object.assign({}, data["reply"]);
+		sensorsListFull = Object.assign({}, data["reply"]);
+		if (page == "analytics") {
+			drawSensorsList(sensorsList);
+		}
+	}
+	if (data["message"] == "whole_temperature_data") {
+		dataTemperatureFull = data["reply"];
+	}
+	if (data["message"] == "whole_pressure_data") {
+		dataPressureFull = data["reply"];
+	}
+	if (data["message"] == "whole_illuminance_data") {
+		dataIlluminanceFull = data["reply"];
+	}
+	if (data["message"] == "webWeatherOWM") {
+		webWeatherOWM = data["reply"];
+
+		if (!jQuery.isEmptyObject(webWeatherOWM)) {
 			drawWebWeatherOWM();
-			break;
-		case "lightsList":
-			lightsList = data["reply"];
-			// drawLightsList()
-			break;
-		case "sensorsStatus":
-			sensorsStatus = data["reply"];
-			drawSensorsStatus(data["reply"]);
-			break;
-			otherwise: console.log("pass on onSocketMessage");
+		}
+	}
+	if (data["message"] == "lightsList") {
+		lightsList = data["reply"];
+	}
+	// drawLightsList()
+	if (data["message"] == "sensorsState") {
+		sensorsState = data["reply"];
+		if (!jQuery.isEmptyObject(sensorsState)) {
+			drawSensorsState(data["reply"]);
+		}
+	}
+	if (data["message"] == "sensorsState" || data["message"] == "sensorsList") {
+		if (
+			page == "home" &&
+			!jQuery.isEmptyObject(sensorsListFull) &&
+			!jQuery.isEmptyObject(sensorsState)
+		) {
+			drawCurrentlyMeasuredValue();
+		}
+	}
+	if (data["message"] == "controller") {
+		controller_state = data;
+		drawControllersState();
 	}
 
-	//if is home and sensorsListFull && sensorsStatus already came
-	if (
-		page == "home" &&
-		!jQuery.isEmptyObject(sensorsListFull) &&
-		!jQuery.isEmptyObject(sensorsStatus)
-	) {
-		drawCurrentlyMeasuredValue();
-	}
+	//if is home and sensorsListFull && sensorsState already came
 }
 
 function drawLightsList() {
@@ -323,7 +436,7 @@ function drawCurrentlyMeasuredValue() {
 	// 	}
 	// }
 
-	for (const [key, value] of Object.entries(sensorsStatus)) {
+	for (const [key, value] of Object.entries(sensorsState)) {
 		if (rooms.includes(value.location) == false) {
 			rooms.push(value.location);
 			$("#measured_value_container").append(
@@ -348,7 +461,7 @@ function drawCurrentlyMeasuredValue() {
 						.addClass("card-body sensors measured_value")
 						.attr("id", value.sensor_id + " " + value.location)
 						.append(
-							$("<span></span").text(value.value),
+							$("<span></span").text(Math.round(value.value * 10) / 10),
 							$("<img/>")
 								.addClass("sensors measured_value")
 								.attr("src", "/img/quantity/" + key.split("-")[1] + ".svg")
@@ -359,9 +472,9 @@ function drawCurrentlyMeasuredValue() {
 	}
 }
 
-function drawSensorsStatus(sensorsStatus) {
+function drawSensorsState(sensorsState) {
 	$("#sensors_container").empty();
-	$.each(sensorsStatus, function (i, val) {
+	$.each(sensorsState, function (i, val) {
 		valDate = new Date(val.timestamp);
 		now = new Date();
 		const diffTime = Math.abs(now - valDate);
@@ -376,7 +489,7 @@ function drawSensorsStatus(sensorsStatus) {
 			);
 			return;
 		}
-		if (val["status"] == "ok") {
+		if (val["state"] == "ok") {
 			$("#sensors_container").append(
 				'<div><i style="color: green" class="bi bi-check-circle-fill"></i><span>' +
 					i +
@@ -496,7 +609,7 @@ function restructureTemperatureData() {
 
 	data.forEach((element) => {
 		loc = element.location;
-		if (element.status == "error") {
+		if (element.state == "error") {
 			return;
 		}
 		// if (pattern.test(loc) == false) {
@@ -523,7 +636,7 @@ function restructureIlluminanceData() {
 
 	data.forEach((element) => {
 		loc = element.location;
-		if (element.status == "error") {
+		if (element.state == "error") {
 			return;
 		}
 		// if (pattern.test(loc) == false) {
@@ -550,7 +663,7 @@ function restructurePressureData() {
 
 	data.forEach((element) => {
 		loc = element.location;
-		if (element.status == "error") {
+		if (element.state == "error") {
 			return;
 		}
 		// if (pattern.test(loc) == false) {
@@ -752,13 +865,18 @@ function request_whole_temperature_data() {
 	sendToServer(msg, "sensors");
 }
 
+function request_sensors_measure_now() {
+	msg = "sensors_measure_now";
+	sendToServer(msg, "sensors");
+}
+
 function request_whole_pressure_data() {
 	msg = "whole_pressure_data";
 	sendToServer(msg, "sensors");
 }
 
-function request_sensorsStatus() {
-	msg = "sensorsStatus";
+function request_sensorsState() {
+	msg = "sensorsState";
 	sendToServer(msg, "sensors");
 }
 

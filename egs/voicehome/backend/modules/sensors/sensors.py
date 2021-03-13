@@ -15,20 +15,20 @@ class Sensors(VoicehomeModule):
 
         self.voicekit_asked_current_measure_for_quantity = []
 
-    def get_current_temperature(self):
-        self.sensorMeasureNow('ds18b20_1','temperature', 'voicekit')
+    def get_current_temperature(self,who_asking='voicekit'):
+        self.sensorMeasureNow('ds18b20_1','temperature', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('temperature')
 
-    def get_current_pressure(self):
-        self.sensorMeasureNow('bme280_1','pressure', 'voicekit')
+    def get_current_pressure(self,who_asking='voicekit'):
+        self.sensorMeasureNow('bme280_1','pressure', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('pressure')
 
-    def get_current_humidity(self):
-        self.sensorMeasureNow('bme280_1','humidity', 'voicekit')
+    def get_current_humidity(self,who_asking='voicekit'):
+        self.sensorMeasureNow('bme280_1','humidity', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('humidity')
 
-    def get_current_illuminance(self):
-        self.sensorMeasureNow('tsl2591_1','illuminance', 'voicekit')
+    def get_current_illuminance(self,who_asking='voicekit'):
+        self.sensorMeasureNow('tsl2591_1','illuminance', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('illuminance')
 
 
@@ -92,6 +92,11 @@ class Sensors(VoicehomeModule):
                                                                                            "location": msg["location"],
                                                                                            "value": msg[x_match.string]
                                                                                            }
+                msg_web = {
+                    'message': 'sensorsState',
+                    'reply': self.sensorsState
+                }
+                self.websocket_send(msg_web)
                 # self.sensorsState[msg['sensor_id']+"_"+msg["quantity"]] = {"state": msg['state'],
                 #                                                             "timestamp": msg['timestamp']
                 #                                                             }
@@ -115,6 +120,12 @@ class Sensors(VoicehomeModule):
         if msg['message'] == "sensorsState":
             msg['reply'] = self.sensorsState
             self.websocket_send(msg)
+        if msg['message'] == "sensors_measure_now":
+            self.get_current_temperature(who_asking='web')
+            self.get_current_pressure(who_asking='web')
+            self.get_current_humidity(who_asking='web')
+            self.get_current_illuminance(who_asking='web')
+
         print("Sensors: websocket sended")
         pass
 
