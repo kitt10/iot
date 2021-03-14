@@ -12,8 +12,8 @@ var MAXROOM;
 var page = "home";
 var controller_state = {};
 
-var ws_address = "ws://147.228.124.230:8881/websocket";
-// var ws_address = "ws://127.0.0.1:8881/websocket";
+// var ws_address = "ws://147.228.124.230:8881/websocket";
+var ws_address = "ws://127.0.0.1:8881/websocket";
 
 function onBodyLoadModules() {
 	page = "modules";
@@ -286,7 +286,7 @@ function drawLightsState() {
 							$("<img></img>")
 								.attr("src", "/img/light/lightbulbon.svg")
 								.attr("alt", "lightbulbon")
-								.attr("style", "width: 2em; margin: 5px"),
+								.attr("class", "light_bulb"),
 							$("<span></span>").text(
 								"key = " + key + " id = " + value[light]["ID"]
 							),
@@ -304,7 +304,7 @@ function drawLightsState() {
 							$("<img></img>")
 								.attr("src", "/img/light/lightbulboff.svg")
 								.attr("alt", "lightbulboff")
-								.attr("style", "width: 2em; margin: 5px"),
+								.attr("class", "light_bulb"),
 							$("<span></span>").text(
 								"key = " + key + " id = " + value[light]["ID"]
 							),
@@ -322,7 +322,7 @@ function drawLightsState() {
 						$("<img></img>")
 							.attr("src", "/img/light/lightbulbunenable.svg")
 							.attr("alt", "lightbulbunenable")
-							.attr("style", "width: 2em; margin: 5px"),
+							.attr("class", "light_bulb"),
 						$("<span></span>").text(
 							"key = " + key + " id = " + value[light]["ID"]
 						),
@@ -387,16 +387,21 @@ function drawWebWeatherOWM() {
 			.attr("style", "width: 3em; height: 3em")
 			.attr("src", "/img/weather/" + webWeatherOWM.today_icon + ".svg")
 			.attr("alt", "icon " + webWeatherOWM.today_icon),
-		$("<span></span>").text(webWeatherOWM.current_temperature + "°C"),
+		$("<span></span>").text(
+			(Math.round(webWeatherOWM.current_temperature * 10) / 10).toString() +
+				"°C"
+		),
 		$("</br>"),
 		$("<span></span>").text(
-			webWeatherOWM.today_temperature_day +
+			(Math.round(webWeatherOWM.today_temperature_day * 10) / 10).toString() +
 				"°C/" +
-				webWeatherOWM.today_temperature_night +
+				(
+					Math.round(webWeatherOWM.today_temperature_night * 10) / 10
+				).toString() +
 				"°C"
 		),
 		$(
-			'<img style="width: 2em; height: 2em; margin: 0; margin-left: 25px" src="/img/weather/umbrella.svg" alt="umbrella"/>'
+			'<img class="umbrella" id="today" src="/img/weather/umbrella.svg" alt="umbrella"/>'
 		),
 		$("<span></span>").text(webWeatherOWM.today_rain + "mm/h")
 	);
@@ -409,13 +414,17 @@ function drawWebWeatherOWM() {
 			.attr("src", "/img/weather/" + webWeatherOWM.tomorrow_icon + ".svg")
 			.attr("alt", webWeatherOWM.tomorrow_icon),
 		$("<span></span>").text(
-			webWeatherOWM.tomorrow_temperature_day +
+			(
+				Math.round(webWeatherOWM.tomorrow_temperature_day * 10) / 10
+			).toString() +
 				"°C/" +
-				webWeatherOWM.tomorrow_temperature_night +
+				(
+					Math.round(webWeatherOWM.tomorrow_temperature_night * 10) / 10
+				).toString() +
 				"°C"
 		),
 		$(
-			'<img style="width: 1.3em;eight: 1.3em;margin: 0;margin-left: 25px;" src="/img/weather/umbrella.svg" alt="umbrella"/>'
+			'<img class="umbrella" id = "tomorrow" src="/img/weather/umbrella.svg" alt="umbrella"/>'
 		),
 		$("<span></span>").text(webWeatherOWM.tomorrow_rain + "mm/h")
 	);
@@ -480,7 +489,7 @@ function drawCurrentlyMeasuredValue() {
 				.addClass("measured_values_item card border-2 col-auto")
 				.append(
 					$("<span></span>")
-						.addClass("card-title text-center title")
+						.addClass("card-title text-center title measured_value")
 						.text(value.sensor_id),
 					$("<div/>")
 						.addClass("card-body sensors measured_value")
@@ -506,7 +515,7 @@ function drawSensorsState(sensorsState) {
 		if (diffTime > 300000) {
 			//longer then 5 min
 			$("#sensors_container").append(
-				'<div><i style="color: red" class="bi bi-dash-circle-fill"></i><span>' +
+				'<div><i style="color: red" class="bi bi-dash-circle-fill sensor_state_icon"></i><span>' +
 					i +
 					+"</span><span> <" +
 					val.timestamp +
@@ -516,7 +525,7 @@ function drawSensorsState(sensorsState) {
 		}
 		if (val["state"] == "ok") {
 			$("#sensors_container").append(
-				'<div><i style="color: green" class="bi bi-check-circle-fill"></i><span>' +
+				'<div><i style="color: green" class="bi bi-check-circle-fill sensor_state_icon"></i><span>' +
 					i +
 					"</span><span> <" +
 					val.timestamp +
@@ -525,7 +534,7 @@ function drawSensorsState(sensorsState) {
 			return;
 		} else {
 			$("#sensors_container").append(
-				'<div><i style="color: red" class="bi bi-dash-circle-fill"></i><span>' +
+				'<div><i style="color: red" class="bi bi-dash-circle-fill sensor_state_icon"></i><span>' +
 					i +
 					"</span><span> <" +
 					val.timestamp +
@@ -539,7 +548,9 @@ function drawSensorsState(sensorsState) {
 function drawSensorsList(data) {
 	console.log("drawSensorsList");
 	filterDiv = document.getElementById("filter-container");
-	filterDiv.innerHTML = "";
+	$("#filter-container")
+		.empty()
+		.append($("<h2/>").text("Nastavaní pro vykreslení dat"));
 	console.log(data);
 	// Object.keys(data).forEach((key) => {
 	for (const [key, value] of Object.entries(data)) {
@@ -554,7 +565,7 @@ function drawSensorsList(data) {
 			keyFilterDiv.id = key;
 			filterDiv.appendChild(keyFilterDiv);
 
-			let titleFilter = document.createElement("h3");
+			let titleFilter = document.createElement("h4");
 			titleFilter.innerHTML = key[0].toUpperCase() + key.slice(1);
 			keyFilterDiv.appendChild(titleFilter);
 
@@ -587,7 +598,7 @@ function drawSensorsList(data) {
 	}
 	filterDiv.insertAdjacentHTML(
 		"beforeend",
-		`<button type="submit" class="btn btn-primary" onclick="drawGraphs()" >Submit</button>`
+		`<button type="submit" class="btn btn-primary" onclick="drawGraphs()" >Vykreslit data</button>`
 	);
 }
 
@@ -866,7 +877,14 @@ function drawPressureGraph() {
 function displayInDivEventLog(data) {
 	var today = new Date();
 	var time =
-		today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		(today.getHours() < 10 ? "0" : "") +
+		today.getHours() +
+		":" +
+		(today.getMinutes() < 10 ? "0" : "") +
+		today.getMinutes() +
+		":" +
+		(today.getSeconds() < 10 ? "0" : "") +
+		today.getSeconds();
 
 	let divEventLog = document.getElementById("eventLog");
 	if (divEventLog.childNodes.length >= 5) {

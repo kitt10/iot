@@ -1,3 +1,59 @@
+html {
+	/* background-color: #bebebe; */
+}
+body {
+	/* overflow: auto; */
+	position: relative;
+	background-color: #fff;
+	width: 100%;
+	/* margin: 0 auto; */
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Remove padding and margin */
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* Have classes for floating and clearing */
+.clear {
+	clear: both;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+h1 {
+	font-size: 2.2em;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.8em;
+}
+
+h4 {
+	font-size: 1.6em;
+}
+
+h5 {
+	font-size: 1.4em;
+}
+
+p {
+	font-size: 1.2em;
+}
+
 /* MENU */
 div.scrollmenu {
 	background-color: #333;
@@ -15,17 +71,6 @@ div.scrollmenu a {
 
 div.scrollmenu a:hover {
 	background-color: #777;
-}
-
-/* BODY */
-body {
-	/* font-family: Verdana, Geneva, Tahoma, sans-serif; */
-	overflow-x: hidden;
-	/* min-width: 1000px;
-	_width: expression(document.body.clientWidth > 1000 ? "900px": "auto"); */
-}
-body* {
-	max-width: none;
 }
 
 #home-analytics {
@@ -96,6 +141,14 @@ div#light_div {
 	height: 242px;
 }
 
+img.light_bulb {
+	margin-right: 7px;
+}
+
+div#measured_value_container {
+	width: inherit;
+}
+
 div.measured_values_item {
 	margin-left: 10px;
 	margin-top: 30px;
@@ -115,6 +168,11 @@ main.container {
 
 div.card-body.sensors.measured_value {
 	font-size: 2.5em;
+	padding: 0em;
+}
+
+i.sensor_state_icon {
+	margin: 7px;
 }
 
 span.sensors.room.measured_value {
@@ -126,8 +184,32 @@ div.border-5 {
 	border-width: 5px;
 }
 
+img {
+	width: 2em;
+	margin: 5px;
+}
+
 img.sensors.measured_value {
 	width: 70px;
+	margin: 10px;
+}
+
+img.umbrella#today {
+	width: 2em;
+	height: 2em;
+	margin-left: 25px;
+	margin-right: 5px;
+}
+
+img.umbrella {
+	margin: 3px;
+}
+
+img.umbrella#tomorrow {
+	width: 1.3em;
+	height: 1.3em;
+	margin-left: 25px;
+	margin-right: 5px;
 }
 
 div#eventLogContainer {
@@ -135,6 +217,12 @@ div#eventLogContainer {
 }
 div#eventLogContainer #title {
 	height: 36px;
+}
+
+span.title.measured_value {
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-top: 7px;
 }
 
 span.title {
@@ -154,12 +242,6 @@ small {
 	) !important;
 }
 
-h3 {
-	font-size: calc(
-		34px + (40 - 34) * ((100vw - 360px) / (1600 - 360))
-	) !important;
-}
-
 .social {
 	font-size: 21px !important;
 }
@@ -170,93 +252,25 @@ h3 {
 	) !important;
 }
 
-/* Martina */
-
-/* body {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-#header {
-	position: absolute;
-	top: 30px;
-	left: 15%;
-	width: 70%;
-	color: darkblue;
-	background-color: aliceblue;
+ul.footer {
+	margin-top: 10px;
 	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-radius: 10px;
 }
 
-#modules {
-	position: absolute;
-	top: 100px;
-	left: 20%;
-	width: 60%;
-	color: darkblue;
-	background-color: slategray;
-	text-align: center;
-	line-height: 1.5em;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-radius: 10px;
+ul.footer li {
+	color: #333;
+	display: inline-block;
 }
 
-.module {
-	background-color: floralwhite;
-	padding: 10px;
-	margin: 10px;
-	border-radius: 10px;
-	border: 1px solid black;
-}
+footer {
+	bottom: -50px;
+	height: 50px;
+	/* left: 0; */
+	/* position: absolute; */
+	right: 0;
+	display: inline-block;
+	float: right;
 
-.module_title {
-	font-weight: bold;
-	font-size: 100%;
+	/* position: fixed; */
+	bottom: 0;
 }
-
-.module_description {
-	color: black;
-	font-size: 80%;
-	text-align: left;
-}
-
-.module_moves {
-	padding: 10px;
-	margin: 10px;
-	border-radius: 10px;
-}
-
-.move {
-	background-color: whitesmoke;
-	padding: 10px;
-	margin: 10px;
-	border-radius: 10px;
-}
-
-.move_title {
-	font-weight: bold;
-	font-size: 80%;
-}
-
-.move_description {
-	color: black;
-	text-align: left;
-	font-size: 80%;
-}
-
-.move_calls {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-
-.move_call {
-	color: yellow;
-	background-color: lightslategray;
-	font-size: 75%;
-	padding: 3px 7px 3px 7px;
-	margin: 5px;
-	border-radius: 5px;
-} */
