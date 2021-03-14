@@ -12,12 +12,12 @@ options.add_argument('--headless')
 last_hour = 9999
 
 while True:
-    if datetime.datetime.now().hour != last_hour and datetime.datetime.now().minute in range(10,20):
+    if datetime.datetime.now().hour != last_hour and datetime.datetime.now().minute in range(40,50):
         last_hour=datetime.datetime.now().hour
         # mac
-        driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver',options=options)
+        # driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver',options=options)
         # linux
-        # driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',chrome_options=options)
+        driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',chrome_options=options)
 
         URL = 'https://www.chmi.cz/predpovedi/predpovedi-pocasi/ceska-republika/kraje/plzensky'
         # Stránka připravena 08.03.2021 v 16:01 UTC Swing a.s. Předpověď je vydávána 5xdenně v 5, 10:30, 12, 17 a 22 hodin
