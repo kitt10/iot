@@ -23,5 +23,5 @@ mongo:
 
 # --- Socket control interface configuration --- #
 socket:
-  host: "127.0.0.1"
+  host: "147.228.124.230"
   port: 7107
