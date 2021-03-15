@@ -21,9 +21,9 @@ class VoicehomeModulesPort:
                 module = import_module('modules.'+dir_item+'.'+dir_item)
                 cls = getattr(module, dir_item.capitalize())
                 if dir_item not in self.modules_off_names:
-                    self.modules.append(cls(engine=self.engine, dir_path=dir_path))
+                    self.modules.append(cls(engine=self.engine, dir_path=dir_path, active=True))
                 else:
-                    self.modules_off.append(cls(engine=self.engine, dir_path=dir_path))
+                    self.modules_off.append(cls(engine=self.engine, dir_path=dir_path, active=False))
 
     def reload_modules(self):
         self.modules = []
