@@ -4,8 +4,8 @@ import threading
 
 class Time(VoicehomeModule):
 
-    def __init__(self, engine, dir_path):
-        VoicehomeModule.__init__(self, engine, dir_path)
+    def __init__(self, engine, dir_path, active):
+        VoicehomeModule.__init__(self, engine, dir_path, active)
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")

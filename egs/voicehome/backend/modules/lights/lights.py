@@ -4,8 +4,8 @@ import json
 
 class Lights(VoicehomeModule):
 
-    def __init__(self, engine, dir_path):
-        VoicehomeModule.__init__(self, engine, dir_path)
+    def __init__(self, engine, dir_path, active):
+        VoicehomeModule.__init__(self, engine, dir_path, active)
         self.lightsList = {}
         self.reloadLightsList()
         self.requestStateEachLight()
