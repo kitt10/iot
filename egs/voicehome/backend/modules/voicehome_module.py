@@ -4,10 +4,11 @@ from os.path import join as join_path
 
 class VoicehomeModule:
 
-    def __init__(self, engine, dir_path):
+    def __init__(self, engine, dir_path, active):
         self.engine = engine
         self.cfg = engine.cfg
         self.dir_path = dir_path
+        self.active = active        # module turned on/off
 
         self.id = None
         self.version = None
@@ -16,8 +17,10 @@ class VoicehomeModule:
         self.module_moves = []
 
         self.load_metadata()
-        self.register_moves()
-        self.register_subscriptions()
+
+        if self.active:
+            self.register_moves()
+            self.register_subscriptions()
 
         print('Module', self.id, 'loaded ('+str(len(self.module_moves))+' moves).' )
 
