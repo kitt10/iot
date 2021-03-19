@@ -7,8 +7,14 @@
 		{
 			"move_id": "weather_01.get_forecast_today",
 			"method_name": "get_forecast_today",
-			"description": "Getting forecast for today by web scratch technic.",
-			"calls": [["dnešní předpověď"], ["předpověď"],["jak dneska bude"]]
+			"description": "Getting forecast for today from www.chmi.cz.",
+			"calls": [["dnešní předpověď"], ["forecast today"],["jak dneska bude"]]
+		},
+		{
+			"move_id": "weather_02.get_forecast_tomorrow",
+			"method_name": "get_forecast_tomorrow",
+			"description": "Getting forecast for tomorrow from www.chmi.cz.",
+			"calls": [["zátřejší předpověď"], ["forecast tomorrow"],["jak zítra bude"]]
 		}
 	]
 }
