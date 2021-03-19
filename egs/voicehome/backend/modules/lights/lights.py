@@ -145,7 +145,7 @@ class Lights(VoicehomeModule):
                         self.ESP_turn_on_light_onboard(msg['second_param']['ID'])
                     if msg['second_param']['set'] == 0:
                         self.ESP_turn_off_light_onboard(msg['second_param']['ID'])
-                if msg['message']['type'] == 'light':
+                if msg['second_param']['type'] == 'light':
                     if msg['second_param']['set'] == 1:
                         self.ESP_turn_on_light(msg['second_param']['ID'])
                     if msg['second_param']['set'] == 0:

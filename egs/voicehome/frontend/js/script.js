@@ -12,8 +12,8 @@ var MAXROOM;
 var page = "home";
 var controller_state = {};
 
-var ws_address = "ws://147.228.124.230:8881/websocket";
-// var ws_address = "ws://127.0.0.1:8881/websocket";
+// var ws_address = "ws://147.228.124.230:8881/websocket";
+var ws_address = "ws://127.0.0.1:8881/websocket";
 
 function onBodyLoadModules() {
 	page = "modules";
@@ -286,16 +286,28 @@ function drawLightsState() {
 							$("<img></img>")
 								.attr("src", "/img/light/lightbulbon.svg")
 								.attr("alt", "lightbulbon")
-								.attr("class", "light_bulb"),
+								.attr("class", "light_bulb")
+								.attr("light_ID", value[light]["ID"])
+								.attr("type", key.toString())
+								.attr("id", key.toString() + value[light]["ID"].toString())
+								.click(function () {
+									console.log($(this));
+									request_lightCommand(
+										$(this).attr("type"),
+										parseInt($(this).attr("light_ID")),
+										0
+									);
+									// if (key.toString() == "ESP_onboard") {
+									// 	request_lightCommand(key.toString(), value[light]["ID"], 0);
+									// } else {
+									// 	request_lightCommand(key.toString(), value[light]["ID"], 1);
+									// }
+								}),
 							$("<span></span>").text(
 								"key = " + key + " id = " + value[light]["ID"]
 							),
 							$("</br>")
 						)
-						// .click(function (this) {
-						// 	console.log(this);
-						// 	// request_lightCommand
-						// })
 					);
 				}
 				if (value[light]["state"] == 0) {
@@ -304,16 +316,29 @@ function drawLightsState() {
 							$("<img></img>")
 								.attr("src", "/img/light/lightbulboff.svg")
 								.attr("alt", "lightbulboff")
-								.attr("class", "light_bulb"),
+								.attr("class", "light_bulb")
+								.attr("light_ID", value[light]["ID"])
+								.attr("type", key.toString())
+								.attr("id", key.toString() + value[light]["ID"].toString())
+								.click(function () {
+									console.log($(this));
+									request_lightCommand(
+										$(this).attr("type"),
+										parseInt($(this).attr("light_ID")),
+										1
+									);
+									// console.log(key.toString());
+									// if (key.toString() == "ESP_onboard") {
+									// 	request_lightCommand(key.toString(), value[light]["ID"], 0);
+									// } else {
+									// 	request_lightCommand(key.toString(), value[light]["ID"], 1);
+									// }
+								}),
 							$("<span></span>").text(
 								"key = " + key + " id = " + value[light]["ID"]
 							),
 							$("</br>")
 						)
-						// .click(function (this) {
-						// 	console.log(this);
-						// 	// request_lightCommand
-						// })
 					);
 				}
 			} else {
@@ -322,16 +347,18 @@ function drawLightsState() {
 						$("<img></img>")
 							.attr("src", "/img/light/lightbulbunenable.svg")
 							.attr("alt", "lightbulbunenable")
-							.attr("class", "light_bulb"),
+							.attr("class", "light_bulb")
+							.attr("ID", value[light]["ID"])
+							.attr("type", key.toString())
+							.attr("id", key.toString() + value[light]["ID"].toString())
+							.click(function () {
+								console.log($(this));
+							}),
 						$("<span></span>").text(
 							"key = " + key + " id = " + value[light]["ID"]
 						),
 						$("</br>")
 					)
-					// .click(function (this) {
-					// 	console.log(this);
-					// 	// request_lightCommand
-					// })
 				);
 			}
 		}
