@@ -168,7 +168,6 @@ class Client:
             print((topic, msg))
             msg = loads(msg)
             if topic == bytearray(config.MQTT['TOPIC_SUBSCRIBE_LIGHTS']):
-                state = 'error'
                 if msg['type'] == 'ESP_onboard':
                     if msg['ID'] == config.MQTT['ESP_ID']:
                         self.ESPled.value(msg['set'])
