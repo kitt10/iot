@@ -34,13 +34,13 @@ class Weather(VoicehomeModule):
                                             ]
         self.regex_patterns_forecast_tomorrow = '^(Počasí přes den \(07-24\))'
 
-        self.regex_patterns_forecast_monday = '^(Předpověď na pondělí \(07-24\))'
-        self.regex_patterns_forecast_tuesday = '^(Předpověď na úterý \(07-24\))'
-        self.regex_patterns_forecast_wednesday = '^(Předpověď na středu \(07-24\))'
-        self.regex_patterns_forecast_thursday = '^(Předpověď na čtvrtek \(07-24\))'
-        self.regex_patterns_forecast_friday = '^(Předpověď na pátek \(07-24\))'
-        self.regex_patterns_forecast_saturday = '^(Předpověď na sobotu \(07-24\))'
-        self.regex_patterns_forecast_sunday = '^(Předpověď na neděli \(07-24\))'
+        self.regex_patterns_forecast_monday = '^(Předpověď na pondělí \(00-24\))'
+        self.regex_patterns_forecast_tuesday = '^(Předpověď na úterý \(00-24\))'
+        self.regex_patterns_forecast_wednesday = '^(Předpověď na středu \(00-24\))'
+        self.regex_patterns_forecast_thursday = '^(Předpověď na čtvrtek \(00-24\))'
+        self.regex_patterns_forecast_friday = '^(Předpověď na pátek \(00-24\))'
+        self.regex_patterns_forecast_saturday = '^(Předpověď na sobotu \(00-24\))'
+        self.regex_patterns_forecast_sunday = '^(Předpověď na neděli \(00-24\))'
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
