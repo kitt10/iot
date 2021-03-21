@@ -51,6 +51,69 @@
       ]
 
 
+    },
+    {
+      "move_id": "sensors_05.get_average_temperature_for_last_day",
+      "method_name": "get_average_temperature_for_last_day",
+      "description": "Voicekit answer average temperature for the last day",
+      "calls": [
+        ["průměrná teplota za poslední den"],
+        ["dnešní průměrná teplota"]
+      ]
+    },
+    {
+      "move_id": "sensors_06.get_average_pressure_for_last_day",
+      "method_name": "get_average_pressure_for_last_day",
+      "description": "Voicekit answer average pressure for the last day",
+      "calls": [
+        ["průměrný tlak za poslední den"],
+        ["dnešní průměrný tlak"]
+      ]
+    },
+    {
+      "move_id": "sensors_07.get_average_humidity_for_last_day",
+      "method_name": "get_average_humidity_for_last_day",
+      "description": "Voicekit answer average humidity for the last day",
+      "calls": [
+        ["průměrná vlhkost za poslední den"],
+        ["dnešní průměrná vlhkost"]
+      ]
+    },
+    {
+      "move_id": "sensors_08.get_average_illuminance_for_last_day",
+      "method_name": "get_average_illuminance_for_last_day",
+      "description": "Voicekit answer average illuminance for the last day",
+      "calls": [
+        ["průměrná intenzita světelnosti za poslední den"],
+        ["dnešní průměrná intenzita světelnosti"]
+      ]
+    },
+    {
+      "move_id": "sensors_09.get_average_temperature_for_last_week",
+      "method_name": "get_average_temperature_for_last_week",
+      "description": "Voicekit answer average temperature for the last week",
+      "calls": [
+        ["průměrná teplota za poslední týden"],
+        ["týdenní průměrná teplota"]
+      ]
+    },
+    {
+      "move_id": "sensors_10.get_average_pressure_for_last_week",
+      "method_name": "get_average_pressure_for_last_week",
+      "description": "Voicekit answer average pressure for the last week",
+      "calls": [
+        ["průměrný tlak za poslední týden"],
+        ["týdenní průměrný tlak"]
+      ]
+    },
+    {
+      "move_id": "sensors_11.get_average_humidity_for_last_week",
+      "method_name": "get_average_humidity_for_last_week",
+      "description": "Voicekit answer average humidity for the last week",
+      "calls": [
+        ["průměrná vlhkost za poslední týden"],
+        ["týdenní průměrná vlhkost"]
+      ]
     }
   ]
 }

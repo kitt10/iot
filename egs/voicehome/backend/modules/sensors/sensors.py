@@ -1,7 +1,9 @@
 from modules.voicehome_module import VoicehomeModule
 import json
+import pymongo
 import os
 import re
+from datetime import datetime, date, timedelta
 
 
 class Sensors(VoicehomeModule):
@@ -19,6 +21,171 @@ class Sensors(VoicehomeModule):
         self.get_current_pressure(who_asking='')
         self.get_current_humidity(who_asking='')
         self.get_current_illuminance(who_asking='')
+
+        mongoClient = pymongo.MongoClient("mongodb://127.0.0.1:27017/")
+        mondoDB = mongoClient["voicehome"]
+        self.sensorsCollection = mondoDB["sensors"]
+
+    def get_average_temperature_for_last_day(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=24, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'temperature_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['temperature_value']
+                    counter = counter + 1
+        average_temperature = buffer/counter
+        self.reply(message='Průměrná teplota za poslední den je: ' + str(average_temperature))
+
+    def get_average_pressure_for_last_day(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=24, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'pressure_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['pressure_value']
+                    counter = counter + 1
+        average_temperature = buffer/counter
+        self.reply(message='Průměrný tlak za poslední den je: ' + str(average_temperature))
+
+    def get_average_humidity_for_last_day(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=24, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'humidity_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['humidity_value']
+                    counter = counter + 1
+        average_temperature = buffer/counter
+        self.reply(message='Průměrná vlhkost za poslední den je: ' + str(average_temperature))
+
+    def get_average_illuminance_for_last_day(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=24, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'illuminance_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['illuminance_value']
+                    counter = counter + 1
+        average_temperature = buffer/counter
+        self.reply(message='Průměrná světelnost za poslední den je: ' + str(average_temperature))
+
+    def get_average_temperature_for_last_week(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=168, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'temperature_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['temperature_value']
+                    counter = counter + 1
+        average_temperature = buffer / counter
+        self.reply(message='Průměrná teplota za poslední den je: ' + str(average_temperature))
+
+    def get_average_pressure_for_last_week(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=168, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'pressure_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['pressure_value']
+                    counter = counter + 1
+        average_temperature = buffer / counter
+        self.reply(message='Průměrný tlak za poslední den je: ' + str(average_temperature))
+
+    def get_average_humidity_for_last_week(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=168, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'humidity_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['humidity_value']
+                    counter = counter + 1
+        average_temperature = buffer / counter
+        self.reply(message='Průměrná vlhkost za poslední den je: ' + str(average_temperature))
+
+    def get_average_illuminance_for_last_week(self):
+        # today = '2021-02-26 12:36:32'
+        # today = datetime.strptime(today, '%Y-%m-%d %H:%M:%S')
+        today = datetime.today()
+        datetime_hour_ago = today - timedelta(hours=168, minutes=0)
+
+        mydoc = self.sensorsCollection.find()
+        counter = 0
+        buffer = 0
+
+        for x in mydoc:
+            x = json.loads(x['payload'])
+            if 'illuminance_value' in x.keys():
+                time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
+                if time >= datetime_hour_ago and time <= today:
+                    buffer = buffer + x['illuminance_value']
+                    counter = counter + 1
+        average_temperature = buffer / counter
+        self.reply(message='Průměrná světelnost za poslední den je: ' + str(average_temperature))
+
 
     def get_current_temperature(self,who_asking='voicekit'):
         self.sensorMeasureNow('ds18b20_1','temperature', who_asking)
