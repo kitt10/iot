@@ -14,7 +14,49 @@
 			"move_id": "weather_02.get_forecast_tomorrow",
 			"method_name": "get_forecast_tomorrow",
 			"description": "Getting forecast for tomorrow from www.chmi.cz.",
-			"calls": [["zátřejší předpověď"], ["forecast tomorrow"],["jak zítra bude"]]
+			"calls": [["zítřejší předpověď"], ["forecast tomorrow"],["jak zítra bude"]]
+		},
+		{
+			"move_id": "weather_03.get_forecast_monday",
+			"method_name": "get_forecast_monday",
+			"description": "Getting forecast for monday from www.chmi.cz if it is up to four days and not today.",
+			"calls": [["předpověď na pondělí"], ["forecast monday"],["jak bude v pondělí"]]
+		},
+		{
+			"move_id": "weather_04.get_forecast_tuesday",
+			"method_name": "get_forecast_tuesday",
+			"description": "Getting forecast for tuesday from www.chmi.cz if it is up to four days and not today.",
+			"calls": [["předpověď na úterý"], ["forecast tuesday"],["jak bude v úterý"]]
+		},
+		{
+			"move_id": "weather_05.get_forecast_wednesday",
+			"method_name": "get_forecast_wednesday",
+			"description": "Getting forecast for wednesday from www.chmi.cz if it is up to four days and not today.",
+			"calls": [["předpověď na středu"], ["forecast wednesday"],["jak bude ve středu"]]
+		},
+		{
+			"move_id": "weather_06.get_forecast_thursday",
+			"method_name": "get_forecast_thursday",
+			"description": "Getting forecast for thursday from www.chmi.cz if it is up to four days and not today.",
+			"calls": [["předpověď na čtvrtek"], ["forecast thursday"],["jak bude ve čtvrtek"]]
+		},
+		{
+			"move_id": "weather_07.get_forecast_friday",
+			"method_name": "get_forecast_friday",
+			"description": "Getting forecast for friday from www.chmi.cz if it is up to four days and not today.",
+			"calls": [["předpověď na pátek"], ["forecast friday"],["jak bude v pátek"]]
+		},
+		{
+			"move_id": "weather_08.get_forecast_saturday",
+			"method_name": "get_forecast_saturday",
+			"description": "Getting forecast for saturday from www.chmi.cz if it is up to four days and not today.",
+			"calls": [["předpověď na sobotu"], ["forecast saturday"],["jak bude v sobotu"]]
+		},
+		{
+			"move_id": "weather_09.get_forecast_sunday",
+			"method_name": "get_forecast_sunday",
+			"description": "Getting forecast for sunday from www.chmi.cz if it is up to four days and not today.",
+			"calls": [["předpověď na neděli"], ["forecast sunday"],["jak bude v neděli"]]
 		}
 	]
 }
