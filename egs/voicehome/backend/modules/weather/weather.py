@@ -63,7 +63,7 @@ class Weather(VoicehomeModule):
             for pattern in self.regex_patterns_forecast_today:
                 match = re.search(pattern, results[num_line][:40])
                 if match:
-                    forecast_today = match.string.split('\n')[1]
+                    forecast_today = results[num_line].split('\n')[1]
                     breaker=True
                     break
             if breaker:
@@ -89,7 +89,7 @@ class Weather(VoicehomeModule):
         for num_line in range(4, 11):
             match = re.search(self.regex_patterns_forecast_tomorrow, results[num_line][:30])
             if match:
-                forecast_tomorrow = match.string.split('\n')[1]
+                forecast_tomorrow = results[num_line].split('\n')[1]
                 break
         else:
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
