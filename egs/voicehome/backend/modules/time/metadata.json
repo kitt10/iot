@@ -27,6 +27,12 @@
 			"method_name": "stop_timer",
 			"description": "Send a command via MQTT to stop timer",
 			"calls": [["vypni časovač"], ["zastav časovač"], ["stop tajmr"]]
+		},
+		{
+			"move_id": "time_05.get_weekday",
+			"method_name": "get_weekday",
+			"description": "Getting the day of the week for today",
+			"calls": [["co je za den v týdnu"], ["co je za den"]]
 		}
 	]
 }

@@ -45,4 +45,21 @@ class Time(VoicehomeModule):
     def stop_timer(self):
         print("Timer is stopped.")
         self.timer.cancel()
-        self.reply("vypnula jsem časovač") 
+        self.reply("vypnula jsem časovač")
+
+    def get_weekday(self):
+        weekday = datetime.date.today().weekday()
+        if (weekday == 0):
+            self.reply('Dnes je pondělí')
+        elif (weekday == 1):
+            self.reply('Dnes je úterý')
+        elif (weekday == 2):
+            self.reply('Dnes je středa')
+        elif (weekday == 3):
+            self.reply('Dnes je čtvrtek')
+        elif (weekday == 4):
+            self.reply('Dnes je pátek')
+        elif (weekday == 5):
+            self.reply('Dnes je sobota')
+        elif (weekday == 6):
+            self.reply('Dnes je neděle')
