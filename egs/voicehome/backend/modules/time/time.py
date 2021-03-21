@@ -1,11 +1,30 @@
 from modules.voicehome_module import VoicehomeModule
 import datetime
-import threading 
+import threading
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import re
 
 class Time(VoicehomeModule):
 
     def __init__(self, engine, dir_path, active):
         VoicehomeModule.__init__(self, engine, dir_path, active)
+
+        options = Options()
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--headless')
+
+        # mac
+        # self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=options)
+        # linux
+        self.driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',chrome_options=options)
+
+        self.URL = 'https://www.meteogram.cz/vychod-zapad-slunce/'
+
+        self.regex_pattern_sunrise = 'VÝCHOD SLUNCE '
+        self.regex_pattern_sunset = 'ZÁPAD SLUNCE '
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
@@ -63,3 +82,65 @@ class Time(VoicehomeModule):
             self.reply('Dnes je sobota')
         elif (weekday == 6):
             self.reply('Dnes je neděle')
+
+    def get_sunrise_time(self):
+        try:
+            self.driver.get(self.URL)
+            results = self.driver.find_element_by_id('suntable').text.split('\n')
+        except:
+            results = ''
+            pass
+
+        if results == '':
+            self.reply('Nebylo možno získat data ze serveru meteogram.cz')
+            return
+
+        for line in results:
+            match = re.search('^(' + self.regex_pattern_sunrise + ')', line)
+            if match:
+                result = match.string.replace(self.regex_pattern_sunrise, "").split(":")
+                hour = result[0]
+                if hour[0]=='0':
+                    hour = hour[1]
+
+                minute = result[1]
+                if minute[0]=='0':
+                    minute=minute[1]
+                break
+
+        else:
+            self.reply('Nebylo možno získat data ze serveru meteogram.cz')
+            return
+
+        self.reply('Slunce vychází v ' + hour + " hodin a " + minute + ' minut.')
+
+    def get_sunset_time(self):
+        try:
+            self.driver.get(self.URL)
+            results = self.driver.find_element_by_id('suntable').text.split('\n')
+        except:
+            results = ''
+            pass
+
+        if results == '':
+            self.reply('Nebylo možno získat data ze serveru meteogram.cz')
+            return
+
+        for line in results:
+            match = re.search('^(' + self.regex_pattern_sunset + ')', line)
+            if match:
+                result = match.string.replace(self.regex_pattern_sunset, "").split(":")
+                hour = result[0]
+                if hour[0] == '0':
+                    hour = hour[1]
+
+                minute = result[1]
+                if minute[0] == '0':
+                    minute = minute[1]
+                break
+
+        else:
+            self.reply('Nebylo možno získat data ze serveru meteogram.cz')
+            return
+
+        self.reply('Slunce zapadá v ' + hour + " hodin a " + minute + ' minut.')
