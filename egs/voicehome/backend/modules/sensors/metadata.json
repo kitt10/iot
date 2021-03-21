@@ -114,6 +114,15 @@
         ["průměrná vlhkost za poslední týden"],
         ["týdenní průměrná vlhkost"]
       ]
+    },
+    {
+      "move_id": "sensors_12.get_average_illuminance_for_last_week",
+      "method_name": "get_average_illuminance_for_last_week",
+      "description": "Voicekit answer average illuminance for the last week",
+      "calls": [
+        ["průměrná intenzita světelnosti za poslední týden"],
+        ["týdenní průměrná intenzita světelnosti"]
+      ]
     }
   ]
 }

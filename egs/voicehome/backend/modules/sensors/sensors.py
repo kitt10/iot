@@ -104,7 +104,7 @@ class Sensors(VoicehomeModule):
                     buffer = buffer + x['illuminance_value']
                     counter = counter + 1
         average_temperature = buffer/counter
-        self.reply(message='Průměrná světelnost za poslední den je: ' + str(average_temperature))
+        self.reply(message='Průměrná intenzita světla za poslední den je: ' + str(average_temperature))
 
     def get_average_temperature_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -124,7 +124,7 @@ class Sensors(VoicehomeModule):
                     buffer = buffer + x['temperature_value']
                     counter = counter + 1
         average_temperature = buffer / counter
-        self.reply(message='Průměrná teplota za poslední den je: ' + str(average_temperature))
+        self.reply(message='Průměrná teplota za poslední týden je: ' + str(average_temperature))
 
     def get_average_pressure_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -144,7 +144,7 @@ class Sensors(VoicehomeModule):
                     buffer = buffer + x['pressure_value']
                     counter = counter + 1
         average_temperature = buffer / counter
-        self.reply(message='Průměrný tlak za poslední den je: ' + str(average_temperature))
+        self.reply(message='Průměrný tlak za poslední týden je: ' + str(average_temperature))
 
     def get_average_humidity_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -164,7 +164,7 @@ class Sensors(VoicehomeModule):
                     buffer = buffer + x['humidity_value']
                     counter = counter + 1
         average_temperature = buffer / counter
-        self.reply(message='Průměrná vlhkost za poslední den je: ' + str(average_temperature))
+        self.reply(message='Průměrná vlhkost za poslední týden je: ' + str(average_temperature))
 
     def get_average_illuminance_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -184,7 +184,7 @@ class Sensors(VoicehomeModule):
                     buffer = buffer + x['illuminance_value']
                     counter = counter + 1
         average_temperature = buffer / counter
-        self.reply(message='Průměrná světelnost za poslední den je: ' + str(average_temperature))
+        self.reply(message='Průměrná intenzita světla za poslední týden je: ' + str(average_temperature))
 
 
     def get_current_temperature(self,who_asking='voicekit'):
