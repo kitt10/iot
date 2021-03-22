@@ -112,12 +112,6 @@ function onSocketMessage(message) {
 	} catch (e) {
 		data = message.data;
 	}
-	// if (
-	// 	data.constructor === {}.constructor &&
-	// 	(data.source == "keyboard" || data.source == "engine")
-	// ) {
-	// 	displayInDivEventLog(data);
-	// }
 	console.log("WS message:", data);
 
 	if (data == "Server ready." && page == "analytics") {
@@ -134,92 +128,6 @@ function onSocketMessage(message) {
 		// request_sensors_measure_now();
 	}
 	sendToServer("Hi from browser. Got your message.");
-	// switch (data["message"]) {
-	// 	case "sensorsList":
-	// 		sensorsList = Object.assign({}, data["reply"]);
-	// 		sensorsListFull = Object.assign({}, data["reply"]);
-	// 		if (page == "analytics") {
-	// 			drawSensorsList(sensorsList);
-	// 		}
-	// 		break;
-	// 	case "whole_temperature_data":
-	// 		dataTemperatureFull = data["reply"];
-	// 		break;
-	// 	case "whole_pressure_data":
-	// 		dataPressureFull = data["reply"];
-	// 		break;
-	// 	case "whole_illuminance_data":
-	// 		dataIlluminanceFull = data["reply"];
-	// 		break;
-	// 	case "webWeatherOWM":
-	// 		webWeatherOWM = data["reply"];
-
-	// 		if (!jQuery.isEmptyObject(webWeatherOWM)) {
-	// 			drawWebWeatherOWM();
-	// 		}
-
-	// 		break;
-	// 	case "lightsList":
-	// 		lightsList = data["reply"];
-	// 		// drawLightsList()
-	// 		break;
-	// 	case "sensorsState":
-	// 		sensorsState = data["reply"];
-	// 		if (!jQuery.isEmptyObject(sensorsState)) {
-	// 			drawSensorsState(data["reply"]);
-	// 		}
-	// 		if (
-	// 			page == "home" &&
-	// 			!jQuery.isEmptyObject(sensorsListFull) &&
-	// 			!jQuery.isEmptyObject(sensorsState)
-	// 		) {
-	// 			drawCurrentlyMeasuredValue();
-	// 		}
-	// 		break;
-	// 		otherwise: console.log("pass on onSocketMessage");
-	// }
-
-	// if (data["message"] == "sensorsList") {
-	// 	sensorsList = Object.assign({}, data["reply"]);
-	// 	sensorsListFull = Object.assign({}, data["reply"]);
-	// 	if (page == "analytics") {
-	// 		drawSensorsList(sensorsList);
-	// 	}
-	// } else if (data["message"] == "whole_temperature_data") {
-	// 	dataTemperatureFull = data["reply"];
-	// } else if (data["message"] == "whole_pressure_data") {
-	// 	dataPressureFull = data["reply"];
-	// } else if (data["message"] == "whole_illuminance_data") {
-	// 	dataIlluminanceFull = data["reply"];
-	// } else if (data["message"] == "webWeatherOWM") {
-	// 	webWeatherOWM = data["reply"];
-
-	// 	if (!jQuery.isEmptyObject(webWeatherOWM)) {
-	// 		drawWebWeatherOWM();
-	// 	}
-	// } else if (data["message"] == "lightsList") {
-	// 	lightsList = data["reply"];
-	// }
-	// // drawLightsList()
-	// else if (data["message"] == "sensorsState") {
-	// 	sensorsState = data["reply"];
-	// 	if (!jQuery.isEmptyObject(sensorsState)) {
-	// 		drawSensorsState(data["reply"]);
-	// 	}
-	// } else if (
-	// 	data["message"] == "sensorsState" ||
-	// 	data["message"] == "sensorsList"
-	// ) {
-	// 	if (
-	// 		page == "home" &&
-	// 		!jQuery.isEmptyObject(sensorsListFull) &&
-	// 		!jQuery.isEmptyObject(sensorsState)
-	// 	) {
-	// 		drawCurrentlyMeasuredValue();
-	// 	}
-	// } else {
-	// 	console.log("pass on onSocketMessage");
-	// }
 
 	if (data["message"] == "sensorsList") {
 		sensorsList = Object.assign({}, data["reply"]);
@@ -255,13 +163,13 @@ function onSocketMessage(message) {
 	if (data["message"] == "sensorsState") {
 		sensorsState = data["reply"];
 		if (!jQuery.isEmptyObject(sensorsState)) {
-			drawSensorsState(data["reply"]);
+			drawSensorsState();
 		}
 	}
 	if (data["message"] == "sensorsState" || data["message"] == "sensorsList") {
 		if (
 			page == "home" &&
-			!jQuery.isEmptyObject(sensorsListFull) &&
+			!jQuery.isEmptyObject(sensorsListFull) && //if is home and sensorsListFull && sensorsState already came
 			!jQuery.isEmptyObject(sensorsState)
 		) {
 			drawCurrentlyMeasuredValue();
@@ -271,8 +179,6 @@ function onSocketMessage(message) {
 		controller_state = data;
 		drawControllersState();
 	}
-
-	//if is home and sensorsListFull && sensorsState already came
 }
 
 function drawLightsState() {
@@ -297,14 +203,10 @@ function drawLightsState() {
 										parseInt($(this).attr("light_ID")),
 										0
 									);
-									// if (key.toString() == "ESP_onboard") {
-									// 	request_lightCommand(key.toString(), value[light]["ID"], 0);
-									// } else {
-									// 	request_lightCommand(key.toString(), value[light]["ID"], 1);
-									// }
 								}),
 							$("<span></span>").text(
-								"key = " + key + " id = " + value[light]["ID"]
+								// "key = " + key + " id = " + value[light]["ID"]
+								value[light]["description"]
 							),
 							$("</br>")
 						)
@@ -327,16 +229,8 @@ function drawLightsState() {
 										parseInt($(this).attr("light_ID")),
 										1
 									);
-									// console.log(key.toString());
-									// if (key.toString() == "ESP_onboard") {
-									// 	request_lightCommand(key.toString(), value[light]["ID"], 0);
-									// } else {
-									// 	request_lightCommand(key.toString(), value[light]["ID"], 1);
-									// }
 								}),
-							$("<span></span>").text(
-								"key = " + key + " id = " + value[light]["ID"]
-							),
+							$("<span></span>").text(value[light]["description"]),
 							$("</br>")
 						)
 					);
@@ -354,9 +248,7 @@ function drawLightsState() {
 							.click(function () {
 								console.log($(this));
 							}),
-						$("<span></span>").text(
-							"key = " + key + " id = " + value[light]["ID"]
-						),
+						$("<span></span>").text(value[light]["description"]),
 						$("</br>")
 					)
 				);
@@ -461,114 +353,92 @@ function drawCurrentlyMeasuredValue() {
 	$("#measured_value_container").empty();
 	rooms = [];
 	console.log("drawCurrentlyMeasuredValue");
-	// for (const [key, value] of Object.entries(sensorsListFull)) {
-	// 	if (Array.isArray(value)) {
-	// 		//just quantity are array
-	// 		value.forEach((element) => {
-	// 			if (typeof element !== "undefined") {
-	// 				if (rooms.includes(element.room) == false) {
-	// 					rooms.push(element.room);
-	// 					$("#measured_value_container").append(
-	// 						$("<div/>")
-	// 							.addClass("sensors row measured_value")
-	// 							.attr("id", element.room)
-	// 					);
-	// 					$(".sensors.row.measured_value#" + element.room).append(
-	// 						$("<span></span>")
-	// 							.addClass("sensors room measured_value")
-	// 							.text(element.room)
-	// 					);
-	// 				}
-	// 				$(".sensors.row.measured_value#" + element.room).append(
-	// 					$("<div/>")
-	// 						.addClass("measured_values_item card border-2 col-auto")
-	// 						.append(
-	// 							$("<span></span>")
-	// 								.addClass("card-title text-center title")
-	// 								.text(element.sensor_id),
-	// 							$("<div/>")
-	// 								.addClass("card-body sensors measured_value")
-	// 								.attr("id", element.sensor_id + " " + element.room)
-	// 								.append($("<span></span").text())
-	// 						)
-	// 				);
-	// 			}
-	// 		});
-	// 	}
-	// }
 
-	for (const [key, value] of Object.entries(sensorsState)) {
-		if (rooms.includes(value.location) == false) {
-			rooms.push(value.location);
-			$("#measured_value_container").append(
-				$("<div/>")
-					.addClass("sensors row measured_value")
-					.attr("id", value.location)
-			);
-			$(".sensors.row.measured_value#" + value.location).append(
-				$("<span></span>")
-					.addClass("sensors room measured_value")
-					.text(value.location)
-			);
-		}
-		$(".sensors.row.measured_value#" + value.location).append(
-			$("<div/>")
-				.addClass("measured_values_item card border-2 col-auto")
-				.append(
-					$("<span></span>")
-						.addClass("card-title text-center title measured_value")
-						.text(value.sensor_id),
+	// for (const [key, value] of Object.entries(sensorsState)) {
+	for (const [sensor_type, sensor_list_of_type] of Object.entries(
+		sensorsState
+	)) {
+		sensor_list_of_type.forEach((sensor_value) => {
+			if (rooms.includes(sensor_value.room) == false) {
+				rooms.push(sensor_value.room);
+				$("#measured_value_container").append(
 					$("<div/>")
-						.addClass("card-body sensors measured_value")
-						.attr("id", value.sensor_id + " " + value.location)
-						.append(
-							$("<span></span").text(Math.round(value.value * 10) / 10),
-							$("<img/>")
-								.addClass("sensors measured_value")
-								.attr("src", "/img/quantity/" + key.split("-")[1] + ".svg")
-								.attr("alt", key.split("-")[1])
-						)
-				)
-		);
+						.addClass("sensors row measured_value room_title")
+
+						.attr("id", sensor_value.room),
+					$("<div/>")
+						.addClass("sensors row measured_value room_body")
+
+						.attr("id", sensor_value.room)
+				);
+				$(".sensors.row.measured_value.room_title#" + sensor_value.room).append(
+					$("<span></span>")
+						.addClass("sensors room measured_value")
+						.text(sensor_value.room)
+				);
+			}
+			$(".sensors.row.measured_value.room_body#" + sensor_value.room).append(
+				$("<div/>")
+					.addClass("measured_values_item card border-2 col-auto")
+					.append(
+						$("<span></span>")
+							.addClass("card-title text-center text-wrap title measured_value")
+							.text(sensor_value.description),
+						$("<div/>")
+							.addClass("card-body text-center sensors measured_value")
+							.attr("id", sensor_value.sensor_id + " " + sensor_value.room)
+							.append(
+								$("<span></span").text(
+									Math.round(sensor_value.value * 10) / 10
+								),
+								$("<img/>")
+									.addClass("sensors measured_value")
+									.attr("src", "/img/quantity/" + sensor_type + ".svg")
+									.attr("alt", sensor_type)
+							)
+					)
+			);
+		});
 	}
 }
 
-function drawSensorsState(sensorsState) {
+// call drawSensorsState every 10 min
+var drawSensorsState_intervalId = window.setInterval(function () {
+	drawSensorsState();
+}, 600000);
+
+function drawSensorsState() {
 	$("#sensors_container").empty();
-	$.each(sensorsState, function (i, val) {
-		valDate = new Date(val.timestamp);
-		now = new Date();
-		const diffTime = Math.abs(now - valDate);
-		if (diffTime > 300000) {
-			//longer then 5 min
-			$("#sensors_container").append(
-				'<div><i style="color: red" class="bi bi-dash-circle-fill sensor_state_icon"></i><span>' +
-					i +
-					+"</span><span> <" +
-					val.timestamp +
-					"> <b> Sensor did not responded for more than 5 minutes </b> </span></div>"
-			);
-			return;
-		}
-		if (val["state"] == "ok") {
-			$("#sensors_container").append(
-				'<div><i style="color: green" class="bi bi-check-circle-fill sensor_state_icon"></i><span>' +
-					i +
-					"</span><span> <" +
-					val.timestamp +
-					"> </span></div>"
-			);
-			return;
-		} else {
-			$("#sensors_container").append(
-				'<div><i style="color: red" class="bi bi-dash-circle-fill sensor_state_icon"></i><span>' +
-					i +
-					"</span><span> <" +
-					val.timestamp +
-					"> </span></div>"
-			);
-			return;
-		}
+	$.each(sensorsState, function (sensor_type, sensor_list_of_type) {
+		sensor_list_of_type.forEach((sensor_value) => {
+			valDate = new Date(sensor_value.timestamp);
+			now = new Date();
+			const diffTime = Math.abs(now - valDate);
+			if (diffTime > 300000) {
+				//longer then 5 min
+				$("#sensors_container").append(
+					'<div><i style="color: red" class="bi bi-dash-circle-fill sensor_state_icon"></i><span>' +
+						sensor_value.description +
+						+"</span><span> <b> Sensor did not responded for more than 5 minutes </b> </span></div>"
+				);
+				return;
+			}
+			if (sensor_value["state"] == "ok") {
+				$("#sensors_container").append(
+					'<div><i style="color: green" class="bi bi-check-circle-fill sensor_state_icon"></i> <span> ' +
+						sensor_value.description +
+						" </span></div>"
+				);
+				return;
+			} else {
+				$("#sensors_container").append(
+					'<div><i style="color: red" class="bi bi-dash-circle-fill sensor_state_icon"></i> <span> ' +
+						sensor_value.description +
+						"</span></div>"
+				);
+				return;
+			}
+		});
 	});
 }
 
@@ -618,7 +488,7 @@ function drawSensorsList(data) {
 				elementFilterLabel.className = "custom-control-label";
 				elementFilterLabel.id = element.room + key + "Label";
 				elementFilterLabel.setAttribute("for", element.room + key + "Checkbox");
-				elementFilterLabel.innerHTML = element.room;
+				elementFilterLabel.innerHTML = element.description;
 				elementFilterDiv.appendChild(elementFilterLabel);
 			});
 		}
@@ -628,41 +498,6 @@ function drawSensorsList(data) {
 		`<button type="submit" class="btn btn-primary" onclick="drawGraphs()" >Vykreslit data</button>`
 	);
 }
-
-// function restructureTemperatureData() {
-// 	data = dataTemperatureFull;
-// 	dataTemperature = [];
-// 	console.log("restructureTemperatureData");
-// 	console.log(data);
-// 	data.forEach((element) => {
-// 		if (
-// 			element.temperature_value < 100 &&
-// 			sensorsList.temperature.some((e) => element.location === e.room)
-// 		) {
-// 			switch (element.location) {
-// 				case "room_1":
-// 					dataElement =
-// 						new Date(element.timestamp).toString() +
-// 						"," +
-// 						element.temperature_value.toString() +
-// 						",\n";
-// 					dataTemperature += dataElement;
-// 					break;
-
-// 				case "room_2":
-// 					dataElement =
-// 						new Date(element.timestamp).toString() +
-// 						",," +
-// 						element.temperature_value.toString() +
-// 						"\n";
-// 					dataTemperature += dataElement;
-// 					break;
-// 				default:
-// 					break;
-// 			}
-// 		}
-// 	});
-// }
 
 function restructureTemperatureData() {
 	data = dataTemperatureFull;
@@ -675,9 +510,6 @@ function restructureTemperatureData() {
 		if (element.state == "error") {
 			return;
 		}
-		// if (pattern.test(loc) == false) {
-		// 	return;
-		// }
 		if (sensorsList.temperature.some((e) => element.location === e.room)) {
 			loc = parseInt(loc.replace("room_", ""));
 			dataTemperature =
@@ -702,9 +534,6 @@ function restructureIlluminanceData() {
 		if (element.state == "error") {
 			return;
 		}
-		// if (pattern.test(loc) == false) {
-		// 	return;
-		// }
 		if (sensorsList.illuminance.some((e) => element.location === e.room)) {
 			loc = parseInt(loc.replace("room_", ""));
 			dataIlluminance =
@@ -729,9 +558,6 @@ function restructurePressureData() {
 		if (element.state == "error") {
 			return;
 		}
-		// if (pattern.test(loc) == false) {
-		// 	return;
-		// }
 		if (sensorsList.pressure.some((e) => element.location === e.room)) {
 			loc = parseInt(loc.replace("room_", ""));
 			dataPressure =
@@ -744,42 +570,6 @@ function restructurePressureData() {
 		}
 	});
 }
-
-// function restructurePressureData() {
-// 	data = dataPressureFull;
-// 	dataPressure = [];
-// 	console.log("restructureTemperatureData");
-// 	console.log(data);
-// 	data.forEach((element) => {
-// 		if (
-// 			1 < element.pressure_value &&
-// 			element.pressure_value < 5000 &&
-// 			sensorsList.pressure.some((e) => element.location === e.room)
-// 		) {
-// 			switch (element.location) {
-// 				case "room_1":
-// 					dataElement =
-// 						new Date(element.timestamp).toString() +
-// 						"," +
-// 						element.pressure_value.toString() +
-// 						",\n";
-// 					dataPressure += dataElement;
-// 					break;
-
-// 				case "room_2":
-// 					dataElement =
-// 						new Date(element.timestamp).toString() +
-// 						",," +
-// 						element.pressure_value.toString() +
-// 						"\n";
-// 					dataPressure += dataElement;
-// 					break;
-// 				default:
-// 					break;
-// 			}
-// 		}
-// 	});
-// }
 
 function drawGraphs() {
 	graphContainer = document.getElementById("graph-confainer");
@@ -801,8 +591,6 @@ function drawGraphs() {
 
 function drawIlluminanceGraph() {
 	restructureIlluminanceData();
-	// console.log("dataIlluminance=");
-	// console.log(dataIlluminance);
 	if (dataIlluminance.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
@@ -835,8 +623,6 @@ function drawIlluminanceGraph() {
 
 function drawTemperatureGraph() {
 	restructureTemperatureData();
-	// console.log("dataTemperature = ");
-	// console.log(dataTemperature);
 	if (dataTemperature.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
@@ -869,8 +655,6 @@ function drawTemperatureGraph() {
 
 function drawPressureGraph() {
 	restructurePressureData();
-	// console.log("dataPressure= ");
-	// console.log(dataPressure);
 	if (dataPressure.length == 0) return 0;
 	let graph = document.createElement("div");
 	graph.className = "dyGraphs";
@@ -1067,8 +851,6 @@ function drawModule(moduleList, module, checked) {
 	let moduleDiv = document.createElement("DIV");
 	moduleDiv.id = module.module_id + "Div";
 	moduleDiv.className = "d-none";
-	// moduleDiv.className = "overflow-scroll";
-	// moduleDiv.style.overflowY = "scroll";
 
 	let moduleHeaderDiv = document.createElement("div");
 	moduleHeaderDiv.className = "custom-card-header sticky-top-4";
@@ -1094,11 +876,9 @@ function drawModule(moduleList, module, checked) {
 			$($lastToggledModuleId).toggleClass("d-none");
 			$lastToggledModuleId = "#" + module.module_id + "Div";
 			$($lastToggledModuleId).toggleClass("d-none");
-			// console.log($lastToggledModuleId);
 		} else {
 			$lastToggledModuleId = "#" + module.module_id + "Div";
 			$("#" + module.module_id + "Div").toggleClass("d-none");
-			// console.log($lastToggledModuleId);
 		}
 	});
 

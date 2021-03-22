@@ -14,6 +14,7 @@ class Sensors(VoicehomeModule):
         self.sensorsList = {}
         self.reloadSensorsList()
         self.sensorsState = {}
+        self.reload_sensorsState()
 
         self.voicekit_asked_current_measure_for_quantity = []
 
@@ -25,6 +26,12 @@ class Sensors(VoicehomeModule):
         mongoClient = pymongo.MongoClient("mongodb://127.0.0.1:27017/")
         mondoDB = mongoClient["voicehome"]
         self.sensorsCollection = mondoDB["sensors"]
+
+    def reload_sensorsState(self):
+        print('Module ' + self.id + ": reload_sensorsState")
+        with open('modules/sensors/sensorsList.json') as json_file:
+            self.sensorsState = json.load(json_file)
+        self.sensorsState.pop('max_room', None)
 
     def get_average_temperature_for_last_day(self):
         # today = '2021-02-26 12:36:32'
@@ -258,12 +265,24 @@ class Sensors(VoicehomeModule):
         for x in msg.keys():
             x_match = self.pattern_value.match(x)
             if (x_match):
-                self.sensorsState[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"state": msg['state'],
-                                                                                           "timestamp": msg['timestamp'],
-                                                                                           "sensor_id": msg["sensor_id"],
-                                                                                           "location": msg["location"],
-                                                                                           "value": msg[x_match.string]
-                                                                                           }
+                # self.sensorsState[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"state": msg['state'],
+                #                                                                            "timestamp": msg['timestamp'],
+                #                                                                            "sensor_id": msg["sensor_id"],
+                #                                                                            "location": msg["location"],
+                #                                                                            "value": msg[x_match.string]
+                #                                                                            }
+                for num_sensor in range(len(self.sensorsState[msg['quantity_type']])):
+                    if self.sensorsState[msg['quantity_type']][num_sensor]["sensor_id"] == msg["sensor_id"]:
+                        break
+                else:
+                    break
+
+                self.sensorsState[msg['quantity_type']][num_sensor]["state"] = msg['state']
+                self.sensorsState[msg['quantity_type']][num_sensor]["timestamp"] = msg['timestamp']
+                self.sensorsState[msg['quantity_type']][num_sensor]["sensor_id"] = msg["sensor_id"]
+                self.sensorsState[msg['quantity_type']][num_sensor]["location"] = msg["location"]
+                self.sensorsState[msg['quantity_type']][num_sensor]["value"] = msg[x_match.string]
+
                 msg_web = {
                     'message': 'sensorsState',
                     'reply': self.sensorsState
@@ -303,7 +322,6 @@ class Sensors(VoicehomeModule):
 
     def reloadSensorsList(self):
         print('Module ' + self.id + ": reloadSensorsList")
-        # print(os.getcwd())
         with open('modules/sensors/sensorsList.json') as json_file:
             self.sensorsList = json.load(json_file)
 

@@ -3,23 +3,34 @@
    "temperature":[
       {
          "room":"room_1",
-         "sensor_id":"bme280_1"
+         "sensor_id":"bme280_1",
+         "description": "teplota v obývacím pokoji"
       },
       {
          "room":"room_2",
-         "sensor_id":"ds18b20_1"
+         "sensor_id":"ds18b20_1",
+         "description": "teplota v chodbě"
       }
    ],
    "pressure":[
       {
          "room":"room_1",
-         "sensor_id":"bme280_1"
+         "sensor_id":"bme280_1",
+         "description": "tlak v obývacím pokoji"
       }
    ],
    "illuminance": [
       {
          "room": "room_1",
-         "sensor_id": "tsl2591_1"
+         "sensor_id": "tsl2591_1",
+         "description": "světelnost v obývacím pokoji"
+      }
+   ],
+   "humidity": [
+      {
+         "room": "room_1",
+         "sensor_id": "bme280_1",
+         "description": "vlhkost v obývacím pokoji"
       }
    ]
 }
