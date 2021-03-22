@@ -16,10 +16,7 @@ class Time(VoicehomeModule):
         options.add_argument('--no-sandbox')
         options.add_argument('--headless')
 
-        # mac
-        # self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=options)
-        # linux
-        self.driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',chrome_options=options)
+        self.driver = webdriver.Chrome(executable_path=engine.cfg.chromedriver.path,chrome_options=options)
 
         self.URL_sunset_sunrise = 'https://www.meteogram.cz/vychod-zapad-slunce/'
         self.URL_namedays = 'http://svatky.centrum.cz/'
