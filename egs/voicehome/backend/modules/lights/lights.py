@@ -157,3 +157,23 @@ class Lights(VoicehomeModule):
         # print(os.getcwd())
         with open('modules/lights/lightsList.json') as json_file:
             self.lightsList = json.load(json_file)
+
+    def which_lights_on(self):
+        lights_on=''
+        for type in self.lightsList:
+            print('type')
+            print(type)
+            for light in self.lightsList[type]:
+                print('light')
+                print(light)
+                if 'state' in light:
+                    if light['state']==1:
+                        if lights_on=='':
+                            lights_on = lights_on + light['description']
+                        else:
+                            lights_on = lights_on + ', ' + light['description']
+
+        if lights_on == '':
+            self.reply(message='Aktuálně nejsou rozsvícena žádná světla')
+        else:
+            self.reply(message='Aktuálně jsou rozsvícena tyto světla ' + lights_on)

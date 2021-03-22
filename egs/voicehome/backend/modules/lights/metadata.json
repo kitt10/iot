@@ -92,6 +92,14 @@
 			"calls": [
 				["off","esp 3"]
 			]
+		},
+		{
+			"move_id": "lights_11.which_lights_on",
+			"method_name": "which_lights_on",
+			"description": "Voicekit answer which lights are turned on",
+			"calls": [
+				["která","světla","svítí"]
+			]
 		}
 	]
 }
