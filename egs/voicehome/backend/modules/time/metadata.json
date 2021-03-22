@@ -45,6 +45,12 @@
 			"method_name": "get_sunset_time",
 			"description": "Get sunset time for today",
 			"calls": [["v kolik hodin zapadá slunce"], ["západ slunce"]]
+		},
+		{
+			"move_id": "time_08.get_nameday",
+			"method_name": "get_nameday",
+			"description": "Get nameday for today",
+			"calls": [["kdo má dnes svátek"], ["nameday"]]
 		}
 	]
 }

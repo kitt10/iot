@@ -21,7 +21,8 @@ class Time(VoicehomeModule):
         # linux
         self.driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',chrome_options=options)
 
-        self.URL = 'https://www.meteogram.cz/vychod-zapad-slunce/'
+        self.URL_sunset_sunrise = 'https://www.meteogram.cz/vychod-zapad-slunce/'
+        self.URL_namedays = 'http://svatky.centrum.cz/'
 
         self.regex_pattern_sunrise = 'VÝCHOD SLUNCE '
         self.regex_pattern_sunset = 'ZÁPAD SLUNCE '
@@ -85,7 +86,7 @@ class Time(VoicehomeModule):
 
     def get_sunrise_time(self):
         try:
-            self.driver.get(self.URL)
+            self.driver.get(self.URL_sunset_sunrise)
             results = self.driver.find_element_by_id('suntable').text.split('\n')
         except:
             results = ''
@@ -116,7 +117,7 @@ class Time(VoicehomeModule):
 
     def get_sunset_time(self):
         try:
-            self.driver.get(self.URL)
+            self.driver.get(self.URL_sunset_sunrise)
             results = self.driver.find_element_by_id('suntable').text.split('\n')
         except:
             results = ''
@@ -144,3 +145,17 @@ class Time(VoicehomeModule):
             return
 
         self.reply('Slunce zapadá v ' + hour + " hodin a " + minute + ' minut.')
+
+    def get_nameday(self):
+        try:
+            self.driver.get(self.URL_namedays)
+            nameday = self.driver.find_element_by_id('holiday').text.replace(':','')
+        except:
+            nameday = ''
+            pass
+
+        if nameday == '':
+            self.reply('Nebylo možno získat data ze serveru svatky.centrum.cz')
+            return
+
+        self.reply('Podle serveru svatky.centrum.cz '+nameday)
