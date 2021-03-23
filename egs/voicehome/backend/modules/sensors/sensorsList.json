@@ -3,39 +3,39 @@
    "temperature":[
       {
          "room":"room_1",
-         "room_description": "obývací pokoj",
+         "room_description": "living room",
          "sensor_id":"bme280_1",
-         "description": "teplota v obývacím pokoji"
+         "description": "The temperature in the living room"
       },
       {
          "room":"room_2",
-         "room_description": "chodba",
+         "room_description": "hallway",
          "sensor_id":"ds18b20_1",
-         "description": "teplota v chodbě"
+         "description": "The temperature in the hallway"
       }
    ],
    "pressure":[
       {
          "room":"room_1",
-         "room_description": "obývací pokoj",
+         "room_description": "living room",
          "sensor_id":"bme280_1",
-         "description": "tlak v obývacím pokoji"
+         "description": "The pressure in the living room"
       }
    ],
    "illuminance": [
       {
          "room": "room_1",
-         "room_description": "obývací pokoj",
+         "room_description": "living room",
          "sensor_id": "tsl2591_1",
-         "description": "světelnost v obývacím pokoji"
+         "description": "The illuminance in the living room"
       }
    ],
    "humidity": [
       {
          "room": "room_1",
-         "room_description": "obývací pokoj",
+         "room_description": "living room",
          "sensor_id": "bme280_1",
-         "description": "vlhkost v obývacím pokoji"
+         "description": "The humidity in the living room"
       }
    ]
 }

@@ -2,21 +2,21 @@
    "ESP_onboard": [
      {
        "ID": 1,
-       "description": "prvni ESP"
+       "description": "First ESP"
      },
      {
        "ID": 2,
-       "description": "druhe ESP"
+       "description": "Second ESP"
      },
      {
        "ID": 3,
-       "description": "treti ESP"
+       "description": "Third ESP"
      }
    ],
   "light": [
     {
       "ID": 1,
-      "description": "obyvaci pokoj"
+      "description": "living room"
     }
   ]
 }
