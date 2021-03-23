@@ -5,3 +5,4 @@
 * mongoUpdateSensorsErrorData.py - update all data that should have error state in sensors db by used filters
 * myMongoUpdate_decode_whole_collection.py - script that decode (utf-8) that are undecoded in sensors db
 * webscrape_weather.py - alg used to get forecast from www.chmi.cz
+* calls_exporter.py - script for exporting calls of each module move
