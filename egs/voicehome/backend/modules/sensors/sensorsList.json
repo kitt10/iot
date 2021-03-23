@@ -3,13 +3,13 @@
    "temperature":[
       {
          "room":"room_1",
-         "room_description": "living room",
+         "room_description": "Living room",
          "sensor_id":"bme280_1",
          "description": "The temperature in the living room"
       },
       {
          "room":"room_2",
-         "room_description": "hallway",
+         "room_description": "Hallway",
          "sensor_id":"ds18b20_1",
          "description": "The temperature in the hallway"
       }
@@ -17,7 +17,7 @@
    "pressure":[
       {
          "room":"room_1",
-         "room_description": "living room",
+         "room_description": "Living room",
          "sensor_id":"bme280_1",
          "description": "The pressure in the living room"
       }
@@ -25,7 +25,7 @@
    "illuminance": [
       {
          "room": "room_1",
-         "room_description": "living room",
+         "room_description": "Living room",
          "sensor_id": "tsl2591_1",
          "description": "The illuminance in the living room"
       }
@@ -33,7 +33,7 @@
    "humidity": [
       {
          "room": "room_1",
-         "room_description": "living room",
+         "room_description": "Living room",
          "sensor_id": "bme280_1",
          "description": "The humidity in the living room"
       }
