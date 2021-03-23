@@ -9,21 +9,19 @@
       "method_name": "get_current_temperature",
       "description": "Sends a command via MQTT to measure current temperature.",
       "calls": [
-        ["kolik je stupňů"],
-        ["jaká je teplota"],
+        ["kolik","je","stupňů"],
+        ["jaká","je","teplota"],
         ["změř", "teplotu"]
       ]
-
-
     },
     {
       "move_id": "sensors_02.get_current_pressure",
       "method_name": "get_current_pressure",
       "description": "Sends a command via MQTT to measure current pressure.",
       "calls": [
-        ["kolik je tlak"],
-        ["jaký je tlak"],
-        ["změř", "tlak"]
+        ["kolik","je","tlak"],
+        ["jaký","je","tlak"],
+        ["změř","tlak"]
       ]
 
 
@@ -33,8 +31,8 @@
       "method_name": "get_current_humidity",
       "description": "Sends a command via MQTT to measure current humidity.",
       "calls": [
-        ["kolik je vlhkost"],
-        ["jaká je vlhkost"],
+        ["kolik","je","vlhkost"],
+        ["jaká","je","vlhkost"],
         ["změř", "vlhkost"]
       ]
 
@@ -45,8 +43,8 @@
       "method_name": "get_current_illuminance",
       "description": "Sends a command via MQTT to measure current illuminance.",
       "calls": [
-        ["kolik je intenzity světla"],
-        ["jaká je intenzita světla"],
+        ["kolik","je","intenzity","světla"],
+        ["jaká","je","intenzita","světla"],
         ["změř", "světlo"]
       ]
 
@@ -57,8 +55,8 @@
       "method_name": "get_average_temperature_for_last_day",
       "description": "Voicekit answer average temperature for the last day",
       "calls": [
-        ["průměrná teplota za poslední den"],
-        ["dnešní průměrná teplota"]
+        ["průměrná","teplota","za","poslední","den"],
+        ["dnešní","průměrná","teplota"]
       ]
     },
     {
@@ -66,8 +64,8 @@
       "method_name": "get_average_pressure_for_last_day",
       "description": "Voicekit answer average pressure for the last day",
       "calls": [
-        ["průměrný tlak za poslední den"],
-        ["dnešní průměrný tlak"]
+        ["průměrný","tlak","za","poslední","den"],
+        ["dnešní","průměrný","tlak"]
       ]
     },
     {
@@ -75,8 +73,8 @@
       "method_name": "get_average_humidity_for_last_day",
       "description": "Voicekit answer average humidity for the last day",
       "calls": [
-        ["průměrná vlhkost za poslední den"],
-        ["dnešní průměrná vlhkost"]
+        ["průměrná","vlhkost","za","poslední","den"],
+        ["dnešní","průměrná","vlhkost"]
       ]
     },
     {
@@ -84,8 +82,8 @@
       "method_name": "get_average_illuminance_for_last_day",
       "description": "Voicekit answer average illuminance for the last day",
       "calls": [
-        ["průměrná intenzita světelnosti za poslední den"],
-        ["dnešní průměrná intenzita světelnosti"]
+        ["průměrná","intenzita","světelnosti","za","poslední","den"],
+        ["dnešní","průměrná","intenzita","světelnosti"]
       ]
     },
     {
@@ -93,8 +91,8 @@
       "method_name": "get_average_temperature_for_last_week",
       "description": "Voicekit answer average temperature for the last week",
       "calls": [
-        ["průměrná teplota za poslední týden"],
-        ["týdenní průměrná teplota"]
+        ["průměrná","teplota","za","poslední","týden"],
+        ["týdenní","průměrná","teplota"]
       ]
     },
     {
@@ -102,8 +100,8 @@
       "method_name": "get_average_pressure_for_last_week",
       "description": "Voicekit answer average pressure for the last week",
       "calls": [
-        ["průměrný tlak za poslední týden"],
-        ["týdenní průměrný tlak"]
+        ["průměrný","tlak","za","poslední","týden"],
+        ["týdenní","průměrný","tlak"]
       ]
     },
     {
@@ -111,8 +109,8 @@
       "method_name": "get_average_humidity_for_last_week",
       "description": "Voicekit answer average humidity for the last week",
       "calls": [
-        ["průměrná vlhkost za poslední týden"],
-        ["týdenní průměrná vlhkost"]
+        ["průměrná","vlhkost","za","poslední","týden"],
+        ["týdenní","průměrná","vlhkost"]
       ]
     },
     {
@@ -120,8 +118,8 @@
       "method_name": "get_average_illuminance_for_last_week",
       "description": "Voicekit answer average illuminance for the last week",
       "calls": [
-        ["průměrná intenzita světelnosti za poslední týden"],
-        ["týdenní průměrná intenzita světelnosti"]
+        ["průměrná","intenzita","světelnosti","za","poslední","týden"],
+        ["týdenní","průměrná","intenzita","světelnosti"]
       ]
     }
   ]

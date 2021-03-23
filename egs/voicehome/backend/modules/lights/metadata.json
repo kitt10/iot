@@ -9,9 +9,8 @@
 			"method_name": "turn_on_ESP_onboard_led",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["zapni", "vestavěnou", "ledku"],
-				["rozsviť", "ledku"],
-				["led", "on"]
+				["rozsviť","všechny","vývojové","desky"],
+				["rozsviť","všechny","vestavěné","ledky"]
 			]
 		},
 		{
@@ -19,10 +18,8 @@
 			"method_name": "turn_off_ESP_onboard_led",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["zhasni", "vestavěnou", "ledku"],
-				["zhasni", "ledku"],
-				["vypni", "ledku"],
-				["led", "off"]
+				["zhasni","všechny","vývojové","desky"],
+				["zhasni","všechny","vestavěné","ledky"]
 			]
 		},
 		{
@@ -30,9 +27,10 @@
 			"method_name": "ESP_turn_on_light_1",
 			"description": "Turning on light 1",
 			"calls": [
-				["zapni","obýváku", "světlo"],
-				["rozsviť","obýváku", "světlo"],
-				["on","light 1"]
+				["zapni","v","obýváku", "světlo"],
+				["rozsviť","v","obýváku", "světlo"],
+				["zapni","v","obývacím","pokoji", "světlo"],
+				["rozsviť","v","obývacím","pokoji", "světlo"]
 			]
 		},
 		{
@@ -40,9 +38,10 @@
 			"method_name": "ESP_turn_off_light_1",
 			"description": "Turning off light 1",
 			"calls": [
-				["vypni","obýváku", "světlo"],
-				["zhasni","obýváku", "světlo"],
-				["off","light 1"]
+				["vypni","v","obýváku", "světlo"],
+				["zhasni","v","obýváku", "světlo"],
+				["vypni","v","obývacím","pokoji", "světlo"],
+				["zhasni","v","obývacím","pokoji", "světlo"]
 			]
 		},
 		{
@@ -50,7 +49,8 @@
 			"method_name": "ESP_turn_on_light_onboard_1",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["on","esp 1"]
+				["rozsviť","vestavěnou","ledku","vývojové","desky","číslo","jedna"],
+				["rozsviť","vývojovou","desku","číslo","jedna"]
 			]
 		},
 		{
@@ -58,7 +58,8 @@
 			"method_name": "ESP_turn_off_light_onboard_1",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["off","esp 1"]
+				["zhasni","vestavěnou","ledku","vývojové","desky","číslo","jedna"],
+				["zhasni","vývojovou","desku","číslo","jedna"]
 			]
 		},
 		{
@@ -66,7 +67,8 @@
 			"method_name": "ESP_turn_on_light_onboard_2",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["on","esp 2"]
+				["rozsviť","vestavěnou","ledku","vývojové","desky","číslo","dva"],
+				["rozsviť","vývojovou","desku","číslo","dva"]
 			]
 		},
 		{
@@ -74,7 +76,8 @@
 			"method_name": "ESP_turn_off_light_onboard_2",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["off","esp 2"]
+				["zhasni","vestavěnou","ledku","vývojové","desky","číslo","dva"],
+				["zhasni","vývojovou","desku","číslo","dva"]
 			]
 		},
 		{
@@ -82,7 +85,8 @@
 			"method_name": "ESP_turn_on_light_onboard_3",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				[ "on","esp 3"]
+				["rozsviť","vestavěnou","ledku","vývojové","desky","číslo","tři"],
+				["rozsviť","vývojovou","desku","číslo","tři"]
 			]
 		},
 		{
@@ -90,7 +94,8 @@
 			"method_name": "ESP_turn_off_light_onboard_3",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["off","esp 3"]
+				["zhasni","vestavěnou","ledku","vývojové","desky","číslo","tři"],
+				["zhasni","vývojovou","desku","číslo","tři"]
 			]
 		},
 		{
