@@ -30,14 +30,24 @@ class System(VoicehomeModule):
             'key': 'test',
             'datetime': str(datetime.now())
         }
-        self.mqtt_publish(topic='voicehome/system/test', payload=testing_payload)
+        try:
+            self.mqtt_publish(topic='voicehome/system/test', payload=testing_payload)
+        except:
+            self.reply(message='Na mqtt nebylo možné odesla zprávu')
+            return
+        self.reply(message='Zpráva na mqtt odeslána')
 
     def test_websocket(self):
         testing_payload = {
             'passport': 'system/test',
             'datetime': str(datetime.now())
         }
-        self.websocket_send(msg=testing_payload)
+        try:
+            self.websocket_send(msg=testing_payload)
+        except:
+            self.reply(message='Na websocket nebylo možné odesla zprávu')
+            return
+        self.reply(message='Zpráva na websocket odeslána')
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")

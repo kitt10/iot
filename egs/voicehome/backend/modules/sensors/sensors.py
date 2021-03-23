@@ -40,7 +40,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=24, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -48,8 +48,15 @@ class Sensors(VoicehomeModule):
             if 'temperature_value' in x.keys():
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
                     buffer = buffer + x['temperature_value']
-                    counter = counter + 1
+        
+        if counter == -1:
+            self.reply(message='Teplotu nebylo možné vypočíst')
+            return 
         average_temperature = buffer/counter
         self.reply(message='Průměrná teplota za poslední den je: ' + str(average_temperature))
 
@@ -60,7 +67,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=24, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -69,7 +76,13 @@ class Sensors(VoicehomeModule):
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
                     buffer = buffer + x['pressure_value']
-                    counter = counter + 1
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
+        if counter == -1:
+            self.reply(message='Tlak nebylo možné vypočíst')
+            return 
         average_temperature = buffer/counter
         self.reply(message='Průměrný tlak za poslední den je: ' + str(average_temperature))
 
@@ -80,7 +93,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=24, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -89,7 +102,13 @@ class Sensors(VoicehomeModule):
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
                     buffer = buffer + x['humidity_value']
-                    counter = counter + 1
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
+        if counter == -1:
+            self.reply(message='Vlhkost nebylo možné vypočíst')
+            return 
         average_temperature = buffer/counter
         self.reply(message='Průměrná vlhkost za poslední den je: ' + str(average_temperature))
 
@@ -100,7 +119,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=24, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -109,7 +128,13 @@ class Sensors(VoicehomeModule):
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
                     buffer = buffer + x['illuminance_value']
-                    counter = counter + 1
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
+        if counter == -1:
+            self.reply(message='Světelnost nebylo možné vypočíst')
+            return 
         average_temperature = buffer/counter
         self.reply(message='Průměrná intenzita světla za poslední den je: ' + str(average_temperature))
 
@@ -120,7 +145,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=168, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -129,7 +154,13 @@ class Sensors(VoicehomeModule):
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
                     buffer = buffer + x['temperature_value']
-                    counter = counter + 1
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
+        if counter == -1:
+            self.reply(message='Teplotu nebylo možné vypočíst')
+            return 
         average_temperature = buffer / counter
         self.reply(message='Průměrná teplota za poslední týden je: ' + str(average_temperature))
 
@@ -140,7 +171,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=168, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -149,7 +180,13 @@ class Sensors(VoicehomeModule):
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
                     buffer = buffer + x['pressure_value']
-                    counter = counter + 1
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
+        if counter == -1:
+            self.reply(message='Tlak nebylo možné vypočíst')
+            return 
         average_temperature = buffer / counter
         self.reply(message='Průměrný tlak za poslední týden je: ' + str(average_temperature))
 
@@ -160,7 +197,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=168, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -169,7 +206,13 @@ class Sensors(VoicehomeModule):
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
                     buffer = buffer + x['humidity_value']
-                    counter = counter + 1
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
+        if counter == -1:
+            self.reply(message='Vlhkost nebylo možné vypočíst')
+            return 
         average_temperature = buffer / counter
         self.reply(message='Průměrná vlhkost za poslední týden je: ' + str(average_temperature))
 
@@ -180,7 +223,7 @@ class Sensors(VoicehomeModule):
         datetime_hour_ago = today - timedelta(hours=168, minutes=0)
 
         mydoc = self.sensorsCollection.find()
-        counter = 0
+        counter = -1
         buffer = 0
 
         for x in mydoc:
@@ -189,7 +232,13 @@ class Sensors(VoicehomeModule):
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
                     buffer = buffer + x['illuminance_value']
-                    counter = counter + 1
+                    if counter == -1:
+                        counter = 1
+                    else:
+                        counter = counter + 1
+        if counter == -1:
+            self.reply(message='Světelnost nebylo možné vypočíst')
+            return 
         average_temperature = buffer / counter
         self.reply(message='Průměrná intenzita světla za poslední týden je: ' + str(average_temperature))
 
@@ -197,18 +246,22 @@ class Sensors(VoicehomeModule):
     def get_current_temperature(self,who_asking='voicekit'):
         self.sensorMeasureNow('ds18b20_1','temperature', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('temperature')
+        self.reply(message='Na senzor je odeslán dotaz')
 
     def get_current_pressure(self,who_asking='voicekit'):
         self.sensorMeasureNow('bme280_1','pressure', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('pressure')
+        self.reply(message='Na senzor je odeslán dotaz')
 
     def get_current_humidity(self,who_asking='voicekit'):
         self.sensorMeasureNow('bme280_1','humidity', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('humidity')
+        self.reply(message='Na senzor je odeslán dotaz')
 
     def get_current_illuminance(self,who_asking='voicekit'):
         self.sensorMeasureNow('tsl2591_1','illuminance', who_asking)
         self.voicekit_asked_current_measure_for_quantity.append('illuminance')
+        self.reply(message='Na senzor je odeslán dotaz')
 
 
 
@@ -265,12 +318,6 @@ class Sensors(VoicehomeModule):
         for x in msg.keys():
             x_match = self.pattern_value.match(x)
             if (x_match):
-                # self.sensorsState[msg['sensor_id'] + "-" + x_match.string.split("_")[0]] = {"state": msg['state'],
-                #                                                                            "timestamp": msg['timestamp'],
-                #                                                                            "sensor_id": msg["sensor_id"],
-                #                                                                            "location": msg["location"],
-                #                                                                            "value": msg[x_match.string]
-                #                                                                            }
                 for num_sensor in range(len(self.sensorsState[msg['quantity_type']])):
                     if self.sensorsState[msg['quantity_type']][num_sensor]["sensor_id"] == msg["sensor_id"]:
                         break
@@ -347,64 +394,6 @@ class Sensors(VoicehomeModule):
             buffer.append(json.loads(result_i))
         return buffer
 
-    # def whole_temperature_data(self, msg):
-    #     print('Module '+self.id+": sending whole temperature data")
-    #     sensorsListFile = self.sensorsList('')
-    #     sensorsTemperatureList = sensorsListFile['temperature']
-    #     roomList = []
-    #     for i in sensorsTemperatureList:
-    #         roomList.append(i['room'])
-    #     maxRoomNum = sensorsListFile['max_room']
-    #     query = {'key': 'voicehome/sensors/temperature'}
-    #     pattern = re.compile("^(room_)(\d)+$")
-    #     res = self.search_mongo(self.id, query)
-    #     buffer = ''
-    #     for res_i in res:
-    #         result_i = res_i["payload"].decode("utf8")
-    #         result_i = json.loads(res_i["payload"])
-    #
-    #         if result_i['state']=='error':
-    #             continue
-    #         loc = result_i['location']
-    #         if not pattern.match(loc):
-    #            continue
-    #         loc = loc.replace('room_', '')
-    #         loc = int(loc)
-    #
-    #         buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['temperature_value']) + (
-    #                     maxRoomNum - loc) * ',' + '\n')
-    #
-    #     return buffer
-
-    # def whole_illuminance_data(self, msg):
-    #     print('Module '+self.id+": sending whole illuminance data")
-    #     sensorsListFile = self.sensorsList('')
-    #     sensorsIlluminanceList = sensorsListFile['illuminance']
-    #     roomList = []
-    #     for i in sensorsIlluminanceList:
-    #         roomList.append(i['room'])
-    #     maxRoomNum = sensorsListFile['max_room']
-    #     query = {'key': 'voicehome/sensors/illuminance'}
-    #     pattern = re.compile("^(room_)(\d)+$")
-    #     res = self.search_mongo(self.id, query)
-    #     buffer = ''
-    #     for res_i in res:
-    #         # result_i = res_i["payload"].decode("utf8")
-    #         result_i = json.loads(res_i["payload"])
-    #
-    #         if result_i['state']=='error':
-    #             continue
-    #         loc = result_i['location']
-    #         if not pattern.match(loc):
-    #            continue
-    #         loc = loc.replace('room_', '')
-    #         loc = int(loc)
-    #
-    #         buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['illuminance_value']) + (
-    #                     maxRoomNum - loc) * ',' + '\n')
-    #
-    #     return buffer
-
     def whole_pressure_data(self, msg):
         print('Module ' + self.id + ": sending whole pressure data")
         query = {'key': 'voicehome/sensors/pressure'}
@@ -415,32 +404,3 @@ class Sensors(VoicehomeModule):
             result_i = res_i["payload"]
             buffer.append(json.loads(result_i))
         return buffer
-
-    # def whole_pressure_data(self, msg):
-    #     print('Module '+self.id+": sending whole pressure data")
-    #     sensorsListFile = self.sensorsList('')
-    #     sensorsPressureList = sensorsListFile['pressure']
-    #     roomList = []
-    #     for i in sensorsPressureList:
-    #         roomList.append(i['room'])
-    #     maxRoomNum = sensorsListFile['max_room']
-    #     query = {'key': 'voicehome/sensors/pressure'}
-    #     pattern = re.compile("^(room_)(\d)+$")
-    #     res = self.search_mongo(self.id, query)
-    #     buffer = ''
-    #     for res_i in res:
-    #         # result_i = res_i["payload"].decode("utf8")
-    #         result_i = json.loads(res_i["payload"])
-    #
-    #         if result_i['state']=='error':
-    #             continue
-    #         loc = result_i['location']
-    #         if not pattern.match(loc):
-    #            continue
-    #         loc = loc.replace('room_', '')
-    #         loc = int(loc)
-    #
-    #         buffer= buffer + (result_i['timestamp'].replace('-', '/') + loc * ',' + str(result_i['pressure_value']) + (
-    #                     maxRoomNum - loc) * ',' + '\n')
-    #
-    #     return buffer

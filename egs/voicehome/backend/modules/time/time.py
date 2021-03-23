@@ -50,9 +50,9 @@ class Time(VoicehomeModule):
 
         time = 10
         print(f"Setting timer on {time} second")
-        self.timer = threading.Timer(time, play_timer_alarm) 
+        self.timer = threading.Timer(time, play_timer_alarm)
         self.timer.start() 
-        self.reply("nastavila jsem časovač na 10 sekund") 
+        self.reply("Časovač je nastaven na 10 sekund")
 
 
 

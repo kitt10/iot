@@ -67,38 +67,48 @@ class Lights(VoicehomeModule):
     def ESP_turn_on_light_1(self):
         print('Module ' + self.id + ": turning light 1 on")
         self.ESP_turn_on_light(1)
+        self.reply(message='Světlo v obývacím pokoji rozsvíceno')
 
     def ESP_turn_off_light_1(self):
         print('Module ' + self.id + ": turning light 1 off")
         self.ESP_turn_off_light(1)
+        self.reply(message='Světlo v obývacím pokoji zhasnuto')
 
     def ESP_turn_on_light_onboard_1(self):
         self.ESP_turn_on_light_onboard(1)
+        self.reply(message='Vývojová deska číslo jedna rozsvícena')
 
     def ESP_turn_on_light_onboard_2(self):
         print('Module ' + self.id + ": turning ESP id = 1 onboard light on")
         self.ESP_turn_on_light_onboard(2)
+        self.reply(message='Vývojová deska číslo dva rozsvícena')
 
     def ESP_turn_on_light_onboard_3(self):
         self.ESP_turn_on_light_onboard(3)
+        self.reply(message='Vývojová deska číslo tři rozsvícena')
 
     def ESP_turn_off_light_onboard_1(self):
         print('Module ' + self.id + ": turning ESP id = 1 onboard light off")
         self.ESP_turn_off_light_onboard(1)
+        self.reply(message='Vývojová deska číslo jedna zhasnuta')
 
     def ESP_turn_off_light_onboard_2(self):
         self.ESP_turn_off_light_onboard(2)
+        self.reply(message='Vývojová deska číslo dva zhasnuta')
 
     def ESP_turn_off_light_onboard_3(self):
         self.ESP_turn_off_light_onboard(3)
+        self.reply(message='Vývojová deska číslo tři zhasnuta')
 
     def turn_on_ESP_onboard_led(self):
         for esp in self.lightsList['ESP_onboard']:
             self.ESP_turn_on_light_onboard(esp['ID'])
+        self.reply(message='Všechny vývojové desky rozsvíceny')
 
     def turn_off_ESP_onboard_led(self):
         for esp in self.lightsList['ESP_onboard']:
             self.ESP_turn_off_light_onboard(esp['ID'])
+        self.reply(message='Všechny vývojové desky zhasnuty')
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
