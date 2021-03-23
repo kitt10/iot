@@ -374,7 +374,7 @@ function drawCurrentlyMeasuredValue() {
 				$(".sensors.row.measured_value.room_title#" + sensor_value.room).append(
 					$("<span></span>")
 						.addClass("sensors room measured_value")
-						.text(sensor_value.room)
+						.text(sensor_value.room_description)
 				);
 			}
 			$(".sensors.row.measured_value.room_body#" + sensor_value.room).append(
