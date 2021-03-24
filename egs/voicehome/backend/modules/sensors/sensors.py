@@ -48,12 +48,14 @@ class Sensors(VoicehomeModule):
             if 'temperature_value' in x.keys():
                 time = datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S')
                 if time >= datetime_hour_ago and time <= today:
+                    print('teplota!')
                     if counter == -1:
                         counter = 1
                     else:
                         counter = counter + 1
                     buffer = buffer + x['temperature_value']
-        
+        print('konecny counter')
+        print(counter)
         if counter == -1:
             self.reply(message='Teplotu nebylo možné vypočíst')
             return 
