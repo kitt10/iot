@@ -57,7 +57,7 @@ class Sensors(VoicehomeModule):
             self.reply(message='Teplotu nebylo možné vypočíst')
             return 
         average_temperature = buffer/counter
-        self.reply(message='Průměrná teplota za poslední den je: ' + str(average_temperature))
+        self.reply(message='Průměrná teplota za poslední den je: ' + str(round(average_temperature, 2)))
 
     def get_average_pressure_for_last_day(self):
         # today = '2021-02-26 12:36:32'
@@ -82,8 +82,8 @@ class Sensors(VoicehomeModule):
         if counter == -1:
             self.reply(message='Tlak nebylo možné vypočíst')
             return 
-        average_temperature = buffer/counter
-        self.reply(message='Průměrný tlak za poslední den je: ' + str(average_temperature))
+        average_pressure = buffer/counter
+        self.reply(message='Průměrný tlak za poslední den je: ' + str(round(average_pressure, 2)))
 
     def get_average_humidity_for_last_day(self):
         # today = '2021-02-26 12:36:32'
@@ -108,8 +108,8 @@ class Sensors(VoicehomeModule):
         if counter == -1:
             self.reply(message='Vlhkost nebylo možné vypočíst')
             return 
-        average_temperature = buffer/counter
-        self.reply(message='Průměrná vlhkost za poslední den je: ' + str(average_temperature))
+        average_humidity = buffer/counter
+        self.reply(message='Průměrná vlhkost za poslední den je: ' + str(round(average_humidity, 2)))
 
     def get_average_illuminance_for_last_day(self):
         # today = '2021-02-26 12:36:32'
@@ -134,8 +134,8 @@ class Sensors(VoicehomeModule):
         if counter == -1:
             self.reply(message='Světelnost nebylo možné vypočíst')
             return 
-        average_temperature = buffer/counter
-        self.reply(message='Průměrná intenzita světla za poslední den je: ' + str(average_temperature))
+        average_illuminance = buffer/counter
+        self.reply(message='Průměrná intenzita světla za poslední den je: ' + str(round(average_illuminance, 2)))
 
     def get_average_temperature_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -161,7 +161,7 @@ class Sensors(VoicehomeModule):
             self.reply(message='Teplotu nebylo možné vypočíst')
             return 
         average_temperature = buffer / counter
-        self.reply(message='Průměrná teplota za poslední týden je: ' + str(average_temperature))
+        self.reply(message='Průměrná teplota za poslední týden je: ' + str(round(average_temperature, 2)))
 
     def get_average_pressure_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -186,8 +186,8 @@ class Sensors(VoicehomeModule):
         if counter == -1:
             self.reply(message='Tlak nebylo možné vypočíst')
             return 
-        average_temperature = buffer / counter
-        self.reply(message='Průměrný tlak za poslední týden je: ' + str(average_temperature))
+        average_pressure = buffer / counter
+        self.reply(message='Průměrný tlak za poslední týden je: ' + str(round(average_pressure, 2)))
 
     def get_average_humidity_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -212,8 +212,8 @@ class Sensors(VoicehomeModule):
         if counter == -1:
             self.reply(message='Vlhkost nebylo možné vypočíst')
             return 
-        average_temperature = buffer / counter
-        self.reply(message='Průměrná vlhkost za poslední týden je: ' + str(average_temperature))
+        average_humidity = buffer / counter
+        self.reply(message='Průměrná vlhkost za poslední týden je: ' + str(round(average_humidity, 2)))
 
     def get_average_illuminance_for_last_week(self):
         # today = '2021-02-26 12:36:32'
@@ -238,8 +238,8 @@ class Sensors(VoicehomeModule):
         if counter == -1:
             self.reply(message='Světelnost nebylo možné vypočíst')
             return 
-        average_temperature = buffer / counter
-        self.reply(message='Průměrná intenzita světla za poslední týden je: ' + str(average_temperature))
+        average_illuminance = buffer / counter
+        self.reply(message='Průměrná intenzita světla za poslední týden je: ' + str(round(average_illuminance, 2)))
 
 
     def get_current_temperature(self,who_asking='voicekit'):
@@ -299,21 +299,21 @@ class Sensors(VoicehomeModule):
                             if (x_match):
 
                                 if x_match.string.split('_')[0] == 'temperature' and 'temperature' in self.voicekit_asked_current_measure_for_quantity:
-                                    self.reply(message='Aktuální teplota je: ' + str(msg[x_match.string]))
+                                    self.reply(message='Aktuální teplota je: ' + str(round(float(msg[x_match.string]), 2)))
                                     self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'temperature', self.voicekit_asked_current_measure_for_quantity))
                                     break
                                 elif x_match.string.split('_')[0] == 'pressure' and 'pressure' in self.voicekit_asked_current_measure_for_quantity:
-                                    self.reply(message='Aktuální tlak je: ' + str(msg[x_match.string]))
+                                    self.reply(message='Aktuální tlak je: ' + str(round(float(msg[x_match.string]), 2)))
                                     self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'pressure',
                                                 self.voicekit_asked_current_measure_for_quantity))
                                     break
                                 elif x_match.string.split('_')[0] == 'humidity' and 'humidity' in self.voicekit_asked_current_measure_for_quantity:
-                                    self.reply(message='Aktuální vlhkost je: ' + str(msg[x_match.string]))
+                                    self.reply(message='Aktuální vlhkost je: ' + str(round(float(msg[x_match.string]), 2)))
                                     self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'humidity',
                                                 self.voicekit_asked_current_measure_for_quantity))
                                     break
                                 elif x_match.string.split('_')[0] == 'illuminance' and 'illuminance' in self.voicekit_asked_current_measure_for_quantity:
-                                    self.reply(message='Aktuální intenzita světla je: ' + str(msg[x_match.string]))
+                                    self.reply(message='Aktuální intenzita světla je: ' + str(round(float(msg[x_match.string]), 2)))
                                     self.voicekit_asked_current_measure_for_quantity = list(filter(lambda a: a != 'illuminance',
                                                 self.voicekit_asked_current_measure_for_quantity))
                                     break
