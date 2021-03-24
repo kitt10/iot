@@ -23,4 +23,4 @@ class BasicLogic(VoicehomeLogic):
 
                     return
         if not found:
-            self.reply(message='Server bohužel nenašel shodný příkaz. Zadal jste: ' + command)
+            self.engine.control.new_reply('Server bohužel nenašel shodný příkaz. Zadal jste: ' + command)
