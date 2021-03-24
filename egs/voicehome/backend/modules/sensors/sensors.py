@@ -245,26 +245,26 @@ class Sensors(VoicehomeModule):
 
     def get_current_temperature(self,who_asking='voicekit'):
         self.sensorMeasureNow('ds18b20_1','temperature', who_asking)
-        self.voicekit_asked_current_measure_for_quantity.append('temperature')
-        if who_asking=='voicekit':
+        if who_asking == 'voicekit':
+            self.voicekit_asked_current_measure_for_quantity.append('temperature')
             self.reply(message='Na senzor je odeslán dotaz')
 
     def get_current_pressure(self,who_asking='voicekit'):
         self.sensorMeasureNow('bme280_1','pressure', who_asking)
-        self.voicekit_asked_current_measure_for_quantity.append('pressure')
         if who_asking == 'voicekit':
+            self.voicekit_asked_current_measure_for_quantity.append('pressure')
             self.reply(message='Na senzor je odeslán dotaz')
 
     def get_current_humidity(self,who_asking='voicekit'):
         self.sensorMeasureNow('bme280_1','humidity', who_asking)
-        self.voicekit_asked_current_measure_for_quantity.append('humidity')
         if who_asking == 'voicekit':
+            self.voicekit_asked_current_measure_for_quantity.append('humidity')
             self.reply(message='Na senzor je odeslán dotaz')
 
     def get_current_illuminance(self,who_asking='voicekit'):
         self.sensorMeasureNow('tsl2591_1','illuminance', who_asking)
-        self.voicekit_asked_current_measure_for_quantity.append('illuminance')
         if who_asking == 'voicekit':
+            self.voicekit_asked_current_measure_for_quantity.append('illuminance')
             self.reply(message='Na senzor je odeslán dotaz')
 
 
