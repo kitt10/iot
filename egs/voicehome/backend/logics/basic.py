@@ -8,10 +8,12 @@ class BasicLogic(VoicehomeLogic):
         VoicehomeLogic.__init__(self, engine)
 
     def on_command(self, command):
+        found = False
         for move_id, (method, list_of_calls) in self.moves.items():
             for call_tuple in list_of_calls:
                 if all(call in command for call in call_tuple):
                     print('Logic: Found Match. Running', move_id)
+                    found = True
                     try:
                         t = Thread(target=method)
                         t.setDaemon(False)
@@ -19,6 +21,6 @@ class BasicLogic(VoicehomeLogic):
                     except ThreadError:
                         print('ERR: Thread of Move', move_id)
 
-                    break
-        else:
+                    return
+        if not found:
             self.reply(message='Server bohužel nenašel shodný příkaz. Zadal jste: ' + command)
