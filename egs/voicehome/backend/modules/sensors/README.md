@@ -1,7 +1,14 @@
-### Module: Sensors
+# Module: Sensors
 
-Sensory system - temperature, illuminance, pressure, motion
+Sensors system
+- requesting measuring of temperature, illuminance, pressure and humidity
+- sending measuring to a web
+- sending measuring from database to a web
 
-##### Moves
-* ```get_current_temperature```
-    * "kolik je stupňů", "jaká je teplota", "změř teplotua"
+Sensors IDs:
+- bme280_1
+- ds18b20_1
+- tsl2591_1
+
+## Moves
+Are written in metadata.json where move is function and calls are sentences to activate it

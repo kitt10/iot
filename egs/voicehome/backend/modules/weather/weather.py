@@ -7,11 +7,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
 
-# "move_id": "weather_01.get_forecast_today",
-# "method_name": "get_forecast_today",
-# "description": "Getting forecast for today by web scratch technic.",
-# "calls": [["dnešní předpověď"], ["předpověď"], ["jak dneska bude"]]
-
 class Weather(VoicehomeModule):
 
     def __init__(self, engine, dir_path, active):

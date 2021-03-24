@@ -1,21 +1,16 @@
-### Module: Time
+# Module: Time
 
-Time system - get time, get day, set timer, set stopwatch
+Time system:
 
-##### Moves
+- get time
+- get day
+- set timer
+- stop timer
+- set stopwatch (not now)
+- get weekday
+- get sunrise time
+- get sunset time
+- get nameday
 
-- `get_time`
-
-  - "kolik je hodin", "tajm"
-
-- `get_day`
-
-  - "dnešní den", "datum"
-
-- `set_timer`
-
-  - "zapni časovač", "start tajmr"
-
-- `stop_timer`
-
-  - "vypni časovač", "zastav časovač", "stop tajmr"
+## Moves
+Are written in metadata.json where move is function and calls are sentences to activate it

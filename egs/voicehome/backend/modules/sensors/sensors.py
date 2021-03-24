@@ -335,9 +335,6 @@ class Sensors(VoicehomeModule):
                     'reply': self.sensorsState
                 }
                 self.websocket_send(msg_web)
-                # self.sensorsState[msg['sensor_id']+"_"+msg["quantity"]] = {"state": msg['state'],
-                #                                                             "timestamp": msg['timestamp']
-                #                                                             }
                 break
 
     def on_websocket_message(self, msg):

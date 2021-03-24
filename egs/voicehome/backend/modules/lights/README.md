@@ -1,17 +1,11 @@
-### Module: Lights
+# Module: Lights
 
-Lightning system - one onboard LED on ESP8266 for now.
+Lightning system 
 
-##### Moves
+- controlling all onboard lights that are in lightsList.json
+- controlling all leds and bulbs that are in lightsList.json
+- requesting state of lights for all or individually 
+- maintaining functionality to say viocekit which lights are on
 
-- `turn_led_on`
-
-  - "zapni vestavěnou ledku", "rozsviť ledku", "led on"
-
-- `turn_led_off`
-
-  - "zhasni vestavěnou ledku", "vypni ledku", "led off"
-
-- `binking_led`
-
-  - "zablikej vestavěnou ledkou", "zablikej ledkou", "led blink"
+## Moves
+Are written in metadata.json where move is function and calls are sentences to activate it

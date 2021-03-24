@@ -1,14 +1,12 @@
-### Module: System
+# Module: System
 
-System moves.
+System module
+- reload modules
+- test database
+- test mqtt
+- test websocket
 
-##### Moves
 
-* ```reload_modules```
-    * "načti moduly", "aktualizuj moduly"
-* ```test_database```
-    * "otestuj databáze", "databáze test"
-* ```test_mqtt```
-    * "test mqtt", "otestuj mqtt", "vyzkoušej mqtt"
-* ```test_websocket```
-    * "otestuj websoket", "test websocket", "vyzkoušej websokety"
+## Moves
+Are written in metadata.json where move is function and calls are sentences to activate it
+
