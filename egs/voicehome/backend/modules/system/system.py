@@ -10,7 +10,7 @@ class System(VoicehomeModule):
     def reload_modules(self):
         print('Module system: Reloading modules...')
         self.engine.port.reload_modules()
-        self.reply('Modules reloaded.')
+        self.reply('Moduly .')
 
     def test_database(self):
         print('Testing Database on', self.cfg.mongo.host, ':', self.cfg.mongo.port)
@@ -21,9 +21,9 @@ class System(VoicehomeModule):
             }
             self.save_to_mongo(module_id=self.id, payload=testing_payload)
             res = self.search_mongo(module_id=self.id, query={'key': 'test'})
-            self.reply('Module ' + self.id + ': Database tested. OK. Found items: '+str(len(res)))
+            self.reply('Modul ' + self.id + ': Databáze otestována. Vyhledáno dat: '+str(len(res)))
         except Exception as e:
-            self.reply('Module '+self.id+': Error testing database: '+str(e))
+            self.reply('Modul '+self.id+': Chyba při testování databáze: '+str(e))
 
     def test_mqtt(self):
         testing_payload = {
@@ -45,9 +45,9 @@ class System(VoicehomeModule):
         try:
             self.websocket_send(msg=testing_payload)
         except:
-            self.reply(message='Na websocket nebylo možné odesla zprávu')
+            self.reply(message='Na websoket nebylo možné odesla zprávu')
             return
-        self.reply(message='Zpráva na websocket odeslána')
+        self.reply(message='Zpráva na websoket odeslána')
 
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")

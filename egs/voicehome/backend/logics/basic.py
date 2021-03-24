@@ -20,3 +20,5 @@ class BasicLogic(VoicehomeLogic):
                         print('ERR: Thread of Move', move_id)
 
                     break
+        else:
+            self.reply(message='Server bohužel nenašel shodný příkaz. Zadal jste: ' + command)
