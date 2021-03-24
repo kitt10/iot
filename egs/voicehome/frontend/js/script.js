@@ -125,7 +125,7 @@ function onSocketMessage(message) {
 		request_sensorsState();
 		request_sensorsList();
 		request_webWeatherOWM();
-		// request_sensors_measure_now();
+		request_sensors_measure_now();
 	}
 	sendToServer("Hi from browser. Got your message.");
 
@@ -699,7 +699,7 @@ function displayInDivEventLog(data) {
 
 	let divEventLog = document.getElementById("eventLog");
 	if (divEventLog.childNodes.length >= 5) {
-		divEventLog.removeChild(divEventLog.firstChild);
+		divEventLog.removeChild(divEventLog.lastChild);
 	}
 
 	let eventLogItem = document.createElement("div");
@@ -707,7 +707,7 @@ function displayInDivEventLog(data) {
 	eventLogItem.className = "alert alert-info";
 	eventLogItem.innerHTML =
 		time + " <strong>" + data.source + "</strong> => " + data.message;
-	divEventLog.appendChild(eventLogItem);
+	divEventLog.prepend(eventLogItem);
 }
 
 function onSocketClose() {
