@@ -39,6 +39,8 @@ class Weather(VoicehomeModule):
         self.regex_patterns_forecast_saturday = '^(Předpověď na sobotu \(00-24\))'
         self.regex_patterns_forecast_sunday = '^(Předpověď na neděli \(00-24\))'
 
+        self.regex_patterns_minus = '\s(-)\d*\s'
+
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
         pass
@@ -77,6 +79,11 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast_today = re.sub(self.regex_patterns_minus, minus_replace, forecast_today)
+
         self.reply('Server chmi.cz předpovídá pro dnešek. '+forecast_today)
 
     def get_forecast_tomorrow(self):
@@ -99,6 +106,11 @@ class Weather(VoicehomeModule):
         else:
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
+
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast_tomorrow = re.sub(self.regex_patterns_minus, minus_replace, forecast_tomorrow)
 
         self.reply('Server chmi.cz předpovídá pro zítřek. ' + forecast_tomorrow)
 
@@ -130,6 +142,11 @@ class Weather(VoicehomeModule):
         else:
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
+
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
 
         self.reply('Server chmi.cz předpovídá na pondělí. ' + forecast)
 
@@ -163,6 +180,11 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
+
         self.reply('Server chmi.cz předpovídá na úterý. ' + forecast)
 
     def get_forecast_wednesday(self):
@@ -194,6 +216,11 @@ class Weather(VoicehomeModule):
         else:
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
+
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
 
         self.reply('Server chmi.cz předpovídá na středu. ' + forecast)
 
@@ -227,6 +254,11 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
+
         self.reply('Server chmi.cz předpovídá na čtvrtek. ' + forecast)
 
     def get_forecast_friday(self):
@@ -258,6 +290,11 @@ class Weather(VoicehomeModule):
         else:
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
+
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
 
         self.reply('Server chmi.cz předpovídá na pátek. ' + forecast)
 
@@ -291,6 +328,11 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
+
         self.reply('Server chmi.cz předpovídá na sobotu. ' + forecast)
 
     def get_forecast_sunday(self):
@@ -322,6 +364,11 @@ class Weather(VoicehomeModule):
         else:
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
+
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
 
         self.reply('Server chmi.cz předpovídá na neděli. ' + forecast)
 

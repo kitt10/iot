@@ -10,7 +10,7 @@ class System(VoicehomeModule):
     def reload_modules(self):
         print('Module system: Reloading modules...')
         self.engine.port.reload_modules()
-        self.reply('Moduly .')
+        self.reply('Moduly byly znovu načteny.')
 
     def test_database(self):
         print('Testing Database on', self.cfg.mongo.host, ':', self.cfg.mongo.port)

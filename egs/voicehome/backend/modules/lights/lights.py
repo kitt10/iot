@@ -171,11 +171,7 @@ class Lights(VoicehomeModule):
     def which_lights_on(self):
         lights_on=''
         for type in self.lightsList:
-            print('type')
-            print(type)
             for light in self.lightsList[type]:
-                print('light')
-                print(light)
                 if 'state' in light:
                     if light['state']==1:
                         if lights_on=='':

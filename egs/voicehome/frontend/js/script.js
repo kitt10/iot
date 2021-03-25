@@ -207,8 +207,7 @@ function drawLightsState() {
 							$("<span></span>").text(
 								// "key = " + key + " id = " + value[light]["ID"]
 								value[light]["description"]
-							),
-							$("</br>")
+							)
 						)
 					);
 				}
@@ -230,8 +229,7 @@ function drawLightsState() {
 										1
 									);
 								}),
-							$("<span></span>").text(value[light]["description"]),
-							$("</br>")
+							$("<span></span>").text(value[light]["description"])
 						)
 					);
 				}
@@ -248,8 +246,7 @@ function drawLightsState() {
 							.click(function () {
 								console.log($(this));
 							}),
-						$("<span></span>").text(value[light]["description"]),
-						$("</br>")
+						$("<span></span>").text(value[light]["description"])
 					)
 				);
 			}
