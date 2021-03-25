@@ -8,10 +8,17 @@ class BasicLogic(VoicehomeLogic):
         VoicehomeLogic.__init__(self, engine)
 
     def on_command(self, command):
+        command_elements = command.split(' ')
         found = False
         for move_id, (method, list_of_calls) in self.moves.items():
             for call_tuple in list_of_calls:
-                if all(call in command for call in call_tuple):
+                counter_call_word = len(call_tuple)
+                for call_word in call_tuple:
+                    for command_word in command_elements:
+                        if call_word == command_word:
+                            counter_call_word = counter_call_word - 1
+
+                if counter_call_word == 0:
                     print('Logic: Found Match. Running', move_id)
                     found = True
                     try:
