@@ -20,7 +20,8 @@
       "description": "Makes a testing write and read with the database.",
       "calls": [
         ["otestuj", "databáze"],
-        ["databáze", "test"]
+        ["test","databáze"],
+        ["otestuj","databázi"]
       ]
     },
      {
@@ -39,7 +40,7 @@
       "description": "Sends a testing websocket message with passport system/test.",
       "calls": [
         ["otestuj", "websoket"],
-        ["test", "websocket"],
+        ["test", "websoket"],
         ["vyzkoušej", "websokety"]
       ]
     }
