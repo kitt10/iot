@@ -1,0 +1,61 @@
+kolik je stupňů
+jaká je <quantity>
+změř <quantity>
+kolik je <quantity>
+průměrná <quantity> za poslední den
+dnešní průměrná <quantity>
+dnešní průměrný <quantity>
+průměrný <quantity> za poslední den
+průměrná <quantity> za poslední týden
+týdenní průměrná <quantity>
+průměrný <quantity> za poslední týden
+týdenní průměrný <quantity>
+kolik je hodin
+čas
+kolikátého dnes je
+datum
+zapni časovač
+vypni časovač
+zastav časovač
+co je za den v týdnu
+co je za den
+v kolik hodin vychází slunce
+východ slunce
+v kolik hodin zapadá slunce
+západ slunce
+kdo má dnes svátek
+svátek
+načti moduly
+aktualizuj moduly
+přenačti moduly
+otestuj databáze
+databáze test
+otestuj mqtt
+test mqtt
+vyzkoušej mqtt
+otestuj websoket
+test websocket
+vyzkoušej websokety
+dnešní předpověď
+jak dnes bude
+zítřejší předpověď
+jak zítra bude
+předpověď na <day>
+jak bude v <day>
+rozsviť všechny vývojové desky
+rozsviť všechny vestavěné ledky
+zhasni všechny vývojové desky
+zhasni všechny vestavěné ledky
+zapni v obýváku světlo
+rozsviť v obýváku světlo
+zapni v obývacím pokoji světlo
+rozsviť v obývacím pokoji světlo
+vypni v obýváku světlo
+zhasni v obýváku světlo
+vypni v obývacím pokoji světlo
+zhasni v obývacím pokoji světlo
+rozsviť vestavěnou ledku vývojové desky číslo <esp_nb>
+rozsviť vývojovou desku číslo <esp_nb>
+zhasni vestavěnou ledku vývojové desky číslo <esp_nb>
+zhasni vývojovou desku číslo <esp_nb>
+která světla svítí

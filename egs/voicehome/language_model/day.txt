@@ -1,0 +1,10 @@
+pondělí
+úterý
+středa
+středu
+čtvrtek
+pátek
+sobota
+sobotu
+neděle
+neděli

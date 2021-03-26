@@ -1,0 +1,11 @@
+teplota
+teplotu
+tlak
+vlhkost
+intenzita světla
+intenzity světla
+intenzitu světla
+intenzita světelnosti
+intenzity světelnosti
+intanzitu světelnosti
+světlo
