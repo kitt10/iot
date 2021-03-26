@@ -38,13 +38,13 @@
 			"move_id": "time_06.get_sunrise_time",
 			"method_name": "get_sunrise_time",
 			"description": "Get sunrise time for today",
-			"calls": [["v","kolik","hodin","vychází","slunce"], ["východ","slunce"]]
+			"calls": [["kdy","vychází","slunce"], ["východ","slunce"]]
 		},
 		{
 			"move_id": "time_07.get_sunset_time",
 			"method_name": "get_sunset_time",
 			"description": "Get sunset time for today",
-			"calls": [["v","kolik","hodin","zapadá","slunce"], ["západ","slunce"]]
+			"calls": [["kdy","zapadá","slunce"], ["západ","slunce"]]
 		},
 		{
 			"move_id": "time_08.get_nameday",

@@ -14,7 +14,7 @@
 			"move_id": "weather_02.get_forecast_tomorrow",
 			"method_name": "get_forecast_tomorrow",
 			"description": "Getting forecast for tomorrow from www.chmi.cz.",
-			"calls": [["zítřejší","předpověď"],["jak","zítra","bude"]]
+			"calls": [["předpověď","zítra"],["jak","zítra","bude"]]
 		},
 		{
 			"move_id": "weather_03.get_forecast_monday",

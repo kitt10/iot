@@ -1,5 +1,6 @@
 kolik je stupňů
 jaká je <quantity>
+jaký je <quantity>
 změř <quantity>
 kolik je <quantity>
 průměrná <quantity> za poslední den
@@ -17,11 +18,11 @@ datum
 zapni časovač
 vypni časovač
 zastav časovač
-co je za den v týdnu
+co je za den týdnu
 co je za den
-v kolik hodin vychází slunce
+kdy vychází slunce
 východ slunce
-v kolik hodin zapadá slunce
+kdy zapadá slunce
 západ slunce
 kdo má dnes svátek
 svátek
@@ -29,33 +30,33 @@ načti moduly
 aktualizuj moduly
 přenačti moduly
 otestuj databáze
-databáze test
+test databáze
 otestuj mqtt
 test mqtt
 vyzkoušej mqtt
 otestuj websoket
-test websocket
+test websoket
 vyzkoušej websokety
 dnešní předpověď
 jak dnes bude
-zítřejší předpověď
+předpověď zítra
 jak zítra bude
 předpověď na <day>
-jak bude v <day>
+jak bude <day>
 rozsviť všechny vývojové desky
 rozsviť všechny vestavěné ledky
 zhasni všechny vývojové desky
 zhasni všechny vestavěné ledky
-zapni v obýváku světlo
-rozsviť v obýváku světlo
-zapni v obývacím pokoji světlo
-rozsviť v obývacím pokoji světlo
-vypni v obýváku světlo
-zhasni v obýváku světlo
-vypni v obývacím pokoji světlo
-zhasni v obývacím pokoji světlo
-rozsviť vestavěnou ledku vývojové desky číslo <esp_nb>
-rozsviť vývojovou desku číslo <esp_nb>
-zhasni vestavěnou ledku vývojové desky číslo <esp_nb>
-zhasni vývojovou desku číslo <esp_nb>
+zapni obýváku světlo
+rozsviť obýváku světlo
+zapni obývacím pokoji světlo
+rozsviť obývacím pokoji světlo
+vypni obýváku světlo
+zhasni obýváku světlo
+vypni obývacím pokoji světlo
+zhasni obývacím pokoji světlo
+rozsviť ledku desky číslo <esp_nb>
+rozsviť vývojovou desku <esp_nb>
+zhasni ledku desky číslo <esp_nb>
+zhasni vývojovou desku <esp_nb>
 která světla svítí

@@ -49,8 +49,8 @@
 			"method_name": "ESP_turn_on_light_onboard_1",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["rozsviť","vestavěnou","ledku","vývojové","desky","číslo","jedna"],
-				["rozsviť","vývojovou","desku","číslo","jedna"]
+				["rozsviť","ledku","desky","číslo","jedna"],
+				["rozsviť","vývojovou","desku","jedna"]
 			]
 		},
 		{
@@ -58,8 +58,8 @@
 			"method_name": "ESP_turn_off_light_onboard_1",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["zhasni","vestavěnou","ledku","vývojové","desky","číslo","jedna"],
-				["zhasni","vývojovou","desku","číslo","jedna"]
+				["zhasni","ledku","desky","číslo","jedna"],
+				["zhasni","vývojovou","desku","jedna"]
 			]
 		},
 		{
@@ -67,8 +67,8 @@
 			"method_name": "ESP_turn_on_light_onboard_2",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["rozsviť","vestavěnou","ledku","vývojové","desky","číslo","dva"],
-				["rozsviť","vývojovou","desku","číslo","dva"]
+				["rozsviť","ledku","desky","číslo","dva"],
+				["rozsviť","vývojovou","desku","dva"]
 			]
 		},
 		{
@@ -76,8 +76,8 @@
 			"method_name": "ESP_turn_off_light_onboard_2",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["zhasni","vestavěnou","ledku","vývojové","desky","číslo","dva"],
-				["zhasni","vývojovou","desku","číslo","dva"]
+				["zhasni","ledku","desky","číslo","dva"],
+				["zhasni","vývojovou","desku","dva"]
 			]
 		},
 		{
@@ -85,8 +85,8 @@
 			"method_name": "ESP_turn_on_light_onboard_3",
 			"description": "Turn on the onboard LED.",
 			"calls": [
-				["rozsviť","vestavěnou","ledku","vývojové","desky","číslo","tři"],
-				["rozsviť","vývojovou","desku","číslo","tři"]
+				["rozsviť","ledku","desky","číslo","tři"],
+				["rozsviť","vývojovou","desku","tři"]
 			]
 		},
 		{
@@ -94,8 +94,8 @@
 			"method_name": "ESP_turn_off_light_onboard_3",
 			"description": "Turn off the onboard LED.",
 			"calls": [
-				["zhasni","vestavěnou","ledku","vývojové","desky","číslo","tři"],
-				["zhasni","vývojovou","desku","číslo","tři"]
+				["zhasni","ledku","desky","číslo","tři"],
+				["zhasni","vývojovou","desku","tři"]
 			]
 		},
 		{
