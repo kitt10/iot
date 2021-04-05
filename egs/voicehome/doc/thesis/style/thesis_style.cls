@@ -165,7 +165,8 @@
 \RequirePackage{siunitx} % Required for \SI commands
 
 \RequirePackage{graphicx} % Required to include images
-\graphicspath{{img/}{./}} % Specifies where to look for included images
+% \graphicspath{{img/}{./}} % Specifies where to look for included images
+\graphicspath{{/}{./}{img/}} % Specifies where to look for included images
 
 \RequirePackage{booktabs} % Required for better table rules
 
