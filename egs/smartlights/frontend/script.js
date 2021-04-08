@@ -21,7 +21,7 @@ function onMessageArrived(msg) {
 }
 
 function onConnect() {
-    mqtt_client.subscribe("smartlights/#", {qos: 0})
+    mqtt_client.subscribe(mqtt_topic_subscribe)
     console.log("Connected to MQTT broker. Subscribed:", mqtt_topic_subscribe)
 }
 
