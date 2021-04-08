@@ -31,6 +31,8 @@ function mqtt_connect() {
 	console.log("Connecting to " + mqtt_broker + ":" + mqtt_port)
 	mqtt_client = new Paho.MQTT.Client(mqtt_broker, mqtt_port, mqtt_client_id)
 	var options = {
+        username: mqtt_username,
+        password: mqtt_passwd,
 		timeout: 3,
 		onSuccess: onConnect,
         onFailure: onFailure
