@@ -5,7 +5,7 @@ function onBodyLoad() {
 
 function onFailure(message) {
     console.log("Connection to Host " + mqtt_broker + " failed")
-    setTimeout(MQTTconnect, mqtt_reconnect_timeout)
+    setTimeout(mqtt_connect, mqtt_reconnect_timeout)
 }
 
 function onMessageArrived(msg) {
