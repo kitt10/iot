@@ -1,6 +1,11 @@
 function onBodyLoad() {
     console.log('GUI loaded.')
     mqtt_connect()
+    setTimeout(sendAhoy, 2000)
+}
+
+function sendAhoy() {
+    sendMessage("GUI is connected to MQTT - hello.", "smartlights/hello")
 }
 
 function onFailure(message) {
