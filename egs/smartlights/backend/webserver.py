@@ -5,7 +5,7 @@ import os
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("index.html")
+        self.render("../frontend/index.html")
 
 
 class Application(tornado.web.Application):
