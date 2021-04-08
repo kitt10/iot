@@ -10,10 +10,14 @@ class MainHandler(tornado.web.RequestHandler):
 
 class Application(tornado.web.Application):
     def __init__(self):
-        handlers = [(r"/", MainHandler)]
+        handlers = [
+            (r"/", MainHandler),
+            (r'/(.*)', tornado.web.StaticFileHandler, {
+                'path': os.path.join(os.path.dirname(__file__), '../frontend')})
+        ]
         settings = {
             "debug": True,
-            "static_path": os.path.join(os.path.dirname(__file__), "../frontend")
+            "autoreload": True
         }
         tornado.web.Application.__init__(self, handlers, **settings)
 
