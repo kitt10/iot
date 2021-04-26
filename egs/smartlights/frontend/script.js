@@ -14,10 +14,10 @@ function onFailure(message) {
 }
 
 function onMessageArrived(msg) {
-    json = JSON.parse(msg.payloadString)
-    console.log("New MQTT message:", msg.destinationName)
-
-    document.getElementById("mqtt_message_target").innerHTML = json
+    //json = JSON.parse(msg.payloadString)
+    console.log("New MQTT message:", msg)
+    
+    document.getElementById("mqtt_message_target").innerHTML = msg.payloadString
 }
 
 function onConnect() {
