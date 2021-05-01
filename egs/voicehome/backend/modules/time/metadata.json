@@ -1,19 +1,19 @@
 {
 	"module_id": "time",
-	"description": "Time system (comming soon)- get time, get day, set timer, set stopwatch",
+	"description": "This module provides commands for manipulation with the time, such as asking for time, date, set timer.",
 	"mqtt_topics": ["voicehome/time", "voicehome/time/timer"],
 	"websocket_passports": ["time"],
 	"moves": [
 		{
 			"move_id": "time_01.get_time",
 			"method_name": "get_time",
-			"description": "Send a command via MQTT to ask server for current time.",
+			"description": "Send command to ask the server for the current time.",
 			"calls": [["kolik","je","hodin"],["čas"]]
 		},
 		{
 			"move_id": "time_02.get_day",
 			"method_name": "get_day",
-			"description": "Send a command via MQTT to ask server for current day of year.",
+			"description": "Send command to ask the server for the current day of year.",
 			"calls": [["kolikátého","dnes","je"], ["datum"]]
 		},
 		{

@@ -1,13 +1,13 @@
 {
 	"module_id": "lights",
-	"description": "Lightning system - one onboard LED on ESP8266 for now.",
+	"description": "Lightning system - This module opens up to the user a simple way how can control lights by voice. The user not only turns on, off or blinks lights but can also identify the development boards by lighting a LED on a specific board.",
 	"mqtt_topics": ["voicehome/lights/led","voicehome/lights/state/receive"],
 	"websocket_passports": ["lights","lights/state"],
 	"moves": [
 		{
 			"move_id": "lights_01.turn_on_ESP_onboard_led",
 			"method_name": "turn_on_ESP_onboard_led",
-			"description": "Turn on the onboard LED.",
+			"description": "Turn on all the onboard LEDs.",
 			"calls": [
 				["rozsviť","všechny","vývojové","desky"],
 				["rozsviť","všechny","vestavěné","ledky"]
@@ -16,7 +16,7 @@
 		{
 			"move_id": "lights_02.turn_off_ESP_onboard_led",
 			"method_name": "turn_off_ESP_onboard_led",
-			"description": "Turn off the onboard LED.",
+			"description": "Turn off all the onboard LEDs.",
 			"calls": [
 				["zhasni","všechny","vývojové","desky"],
 				["zhasni","všechny","vestavěné","ledky"]
@@ -25,7 +25,7 @@
 		{
 			"move_id": "lights_03.ESP_turn_on_light_1",
 			"method_name": "ESP_turn_on_light_1",
-			"description": "Turning on light 1",
+			"description": "Turn on the light 1",
 			"calls": [
 				["zapni","obýváku", "světlo"],
 				["rozsviť","obýváku", "světlo"],
@@ -36,7 +36,7 @@
 		{
 			"move_id": "lights_04.ESP_turn_off_light_1",
 			"method_name": "ESP_turn_off_light_1",
-			"description": "Turning off light 1",
+			"description": "Turn off the light 1",
 			"calls": [
 				["vypni","obýváku", "světlo"],
 				["zhasni","obýváku", "světlo"],
@@ -47,7 +47,7 @@
 		{
 			"move_id": "lights_05.ESP_turn_on_light_onboard_1",
 			"method_name": "ESP_turn_on_light_onboard_1",
-			"description": "Turn on the onboard LED.",
+			"description": "Turn on the onboard LED number 1",
 			"calls": [
 				["rozsviť","ledku","desky","číslo","jedna"],
 				["rozsviť","vývojovou","desku","jedna"]
@@ -56,7 +56,7 @@
 		{
 			"move_id": "lights_06.ESP_turn_off_light_onboard_1",
 			"method_name": "ESP_turn_off_light_onboard_1",
-			"description": "Turn off the onboard LED.",
+			"description": "Turn off the onboard LED number 1",
 			"calls": [
 				["zhasni","ledku","desky","číslo","jedna"],
 				["zhasni","vývojovou","desku","jedna"]
@@ -65,7 +65,7 @@
 		{
 			"move_id": "lights_07.ESP_turn_on_light_onboard_2",
 			"method_name": "ESP_turn_on_light_onboard_2",
-			"description": "Turn on the onboard LED.",
+			"description": "Turn on the onboard LED number 2",
 			"calls": [
 				["rozsviť","ledku","desky","číslo","dva"],
 				["rozsviť","vývojovou","desku","dva"]
@@ -74,7 +74,7 @@
 		{
 			"move_id": "lights_08.ESP_turn_off_light_onboard_2",
 			"method_name": "ESP_turn_off_light_onboard_2",
-			"description": "Turn off the onboard LED.",
+			"description": "Turn off the onboard LED number 2",
 			"calls": [
 				["zhasni","ledku","desky","číslo","dva"],
 				["zhasni","vývojovou","desku","dva"]
@@ -83,7 +83,7 @@
 		{
 			"move_id": "lights_09.ESP_turn_on_light_onboard_3",
 			"method_name": "ESP_turn_on_light_onboard_3",
-			"description": "Turn on the onboard LED.",
+			"description": "Turn on the onboard LED number 3",
 			"calls": [
 				["rozsviť","ledku","desky","číslo","tři"],
 				["rozsviť","vývojovou","desku","tři"]
@@ -92,7 +92,7 @@
 		{
 			"move_id": "lights_10.ESP_turn_off_light_onboard_3",
 			"method_name": "ESP_turn_off_light_onboard_3",
-			"description": "Turn off the onboard LED.",
+			"description": "Turn off the onboard LED number 3",
 			"calls": [
 				["zhasni","ledku","desky","číslo","tři"],
 				["zhasni","vývojovou","desku","tři"]

@@ -156,7 +156,7 @@
 
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
 
-\RequirePackage{scrhack} % Loads fixes for various packages
+
 
 \RequirePackage{setspace} % Required for changing line spacing
 
@@ -432,6 +432,6 @@ breaklinks=true,
 }
 
 %----------------------------------------------------------------------------------------
-
+% \RequirePackage{scrhack} % Loads fixes for various packages
 \endinput
 % lazyLizardTracer

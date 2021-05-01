@@ -1,13 +1,222 @@
 \chapter{Modules} \label{chap:modules}
+% Structure of base module description
+% - definovat nezavislost 
+% - define config files (JSON, structure)
+% - define communication by WebSocket and MQTT (topics)
 
-test
 
-%Two basic transfer functions are shown in \cref{fig:methods:transfer_functions}. \label{chap:modules}
 
-%\begin{figure}[H]
-%  \centering
-%  \includegraphics[width=0.7\textwidth]{transfer_functions.eps}
-%  \caption{Transfer functions: \textit{Sigmoid} and \textit{Tanh}}
-%  \label{fig:methods:transfer_functions}
-%\end{figure}
 
+
+% Structure of each module:
+% - description
+% - commands and responses
+% - communicating with who
+% - next used technology (fritzing, mongoDB, etc.)
+
+\section{Lights}
+
+The system module provides the user commands to control lights by voice. The user not only turns on, off or blinks lights but can also identify the development boards by lighting a onboard LED on a specific board. The module keeps in memory a list of all lights with their current status and detailed description.
+
+The onboard LEDs are mounted on the board from the factory on pin 2. The other lights have their specific wiring, but one LED is prepared for demonstration purposes, which by our definition is located in the living room and is wired according to the diagram in Fig. ***. 
+
+
+
+\subsection{Voice commands}
+The module responds to the following questions:
+\begin{itemize}
+    \item Turn on all the onboard LEDs\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť všechny vývojové desky."
+        \item "Rozsviť všechny vestavěné ledky."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Module confirm each light separately - "Vývojová deska jedna je rozsvícena.", "Vývojová deska dva je rozsvícena.", etc.
+    \end{itemize}
+    \item Turn off all the onboard LEDs\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni všechny vývojové desky."
+        \item "Zhasni všechny vestavěné ledky."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Module confirm each light separately - "Vývojová deska jedna je zhasnuta.", "Vývojová deska dva je zhasnuta.", etc.
+    \end{itemize}    
+    \item Turn on the light 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zapni obýváku světlo."
+        \item "Rozsviť obýváku světlo."
+        \item "Zapni obývacím pokoji světlo."
+        \item "Rozsviť obývacím pokoji světlo."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Světlo v obývacím pokoji rozsvíceno."
+    \end{itemize} 
+    \item Turn off the light 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Vypni obýváku světlo."
+        \item "Zhasni obýváku světlo."
+        \item "Vypni obývacím pokoji světlo."
+        \item "Zhasni obývacím pokoji světlo."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Světlo v obývacím pokoji zhasnuto."
+    \end{itemize} 
+    \item Turn on the onboard LED number 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť vestavěnou ledku vývojové desky číslo jedna."
+        \item "Rozsviť vývojovou desku číslo jedna."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo jedna rozsvícena."
+    \end{itemize} 
+    \item Turn off the onboard LED number 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni vestavěnou ledku vývojové desky číslo jedna."
+        \item "Zhasni vývojovou desku číslo jedna."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo jedna zhasnuta."
+    \end{itemize}
+    \item Turn on the onboard LED number 2\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť vestavěnou ledku vývojové desky číslo dva."
+        \item "Rozsviť vývojovou desku číslo dva."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo dva rozsvícena."
+    \end{itemize}
+    \item Turn off the onboard LED number 2\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni vestavěnou ledku vývojové desky číslo dva."
+        \item "Zhasni vývojovou desku číslo dva."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo dva zhasnuta."
+    \end{itemize}
+    \item Turn on the onboard LED number 3\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť vestavěnou ledku vývojové desky číslo tři."
+        \item "Rozsviť vývojovou desku číslo tři."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo tři rozsvícena."
+    \end{itemize}
+    \item Turn off the onboard LED number 3\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni vestavěnou ledku vývojové desky číslo tři."
+        \item "Zhasni vývojovou desku číslo tři."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo tři zhasnuta."
+    \end{itemize}
+    \item Voicekit answer which lights are turned on\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Která světla svítí."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Aktuálně nejsou rozsvícena žádná světla."
+        \item "Aktuálně jsou rozsvícena tyto světla první ESP, druhé ESP..."
+    \end{itemize}
+\end{itemize}
+
+\subsection{Messages structure}
+The engine uses for maintain lights following topics and messages:
+
+\begin{itemize}
+    \item "voicehome/lights/command" - to turn the light on/off
+    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to turn on/off the light in module \textit{Lights}},captionpos=b,xleftmargin=1cm]
+{
+    "ID":1,
+    "type":"ESP_onboard",
+    "set":0
+}
+    \end{lstlisting}
+    \item "voicehome/lights/state/command" - to ask the light for state
+    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to asking for the state of the light in module \textit{Lights}},captionpos=b,xleftmargin=1cm]
+{
+    "ID":1,
+    "type":"ESP_onboard"
+}
+    \end{lstlisting}
+    \item "voicehome/lights/state/receive" - to receive state of the light
+    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to receive state of the light in module \textit{Lights}},captionpos=b,xleftmargin=1cm]
+{
+    "type":"light",
+    "state":0,
+    "ID":1
+}
+    \end{lstlisting}
+\end{itemize}
+
+\section{Time}
+
+This module provides commands for manipulation with the time, such as asking for time, date, set timer. The module does not communicate with other devices. The module's functions exploit system information and information available on the Internet. To reach this information from the web is used technique call web scraping that can run the web site and suck desired pieces of information from this site. A simple example of this technic is shown in \cref{lst:web_scraping_python}
+
+% \begin{lstlisting}[language=python,firstnumber=1,caption={Simple example how to do web scraping in Python},captionpos=b, label={lst:web_scraping_python}]
+%     from selenium import webdriver
+%     from selenium.webdriver.chrome.options import Options
+
+%     self.driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
+%     self.driver.get('www.seznam.cz')
+% \end{lstlisting}
+
+\subsection{Voice commands}
+The module responds to the following questions:
+\begin{itemize}
+    \item Send command to ask the server for the current time.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Kolik je hodin?
+        \item Čas
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Právě je pět hodin dvacet minut a pět sekund.
+    \end{itemize}
+    \item Send command to ask the server for the current day of year.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Kolikátého dnes je?
+        \item Datum
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Dnes je 4. 5. 2021
+    \end{itemize}
+\end{itemize}
+
+\section{System}
+
+The system module provides the user commands to test the functionality and adjust some settings of the engine. The module communicates primarily with the engine, but it is possible to establish this communication with other devices. Like other technology, the module uses the MongoDB library from python to test the engine's database.
+
+\section{Sensors}
+
+The sensors module provides the user commands to communicate directly with sensors wired to the ESP development board or ask for statistics information such as average. The sensors connected to the module are bme280, ds18b20 and tsl2591. The module uses the Python library to obtain old data from the MongoDB database to calculate statistical data.
+
+\section{Weather}
+
+The weather module provides the user commands to answer questions about the weather. The module's functions exploit the information available on the Internet. By preprocessing the information from the Internet and replating characters like "°C" to "stupnů" or "-" to "mínus", we can then send fully synthesizable text to SpeechCloud and answer the question to the user. To reach this information from the web is used technique call web scraping that can run the web site and suck desired pieces of information from this site. Preprocessing the information uses the technique regex and essential functions such as finding text and selecting text — a simple example of how regex is used shown in \cref{lst:regex_python}.
+
+% \lstinputlisting[language=python,firstnumber=1,caption={Simple example how to use regex in Python},captionpos=b, label={lst:regex_python}]{code/regex_example.py}
