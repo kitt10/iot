@@ -162,10 +162,26 @@ The keyboard is a python script with a particular purpose for developing new voi
 
 VoiceKit is a building kit made by Google that lets users create their natural language processor and connect it to the Google Assistant or Cloud Speech-to-Text service. By pressing a button on top, users can ask questions and issue voice commands to their programs. All of this fits in a handy little cardboard cube powered by a Raspberry Pi.\citep{aiy_projects}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/message_flow.png}
+	\caption{Diagram of messages flows during a conversation}
+	\label{fig:message_flow}
+\end{figure}
+
+\cref{fig:message_flow} show a diagram of messages flows during a conversation. It is evident from the diagram that all communication with a user and the SpeechCloud mediate VoiceKit thus engine can manipulate just with a text.
+
 \subsection{Website}
 
-The second interface next to the already mentioned VoiceKit is a website. The webserver is implemented in Python using the Tornado framework.
+As the second interface next to the already mentioned Voice Kit is a website. The web server is implemented in Python using the Tornado framework.
 
-% The website's architecture aims to use it via a portable device like a smartphone and tablet or touch screen attached to the wall. Therefore the website is constructed to be responsible, straightforward and touch-friendly. The website's use-cases are to able the user to monitor ESP, sensors, lights, weather and voice commands, display historical sensors data, feasible voice commands and description of them, trigger lights and modules.
+The website's architecture aims to use it via a portable device like a smartphone and tablet or touch screen attached to the wall. Therefore the website is constructed to be responsible, straightforward and touch-friendly. The website's use-cases are to able the user to monitor ESP, sensors, lights, weather and voice commands, display historical sensors data, feasible voice commands and description of them, trigger lights and modules.
 
-% To build up a web page are further used libraries and frameworks like Bootstrap, JQuery and Dygraphs, used to facilitate work and make the page more robust. Each of them is described in the sections below. Web site use for fetching data from engine already mentioned WebSocket and REST API. 
+The website communicates with the engine by the already mentioned WebSocket. Figure \ref{fig:lights_onoff_messages} show an example of communication between the web site and the ESP to turn on an onboard led. Communication uses JSON as a data format and is evident from the figure that web site and engine use for communicating protocol WebSocket, whereas ESP and engine use MQTT.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/lights_onoff_messages.png}
+	\caption{Diagram of message flows to turn on/off led on ESP by the website.}
+	\label{fig:lights_onoff_messages}
+\end{figure}

@@ -11,13 +11,13 @@
 
 \section{Automatic Speech Recognition}
 
-ASR (Automatic Speech Recognition) is a way of converting sound into text. 
+ASR (Automatic Speech Recognition) is a way of converting sound into text.
 
 Sound is nothing more than vibrations of the air that we humans are trained exceptionally well to decode. Moreover, now, we are teaching our computers how to do this. In the beginning, we have a stream of words that a person has uttered. The sound is picked up by a microphone and converted to a digital signal through a sound card, which means a stream of ones and zeroes.
 
 One of the possible approaches in ASR modelling is, for example, at the level of phonemes or the level of whole words. We will only give an example here at the phoneme level, as the other approaches are very similar.
 
-The first step the ASR system do is process the sound. It steps the sound to have chunks of speech (shown in \cref{fig:chunked_voice}) that can be worked with and that can be mapped to letters. These chunks are called phones. 
+The first step the ASR system do is process the sound. It steps the sound to have chunks of speech (shown in \cref{fig:chunked_voice}) that can be worked with and that can be mapped to letters. These chunks are called phones.
 
 \begin{figure}[H]
     \centering
@@ -39,11 +39,19 @@ There are boxes labelled, for example, A, B, C, depending on which phones are us
 
 The next step is to convert it into words. Nevertheless, this part can be tricky because the ASR does not know when a word starts or ends. Contrary to popular belief, there are no pauses between words in fluent speech. This particular string "heloumaj..." of phones can constitute several different phrases, for example, "hell oh my nay miss" or "hello mine aim is", or "hello my name is". The part of ASR responsible for mapping phones to words and phrases is called the language model.
 
-Hidden Markov Models are widely used for the statistical approach for automatic speech recognition. Suppose that $W=\left\{w_{1}, w_{2}, \ldots, w_{N}\right\}$ is a sequence of words, and $O=\left\{o_{1}, o_{2}, \ldots, o_{N}\right\}$ is a sequence of phones. These sequences are taken with a period of 10 ms for segments of speech of length from 20 to 40 ms. The Bayes Theorem for conditional probability is used to figure out which phones have been pronounced and how they combine into a word.
+Hidden Markov Models are widely used for the statistical approach for automatic speech recognition. Suppose that $W=\left\{w_{1}, w_{2}, \ldots, w_{N}\right\}$ is a sequence of words, and $O=\left\{o_{1}, o_{2}, \ldots, o_{N}\right\}$ is a sequence of phones. These sequences are taken with a period of 10 ms for segments of speech of length from 20 to 40 ms. The Bayes Theorem for conditional probability is used to figure out which phones have been pronounced and how they combine into a word (see \cref{fig:bayes}).
 
-\begin{equation}
-    \boldsymbol{W}^{\prime}=\underset{w}{\operatorname{argmax}} P(\boldsymbol{W} \mid \boldsymbol{O})=\underset{w}{\operatorname{argmax}} \frac{P(\boldsymbol{W}) P(\boldsymbol{O} \mid \boldsymbol{W})}{P(\boldsymbol{O})}
-\end{equation}
+% \begin{equation}
+%     \boldsymbol{W}^{\prime}=\underset{w}{\operatorname{argmax}} P(\boldsymbol{W} \mid \boldsymbol{O})=\underset{w}{\operatorname{argmax}} \frac{P(\boldsymbol{W}) P(\boldsymbol{O} \mid \boldsymbol{W})}{P(\boldsymbol{O})}
+% \end{equation}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/asr_bayes.png}
+	\caption{The relation among aucoustic model, language model and Bayes theorem}
+	\label{fig:bayes}
+\end{figure}
+
 
 where P(W) is the a priori probability of word W, P(O|W) is the probability that the sequence of phones O will be generated under the conditions of pronouncing the sequence of words W, P(O) is the a priori probability of the sequence of phones O. 
 

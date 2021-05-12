@@ -7,49 +7,49 @@
 		{
 			"move_id": "time_01.get_time",
 			"method_name": "get_time",
-			"description": "Send command to ask the server for the current time.",
+			"description": "Send command to ask the server for the current time",
 			"calls": [["kolik","je","hodin"],["čas"]]
 		},
 		{
 			"move_id": "time_02.get_day",
 			"method_name": "get_day",
-			"description": "Send command to ask the server for the current day of year.",
+			"description": "Send command to ask the server for the current day of year",
 			"calls": [["kolikátého","dnes","je"], ["datum"]]
 		},
 		{
 			"move_id": "time_03.set_timer",
 			"method_name": "set_timer",
-			"description": "Send a command via MQTT to start timer on 3 minute",
+			"description": "Send a command to the server to start timer on 3 minute",
 			"calls": [["zapni","časovač"]]
 		},
 		{
 			"move_id": "time_04.stop_timer",
 			"method_name": "stop_timer",
-			"description": "Send a command via MQTT to stop timer",
+			"description": "Send a command to the server to stop timer",
 			"calls": [["vypni","časovač"], ["zastav","časovač"]]
 		},
 		{
 			"move_id": "time_05.get_weekday",
 			"method_name": "get_weekday",
-			"description": "Getting the day of the week for today",
+			"description": "Ask the server for today's day of the week",
 			"calls": [["co","je","za","den","v","týdnu"], ["co","je","za","den"]]
 		},
 		{
 			"move_id": "time_06.get_sunrise_time",
 			"method_name": "get_sunrise_time",
-			"description": "Get sunrise time for today",
+			"description": "Ask the server for today's sunrise time",
 			"calls": [["kdy","vychází","slunce"], ["východ","slunce"]]
 		},
 		{
 			"move_id": "time_07.get_sunset_time",
 			"method_name": "get_sunset_time",
-			"description": "Get sunset time for today",
+			"description": "Ask the server for today's sunset time",
 			"calls": [["kdy","zapadá","slunce"], ["západ","slunce"]]
 		},
 		{
 			"move_id": "time_08.get_nameday",
 			"method_name": "get_nameday",
-			"description": "Get nameday for today",
+			"description": "Ask the server for today's nameday",
 			"calls": [["kdo","má","dnes","svátek"],["svátek"]]
 		}
 	]

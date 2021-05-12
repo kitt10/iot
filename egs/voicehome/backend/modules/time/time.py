@@ -48,11 +48,11 @@ class Time(VoicehomeModule):
         def play_timer_alarm():
             self.reply("čas vypršel") 
 
-        time = 10
+        time = 180
         print(f"Setting timer on {time} second")
         self.timer = threading.Timer(time, play_timer_alarm)
         self.timer.start() 
-        self.reply("Časovač je nastaven na 10 sekund")
+        self.reply("Časovač je nastaven na 3 minuty")
 
 
 
@@ -62,7 +62,7 @@ class Time(VoicehomeModule):
     def stop_timer(self):
         print("Timer is stopped.")
         self.timer.cancel()
-        self.reply("vypnula jsem časovač")
+        self.reply("Časovač je vypnut")
 
     def get_weekday(self):
         weekday = datetime.date.today().weekday()
