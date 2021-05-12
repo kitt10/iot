@@ -1,0 +1,19 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#unique_id {
+    color: darkblue;
+}
+
+#mqtt_message_target {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    color: maroon;
+    margin-top: 150px;
+}
+
+.common_class {
+    line-height: 1.5em;
+}
