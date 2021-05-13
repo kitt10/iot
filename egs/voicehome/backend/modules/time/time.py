@@ -114,7 +114,7 @@ class Time(VoicehomeModule):
 
     def get_sunset_time(self):
         try:
-            self.driver.get(self.URL_sunset_sunrise)get_time
+            self.driver.get(self.URL_sunset_sunrise)
             results = self.driver.find_element_by_id('suntable').text.split('\n')
         except:
             results = ''
