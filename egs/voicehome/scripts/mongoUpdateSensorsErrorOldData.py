@@ -22,31 +22,33 @@ with open('mongo_query_output.txt', 'w') as f:
 
 mydoc1 = mycol.find()
 with open('mongo_update_wrong_date.txt', 'w') as f:
-    for res in mydoc1:
-        res_dec = res["payload"]
-        # res_dec = res["payload"].decode("utf8")
-        res_json = json.loads(res_dec)
+    with open('mongo_update_wrong_date_exception.txt', 'w') as f_exception:
+        for res in mydoc1:
+            res_dec = res["payload"]
+            # res_dec = res["payload"].decode("utf8")
+            res_json = json.loads(res_dec)
 
-        if 'timestamp' in res_json:
-            try:
-                date_time_obj = datetime.datetime.strptime(res_json['timestamp'], '%Y-%m-%d %H:%M:%S')
-                f.write("except %s\n" % res_json['timestamp'])
-                print("except!!!")
-
-            except:
-                continue
-
-            if date_time_obj.year <= 2019:
-                f.write("%s\n" % json.dumps(res_json))
-                res_json['state'] = 'error'
+            if 'timestamp' in res_json:
+                try:
+                    date_time_obj = datetime.datetime.strptime(res_json['timestamp'], '%Y-%m-%d %H:%M:%S')
 
 
-                myquery = {"_id": res['_id']}
-                newvalues = {"$set": {
-                    "payload": json.dumps(res_json)
-                }
-                }
-                x = mycol.update(myquery, newvalues)
-                print(res['_id'], " data updated.")
-                print('newvalues ', newvalues)
+                except:
+                    f_exception.write("%s\n" % res_json['timestamp'])
+                    print("exception!!!")
+                    continue
+
+                if date_time_obj.year <= 2019:
+                    f.write("%s\n" % json.dumps(res_json))
+                    res_json['state'] = 'error'
+
+
+                    myquery = {"_id": res['_id']}
+                    newvalues = {"$set": {
+                        "payload": json.dumps(res_json)
+                    }
+                    }
+                    x = mycol.update(myquery, newvalues)
+                    print(res['_id'], " data updated.")
+                    print('newvalues ', newvalues)
 
