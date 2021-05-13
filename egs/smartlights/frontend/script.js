@@ -1,7 +1,22 @@
+var states = {};
+
 function onBodyLoad() {
     console.log('GUI loaded.')
     mqtt_connect()
-    setTimeout(sendAhoy, 2000)
+}
+
+function getState(){
+    m = "{\"cmd\": \"get_status\"}"
+    sendMessage(m, mqtt_topic_cmd)
+    setTimeout(makeButtons, 500)
+}
+
+function makeButtons(){
+    container = document.getElementById("button-container")
+    container.innerHTML = ""
+    for(light in states){
+        container.innerHTML += `<button id=\"${light}\" class=\"light-switch\" onClick=\"toggleLight(this)\">${light}</button>`
+    }
 }
 
 function sendAhoy() {
@@ -14,8 +29,19 @@ function onFailure(message) {
 }
 
 function onMessageArrived(msg) {
-    //json = JSON.parse(msg.payloadString)
     console.log("New MQTT message:", msg)
+    console.log(msg.payloadString)
+    try{
+        msgD = JSON.parse(msg.payloadString)
+        if("states" in msgD){
+            for(light in msgD.states){
+                states[light] = msgD.states[light]
+            }
+        }
+    }
+    catch(err){
+
+    }
     
     document.getElementById("mqtt_message_target").innerHTML = msg.payloadString
 }
@@ -23,6 +49,8 @@ function onMessageArrived(msg) {
 function onConnect() {
     mqtt_client.subscribe(mqtt_topic_subscribe)
     console.log("Connected to MQTT broker. Subscribed:", mqtt_topic_subscribe)
+    sendAhoy()
+    getState()
 }
 
 function sendMessage(m, topic) {
@@ -44,4 +72,14 @@ function mqtt_connect() {
     }
 	mqtt_client.onMessageArrived = onMessageArrived
 	mqtt_client.connect(options)
+}
+
+function toggleLight(element) {
+    msgD = {
+        "cmd": "change_status",
+        "LED": element.id,
+        "status": 1-states[element.id]
+    }
+    msg = JSON.stringify(msgD)
+    sendMessage(msg, mqtt_topic_cmd)
 }

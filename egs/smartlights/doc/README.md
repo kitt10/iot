@@ -42,8 +42,10 @@ Reply on the Status topic is always in this format:
 
 ```JSON
 {
-    "leds": ["LED_1", "LED_2"], 
-    "states": [0, 1]
+    "states": {
+        "LED_0": 1,
+        "LED_1": 0
+    }
 }
 ```
 

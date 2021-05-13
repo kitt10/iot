@@ -16,6 +16,7 @@
         var mqtt_username = "vbrenik"
         var mqtt_passwd = "makamnaprj"
         var mqtt_topic_subscribe = "smartlights/#"
+        var mqtt_topic_cmd = "smartlights/ESP0/cmd"
         var mqtt_client_id = "GUI_"+Date.now()
     </script>
     <script src="script.js" type="text/javascript"></script>
@@ -26,5 +27,6 @@
     <div class="common_class"></div>
     <div class="common_class"></div>
     <div id="mqtt_message_target">New MQTT messages will appear here...</div>
+    <div id="button-container"></div>
 </body>
 </html>
