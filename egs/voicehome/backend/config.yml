@@ -23,9 +23,9 @@ mongo:
 
 # --- Socket control interface configuration --- #
 socket:
-  host: "127.0.0.1"        #mac
-#  host: "147.228.124.230"  #raspberry
+#  host: "127.0.0.1"        #mac
+  host: "147.228.124.230"  #raspberry
   port: 7107
 chromedriver:
-  path: '/usr/local/bin/chromedriver' #mac
-#  path: '/usr/bin/chromedriver'       #linux
+#  path: '/usr/local/bin/chromedriver' #mac
+  path: '/usr/bin/chromedriver'       #linux
