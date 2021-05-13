@@ -27,6 +27,12 @@ with open('mongo_update_changed.txt', 'w') as f1:
             res_dec = res["payload"]
             res_json = json.loads(res_dec)
 
+            if "status" in res_json:
+                res_json["state"] = res_json["status"]
+                del res_json["status"]
+                f.write("status %s\n" % res['_id'])
+                changed = True
+
             if "humidity_value" in res_json:
                 if res_json["humidity_value"] <= 0 or res_json["humidity_value"] > 100:
                     res_json['status'] = 'error'
