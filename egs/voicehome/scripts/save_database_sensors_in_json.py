@@ -19,6 +19,6 @@ with open('mongo_query_output.txt', 'w') as f:
     for x in mydoc:
       # print(x)
         try:
-            f.write("%s\n" % json.dumps(x["payload"].decode("utf8")))
+            f.write("DECODED %s\n" % json.dumps(x["payload"].decode("utf8")))
         except:
             f.write("NO DECODED %s\n" % json.dumps(x["payload"]))
