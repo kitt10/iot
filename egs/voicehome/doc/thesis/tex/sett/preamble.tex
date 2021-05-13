@@ -83,6 +83,7 @@ hidelinks,
 \usepackage{cleveref}
 \crefname{listing}{code part}{code parts}
 \crefname{figure}{Fig.}{Fig.}
+\crefname{chapter}{Chap.}{Chap.}
 \crefname{table}{Table}{Tables}
 \crefname{equation}{Eq.}{Eq.}
 
@@ -123,3 +124,139 @@ hidelinks,
 \newcolumntype{M}{>{\begin{varwidth}{4cm}}l<{\end{varwidth}}}
 
 \def\xstrut{\rule[-2ex]{0pt}{5ex}}
+\emergencystretch=1em
+\usepackage{tipa} %using for special characters to write it easily
+
+
+% for listing JSON
+\usepackage{bera}% optional: just to have a nice mono-spaced font
+\usepackage{listings}
+\usepackage{xcolor}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+%\ for listing JSON
+
+% for listing Python
+
+\lstdefinelanguage{python}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breakatwhitespace=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+	extendedchars=true,
+	literate={é}{{\'e}}1
+			{č}{{\v{c}}}1
+			{ľ}{{\v{l}}}1
+			{ť}{{\v{t}}}1
+			{ý}{{\'y}}1
+			{ě}{{\v{e}}}1
+			{ř}{{\v{r}}}1
+			{š}{{\v{s}}}1
+			{ž}{{\v{z}}}1
+			{á}{{\'a}}1
+			{í}{{\'i}}1
+			{ó}{{\'o}}1
+			{ň}{{\v{n}}}1
+			{ď}{{ \v{d}}}1
+			{ú}{{\'u}}1
+			{ů}{{\r{u}}}1
+			{ĺ}{{\v{l}}}1,
+}
+% %\ for listing Python
+% \usepackage[newfloat]{minted}
+% \usepackage{regexpatch}% http://ctan.org/pkg/regexpatch
+% \makeatletter
+% % --------------------------------------- C++
+% \newcommand{\lstlistcplusplusname}{List of C++}
+% \lst@UserCommand\lstlistofcplusplus{\bgroup
+%     \let\contentsname\lstlistcplusplusname
+%     \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{loc}}%
+%     \tableofcontents \egroup}
+% \lstnewenvironment{cplusplus}[1][]{%
+%   \renewcommand{\lstlistingname}{C++ Code}%
+%   \xpatchcmd*{\lst@MakeCaption}{lol}{loc}{}{}%
+%   \lstset{language=C++,#1}}
+%   {}
+% % --------------------------------------- R
+% \newcommand{\lstlistrcodename}{List of R}
+% \lst@UserCommand\lstlistofrcode{\bgroup
+%     \let\contentsname\lstlistrcodename
+%     \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lor}}%
+%     \tableofcontents \egroup}
+% \lstnewenvironment{rcode}[1][]{%
+%   \renewcommand{\lstlistingname}{R Code}%
+%   \xpatchcmd*{\lst@MakeCaption}{lol}{lor}{}{}%
+%   \lstset{language=R,#1}}
+%   {}
+% % --------------------------------------- Pseudocode
+% \newcommand{\lstlistpseudocodename}{List of Pseudocode}
+% \lst@UserCommand\lstlistofpseudocode{\bgroup
+%     \let\contentsname\lstlistpseudocodename
+%     \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lop}}%
+%     \tableofcontents \egroup}
+% \lstnewenvironment{pseudocode}[1][]{%
+%   \renewcommand{\lstlistingname}{Pseudocode}%
+%   \xpatchcmd*{\lst@MakeCaption}{lol}{lop}{}{}%
+%   \lstset{basicstyle=\ttfamily,#1}}
+%   {}
+% % --------------------------------------- JSON
+% \newcommand{\lstlistjsoncodename}{List of JSON}
+% \lst@UserCommand\lstlistjsoncode{\bgroup
+%     \let\contentsname\lstlistjsoncodename
+%     \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lor}}%
+%     \tableofcontents \egroup}
+% \lstnewenvironment{json}[1][]{%
+%   \renewcommand{\lstlistingname}{JSON Code}%
+%   \xpatchcmd*{\lst@MakeCaption}{lol}{lor}{}{}%
+%   \lstset{,#1}}
+%   {}
+%   % --------------------------------------- Python
+% \newcommand{\lstlistpythoncodename}{List of Python}
+% \lst@UserCommand\lstlistpythoncode{\bgroup
+%     \let\contentsname\lstlistpythoncodename
+%     \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lor}}%
+%     \tableofcontents \egroup}
+% \lstnewenvironment{python}[1][]{%
+%   \renewcommand{\lstlistingname}{Python Code}%
+%   \xpatchcmd*{\lst@MakeCaption}{lol}{lor}{}{}%
+%   \lstset{,#1}}
+%   {}
+%   \makeatother

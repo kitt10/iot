@@ -1,6 +1,6 @@
 {
   "module_id": "system",
-  "description":"System moves.",
+  "description":"The system module provides the user commands to test the functionality and adjust some settings of the engine.",
   "mqtt_topics": ["voicehome/system/test"],
   "websocket_passports": ["system/test"],
   "moves": [

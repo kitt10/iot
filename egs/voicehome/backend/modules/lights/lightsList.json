@@ -2,21 +2,25 @@
    "ESP_onboard": [
      {
        "ID": 1,
-       "description": "First ESP"
+       "description": "First ESP",
+       "description_cz": "první ESP"
      },
      {
        "ID": 2,
-       "description": "Second ESP"
+       "description": "Second ESP",
+       "description_cz": "druhé ESP"
      },
      {
        "ID": 3,
-       "description": "Third ESP"
+       "description": "Third ESP",
+       "description_cz": "třetí ESP"
      }
    ],
   "light": [
     {
       "ID": 1,
-      "description": "living room"
+      "description": "living room",
+      "description_cz": "obývací pokoj"
     }
   ]
 }

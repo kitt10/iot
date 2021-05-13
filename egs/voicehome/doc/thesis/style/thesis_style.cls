@@ -156,7 +156,7 @@
 
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
 
-\RequirePackage{scrhack} % Loads fixes for various packages
+
 
 \RequirePackage{setspace} % Required for changing line spacing
 
@@ -165,7 +165,8 @@
 \RequirePackage{siunitx} % Required for \SI commands
 
 \RequirePackage{graphicx} % Required to include images
-\graphicspath{{img/}{./}} % Specifies where to look for included images
+% \graphicspath{{img/}{./}} % Specifies where to look for included images
+\graphicspath{{/}{./}{img/}} % Specifies where to look for included images
 
 \RequirePackage{booktabs} % Required for better table rules
 
@@ -431,6 +432,6 @@ breaklinks=true,
 }
 
 %----------------------------------------------------------------------------------------
-
+% \RequirePackage{scrhack} % Loads fixes for various packages
 \endinput
 % lazyLizardTracer

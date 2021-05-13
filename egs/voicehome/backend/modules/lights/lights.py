@@ -175,9 +175,9 @@ class Lights(VoicehomeModule):
                 if 'state' in light:
                     if light['state']==1:
                         if lights_on=='':
-                            lights_on = lights_on + light['description']
+                            lights_on = lights_on + light['description_cz']
                         else:
-                            lights_on = lights_on + ', ' + light['description']
+                            lights_on = lights_on + ', ' + light['description_cz']
 
         if lights_on == '':
             self.reply(message='Aktuálně nejsou rozsvícena žádná světla')
