@@ -18,4 +18,4 @@ mydoc = mycol.find()
 with open('mongo_query_output.txt', 'w') as f:
     for x in mydoc:
       # print(x)
-      f.write("%s\n" % json.dumps(x))
+        f.write("s\n" % json.dumps(x["payload"].decode("utf8")))
