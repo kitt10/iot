@@ -23,7 +23,8 @@ with open('mongo_query_output.txt', 'w') as f:
 mydoc1 = mycol.find()
 with open('mongo_update_wrong_date.txt', 'w') as f:
     for res in mydoc1:
-        res_dec = res["payload"].decode("utf8")
+        res_dec = res["payload"]
+        # res_dec = res["payload"].decode("utf8")
         res_json = json.loads(res_dec)
 
         if 'timestamp' in res_json:
