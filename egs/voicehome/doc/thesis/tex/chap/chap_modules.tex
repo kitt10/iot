@@ -10,35 +10,35 @@
 % - communicating with who
 % - next used technology (fritzing, mongoDB, etc.)
 
-Modules are well-encapsulated code written to provide functional and control elements (moves) above home to the user. Each module inherits from VoicehomeModule class that provide communicating interface to each module by WebSocket, MQTT and mediate writing and reading from MongoDB. Each module defines its topic for MQTT and passport for WebSocket that subscribe from these services. Messages containing these topics or passports are passed through the engine to the modules.
+Modules are well-encapsulated code written to provide functional and control elements (moves) above home to the user. Each module inherits from VoicehomeModule class that provide communicating interface to each module by WebSocket, MQTT and mediate writing and reading from MongoDB. Each module defines its topic for MQTT and a passport for WebSocket that subscribe from these services. Messages containing these topics or passports are passed through the engine to the modules.
 
 Thus each module has to be created by the following approach:
 
 \begin{enumerate}[label=\arabic*)]
-    \item Create a new folder in "voicehome\textbackslash modules\textbackslash ", the name of this folder is the module's name.
-    \item create two mandatory files
-    \begin{enumerate}[label=\arabic*)]
-        \item "voicehome\textbackslash modules\textbackslash <module\_name>\textbackslash metadata.json" that include object with following variables.
+    \item Create a new folder in \texttt{"voicehome\textbackslash modules\textbackslash "}, the name of this folder is the module's name.
+    \item Create two mandatory files
+    \begin{enumerate}
+        \item \texttt{"voicehome\textbackslash modules\textbackslash <module\_name>\textbackslash metadata.json"} that include object with following variables.
         \begin{itemize}
-            \item "module\_id": contain the name of the module
-            \item "description": contain a string with a brief description of the module
-            \item "mqtt\_topics": contain a list of MQTT topics module wants to subscribe
-            \item "websocket\_passports": contain a list of WebSocket passports passing messages to the module
-            \item "moves": list of objects that define moves this module is capable of
+            \item \texttt{"module\_id"}: contain the name of the module
+            \item \texttt{"description"}: contain a string with a brief description of the module
+            \item \texttt{"mqtt\_topics"}: contain a list of MQTT topics module wants to subscribe
+            \item \texttt{"websocket\_passports"}: contain a list of WebSocket passports passing messages to the module
+            \item \texttt{"moves"}: list of objects that define moves this module is capable of
             \begin{itemize}
-                \item "move\_id": a unique ID that follows the convention <module\_name>\_<order\_in\_this\_list>
-                \item "method\_name": contain the name of a Python function in <module\_name>.py called when this move is activated
-                \item "description": contain a brief description of the move
-                \item "calls": list of calls (voice commands to VoiceKit) activating this move; it is a list of lists of words (must fit the chosen logic algorithm)
+                \item \texttt{"move\_id"}: a unique ID that follows the convention \texttt{<module\_name>\_<order\_in\_this\_list>}
+                \item \texttt{"method\_name"}: contain the name of a Python function in \texttt{<module\_name>.py} called when this move is activated
+                \item \texttt{"description"}: contain a brief description of the move
+                \item \texttt{"calls"}: list of calls (voice commands to VoiceKit) activating this move; it is a list of lists of words (must fit the chosen logic algorithm)
             \end{itemize}
         \end{itemize}
-        \item "voicehome/modules/<module\_name>/<module\_name>.py" that define class of module. This class have to inherit from VoicehomeModule and include all methods listed in the previous file metadata.json.
+        \item \texttt{"voicehome/modules/<module\_name>/<module\_name>.py"} that define class of module. This class have to inherit from VoicehomeModule and include all methods listed in the previous file \texttt{metadata.json}.
         
         \lstinputlisting[language=python,firstnumber=1,caption={Template for creating a new module},captionpos=b, label={lst:regex_python}]{code/module_class_template.py}
     \end{enumerate}
 \end{enumerate}
 
-After accomplishing these requirements, it is unnecessary to restart the entire engine but use the voice command "načti moduly" from the System module. Each particular module can be turned off or on using the web interface in the Modules tab, which is specified in more detail in Chap. ***.
+After accomplishing these requirements, it is not necessary to restart the entire engine but can simply use the voice command \texttt{"načti moduly"} from the System module. Each particular module can be turned off or on using the web interface in the Modules tab, which is specified in more detail in Chap. ***.
 
 \section{Lights}
 
@@ -52,6 +52,8 @@ The onboard LEDs are mounted on the board from the factory on pin 2. The other l
 	\caption{LED "living room" wiring diagram}
 	\label{fig:led_schema}
 \end{figure}
+
+% Uvidíš ke konci psaní, jak ti vycházejí stránky atd., ale možná bych zapřemýšlel nad tím, dát tyto kompletní seznamy voice commands také do appendixu a sem do hlavního textu dát např. jen tabulku s anglickými názvy moves, případně s anglickým description of move a přidat odkaz na tento kompletní seznam.
 
 \subsection{Voice commands}
 The module responds to the following questions:
@@ -205,28 +207,6 @@ The engine uses for maintain lights following topics and messages:
 
 The sensors module provides the user commands to communicate directly with sensors wired to the ESP development board or ask for statistics information such as average. The sensors connected to the module are bme280 (see \cref{fig:bme280_schema}), ds18b20 (see \cref{fig:ds18b20_schema}) and tsl2591 (see \cref{fig:tsl2591_schema}). The module uses the Python library to obtain old data from the MongoDB database to calculate statistical data.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/bme280_schema.png}
-	\caption{BME 280 wiring diagram}
-	\label{fig:bme280_schema}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/ds18b20_schema.png}
-	\caption{DS18B20 wiring diagram}
-	\label{fig:ds18b20_schema}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/tsl2591_schema.png}
-	\caption{TSL2591 wiring diagram}
-	\label{fig:tsl2591_schema}
-\end{figure}
-
-
 \begin{itemize}
     \item Sends a command via MQTT to measure current temperature\\
     \textbf{Voice commands}
@@ -316,10 +296,6 @@ The sensors module provides the user commands to communicate directly with senso
         \item "Světelnost nebylo možné vypočíst."
         \item "Průměrná intenzita světelnosti za poslední den je dvanáct."
     \end{itemize}
-
-
-
-
     \item Voicekit answer average temperature for the last week\\
     \textbf{Voice commands}
     \begin{itemize}
@@ -366,9 +342,45 @@ The sensors module provides the user commands to communicate directly with senso
     \end{itemize}
 \end{itemize}
 
+\subsection{BME280}
+
+The BME280 \citep{BME280:Datasheet} module is used to measure the internal temperature and barometric pressure. In addition, our variant has a humidity sensor, which could not be put into operation, probably due to a defective piece. The measuring range of this sensor is in case of ambient temperature from -40 $^{\circ}$C to +85 $^{\circ}$C, in case of humidity from 0$\%$ to 100$\%$ and in case of barometric pressure from 300 hPa to 1100 hPa. Temperature values are measured with an accuracy of ± 1 $^{\circ}$C, humidity values with an accuracy of ± 3$\%$ and barometric pressure values with an accuracy of ± 1 Pa. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D6 and D5 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:bme280_schema}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/bme280_schema.png}
+	\caption{BME 280 wiring diagram}
+	\label{fig:bme280_schema}
+\end{figure}
+
+
+\subsection{DS18B20}
+
+The DS18B20 \citep{DS18B20:Datasheet} is a temperature sensor, and its waterproof variant was chosen as an illustration.  The module's output is the value of temperature in the degree Celsius unit. The sensor's measuring range is from -55 to +125 degrees with an accuracy of ± 0,5 $^{\circ}$C within limits from -10 $^{\circ}$C to +85 $^{\circ}$C. The sensor communicates via the One-Wire interface and uses one pin for data transmission. The sensor is connected to the microchip by three wires - one wire for power supply 3,3V, one for grounding and one for data communication. It is necessary to connect a resistor of resistance 4.7 k$\Omega$ to the circuit, connecting the data and power wires. The wiring diagram of the DS18B20 sensor is shown in \cref{fig:ds18b20_schema}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/ds18b20_schema.png}
+	\caption{DS18B20 wiring diagram}
+	\label{fig:ds18b20_schema}
+\end{figure}
+
+\subsection{TSL2591}
+
+The TSL2591 \citep{TSL2591:Datasheet} is a light intensity sensor that converts the light intensity into a digital output transmitted by the I2C bus. The module's output is the value of light intensity in the lux unit with an accuracy of 4 decimal places, and the measuring range is from 188 $\mu$Lux to 88,000 Lux. The value of the sensor is measured to three decimal places, although it is not necessary to have such high accuracy. The module guarantees measurement accuracy in temperature conditions from -30 $^{\circ}$C to +80 $^{\circ}$C. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D1 and D2 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:tsl2591_schema}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/tsl2591_schema.png}
+	\caption{TSL2591 wiring diagram}
+	\label{fig:tsl2591_schema}
+\end{figure}
+
 \section{Time}
 
-This module provides commands for manipulation with the time, such as asking for time, date, set timer. The module does not communicate with other devices. The module's functions exploit system information and information available on the Internet. To reach this information from the web is used technique call web scraping that can run the web site and suck desired pieces of information from this site. A simple example of this technic is shown in \cref{lst:web_scraping_python}
+This module provides commands for manipulation with the time, such as asking for time, date, set timer. The module does not communicate with other devices. The module's functions exploit system information and information available on the Internet. To reach this information from the web is used technique call web scraping that can run the web site and suck desired pieces of information from this site. 
+
+% A simple example of this technic is shown in \cref{lst:web_scraping_python}
 
 % \begin{lstlisting}[language=python,firstnumber=1,caption={Simple example how to do web scraping in Python},captionpos=b, label={lst:web_scraping_python}]
 %     from selenium import webdriver
