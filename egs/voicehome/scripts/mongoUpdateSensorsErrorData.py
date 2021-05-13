@@ -23,7 +23,7 @@ mydoc1 = mycol.find()
 with open('mongo_update_no_location.txt', 'w') as f1:
     with open('mongo_update_wrong_status.txt', 'w') as f:
         for res in mydoc1:
-            res_dec = res["payload"].decode("utf8")
+            res_dec = res["payload"]
             res_json = json.loads(res_dec)
 
             if 'location' in res_json:
