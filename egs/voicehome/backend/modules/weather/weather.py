@@ -58,9 +58,6 @@ class Weather(VoicehomeModule):
         download_timer()
 
 
-
-    def start_download_timer(self):
-
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
         pass
