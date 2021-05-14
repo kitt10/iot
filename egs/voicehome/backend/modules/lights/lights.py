@@ -35,7 +35,7 @@ class Lights(VoicehomeModule):
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
-            self.voicekit_commanded_lights.append(payload['type']+'_'+payload['ID'])
+            self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
         # self.requestState(ESP_ID, 'ESP_onboard')
 
     def ESP_turn_off_light_onboard(self, ESP_ID, voicekit_reply=False):
@@ -46,7 +46,7 @@ class Lights(VoicehomeModule):
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
-            self.voicekit_commanded_lights.append(payload['type']+'_'+payload['ID'])
+            self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
         # self.requestState(ESP_ID, 'ESP_onboard')
 
     def ESP_turn_on_light(self, light_ID, voicekit_reply=False):
@@ -57,7 +57,7 @@ class Lights(VoicehomeModule):
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
-            self.voicekit_commanded_lights.append(payload['type']+'_'+payload['ID'])
+            self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
         # self.requestState(light_ID, 'light')
 
 
@@ -70,7 +70,7 @@ class Lights(VoicehomeModule):
         }
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
-            self.voicekit_commanded_lights.append(payload['type']+'_'+payload['ID'])
+            self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
         # self.requestState(light_ID, 'light')
 
     def ESP_turn_on_light_1(self):
@@ -133,24 +133,24 @@ class Lights(VoicehomeModule):
                                 if payload['type']+"_"+str(payload['ID']) in self.voicekit_commanded_lights:
                                     description = next((x for x in self.lightsList[payload['type']] if x['ID'] == payload['ID']), "nenalezený")['description_cz']
                                     self.reply(message='Světlo '+description+' zhasnuto.')
-                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+payload['ID'], self.voicekit_commanded_lights))
+                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+str(payload['ID']), self.voicekit_commanded_lights))
 
                             else:
                                 light['state']=1
                                 if payload['type']+"_"+str(payload['ID']) in self.voicekit_commanded_lights:
                                     description = next((x for x in self.lightsList[payload['type']] if x['ID'] == payload['ID']), "nenalezený")['description_cz']
                                     self.reply(message='Světlo '+description+' rozsvíceno.')
-                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+payload['ID'], self.voicekit_commanded_lights))
+                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+str(payload['ID']), self.voicekit_commanded_lights))
                         else:
                             light['state']=payload['state']
                             if payload['type']+"_"+str(payload['ID']) in self.voicekit_commanded_lights:
                                 description = next((x for x in self.lightsList[payload['type']] if x['ID'] == payload['ID']),"nenalezený")['description_cz']
                                 if payload['state'] == 1:
                                     self.reply(message='Světlo ' + description + ' rozsvíceno.')
-                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+payload['ID'], self.voicekit_commanded_lights))
+                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+str(payload['ID']), self.voicekit_commanded_lights))
                                 if payload['state'] == 0:
                                     self.reply(message='Světlo ' + description + ' zhasnuto.')
-                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+payload['ID'], self.voicekit_commanded_lights))
+                                    self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+str(payload['ID']), self.voicekit_commanded_lights))
 
 
             msg1={}
