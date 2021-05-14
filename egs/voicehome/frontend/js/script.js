@@ -12,8 +12,8 @@ var MAXROOM;
 var page = "home";
 var controller_state = {};
 
-var ws_address = "ws://147.228.124.230:8881/websocket";
-// var ws_address = "ws://127.0.0.1:8881/websocket";
+// var ws_address = "ws://147.228.124.230:8881/websocket";
+var ws_address = "ws://127.0.0.1:8881/websocket";
 
 function onBodyLoadModules() {
 	page = "modules";
@@ -910,7 +910,7 @@ function drawModule(moduleList, module, checked) {
 			moveCallDiv.className = "badge badge-pill badge-primary m-1";
 			moveCallDiv.innerHTML = module.moves[i_move].calls[i_call]
 				.toString()
-				.replace(",", " ");
+				.replaceAll(",", " ");
 			moveCallsDiv.appendChild(moveCallDiv);
 		}
 	}
