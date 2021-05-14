@@ -130,20 +130,20 @@ class Lights(VoicehomeModule):
                         if payload['type'] == 'ESP_onboard':
                             if payload['state'] == 1:
                                 light['state']=0
-                                if payload['type']+"_"+payload['ID'] in self.voicekit_commanded_lights:
+                                if payload['type']+"_"+str(payload['ID']) in self.voicekit_commanded_lights:
                                     description = next((x for x in self.lightsList[payload['type']] if x['ID'] == payload['ID']), "nenalezený")['description_cz']
                                     self.reply(message='Světlo '+description+' zhasnuto.')
                                     self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+payload['ID'], self.voicekit_commanded_lights))
 
                             else:
                                 light['state']=1
-                                if payload['type']+"_"+payload['ID'] in self.voicekit_commanded_lights:
+                                if payload['type']+"_"+str(payload['ID']) in self.voicekit_commanded_lights:
                                     description = next((x for x in self.lightsList[payload['type']] if x['ID'] == payload['ID']), "nenalezený")['description_cz']
                                     self.reply(message='Světlo '+description+' rozsvíceno.')
                                     self.voicekit_commanded_lights = list(filter(lambda a: a != payload['type']+"_"+payload['ID'], self.voicekit_commanded_lights))
                         else:
                             light['state']=payload['state']
-                            if payload['type'] + "_" + payload['ID'] in self.voicekit_commanded_lights:
+                            if payload['type']+"_"+str(payload['ID']) in self.voicekit_commanded_lights:
                                 description = next((x for x in self.lightsList[payload['type']] if x['ID'] == payload['ID']),"nenalezený")['description_cz']
                                 if payload['state'] == 1:
                                     self.reply(message='Světlo ' + description + ' rozsvíceno.')
