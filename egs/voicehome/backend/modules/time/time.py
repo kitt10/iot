@@ -55,10 +55,6 @@ class Time(VoicehomeModule):
         self.reply("Časovač je nastaven na 3 minuty")
 
 
-
-    def play_timer_alarm(self):
-        self.reply("Halóóó halóóó! čas vypršel") 
-
     def stop_timer(self):
         print("Timer is stopped.")
         self.timer.cancel()

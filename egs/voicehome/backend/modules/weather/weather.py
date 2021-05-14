@@ -6,6 +6,7 @@ import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
+import threading
 
 class Weather(VoicehomeModule):
 
@@ -42,6 +43,24 @@ class Weather(VoicehomeModule):
         self.regex_patterns_minus = '\s(-)\d+\s'
         self.regex_patterns_meter = '(\s\d+\sm\s)'
 
+        self.last_forecast = ""
+        def download_timer():
+            try:
+                self.driver.get(self.URL)
+                results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
+                self.last_forecast = results
+            except:
+                pass
+
+        # print(f"Setting timer to download forecast from the web site every {time} second")
+        self.timer = threading.Timer(900, download_timer)
+        self.timer.start()
+        download_timer()
+
+
+
+    def start_download_timer(self):
+
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
         pass
@@ -71,16 +90,7 @@ class Weather(VoicehomeModule):
 
 
     def get_forecast_today(self):
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         breaker = False
         for num_line in range(2, 8):
@@ -101,16 +111,7 @@ class Weather(VoicehomeModule):
         self.reply('Server chmi.cz předpovídá pro dnešek. '+forecast_today)
 
     def get_forecast_tomorrow(self):
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(4, 11):
             match = re.search(self.regex_patterns_forecast_tomorrow, results[num_line][:30])
@@ -135,16 +136,7 @@ class Weather(VoicehomeModule):
             self.get_forecast_tomorrow()
             return
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_monday, results[num_line][:30])
@@ -169,16 +161,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_tuesday, results[num_line][:30])
@@ -203,16 +186,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_wednesday, results[num_line][:30])
@@ -237,16 +211,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_thursday, results[num_line][:30])
@@ -271,16 +236,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_friday, results[num_line][:30])
@@ -305,16 +261,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_saturday, results[num_line][:30])
@@ -339,16 +286,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_sunday, results[num_line][:30])
