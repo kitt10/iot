@@ -36,6 +36,7 @@ class Lights(VoicehomeModule):
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
             self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
+            self.reply(message='Na světlo je odeslán příkaz')
         # self.requestState(ESP_ID, 'ESP_onboard')
 
     def ESP_turn_off_light_onboard(self, ESP_ID, voicekit_reply=False):
@@ -47,6 +48,7 @@ class Lights(VoicehomeModule):
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
             self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
+            self.reply(message='Na světlo je odeslán příkaz')
         # self.requestState(ESP_ID, 'ESP_onboard')
 
     def ESP_turn_on_light(self, light_ID, voicekit_reply=False):
@@ -58,6 +60,7 @@ class Lights(VoicehomeModule):
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
             self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
+            self.reply(message='Na světlo je odeslán příkaz')
         # self.requestState(light_ID, 'light')
 
 
@@ -71,6 +74,7 @@ class Lights(VoicehomeModule):
         self.mqtt_publish(topic='voicehome/lights/command', payload=payload)
         if voicekit_reply:
             self.voicekit_commanded_lights.append(payload['type']+'_'+str(payload['ID']))
+            self.reply(message='Na světlo je odeslán příkaz')
         # self.requestState(light_ID, 'light')
 
     def ESP_turn_on_light_1(self):
