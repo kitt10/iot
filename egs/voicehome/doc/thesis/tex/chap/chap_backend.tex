@@ -44,19 +44,21 @@ The engine also contains a separate block for \textit{logic}. This block capture
 MongoDB is an open-source document database built upon a NoSQL database and written in C++. Database's horizontal, scale-out architecture support vast volumes of both data and traffic. One document can have others embedded in itself, and there is no need to declare the structure of documents to the system - documents are self-describing.\citep{mongoDB_jayaram_2020}
 
 Before using this type of database, we have to be familiar with different terminology compare to traditional SQL databases: 
+
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|l|l|} \hline
-		SQL Server & MongoDB \\ \hline\hline
-		Database & Database \\ \hline
-		Table & Collection \\ \hline
-		Index & Index \\ \hline
-		Row & Document \\ \hline
-		Column & Field \\ \hline
-		Joining & Linking \& Embedding \\ \hline
-		Partition & Sharding (Range Partition) \\ \hline
-		Replication & ReplSet\\ \hline
-	\end{tabular}
+    \begin{tabular}{|l|l|}
+        \hline
+        \multicolumn{1}{c}{\bfseries SQL Server} & \multicolumn{1}{c}{\bfseries MongoDB} \\ \hline
+        \multicolumn{1}{|l|}{Database}  & \multicolumn{1}{l|}{Database} \\ \hline
+        \multicolumn{1}{|l|}{Table}  & \multicolumn{1}{l|}{Collection} \\ \hline
+        \multicolumn{1}{|l|}{Index}  & \multicolumn{1}{l|}{Index} \\ \hline
+        \multicolumn{1}{|l|}{Row}  & \multicolumn{1}{l|}{Document} \\ \hline
+        \multicolumn{1}{|l|}{Column}  & \multicolumn{1}{l|}{Field} \\ \hline
+        \multicolumn{1}{|l|}{Joining}  & \multicolumn{1}{l|}{Linking \& Embedding} \\ \hline
+        \multicolumn{1}{|l|}{Partition}  & \multicolumn{1}{l|}{Sharding (Range Partition)} \\ \hline
+        \multicolumn{1}{|l|}{Replication}  & \multicolumn{1}{l|}{ReplSet} \\ \hline
+    \end{tabular}
 	\caption{MongoDB terminology}
 	\label{tab:mongoDB_terminology}
 \end{table}

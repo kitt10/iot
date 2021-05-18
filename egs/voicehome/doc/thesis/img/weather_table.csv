@@ -1,0 +1,13 @@
+﻿ID,function,# activation commands
+1,Getting forecast for today from www.chmi.cz.,2
+2,Getting forecast for tomorrow from www.chmi.cz.,2
+3,Getting forecast for monday from www.chmi.cz if it is up to four days and not today.,2
+4,Getting forecast for tuesday from www.chmi.cz if it is up to four days and not today.,2
+5,Getting forecast for wednesday from www.chmi.cz if it is up to four days and not today.,2
+6,Getting forecast for thursday from www.chmi.cz if it is up to four days and not today.,2
+7,Getting forecast for friday from www.chmi.cz if it is up to four days and not today.,2
+8,Getting forecast for saturday from www.chmi.cz if it is up to four days and not today.,2
+9,Getting forecast for sunday from www.chmi.cz if it is up to four days and not today.,2
+10,,
+11,,
+12,,

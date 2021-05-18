@@ -1,0 +1,12 @@
+﻿ID,function,# activation commands
+1,Turn on all the onboard LEDs.,2
+2,Turn off all the onboard LEDs.,2
+3,Turn on the light 1,4
+4,Turn off the light 1,4
+5,Turn on the onboard LED number 1,2
+6,Turn off the onboard LED number 1,2
+7,Turn on the onboard LED number 2,2
+8,Turn off the onboard LED number 2,2
+9,Turn on the onboard LED number 3,2
+10,Turn off the onboard LED number 3,2
+11,Voicekit answer which lights are turned on,1
