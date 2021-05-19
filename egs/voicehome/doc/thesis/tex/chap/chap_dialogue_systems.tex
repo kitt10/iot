@@ -17,14 +17,16 @@ Sound is nothing more than vibrations of the air that we humans are trained exce
 
 One of the possible approaches in ASR modelling is, for example, at the level of phonemes or the level of whole words. We will only give an example here at the phoneme level, as the other approaches are very similar.
 
-The first step the ASR system do is process the sound. It steps the sound to have chunks of speech (shown in \cref{fig:chunked_voice}) that can be worked with and that can be mapped to letters. These chunks are called phones.
+The first step the ASR system do is process the sound. It steps the sound to have chunks of speech that can be worked with and that can be mapped to letters. These chunks are called phones.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/voice_edit.png}
-    \caption{Chunked speech signal}
-    \label{fig:chunked_voice}
-\end{figure}
+% The first step the ASR system do is process the sound. It steps the sound to have chunks of speech (shown in \cref{fig:chunked_voice}) that can be worked with and that can be mapped to letters. These chunks are called phones.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{img/voice_edit.png}
+%     \caption{Chunked speech signal}
+%     \label{fig:chunked_voice}
+% \end{figure}
 
 The part of ASR responsible for mapping sound to phones is called the \textit{acoustic model} as a set of building blocks, boxes which contain models for all phones in a given language as showing in \cref{fig:phones_boxes}.
 
@@ -81,7 +83,7 @@ The concatenative synthesis is based on sequential combining of shot prerecorded
 
 The concatenative method is the most straightforward approach to the speech generation. Disadvantages include the requirement to have an ample storage for recorded units and an inability to apply various changes to a voice.
 
-The statistical parametric synthesis consists of two parts, as shown in \cref{fig:synthesis_model}. The training step's approach is to extract excitation parameters like fundamental frequency and dynamic features, and spectral parameters from the speech database. Then we estimate them using one of the statistical models. The Hidden Markov model (HMM) is the most widely used for this task. It should be noted that HMM is conscious dependent. It means that in this step, in addition to phonetic context, linguistic and prosodic context is taken into account. In the synthesis part, at first given sentence is converted into points with a dependent label sequence, and then their chance HMM is constructed according to this sequence. Next, spectrum and excitation parameters are generated from the utterance HMM, and finally, speech waveforms are synthesized from these parameters using excitation generation and the speech synthesis filter. The advantages of the statistical parametric approach are:
+The statistical parametric synthesis consists of two parts, as shown in \cref{fig:synthesis_model}. The training step's approach is to extract excitation parameters like fundamental frequency and dynamic features, and spectral parameters from the speech database. Then we estimate them using one of the statistical models. The Hidden Markov Model (HMM) is the most widely used for this task. It should be noted that HMM is conscious dependent. It means that in this step, in addition to phonetic context, linguistic and prosodic context is taken into account. In the synthesis part, at first given sentence is converted into points with a dependent label sequence, and then their chance HMM is constructed according to this sequence. Next, spectrum and excitation parameters are generated from the utterance HMM, and finally, speech waveforms are synthesized from these parameters using excitation generation and the speech synthesis filter. The advantages of the statistical parametric approach are:
 \begin{enumerate}
     \item Small footprint
     \item No need to store the speech waveforms, only statistics language independence.

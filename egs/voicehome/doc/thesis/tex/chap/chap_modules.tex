@@ -18,7 +18,7 @@ Thus each module has to be created by the following approach:
     \item Create a new folder in \texttt{"voicehome\textbackslash modules\textbackslash "}, the name of this folder is the module's name.
     \item Create two mandatory files
     \begin{enumerate}
-        \item \texttt{"voicehome\textbackslash modules\textbackslash <module\_name>\textbackslash metadata.json"} that include object with following variables.
+        \item \texttt{"voicehome\textbackslash modules\textbackslash <module\_name>\textbackslash metadata.json"} that include object with following variables:
         \begin{itemize}
             \item \texttt{"module\_id"}: contain the name of the module
             \item \texttt{"description"}: contain a string with a brief description of the module
@@ -40,6 +40,8 @@ Thus each module has to be created by the following approach:
 
 After accomplishing these requirements, it is not necessary to restart the entire engine but can simply use the voice command \texttt{"načti moduly"} from the System module. Each particular module can be turned off or on using the web interface in the Modules tab, which is specified in more detail in \cref{section:modules}.
 
+
+
 \section{Lights}
 
 The system module provides the user commands to control lights by voice. The user not only turns on, off or blinks lights but can also identify the development boards by lighting a onboard LED on a specific board. The module keeps in memory a list of all lights with their current status and detailed description.
@@ -51,6 +53,15 @@ The onboard LEDs are mounted on the board from the factory on pin 2. The other l
 	\includegraphics[width=\textwidth]{img/led_schema.png}
 	\caption{LED "living room" wiring diagram}
 	\label{fig:led_schema}
+\end{figure}
+
+The diagram (see \cref{fig:turn_light_diagram}) shows the steps for turning on/off light in a simplified way. This process is the same for all types of lights. Only an ID and type of light is different in a message. The ESP development board have this ID connect to the pin of the light in its configuration file.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/turn_light_diagram.png}
+    \caption{Diagram of a process turning on a light}
+    \label{fig:turn_light_diagram}
 \end{figure}
 
 \subsection{Voice commands}
@@ -107,7 +118,18 @@ The engine uses for maintain lights following topics and messages:
 
 \section{Sensors}
 
-The sensors module provides the user commands to communicate directly with sensors wired to the ESP development board or ask for statistics information such as average. The sensors connected to the module are bme280 (see \cref{fig:bme280_schema}), ds18b20 (see \cref{fig:ds18b20_schema}) and tsl2591 (see \cref{fig:tsl2591_schema}). The module uses the Python library to obtain old data from the MongoDB database to calculate statistical data.
+The sensors module provides the user commands to communicate directly with sensors wired to the ESP development board or ask for statistics information such as average. The sensors connected to the module are bme280 (see \cref{fig:bme280_schema}), ds18b20 (see \cref{fig:ds18b20_schema}) and tsl2591 (see \cref{fig:tsl2591_schema}). 
+
+The diagram (see \cref{fig:measure_sensors_diagram}) shows the steps for measuring current temperature in a simplified way. Other current measurements are very similar to temperature measurements, and only the measured data are from another sensor.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/measure_sensors_diagram.png}
+    \caption{Diagram of a process measuring current temperature}
+    \label{fig:measure_sensors_diagram}
+\end{figure}
+
+The functions to determine average use the Python library to obtain past data from MongoDB. The functions then calculate the average on the engine side and send it to the VoiceKit to answer.
 
 \subsection{Voice commands}
 
@@ -220,7 +242,7 @@ The engine uses for maintain sensors following topics and messages:
 
 \subsection{BME280}
 
-% The BME280 \citep{BME280_Datasheet} module is used to measure the internal temperature and barometric pressure. In addition, our variant has a humidity sensor, which could not be put into operation, probably due to a defective piece. The measuring range of this sensor is in case of ambient temperature from -40 $^{\circ}$C to +85 $^{\circ}$C, in case of humidity from 0$\%$ to 100$\%$ and in case of barometric pressure from 300 hPa to 1100 hPa. Temperature values are measured with an accuracy of ±1 $^{\circ}$C, humidity values with an accuracy of ±3$\%$ and barometric pressure values with an accuracy of ±1 Pa. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D6 and D5 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:bme280_schema}
+The BME280 \citep{BME280_Datasheet} module is used to measure the internal temperature and barometric pressure. In addition, our variant has a humidity sensor, which could not be put into operation, probably due to a defective piece. The measuring range of this sensor is in case of ambient temperature from -40 $^{\circ}$C to +85 $^{\circ}$C, in case of humidity from 0$\%$ to 100$\%$ and in case of barometric pressure from 300 hPa to 1100 hPa. Temperature values are measured with an accuracy of ±1 $^{\circ}$C, humidity values with an accuracy of ±3$\%$ and barometric pressure values with an accuracy of ±1 Pa. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D6 and D5 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:bme280_schema}
 
 \begin{figure}[H]
 	\centering
@@ -232,7 +254,7 @@ The engine uses for maintain sensors following topics and messages:
 
 \subsection{DS18B20}
 
-% The DS18B20 \citep{DS18B20_Datasheet} is a temperature sensor, and its waterproof variant was chosen as an illustration.  The module's output is the value of temperature in the degree Celsius unit. The sensor's measuring range is from -55 to +125 degrees with an accuracy of ± 0,5 $^{\circ}$C within limits from -10 $^{\circ}$C to +85 $^{\circ}$C. The sensor communicates via the One-Wire interface and uses one pin for data transmission. The sensor is connected to the microchip by three wires - one wire for power supply 3,3V, one for grounding and one for data communication. It is necessary to connect a resistor of resistance 4.7 k$\Omega$ to the circuit, connecting the data and power wires. The wiring diagram of the DS18B20 sensor is shown in \cref{fig:ds18b20_schema}
+The DS18B20 \citep{DS18B20_Datasheet} is a temperature sensor, and its waterproof variant was chosen as an illustration.  The module's output is the value of temperature in the degree Celsius unit. The sensor's measuring range is from -55 to +125 degrees with an accuracy of ± 0,5 $^{\circ}$C within limits from -10 $^{\circ}$C to +85 $^{\circ}$C. The sensor communicates via the One-Wire interface and uses one pin for data transmission. The sensor is connected to the microchip by three wires - one wire for power supply 3,3V, one for grounding and one for data communication. It is necessary to connect a resistor of resistance 4.7 k$\Omega$ to the circuit, connecting the data and power wires. The wiring diagram of the DS18B20 sensor is shown in \cref{fig:ds18b20_schema}
 
 \begin{figure}[H]
 	\centering
@@ -243,7 +265,7 @@ The engine uses for maintain sensors following topics and messages:
 
 \subsection{TSL2591}
 
-% The TSL2591 \citep{TSL2591_Datasheet} is a light intensity sensor that converts the light intensity into a digital output transmitted by the I2C bus. The module's output is the value of light intensity in the lux unit with an accuracy of 4 decimal places, and the measuring range is from 188 $\mu$Lux to 88,000 Lux. The value of the sensor is measured to three decimal places, although it is not necessary to have such high accuracy. The module guarantees measurement accuracy in temperature conditions from -30 $^{\circ}$C to +80 $^{\circ}$C. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D1 and D2 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:tsl2591_schema}
+The TSL2591 \citep{TSL2591_Datasheet} is a light intensity sensor that converts the light intensity into a digital output transmitted by the I2C bus. The module's output is the value of light intensity in the lux unit with an accuracy of 4 decimal places, and the measuring range is from 188 $\mu$Lux to 88,000 Lux. The value of the sensor is measured to three decimal places, although it is not necessary to have such high accuracy. The module guarantees measurement accuracy in temperature conditions from -30 $^{\circ}$C to +80 $^{\circ}$C. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D1 and D2 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:tsl2591_schema}
 
 \begin{figure}[H]
 	\centering
@@ -265,6 +287,15 @@ This module provides commands for manipulation with the time, such as asking for
 %     self.driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
 %     self.driver.get('www.seznam.cz')
 % \end{lstlisting}
+
+The diagram (see \cref{fig:timer_time_diagram}) shows in a simplified way how the function of the timer work. Other different functions of the time module work on the principle of downloading data from the Internet, and it is not necessary to explain them further.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/timer_time_diagram.png}
+    \caption{Diagram of a timer function}
+    \label{fig:timer_time_diagram}
+\end{figure}
 
 \subsection{Voice commands}
 
@@ -312,6 +343,15 @@ The system module provides the user commands to test the functionality and adjus
 The weather module provides the user commands to answer questions about the weather. The module's functions exploit the information available on the Internet. By preprocessing the information from the Internet and replating characters like "°C" to "stupnů" or "-" to "mínus", we can then send fully synthesizable text to SpeechCloud and answer the question to the user. To reach this information from the web is used technique call web scraping that can run the web site and suck desired pieces of information from this site. Preprocessing the information uses the technique regex and essential functions such as finding text and selecting text — a simple example of how regex is used shown in \cref{lst:regex_python}.
 
 % \lstinputlisting[language=python,firstnumber=1,caption={Simple example how to use regex in Python},captionpos=b, label={lst:regex_python}]{code/regex_example.py}
+
+The diagram (see \cref{fig:forecast_weather_diagram}) shows the steps for answer forecast questions by VoiceKit. The forecast for other days are very similar, and only the day that module searching on a webpage is different.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/forecast_weather_diagram.png}
+    \caption{Diagram of a process VoiceKit answering forecast}
+    \label{fig:forecast_weather_diagram}
+\end{figure}
 
 \subsection{Voice commands}
 
