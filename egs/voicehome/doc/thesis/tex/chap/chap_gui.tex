@@ -26,7 +26,7 @@ The Home page is the default page when the website is visited. At the top of the
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/web_home.png}
+    \includegraphics[width=0.8\textwidth]{img/web_home.png}
     \caption{The screenshot of the web page on the Home page}
     \label{fig:web_home}
 \end{figure}
@@ -35,7 +35,7 @@ The first box here is the Current event log (see \cref{fig:screenshot_home_curre
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/screenshot_home_current_event_log.png}
+    \includegraphics[width=0.5\textwidth]{img/screenshot_home_current_event_log.png}
     \caption{The screenshot of the Current event log box on the Home page}
     \label{fig:screenshot_home_current_event_log}
 \end{figure}
@@ -44,7 +44,7 @@ The box next to the Current event log box is Lights state box (see \cref{fig:scr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/screenshot_home_lights_state.png}
+    \includegraphics[width=0.5\textwidth]{img/screenshot_home_lights_state.png}
     \caption{The screenshot of the Lights state box on the Home page}
     \label{fig:screenshot_home_lights_state}
 \end{figure}
@@ -53,7 +53,7 @@ The box below the Current event log is Weather (see \cref{fig:screenshot_home_we
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/screenshot_home_weather.png}
+    \includegraphics[width=0.5\textwidth]{img/screenshot_home_weather.png}
     \caption{The screenshot of the Weather box on the Home page}
     \label{fig:screenshot_home_weather}
 \end{figure}
@@ -70,7 +70,7 @@ Otherwise, the indicator is green.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/screenshot_home_sensors_state.png}
+    \includegraphics[width=0.6\textwidth]{img/screenshot_home_sensors_state.png}
     \caption{The creenshot of the Sensors state box on the Home page}
     \label{fig:screenshot_home_sensors_state}
 \end{figure}
@@ -79,7 +79,7 @@ The last box on the page is the Currently measured values box (see \cref{fig:scr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/screenshot_home_currently_measured_values.png}
+    \includegraphics[width=0.8\textwidth]{img/screenshot_home_currently_measured_values.png}
     \caption{The screenshot of the Currently measured values on the Home page}
     \label{fig:screenshot_home_currently_measured_values}
 \end{figure}
@@ -88,7 +88,7 @@ All values from ESP on this page are changed asynchronously according to the new
 
 \section{Analytics}
 
-The Analytics page (see \cref{fig:screenshot_analytics_graph}) allows user to select specific sensors and visualize their historical values stored in the MongoDB database. When the user opens the page, all data from the engine are immediately sent to the page using WebSocket (see \cref{section:websocket}). The user's first step in entering the page is to select the sensors in the list of sensors he wants to plot below. After filling in these preferences, the user clicks the submit button \texttt{"Vykreslit data"}. At this point, the page begins to transform the received data into the desired Dygraph library format. The Dygraph library was chosen based on the benefits of an open-source license and easy selection of the time user want to display data. The time is selected using the banner below the graph by dragging the wick.
+The Analytics page (see \cref{fig:screenshot_analytics_graph}) allows user to select specific sensors and visualize their historical values stored in the MongoDB database. When the user opens the page, all data from the \textit{engine} are immediately sent to the page using WebSocket (see \cref{section:websocket}). The user's first step in entering the page is to select the sensors in the list of sensors he wants to plot below. After filling in these preferences, the user clicks the submit button \texttt{"Vykreslit data"}. At this point, the page begins to transform the received data into the desired Dygraph library format. The Dygraph library was chosen based on the benefits of an open-source license and easy selection of the time user want to display data. The time is selected using the banner below the graph by dragging the wick.
 
 % \begin{figure}[H]
 %     \centering
@@ -115,27 +115,27 @@ The \cref{fig:illuminance_data} shows measured illuminance data from sensor TSL2
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/illuminance_data.eps}
+    \includegraphics[width=0.9\textwidth]{img/illuminance_data.eps}
     \caption{The plot of measured illuminance data by the sensor TSL2591}
     \label{fig:illuminance_data}
 \end{figure}
 
 \section{Modules} \label{section:modules}
 
-The Modules page allows the user to view all possible voice commands for each module. On the left, there is a list of all modules (see \cref{fig:screenshot_modules_modules}) that connect to the engine. After clicking on the user-selected module, the module name, the module description and a list of blocks of all possible voice commands show on the left side of the page (see \cref{fig:screenshot_modules_calls}). The function's name to execute, the description of the command and all possible calls display in the block of voice command.
+The Modules page allows the user to view all possible voice commands for each module. On the left, there is a list of all modules (see \cref{fig:screenshot_modules_modules}) that connect to the \textit{engine}. After clicking on the user-selected module, the module name, the module description and a list of blocks of all possible voice commands show on the left side of the page (see \cref{fig:screenshot_modules_calls}). The function's name to execute, the description of the command and all possible calls display in the block of voice command.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.36\textwidth]{img/screenshot_modules_modules.png}
+    \caption{The screenshot of the list of all modules on the Modules page}
+    \label{fig:screenshot_modules_modules}
+\end{figure}
 
 The following functionality is turning on or off the module. The module turns by clicking the switch next to the module's name in the list of modules. This click deactivates the module in the system, and then its functions are no longer available. The system stops responding to voice commands in this module.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{img/screenshot_modules_modules.png}
-    \caption{The screenshot of the list of all modules on the Modules page}
-    \label{fig:screenshot_modules_modules}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/screenshot_modules_calls.png}
+    \includegraphics[width=0.75\textwidth]{img/screenshot_modules_calls.png}
     \caption{The screenshot of the list of calls for the module Sensors on the Modules page}
     \label{fig:screenshot_modules_calls}
 \end{figure}

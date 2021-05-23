@@ -24,7 +24,7 @@ In addition to these tasks, the user can connect the voice assistant to web serv
     \caption{Connection schema of voice assistant service}
     \label{fig:voice_assistant_connecrtion_schema}
 \end{figure}
-
+\newpage
 Although each currently available voice assistant has unique features, they share some similarities and are able to perform the following basic tasks \citep{voice_assistants_general_hoy_2018}: 
 
 \begin{itemize}
@@ -49,14 +49,14 @@ Because each company develop its voice assistant independently and protect its k
     \item Command – Remind me to call Jerome at 2 pm today.
 \end{itemize}
 
+Google Assistant has answered 93\% correctly and has understood all 800 questions correctly. Siri has been next, has answered 83\% correctly and has misunderstood only two questions. Alexa has answered 80\% correctly and has misunderstood only one. According to the data shown in \cref{fig:voice_assistant_comparison}, Google Assistant has better results overall but lacks in the command category. Amazon Alexa has excellent results only in the information category, where it climbs just below the results of Google Assistant. Siri is brilliant in the command category for such functions as a calling, sending SMS or playing music.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/voice_assistant_comparison.png}
     \caption{Voice assistant comparison by types of questions}
     \label{fig:voice_assistant_comparison}
 \end{figure}
-
-Google Assistant has answered 93\% correctly and has understood all 800 questions correctly. Siri has been next, has answered 83\% correctly and has misunderstood only two questions. Alexa has answered 80\% correctly and has misunderstood only one. According to the data shown in \cref{fig:voice_assistant_comparison}, Google Assistant has better results overall but lacks in the command category. Amazon Alexa has excellent results only in the information category, where it climbs just below the results of Google Assistant. Siri is brilliant in the command category for such functions as a calling, sending SMS or playing music.
 
 If several users occupy the room, each voice assistant has its way of handling this situation. For example, Amazon Alexa and Google Assistant create multiple voice profiles, which allows the user to train the assistant to recognize his voice specifically and therefore offer different data and use separate accounts for services. This is a very complex task, and no one can cope with it at the desired level.
 
@@ -78,7 +78,7 @@ This project responds to the gap in the market given by the following factors:
     The Czech language is a significant gap in the market in the virtual assistant sector. This gap in the market is caused by the number of people who speak this language. Because the development of this technology is still not complete and costs much money, this low demand market is not interesting for large institutions building virtual assistants.
 
     Another reason why large technological institutions are not interested in developing virtual assistants for Czech-speaking people is the grammatical and verbal complexity of the Czech language. The Czech language is much more complicated than English. It has many declension, gradation of adjectives, words depending on the sentence and different conjugation.
-
+\newpage
     So far, known activities in this market are that Siri does not speak in the Czech language, and there are no publicly known prospects that she would be able to do shortly. Google Assistant does not offer to speak in the Czech language either, but it has TTS and ASR support in the Czech language.
     \item \textit{Modularity of Virtual Assistants}:
     Although this problem has been largely resolved, as described in \cref{sec:state_of_the_art}, the user is still widely limited and cannot ask the virtual assistant anything he would like. However, technology companies are working hard to resolve this issue to become more and more an issue of the past overtime.
@@ -141,7 +141,7 @@ This thesis consists of 7 chapters following the standard skeleton of scientific
 Chapter 1 describes the current trends of virtual assistants and compares them. It then explains the gap in the market that this project meets and its advantages over other solutions.
 
 Chapter 2 lists the general methods used in automatic speech recognition and automatic speech synthesis fields and briefly describes them. Furthermore, the chapter briefly describes the functions and architecture of the SpeechCloud used as ASR and TTS interface for the project.
-
+\newpage
 Chapter 3 discusses in more detail the architecture used for the system running on the server. The chapter further specifies the type of database used and its benefits for the project. Furthermore, three used communication protocols and their benefits for the project are listed here. At the end of this chapter, we describe the three controllers users use to communicate with the modules and how they work or when they are used.
 
 Chapter 4 lists five created modules. The chapter describes its functions, a code diagram of the functions, the voice commands triggering the functions (a detailed list of the voice commands is then given in appendix A2), used electrical circuits and message structures in more detail for each module.

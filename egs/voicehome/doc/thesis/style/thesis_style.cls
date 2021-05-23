@@ -331,6 +331,14 @@ KOMA-script documentation for details.}]{fancyhdr}
 	\bigskip
 	\end{center}
 }
+
+\newenvironment{abstract_cz}{
+	\begin{center}
+	{\normalsize\bfseries Hlasová interakce s moduly chytré domácnosti \par} % Thesis title ENG
+	\bigskip
+	\end{center}
+}
+
 {
   \vfil\vfil\vfil\null
 }
@@ -339,24 +347,24 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	KEYWORDS PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
-% \newcommand{\keywordsname}{Keywords}
-% \providecaptionname{american,australian,british,canadian,english,UKenglish,USenglish} {\keywordsname}{Keywords}
-% \providecaptionname{czech}{\keywordsname}{Klíčová slova}
+\newcommand{\keywordsname}{Keywords}
+\providecaptionname{american,australian,british,canadian,english,UKenglish,USenglish} {\keywordsname}{Keywords}
+\providecaptionname{czech}{\keywordsname}{Klíčová slova}
 
-% \newenvironment{keywords_cs}{
-% 	\checktoopen
-% 	\tttypeout{\keywordsname}
-% 	\thispagestyle{plain}
-% 	\begin{center}{\huge\textit{\keywordsname}\par}\end{center}
-% }
+\newenvironment{keywords_en}{
+	\checktoopen
+	\tttypeout{\keywordsname}
+	\thispagestyle{plain}
+	\begin{center}{\huge\textit{Keywords}\par}\end{center}
+}
 
-% \newenvironment{keywords_en}{
-% 	\begin{center}{\huge\textit{Keywords}\par}\end{center}
-% }
+\newenvironment{keywords_cs}{
+	\begin{center}{\huge\textit{\keywordsname}\par}\end{center}
+}
 
-% {
-% \vfil\vfil\null
-% }
+{
+\vfil\vfil\null
+}
 
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS PAGE DESIGN

@@ -10,7 +10,7 @@
 % - communicating with who
 % - next used technology (fritzing, mongoDB, etc.)
 
-Modules are well-encapsulated code written to provide functional and control elements (moves) above home to the user. Each module inherits from VoicehomeModule class that provide communicating interface to each module by WebSocket, MQTT and mediate writing and reading from MongoDB. Each module defines its topic for MQTT and a passport for WebSocket that subscribe from these services. Messages containing these topics or passports are passed through the engine to the modules.
+Modules are well-encapsulated code written to provide functional and control elements (moves) above home to the user. Each module inherits from VoicehomeModule class that provide communicating interface to each module by WebSocket, MQTT and mediate writing and reading from MongoDB. Each module defines its topic for MQTT and a passport for WebSocket that subscribe from these services. Messages containing these topics or passports are passed through the \textit{engine} to the modules.
 
 Thus each module has to be created by the following approach:
 
@@ -38,7 +38,7 @@ Thus each module has to be created by the following approach:
     \end{enumerate}
 \end{enumerate}
 
-After accomplishing these requirements, it is not necessary to restart the entire engine but can simply use the voice command \texttt{"načti moduly"} from the System module. Each particular module can be turned off or on using the web interface in the Modules tab, which is specified in more detail in \cref{section:modules}.
+After accomplishing these requirements, it is not necessary to restart the entire \textit{engine} but can simply use the voice command \texttt{"načti moduly"} from the System module. Each particular module can be turned off or on using the web interface in the Modules tab, which is specified in more detail in \cref{section:modules}.
 
 
 
@@ -50,7 +50,7 @@ The onboard LEDs are mounted on the board from the factory on pin 2. The other l
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/led_schema.png}
+	\includegraphics[width=0.8\textwidth]{img/led_schema.png}
 	\caption{LED "living room" wiring diagram}
 	\label{fig:led_schema}
 \end{figure}
@@ -88,10 +88,10 @@ This subsection show table of 11 functions implemented in the \textit{Lights} mo
 	\caption{Implemented functions of the \textit{Lights} module (for detail see \cref{section:app_lights})}
 	\label{tab:lights_command_voice}
 \end{table}
-
+\newpage
 \subsection{Messages Structure}
 
-The engine uses the following topics and messages for maintaining lights:
+The \textit{engine} uses the following topics and messages for maintaining lights:
 
 \begin{itemize}
     \item "voicehome/lights/command" - to turn the light on/off
@@ -137,7 +137,7 @@ The diagram (see \cref{fig:measure_sensors_diagram}) shows the steps for measuri
     \label{fig:measure_sensors_diagram}
 \end{figure}
 
-The functions to determine average use the Python library to obtain past data from MongoDB. The functions then calculate the average on the engine side and send it to the VoiceKit to answer.
+The functions to determine average use the Python library to obtain past data from MongoDB. The functions then calculate the average on the \textit{engine} side and send it to the VoiceKit to answer.
 
 \subsection{Implemented functions}
 
@@ -164,10 +164,10 @@ This subsection show table of 12 functions implemented in the \textit{Sensors} m
     \caption{Implemented functions of the Sensors module (for detail see \cref{section:app_sensors})} 
     \label{tab:sensors_command_voice}
 \end{table} 
-
+\newpage
 \subsection{Messages Structure}
 
-The engine uses the following topics and messages for maintaining sensors:
+The \textit{engine} uses the following topics and messages for maintaining sensors:
 
 \begin{itemize}
     \item "voicehome/sensors/quantity$\_$type" - to receiving data from sensors
@@ -205,6 +205,7 @@ The engine uses the following topics and messages for maintaining sensors:
     "who_asking": string
 }
     \end{lstlisting}
+    \newpage
     Example of use for temperature sensor DS18B20
     \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to command sensor DS18B20 to measure current data in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
 {
@@ -254,7 +255,7 @@ The BME280 \citep{BME280_Datasheet} module is used to measure the barometric pre
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/bme280_schema.png}
+	\includegraphics[width=0.8\textwidth]{img/bme280_schema.png}
 	\caption{BME 280 wiring diagram}
 	\label{fig:bme280_schema}
 \end{figure}
@@ -266,7 +267,7 @@ The DS18B20 \citep{DS18B20_Datasheet} is a temperature sensor, and its waterproo
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/ds18b20_schema.png}
+	\includegraphics[width=0.8\textwidth]{img/ds18b20_schema.png}
 	\caption{DS18B20 wiring diagram}
 	\label{fig:ds18b20_schema}
 \end{figure}
@@ -277,11 +278,11 @@ The TSL2591 \citep{TSL2591_Datasheet} is a light intensity sensor that converts 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/tsl2591_schema.png}
+	\includegraphics[width=0.8\textwidth]{img/tsl2591_schema.png}
 	\caption{TSL2591 wiring diagram}
 	\label{fig:tsl2591_schema}
 \end{figure}
-
+\newpage
 \section{Time}
 
 This module provides commands for manipulation with the time, such as asking for time, date, set timer. The module does not communicate with other devices. The module's functions exploit system information and information available on the Internet. The module uses technique calls web scraping to reach the web page information. The technique runs the webpage and sucks desired pieces of information from it.
@@ -304,7 +305,7 @@ The diagram (see \cref{fig:timer_time_diagram}) shows how the function of the ti
     \caption{Diagram of a timer function}
     \label{fig:timer_time_diagram}
 \end{figure}
-
+\newpage
 \subsection{Implemented functions}
 
 This subsection show table of 8 functions implemented in the \textit{Time} module. The number of calls (commands) registered in the language model is summed up in \cref{tab:time_command_voice}. A complete list of all possible commands is provided in \cref{section:app_time}.
@@ -329,7 +330,7 @@ This subsection show table of 8 functions implemented in the \textit{Time} modul
 
 \section{System}
 
-The system module provides the user commands to test the functionality and adjust some settings of the engine. The module communicates primarily with the engine, but it is possible to establish this communication with other devices. Like other technology, the module uses the MongoDB library from python to test the engine's database.
+The system module provides the user commands to test the functionality and adjust some settings of the \textit{engine}. The module communicates primarily with the \textit{engine}, but it is possible to establish this communication with other devices. Like other technology, the module uses the MongoDB library from python to test the \textit{engine's} database.
 
 \subsection{Implemented functions}
 
@@ -366,14 +367,14 @@ The diagram (see \cref{fig:forecast_weather_diagram}) shows the steps for answer
     \caption{Diagram of a process VoiceKit answering forecast}
     \label{fig:forecast_weather_diagram}
 \end{figure}
-
+\newpage
 \subsection{Implemented functions}
 
 This subsection show table of 9 functions implemented in the \textit{Weather} module. The number of calls (commands) registered in the language model is summed up in \cref{tab:weather_command_voice}. A complete list of all possible commands is provided in \cref{section:app_weather}.
 
 \begin{table}[H]
     \centering
-    \resizebox{0.9\textwidth}{!}{\begin{tabular}{|l|l|l|}
+    \resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|}
         \hline
         \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries Description of the function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
         \multicolumn{1}{|c|}{1} & \multicolumn{1}{l|}{Getting forecast for today from www.chmi.cz.}                                           & \multicolumn{1}{c|}{2} \\ \hline

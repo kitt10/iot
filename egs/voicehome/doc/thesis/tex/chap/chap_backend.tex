@@ -9,7 +9,7 @@
 %  \label{fig:methods:transfer_functions}
 %\end{figure}
 
-Own engine running on Raspberry Pi 4 has been developed and serves as the backend for the project. The whole engine is coded in Python, and adheres to the following principles:
+Own \textit{engine} running on Raspberry Pi 4 has been developed and serves as the backend for the project. The whole \textit{engine} is coded in Python, and adheres to the following principles:
 \begin{itemize}
 	\item \textit{Simplicity}: write a straightforward code that is easily understandable for later rewriting.
 	\item \textit{Modifiability}: write a code with the ability to admit changes due to a new requirement or detect an error that needs to be fixed.
@@ -21,7 +21,7 @@ Own engine running on Raspberry Pi 4 has been developed and serves as the backen
 
 \section{Diagram Description} \label{section:diagram description}
 
-This section briefly describes the architecture of the engine that is figured on a diagram - see  \cref{fig:vh_project_design}.
+This section briefly describes the architecture of the \textit{engine} that is figured on a diagram - see  \cref{fig:vh_project_design}.
 
 \begin{figure}[H]
   \centering
@@ -30,13 +30,13 @@ This section briefly describes the architecture of the engine that is figured on
   \label{fig:vh_project_design}
 \end{figure}
 
-Engine uses tools like MQTT, MongoDB, Tornado web server that is described later. Each of them runs in its thread and concurrently. These tools create a basis for modules and mediate main functionalities such as database, web server and communication. 
+\textit{Engine} uses tools like MQTT, MongoDB, Tornado web server that is described later. Each of them runs in its thread and concurrently. These tools create a basis for modules and mediate main functionalities such as database, web server and communication. 
 
-The engine is designed to easily remove, add or update any mutually independent modules that define functions used by a user interface. Each module is described in the \cref{chap:modules}.
+The \textit{engine} is designed to easily remove, add or update any mutually independent modules that define functions used by a user interface. Each module is described in the \cref{chap:modules}.
 
-The engine also contains a separate block for \textit{logic}. This block captures a command from the VoiceKit or keyboard interface, then browsing a predefined list of each module's commands and determines the best match for the user voice command or command written on the keyboard.
+The \textit{engine} also contains a separate block for \textit{logic}. This block captures a command from the VoiceKit or keyboard interface, then browsing a predefined list of each module's commands and determines the best match for the user voice command or command written on the keyboard.
 
-The block has basic \textit{logic}, which searches for predefined commands (loaded together with modules from file \texttt{"voicehome\textbackslash modules\textbackslash <module\_name>\textbackslash metadata.json"}) and looks for whether the uttered command contains all the words from the predefined command. If the block finds the match, then the function name and module name send to the engine to be executed. If it does not find the voice command in lists, it replies that the command has not found with the recognized command.
+The block has basic \textit{logic}, which searches for predefined commands (loaded together with modules from file \texttt{"voicehome\textbackslash modules\textbackslash <module\_name>\textbackslash metadata.json"}) and looks for whether the uttered command contains all the words from the predefined command. If the block finds the match, then the function name and module name send to the \textit{engine} to be executed. If it does not find the voice command in lists, it replies that the command has not found with the recognized command.
 
 The block is written in a way that it is easy to change this \textit{logic} at any time, and it is up to the developers to best deal with this complex issue of search.
 
@@ -72,7 +72,7 @@ We use this type of database because it is famous for its use in agile methodolo
 	\item The document query language supported by MongoDB is simplistic as compared to SQL queries.
 	\item There is no need for mapping application's objects to database's objects in MongoDB.
 	\item No complex joins are needed in MongoDB. There is no relationship among data in MongoDB.
-	\item Because of using JSON\footnote{\textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation} format to store data, it is effortless to store arrays and objects.
+	\item Because of using JSON\footnote{\textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation - an open standard file format and data interchange format that use human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values).\citep{wiki_json}} format to store data, it is effortless to store arrays and objects.
 	\item MongoDB is free to use. There is no cost for it.
 	\item MongoDB is simple to set up and install.
 \end{itemize}
@@ -131,19 +131,19 @@ It is vital to mention MQTT have the feature retained messages that are mechanis
  
 \subsection{WebSocket} \label{section:websocket}
  
-In this work, WebSockets are used to provide communication between the client and the engine. WebSocket provides a low-latency, persistent, full-duplex connection between a client and server over TCP. The protocol is chiefly used for a real-time web application because it is faster than HTTP concerning more transfers by one connection. The protocol belongs to the stateful type of protocols, which means the connection between client and server will keep alive until either client or web server terminate it. The protocol fits for us in use between client and web server in case of real-time response.\citep{websocket_wang_salim_moskovits_2013}
+In this work, WebSockets are used to provide communication between the client and the \textit{engine}. WebSocket provides a low-latency, persistent, full-duplex connection between a client and server over TCP. The protocol is chiefly used for a real-time web application because it is faster than HTTP concerning more transfers by one connection. The protocol belongs to the stateful type of protocols, which means the connection between client and server will keep alive until either client or web server terminate it. The protocol fits for us in use between client and web server in case of real-time response.\citep{websocket_wang_salim_moskovits_2013}
 
 The main benefits are:
 
 \begin{itemize}
 	\item \textit{Persistent}: After an initial HTTP handshake, the connection keeps alive using a ping-pong process, in which the server continuously pings the client for a response. It is a more efficient way than establishing and terminating the connection for each client request and server response. Server terminating connection after an explicit request from the client, or implicitly when the client goes offline.
 	\item \textit{Secure}: WebSocket Secure uses standard SSL and TLS encryption to establish a secure connection. Although we do not pursue this issue in our work, it is a valuable feature to add later.
-	\item \textit{Extensible}: Protocol is designed to enabling the implementation of subprotocols and extensions of additional functionality such as MQTT, WAMP, XMPP\footnote{E\textbf{x}tensible \textbf{M}essaging and \textbf{P}resence \textbf{P}rotocol - messaging and presence protocol based on XML and mainly used in a near-real-time exchange of structured data.}, AMQP\footnote{\textbf{A}dvanced \textbf{M}essage \textbf{Q}ueuing \textbf{P}rotocol - an open standard application layer protocol for message-oriented middleware.}, multiplexing and data compression. This benefit makes WebSockets a future-proof solution for the possible addition of other functionalities.
+	\item \textit{Extensible}: Protocol is designed to enabling the implementation of subprotocols and extensions of additional functionality such as MQTT, WAMP, XMPP\footnote{E\textbf{x}tensible \textbf{M}essaging and \textbf{P}resence \textbf{P}rotocol - an messaging and presence protocol based on XML and mainly used in a near-real-time exchange of structured data.}, AMQP\footnote{\textbf{A}dvanced \textbf{M}essage \textbf{Q}ueuing \textbf{P}rotocol - an open standard application layer protocol for message-oriented middleware.}, multiplexing and data compression. This benefit makes WebSockets a future-proof solution for the possible addition of other functionalities.
 	\item \textit{Low-latency}: WebSocket significantly reduces each message's data size, drastically decreasing latency by eliminating the need for a new connection with every request and the fact that after the initial handshake, all subsequent messages include only relevant information.
-	\item \textit{Bidirectional} - This enables the engine to send real-time updates asynchronously, without requiring the client to submit a request each time, as is the case with HTTP. 
+	\item \textit{Bidirectional} - This enables the \textit{engine} to send real-time updates asynchronously, without requiring the client to submit a request each time, as is the case with HTTP. 
 \end{itemize}
 
-We will apply this protocol for transfer between clients such as VoiceKit, keyboard or web interface and engine in case of real-time response.
+We will apply this protocol for transfer between clients such as VoiceKit, keyboard or web interface and \textit{engine} in case of real-time response.
 
 \subsection{REST}
 
@@ -168,13 +168,13 @@ VoiceKit (see \cref{fig:voicekit_photo} is a building kit made by Google \citep{
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{img/voicekit_photo.png}
+	\includegraphics[width=0.6\textwidth]{img/voicekit_photo.png}
 	\caption{Photo of the assembled VoiceKit \citep{wiki:voicekit_photo}}
 	\label{fig:voicekit_photo}
 \end{figure}
 
 
-\cref{fig:message_flow} show a diagram of messages flows during a conversation. It is evident from the diagram that all communication with a user and the SpeechCloud mediate VoiceKit thus engine can manipulate just with a text.
+\cref{fig:message_flow} show a diagram of messages flows during a conversation. It is evident from the diagram that all communication with a user and the SpeechCloud mediate VoiceKit thus \textit{engine} can manipulate just with a text.
 
 \begin{figure}[H]
 	\centering
@@ -189,7 +189,7 @@ The second interface next to the already mentioned Voice Kit is a website. The w
 
 The website's architecture aims to use it via a portable device like a smartphone and tablet or touch screen attached to the wall. Therefore the website is constructed to be responsible, straightforward and touch-friendly. The website's use-cases are to able the user to monitor ESP, sensors, lights, weather and voice commands, display historical sensors data, feasible voice commands and description of them, trigger lights and modules.
 
-The website communicates with the engine by the already mentioned WebSocket. Figure \ref{fig:lights_onoff_messages} show an example of communication between the web site and the ESP to turn on an onboard led. Communication uses JSON as a data format and is evident from the figure that web site and engine use for communicating protocol WebSocket, whereas ESP and engine use MQTT.
+The website communicates with the \textit{engine} by the already mentioned WebSocket. Figure \ref{fig:lights_onoff_messages} show an example of communication between the web site and the ESP to turn on an onboard led. Communication uses JSON as a data format and is evident from the figure that web site and \textit{engine} use for communicating protocol WebSocket, whereas ESP and \textit{engine} use MQTT.
 
 \begin{figure}[H]
 	\centering
