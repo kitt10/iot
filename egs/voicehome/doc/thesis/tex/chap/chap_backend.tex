@@ -19,7 +19,7 @@ Own engine running on Raspberry Pi 4 has been developed and serves as the backen
 %https://www.pharmasug.org/proceedings/2011/TT/PharmaSUG-2011-TT05.pdf
 
 
-\section{Diagram description} \label{section:diagram description}
+\section{Diagram Description} \label{section:diagram description}
 
 This section briefly describes the architecture of the engine that is figured on a diagram - see  \cref{fig:vh_project_design}.
 
@@ -34,11 +34,13 @@ Engine uses tools like MQTT, MongoDB, Tornado web server that is described later
 
 The engine is designed to easily remove, add or update any mutually independent modules that define functions used by a user interface. Each module is described in the \cref{chap:modules}.
 
-The engine also contains a separate block for \textit{logic}. This block captures a command from the VoiceKit or keyboard interface, then browsing a predefined list of each module's commands and determines the best match for the user voice command or command written on the keyboard. If it does not find the voice command in lists, it replies that the command has not found with the recognized command.
+The engine also contains a separate block for \textit{logic}. This block captures a command from the VoiceKit or keyboard interface, then browsing a predefined list of each module's commands and determines the best match for the user voice command or command written on the keyboard.
+
+The block has basic \textit{logic}, which searches for predefined commands (loaded together with modules from file \texttt{"voicehome\textbackslash modules\textbackslash <module\_name>\textbackslash metadata.json"}) and looks for whether the uttered command contains all the words from the predefined command. If the block finds the match, then the function name and module name send to the engine to be executed. If it does not find the voice command in lists, it replies that the command has not found with the recognized command.
+
+The block is written in a way that it is easy to change this \textit{logic} at any time, and it is up to the developers to best deal with this complex issue of search.
 
 \section{Database} \label{section:database}
-
-
 % An auxiliary database is needed to store all the sensors data. For this purpose, MongoDB is used due to the following advantages. 
 
 MongoDB is an open-source document database built upon a NoSQL database and written in C++. Database's horizontal, scale-out architecture support vast volumes of both data and traffic. One document can have others embedded in itself, and there is no need to declare the structure of documents to the system - documents are self-describing.\citep{mongoDB_jayaram_2020}
@@ -127,7 +129,7 @@ In MQTT, there are 3 QoS levels:
 
 It is vital to mention MQTT have the feature retained messages that are mechanisms where the broker stores the last retained message for a specific topic. This feature allows a client does not have to wait until a new message is published to know the last known status of other devices.
  
-\subsection{WebSocket}
+\subsection{WebSocket} \label{section:websocket}
  
 In this work, WebSockets are used to provide communication between the client and the engine. WebSocket provides a low-latency, persistent, full-duplex connection between a client and server over TCP. The protocol is chiefly used for a real-time web application because it is faster than HTTP concerning more transfers by one connection. The protocol belongs to the stateful type of protocols, which means the connection between client and server will keep alive until either client or web server terminate it. The protocol fits for us in use between client and web server in case of real-time response.\citep{websocket_wang_salim_moskovits_2013}
 
@@ -162,7 +164,17 @@ The keyboard is a python script with a particular purpose for developing new voi
 
 \subsection{VoiceKit}
 
-VoiceKit is a building kit made by Google \citep{aiy_projects} that lets users create their natural language processor and connect it to the Google Assistant or Cloud Speech-to-Text service. By pressing a button on top, users can ask questions and issue voice commands to their programs. All of this fits in a handy little cardboard cube powered by a Raspberry Pi.
+VoiceKit (see \cref{fig:voicekit_photo} is a building kit made by Google \citep{aiy_projects} that lets users create their natural language processor and connect it to the Google Assistant or Cloud Speech-to-Text service. By pressing a button on top, users can ask questions and issue voice commands to their programs. All of this fits in a handy little cardboard cube powered by a Raspberry Pi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/voicekit_photo.png}
+	\caption{Photo of the assembled VoiceKit \citep{wiki:voicekit_photo}}
+	\label{fig:voicekit_photo}
+\end{figure}
+
+
+\cref{fig:message_flow} show a diagram of messages flows during a conversation. It is evident from the diagram that all communication with a user and the SpeechCloud mediate VoiceKit thus engine can manipulate just with a text.
 
 \begin{figure}[H]
 	\centering
@@ -170,8 +182,6 @@ VoiceKit is a building kit made by Google \citep{aiy_projects} that lets users c
 	\caption{Diagram of messages flows during a conversation}
 	\label{fig:message_flow}
 \end{figure}
-
-\cref{fig:message_flow} show a diagram of messages flows during a conversation. It is evident from the diagram that all communication with a user and the SpeechCloud mediate VoiceKit thus engine can manipulate just with a text.
 
 \subsection{Website}
 

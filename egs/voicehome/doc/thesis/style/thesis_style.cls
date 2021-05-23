@@ -335,6 +335,29 @@ KOMA-script documentation for details.}]{fancyhdr}
   \vfil\vfil\vfil\null
 }
 
+% ----------------------------------------------------------------------------------------
+%	KEYWORDS PAGE DESIGN
+%----------------------------------------------------------------------------------------
+
+% \newcommand{\keywordsname}{Keywords}
+% \providecaptionname{american,australian,british,canadian,english,UKenglish,USenglish} {\keywordsname}{Keywords}
+% \providecaptionname{czech}{\keywordsname}{Klíčová slova}
+
+% \newenvironment{keywords_cs}{
+% 	\checktoopen
+% 	\tttypeout{\keywordsname}
+% 	\thispagestyle{plain}
+% 	\begin{center}{\huge\textit{\keywordsname}\par}\end{center}
+% }
+
+% \newenvironment{keywords_en}{
+% 	\begin{center}{\huge\textit{Keywords}\par}\end{center}
+% }
+
+% {
+% \vfil\vfil\null
+% }
+
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS PAGE DESIGN
 %----------------------------------------------------------------------------------------

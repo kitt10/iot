@@ -44,7 +44,7 @@ After accomplishing these requirements, it is not necessary to restart the entir
 
 \section{Lights}
 
-The system module provides the user commands to control lights by voice. The user not only turns on, off or blinks lights but can also identify the development boards by lighting a onboard LED on a specific board. The module keeps in memory a list of all lights with their current status and detailed description.
+The system module provides the user commands to control lights by voice. The user not only turns on, off or blinks lights but can also identify the development boards by lighting an onboard LED on a specific board. The module keeps in memory a list of all lights with their current status and detailed description.
 
 The onboard LEDs are mounted on the board from the factory on pin 2. The other lights have their specific wiring, but one LED is prepared for demonstration purposes, which by our definition is located in the living room and is wired according to the diagram in \cref{fig:led_schema}. 
 
@@ -64,61 +64,69 @@ The diagram (see \cref{fig:turn_light_diagram}) shows the steps for turning on/o
     \label{fig:turn_light_diagram}
 \end{figure}
 
-\subsection{Voice commands}
+\subsection{Implemented functions}
+
+This subsection show table of 11 functions implemented in the \textit{Lights} module. The number of calls (commands) registered in the language model is summed up in \cref{tab:lights_command_voice}. A complete list of all possible commands is provided in \cref{section:app_lights}.
 
 \begin{table}[H]
 	\centering
-    \resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|}
+    \resizebox{0.8\textwidth}{!}{\begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
-        \multicolumn{1}{|l|}{1}  & \multicolumn{1}{l|}{Turn on all the onboard LEDs.}     & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{2}  & \multicolumn{1}{l|}{Turn off all the onboard LEDs.}    & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{3}  & \multicolumn{1}{l|}{Turn on the light 1}               & \multicolumn{1}{l|}{4} \\ \hline
-        \multicolumn{1}{|l|}{4}  & \multicolumn{1}{l|}{Turn off the light 1}              & \multicolumn{1}{l|}{4} \\ \hline
-        \multicolumn{1}{|l|}{5}  & \multicolumn{1}{l|}{Turn on the onboard LED number 1}  & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{6}  & \multicolumn{1}{l|}{Turn off the onboard LED number 1} & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{7}  & \multicolumn{1}{l|}{Turn on the onboard LED number 2}  & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{8}  & \multicolumn{1}{l|}{Turn off the onboard LED number 2} & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{9}  & \multicolumn{1}{l|}{Turn on the onboard LED number 3}  & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{10} & \multicolumn{1}{l|}{Turn off the onboard LED number 3} & \multicolumn{1}{l|}{2} \\ \hline
-        11                       & Voicekit answer which lights are turned on             & 1                      \\ \hline
+        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries Description of the function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
+        \multicolumn{1}{|c|}{1}  & \multicolumn{1}{l|}{Turn on all the onboard LEDs.}     & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{2}  & \multicolumn{1}{l|}{Turn off all the onboard LEDs.}    & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{3}  & \multicolumn{1}{l|}{Turn on the light 1}               & \multicolumn{1}{c|}{4} \\ \hline
+        \multicolumn{1}{|c|}{4}  & \multicolumn{1}{l|}{Turn off the light 1}              & \multicolumn{1}{c|}{4} \\ \hline
+        \multicolumn{1}{|c|}{5}  & \multicolumn{1}{l|}{Turn on the onboard LED number 1}  & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{6}  & \multicolumn{1}{l|}{Turn off the onboard LED number 1} & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{7}  & \multicolumn{1}{l|}{Turn on the onboard LED number 2}  & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{8}  & \multicolumn{1}{l|}{Turn off the onboard LED number 2} & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{9}  & \multicolumn{1}{l|}{Turn on the onboard LED number 3}  & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{10} & \multicolumn{1}{l|}{Turn off the onboard LED number 3} & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{11}  & Voicekit answer which lights are turned on             & \multicolumn{1}{c|}{1} \\ \hline
     \end{tabular}}
-	\caption{Voice commands of the Lights module (for detail see \cref{section:app_lights})}
-	% \label{tab:mongoDB_terminology}
+	\caption{Implemented functions of the \textit{Lights} module (for detail see \cref{section:app_lights})}
+	\label{tab:lights_command_voice}
 \end{table}
 
-\subsection{Messages structure}
-The engine uses for maintain lights following topics and messages:
+\subsection{Messages Structure}
+
+The engine uses the following topics and messages for maintaining lights:
 
 \begin{itemize}
     \item "voicehome/lights/command" - to turn the light on/off
     \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to turn on/off the light in module \textit{Lights}},captionpos=b,xleftmargin=1cm]
 {
-    "ID":1,
-    "type":"ESP_onboard",
-    "set":0
+    "ID": integer,
+    "type": string,
+    "set": integer
 }
     \end{lstlisting}
     \item "voicehome/lights/state/command" - to ask the light for state
     \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to asking for the state of the light in module \textit{Lights}},captionpos=b,xleftmargin=1cm]
 {
-    "ID":1,
-    "type":"ESP_onboard"
+    "ID": integer,
+    "type": string
 }
     \end{lstlisting}
     \item "voicehome/lights/state/receive" - to receive state of the light
     \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to receive state of the light in module \textit{Lights}},captionpos=b,xleftmargin=1cm]
 {
-    "type":"light",
-    "state":0,
-    "ID":1
+    "type": string,
+    "state": integer,
+    "ID": integer
 }
     \end{lstlisting}
 \end{itemize}
 
 \section{Sensors}
 
-The sensors module provides the user commands to communicate directly with sensors wired to the ESP development board or ask for statistics information such as average. The sensors connected to the module are bme280 (see \cref{fig:bme280_schema}), ds18b20 (see \cref{fig:ds18b20_schema}) and tsl2591 (see \cref{fig:tsl2591_schema}). 
+The sensors module provides the user commands to communicate directly with sensors wired to the ESP development board or ask for statistics information such as average. A diagram of the algorithm of the ESP development board is placed in \cref{app:esp}. The sensors connected to the module are:
+\begin{itemize}
+    \item sensor measuring temperature, humidity and pressure bme280 (see \cref{fig:bme280_schema});
+    \item sensor measuring temperature ds18b20 (see \cref{fig:ds18b20_schema});
+    \item sensor measuring illuminance tsl2591 (see \cref{fig:tsl2591_schema}).
+\end{itemize}
 
 The diagram (see \cref{fig:measure_sensors_diagram}) shows the steps for measuring current temperature in a simplified way. Other current measurements are very similar to temperature measurements, and only the measured data are from another sensor.
 
@@ -131,36 +139,52 @@ The diagram (see \cref{fig:measure_sensors_diagram}) shows the steps for measuri
 
 The functions to determine average use the Python library to obtain past data from MongoDB. The functions then calculate the average on the engine side and send it to the VoiceKit to answer.
 
-\subsection{Voice commands}
+\subsection{Implemented functions}
+
+This subsection show table of 12 functions implemented in the \textit{Sensors} module. The number of calls (commands) registered in the language model is summed up in \cref{tab:sensors_command_voice}. A complete list of all possible commands is provided in \cref{section:app_sensors}.
 
 \begin{table}[H]
     \centering
     \resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
-        \multicolumn{1}{|l|}{1}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current temperature} & \multicolumn{1}{l|}{3} \\ \hline
-        \multicolumn{1}{|l|}{2}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current pressure}    & \multicolumn{1}{l|}{3} \\ \hline
-        \multicolumn{1}{|l|}{3}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current humidity}    & \multicolumn{1}{l|}{3} \\ \hline
-        \multicolumn{1}{|l|}{4}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current illuminance} & \multicolumn{1}{l|}{3} \\ \hline
-        \multicolumn{1}{|l|}{5}  & \multicolumn{1}{l|}{Voicekit answer average temperature for the last day}    & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{6}  & \multicolumn{1}{l|}{Voicekit answer average pressure for the last day}       & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{7}  & \multicolumn{1}{l|}{Voicekit answer average humidity for the last day}       & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{8}  & \multicolumn{1}{l|}{Voicekit answer average illuminance for the last day}    & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{9}  & \multicolumn{1}{l|}{Voicekit answer average temperature for the last week}   & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{10} & \multicolumn{1}{l|}{Voicekit answer average pressure for the last week}      & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{11} & \multicolumn{1}{l|}{Voicekit answer average humidity for the last week}      & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{12} & \multicolumn{1}{l|}{Voicekit answer average illuminance for the last week}   & \multicolumn{1}{l|}{2} \\ \hline
+        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries Description of the function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
+        \multicolumn{1}{|c|}{1}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current temperature} & \multicolumn{1}{c|}{3} \\ \hline
+        \multicolumn{1}{|c|}{2}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current pressure}    & \multicolumn{1}{c|}{3} \\ \hline
+        \multicolumn{1}{|c|}{3}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current humidity}    & \multicolumn{1}{c|}{3} \\ \hline
+        \multicolumn{1}{|c|}{4}  & \multicolumn{1}{l|}{Sends a command via MQTT to measure current illuminance} & \multicolumn{1}{c|}{3} \\ \hline
+        \multicolumn{1}{|c|}{5}  & \multicolumn{1}{l|}{Voicekit answer average temperature for the last day}    & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{6}  & \multicolumn{1}{l|}{Voicekit answer average pressure for the last day}       & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{7}  & \multicolumn{1}{l|}{Voicekit answer average humidity for the last day}       & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{8}  & \multicolumn{1}{l|}{Voicekit answer average illuminance for the last day}    & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{9}  & \multicolumn{1}{l|}{Voicekit answer average temperature for the last week}   & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{10} & \multicolumn{1}{l|}{Voicekit answer average pressure for the last week}      & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{11} & \multicolumn{1}{l|}{Voicekit answer average humidity for the last week}      & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{12} & \multicolumn{1}{l|}{Voicekit answer average illuminance for the last week}   & \multicolumn{1}{c|}{2} \\ \hline
     \end{tabular}}
-    \caption{Voice commands of the Sensors module (for detail see \cref{section:app_sensors})} 
+    \caption{Implemented functions of the Sensors module (for detail see \cref{section:app_sensors})} 
+    \label{tab:sensors_command_voice}
 \end{table} 
 
-\subsection{Messages structure}
+\subsection{Messages Structure}
 
-The engine uses for maintain sensors following topics and messages:
+The engine uses the following topics and messages for maintaining sensors:
 
 \begin{itemize}
-    \item "voicehome/sensors/temperature" - to receiving data from temperature sensors
-    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message for receiving data from temperature sensors in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
+    \item "voicehome/sensors/quantity$\_$type" - to receiving data from sensors
+    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message for receiving data from sensors in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
+{
+    "location": string,
+    "sensor_id": string,
+    "state": string,
+    "timestamp": string,
+    "quantity_units": string,
+    "temperature_value": float,
+    "quantity_type": string,
+    "owner": string
+}
+    \end{lstlisting}
+    Example of use for temperature sensor DS18B20
+    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message for receiving data from temperature sensor DS18B20 in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
 {
     "location":"room_2",
     "sensor_id":"ds18b20_1",
@@ -172,34 +196,17 @@ The engine uses for maintain sensors following topics and messages:
     "owner":"jsanda"
 }
     \end{lstlisting}
-    \item "voicehome/sensors/illuminance" - to receiving data from illuminance sensors
-    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message for receiving data from illuminance sensors in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
-{
-    "location":"room_1",
-    "sensor_id":"tsl2591_1",
-    "state":"ok",
-    "timestamp":"2021-05-15 03:19:21",
-    "quantity_units":"lx",
-    "quantity_type":"illuminance",
-    "illuminance_value":0.0,
-    "owner":"jsanda"
-}
-    \end{lstlisting}
-    \item "voicehome/sensors/pressure" - to receiving data from illuminance sensors
-    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message for receiving data from pressure sensors in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
-{
-    "location":"room_1",
-    "sensor_id":"bme280_1",
-    "state":"ok",
-    "timestamp":"2021-05-15 03:19:20",
-    "pressure_value":965,
-    "quantity_units":"hPa",
-    "quantity_type":"pressure",
-    "owner":"jsanda"
-}
-    \end{lstlisting}
     \item "voicehome/sensors/command" - to command sensor to measure current data
     \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to command sensor to measure current data in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
+{
+    "command": string,
+    "sensor_ID": string,
+    "quantity_type": string,
+    "who_asking": string
+}
+    \end{lstlisting}
+    Example of use for temperature sensor DS18B20
+    \begin{lstlisting}[language=json,firstnumber=1,caption={Structure of JSON message to command sensor DS18B20 to measure current data in module \textit{Sensors}},captionpos=b,xleftmargin=1cm]
 {
     "command":"measure_now",
     "sensor_ID":"ds18b20_1",
@@ -237,12 +244,13 @@ The engine uses for maintain sensors following topics and messages:
 %     }
 % }
 %     \end{lstlisting}
+
 \end{itemize}
 
 
-\subsection{BME280}
+\subsection{Pressure Sensor (BME280)}
 
-The BME280 \citep{BME280_Datasheet} module is used to measure the internal temperature and barometric pressure. In addition, our variant has a humidity sensor, which could not be put into operation, probably due to a defective piece. The measuring range of this sensor is in case of ambient temperature from -40 $^{\circ}$C to +85 $^{\circ}$C, in case of humidity from 0$\%$ to 100$\%$ and in case of barometric pressure from 300 hPa to 1100 hPa. Temperature values are measured with an accuracy of ±1 $^{\circ}$C, humidity values with an accuracy of ±3$\%$ and barometric pressure values with an accuracy of ±1 Pa. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D6 and D5 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:bme280_schema}
+The BME280 \citep{BME280_Datasheet} module is used to measure the barometric pressure, internal temperature and humidity. The sensor is used mainly for pressure measuring in this thesis. The measuring range of this sensor is in case of ambient temperature from -40 $^{\circ}$C to +85 $^{\circ}$C, in case of humidity from 0$\%$ to 100$\%$ and in case of barometric pressure from 300 hPa to 1100 hPa. Temperature values are measured with an accuracy of ±1 $^{\circ}$C, humidity values with an accuracy of ±3$\%$ and barometric pressure values with an accuracy of ±1 Pa. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D6 and D5 pins of the microchip to provide I2C communication. The wiring diagram of the BME280 sensor is shown in \cref{fig:bme280_schema}
 
 \begin{figure}[H]
 	\centering
@@ -252,7 +260,7 @@ The BME280 \citep{BME280_Datasheet} module is used to measure the internal tempe
 \end{figure}
 
 
-\subsection{DS18B20}
+\subsection{Temperature Sensor (DS18B20)}
 
 The DS18B20 \citep{DS18B20_Datasheet} is a temperature sensor, and its waterproof variant was chosen as an illustration.  The module's output is the value of temperature in the degree Celsius unit. The sensor's measuring range is from -55 to +125 degrees with an accuracy of ± 0,5 $^{\circ}$C within limits from -10 $^{\circ}$C to +85 $^{\circ}$C. The sensor communicates via the One-Wire interface and uses one pin for data transmission. The sensor is connected to the microchip by three wires - one wire for power supply 3,3V, one for grounding and one for data communication. It is necessary to connect a resistor of resistance 4.7 k$\Omega$ to the circuit, connecting the data and power wires. The wiring diagram of the DS18B20 sensor is shown in \cref{fig:ds18b20_schema}
 
@@ -263,7 +271,7 @@ The DS18B20 \citep{DS18B20_Datasheet} is a temperature sensor, and its waterproo
 	\label{fig:ds18b20_schema}
 \end{figure}
 
-\subsection{TSL2591}
+\subsection{Illuminance Sensor (TSL2591)}
 
 The TSL2591 \citep{TSL2591_Datasheet} is a light intensity sensor that converts the light intensity into a digital output transmitted by the I2C bus. The module's output is the value of light intensity in the lux unit with an accuracy of 4 decimal places, and the measuring range is from 188 $\mu$Lux to 88,000 Lux. The value of the sensor is measured to three decimal places, although it is not necessary to have such high accuracy. The module guarantees measurement accuracy in temperature conditions from -30 $^{\circ}$C to +80 $^{\circ}$C. The sensor is supplied with power from a 3.3 V output on the microchip and grounded to the microchip. The SDA and SCL outputs are wired to the D1 and D2 pins of the microchip to provide I2C communication. The wiring diagram of the TSL2591 sensor is shown in \cref{fig:tsl2591_schema}
 
@@ -276,7 +284,7 @@ The TSL2591 \citep{TSL2591_Datasheet} is a light intensity sensor that converts 
 
 \section{Time}
 
-This module provides commands for manipulation with the time, such as asking for time, date, set timer. The module does not communicate with other devices. The module's functions exploit system information and information available on the Internet. To reach this information from the web is used technique call web scraping that can run the web site and suck desired pieces of information from this site. 
+This module provides commands for manipulation with the time, such as asking for time, date, set timer. The module does not communicate with other devices. The module's functions exploit system information and information available on the Internet. The module uses technique calls web scraping to reach the web page information. The technique runs the webpage and sucks desired pieces of information from it.
 
 % A simple example of this technic is shown in \cref{lst:web_scraping_python}
 
@@ -288,7 +296,7 @@ This module provides commands for manipulation with the time, such as asking for
 %     self.driver.get('www.seznam.cz')
 % \end{lstlisting}
 
-The diagram (see \cref{fig:timer_time_diagram}) shows in a simplified way how the function of the timer work. Other different functions of the time module work on the principle of downloading data from the Internet, and it is not necessary to explain them further.
+The diagram (see \cref{fig:timer_time_diagram}) shows how the function of the timer work in a simplified way. Other different functions of the time module work on the principle of downloading data from the Internet, and it is not necessary to explain them further.
 
 \begin{figure}[H]
     \centering
@@ -297,54 +305,60 @@ The diagram (see \cref{fig:timer_time_diagram}) shows in a simplified way how th
     \label{fig:timer_time_diagram}
 \end{figure}
 
-\subsection{Voice commands}
+\subsection{Implemented functions}
+
+This subsection show table of 8 functions implemented in the \textit{Time} module. The number of calls (commands) registered in the language model is summed up in \cref{tab:time_command_voice}. A complete list of all possible commands is provided in \cref{section:app_time}.
 
 \begin{table}[H]
     \centering
     \resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
-        \multicolumn{1}{|l|}{1}  & \multicolumn{1}{l|}{Send command to ask the server for the current time}        & \multicolumn{1}{l|}{2}                      \\ \hline
-        \multicolumn{1}{|l|}{2}  & \multicolumn{1}{l|}{Send command to ask the server for the current day of year} & \multicolumn{1}{l|}{2}                      \\ \hline
-        \multicolumn{1}{|l|}{3}  & \multicolumn{1}{l|}{Send a command to the server to start timer on 3 minute}    & \multicolumn{1}{l|}{1}                      \\ \hline
-        \multicolumn{1}{|l|}{4}  & \multicolumn{1}{l|}{Send a command to the server to stop timer}                 & \multicolumn{1}{l|}{2}                      \\ \hline
-        \multicolumn{1}{|l|}{5}  & \multicolumn{1}{l|}{Ask the server for today's day of the week}                 & \multicolumn{1}{l|}{2}                      \\ \hline
-        \multicolumn{1}{|l|}{6}  & \multicolumn{1}{l|}{Ask the server for today's sunrise time}                    & \multicolumn{1}{l|}{2}                      \\ \hline
-        \multicolumn{1}{|l|}{7}  & \multicolumn{1}{l|}{Ask the server for today's sunset time}                     & \multicolumn{1}{l|}{2}                      \\ \hline
-        \multicolumn{1}{|l|}{8}  & \multicolumn{1}{l|}{Ask the server for today's nameday}                         & \multicolumn{1}{l|}{2}                      \\ \hline
+        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries Description of the function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
+        \multicolumn{1}{|c|}{1}  & \multicolumn{1}{l|}{Send command to ask the server for the current time}        & \multicolumn{1}{c|}{2}                      \\ \hline
+        \multicolumn{1}{|c|}{2}  & \multicolumn{1}{l|}{Send command to ask the server for the current day of year} & \multicolumn{1}{c|}{2}                      \\ \hline
+        \multicolumn{1}{|c|}{3}  & \multicolumn{1}{l|}{Send a command to the server to start timer on 3 minute}    & \multicolumn{1}{c|}{1}                      \\ \hline
+        \multicolumn{1}{|c|}{4}  & \multicolumn{1}{l|}{Send a command to the server to stop timer}                 & \multicolumn{1}{c|}{2}                      \\ \hline
+        \multicolumn{1}{|c|}{5}  & \multicolumn{1}{l|}{Ask the server for today's day of the week}                 & \multicolumn{1}{c|}{2}                      \\ \hline
+        \multicolumn{1}{|c|}{6}  & \multicolumn{1}{l|}{Ask the server for today's sunrise time}                    & \multicolumn{1}{c|}{2}                      \\ \hline
+        \multicolumn{1}{|c|}{7}  & \multicolumn{1}{l|}{Ask the server for today's sunset time}                     & \multicolumn{1}{c|}{2}                      \\ \hline
+        \multicolumn{1}{|c|}{8}  & \multicolumn{1}{l|}{Ask the server for today's nameday}                         & \multicolumn{1}{c|}{2}                      \\ \hline
     \end{tabular}}
-    \caption{Voice commands of the Time module (for detail see \cref{section:app_time})} 
+    \caption{Implemented functions of the Time module (for detail see \cref{section:app_time})} 
+    \label{tab:time_command_voice}
 \end{table} 
 
 \section{System}
 
 The system module provides the user commands to test the functionality and adjust some settings of the engine. The module communicates primarily with the engine, but it is possible to establish this communication with other devices. Like other technology, the module uses the MongoDB library from python to test the engine's database.
 
-\subsection{Voice commands}
+\subsection{Implemented functions}
+
+This subsection show table of 8 functions implemented in the \textit{System} module. The number of calls (commands) registered in the language model is summed up in \cref{tab:system_command_voice}. A complete list of all possible commands is provided in \cref{section:app_system}.
 
 \begin{table}[H]
     \centering
-    \resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|}
+    \resizebox{0.9\textwidth}{!}{\begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
-        \multicolumn{1}{|l|}{1}  & \multicolumn{1}{l|}{Reloads all the modules again. A fresh refresh.}                                              & \multicolumn{1}{l|}{3}                      \\ \hline
-        \multicolumn{1}{|l|}{2}  & \multicolumn{1}{l|}{Makes a testing write and read with the database.}                                            & \multicolumn{1}{l|}{3}                      \\ \hline
-        \multicolumn{1}{|l|}{3}  & \multicolumn{1}{l|}{Makes a testing MQTT publish} & \multicolumn{1}{l|}{3}                      \\
-        \multicolumn{1}{|l|}{}  & \multicolumn{1}{l|}{to voicehome/system/test,} &  \multicolumn{1}{l|}{}                     \\
-        \multicolumn{1}{|l|}{}  & \multicolumn{1}{l|}{which this module is also subscribing} &  \multicolumn{1}{l|}{}                     \\ \hline
-        \multicolumn{1}{|l|}{4}  & \multicolumn{1}{l|}{Sends a testing websocket message}                                 & \multicolumn{1}{l|}{3}                      \\
-        \multicolumn{1}{|l|}{}  & \multicolumn{1}{l|}{with passport system/test.} &  \multicolumn{1}{l|}{}                     \\ \hline
+        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries Description of the function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
+        \multicolumn{1}{|c|}{1}  & \multicolumn{1}{l|}{Reloads all the modules again. A fresh refresh.}                                              & \multicolumn{1}{c|}{3}                      \\ \hline
+        \multicolumn{1}{|c|}{2}  & \multicolumn{1}{l|}{Makes a testing write and read with the database.}                                            & \multicolumn{1}{c|}{3}                      \\ \hline
+        \multicolumn{1}{|c|}{3}  & \multicolumn{1}{l|}{Makes a testing MQTT publish} & \multicolumn{1}{c|}{3}                      \\
+        \multicolumn{1}{|c|}{}  & \multicolumn{1}{l|}{to voicehome/system/test,} &  \multicolumn{1}{l|}{}                     \\
+        \multicolumn{1}{|c|}{}  & \multicolumn{1}{l|}{which this module is also subscribing} &  \multicolumn{1}{l|}{}                     \\ \hline
+        \multicolumn{1}{|c|}{4}  & \multicolumn{1}{l|}{Sends a testing websocket message}                                 & \multicolumn{1}{c|}{3}                      \\
+        \multicolumn{1}{|c|}{}  & \multicolumn{1}{l|}{with passport system/test.} &  \multicolumn{1}{l|}{}                     \\ \hline
     \end{tabular}}
-    \caption{Voice commands of the System module (for detail see \cref{section:app_system})} 
+    \caption{Implemented functions of the System module (for detail see \cref{section:app_system})} 
+    \label{tab:system_command_voice}
 \end{table} 
 
 \section{Weather}
 
-The weather module provides the user commands to answer questions about the weather. The module's functions exploit the information available on the Internet. By preprocessing the information from the Internet and replating characters like "°C" to "stupnů" or "-" to "mínus", we can then send fully synthesizable text to SpeechCloud and answer the question to the user. To reach this information from the web is used technique call web scraping that can run the web site and suck desired pieces of information from this site. Preprocessing the information uses the technique regex and essential functions such as finding text and selecting text — a simple example of how regex is used shown in \cref{lst:regex_python}.
+The weather module provides the user commands to answer questions about the weather. The module's functions exploit the information available on the Internet. By preprocessing the information and replacing characters like "°C" to "stupnů" or "-" to "mínus" from the Internet, we can then send fully synthesizable text to SpeechCloud and answer the question to the user. The module uses the same technique as the Time module calls web scraping to reach the webpage information. The technique runs the webpage and sucks desired pieces of information from it. Preprocessing the information uses the technique regex and essential functions such as finding text and selecting text — a simple example of how regex is used shown in \cref{lst:regex_python}.
 
 % \lstinputlisting[language=python,firstnumber=1,caption={Simple example how to use regex in Python},captionpos=b, label={lst:regex_python}]{code/regex_example.py}
 
-The diagram (see \cref{fig:forecast_weather_diagram}) shows the steps for answer forecast questions by VoiceKit. The forecast for other days are very similar, and only the day that module searching on a webpage is different.
+The diagram (see \cref{fig:forecast_weather_diagram}) shows the steps for answer forecast questions by VoiceKit. The forecast for other days is very similar. The module only searches for a different day of the week on the web page. 
 
 \begin{figure}[H]
     \centering
@@ -353,29 +367,32 @@ The diagram (see \cref{fig:forecast_weather_diagram}) shows the steps for answer
     \label{fig:forecast_weather_diagram}
 \end{figure}
 
-\subsection{Voice commands}
+\subsection{Implemented functions}
+
+This subsection show table of 9 functions implemented in the \textit{Weather} module. The number of calls (commands) registered in the language model is summed up in \cref{tab:weather_command_voice}. A complete list of all possible commands is provided in \cref{section:app_weather}.
 
 \begin{table}[H]
     \centering
-    \resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|}
+    \resizebox{0.9\textwidth}{!}{\begin{tabular}{|l|l|l|}
         \hline
-        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
-        \multicolumn{1}{|l|}{1} & \multicolumn{1}{l|}{Getting forecast for today from www.chmi.cz.}                                           & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{2} & \multicolumn{1}{l|}{Getting forecast for tomorrow from www.chmi.cz.}                                        & \multicolumn{1}{l|}{2} \\ \hline
-        \multicolumn{1}{|l|}{3} & \multicolumn{1}{l|}{Getting forecast for monday from www.chmi.cz}   & \multicolumn{1}{l|}{2} \\ 
-        \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{l|}{} \\ \hline
-        \multicolumn{1}{|l|}{4} & \multicolumn{1}{l|}{Getting forecast for tuesday from www.chmi.cz}  & \multicolumn{1}{l|}{2} \\ 
-        \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{l|}{} \\ \hline
-        \multicolumn{1}{|l|}{5} & \multicolumn{1}{l|}{Getting forecast for wednesday from www.chmi.cz} & \multicolumn{1}{l|}{2} \\ 
-        \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{l|}{} \\ \hline
-        \multicolumn{1}{|l|}{6} & \multicolumn{1}{l|}{Getting forecast for thursday from www.chmi.cz} & \multicolumn{1}{l|}{2} \\ 
-        \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{l|}{} \\ \hline
-        \multicolumn{1}{|l|}{7} & \multicolumn{1}{l|}{Getting forecast for friday from www.chmi.cz}   & \multicolumn{1}{l|}{2} \\ 
-        \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{l|}{} \\ \hline
-        \multicolumn{1}{|l|}{8} & \multicolumn{1}{l|}{Getting forecast for saturday from www.chmi.cz} & \multicolumn{1}{l|}{2} \\ 
-        \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{l|}{} \\ \hline
-        \multicolumn{1}{|l|}{9} & \multicolumn{1}{l|}{Getting forecast for sunday from www.chmi.cz}   & \multicolumn{1}{l|}{2} \\ 
-        \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{l|}{} \\ \hline
+        \multicolumn{1}{c}{\bfseries ID} & \multicolumn{1}{c}{\bfseries Description of the function} & \multicolumn{1}{c}{\bfseries \# calls} \\ \hline
+        \multicolumn{1}{|c|}{1} & \multicolumn{1}{l|}{Getting forecast for today from www.chmi.cz.}                                           & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{2} & \multicolumn{1}{l|}{Getting forecast for tomorrow from www.chmi.cz.}                                        & \multicolumn{1}{c|}{2} \\ \hline
+        \multicolumn{1}{|c|}{3} & \multicolumn{1}{l|}{Getting forecast for monday from www.chmi.cz}   & \multicolumn{1}{c|}{2} \\ 
+        \multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{c|}{} \\ \hline
+        \multicolumn{1}{|c|}{4} & \multicolumn{1}{l|}{Getting forecast for tuesday from www.chmi.cz}  & \multicolumn{1}{c|}{2} \\ 
+        \multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{c|}{} \\ \hline
+        \multicolumn{1}{|c|}{5} & \multicolumn{1}{l|}{Getting forecast for wednesday from www.chmi.cz} & \multicolumn{1}{c|}{2} \\ 
+        \multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{c|}{} \\ \hline
+        \multicolumn{1}{|c|}{6} & \multicolumn{1}{l|}{Getting forecast for thursday from www.chmi.cz} & \multicolumn{1}{c|}{2} \\ 
+        \multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{c|}{} \\ \hline
+        \multicolumn{1}{|c|}{7} & \multicolumn{1}{l|}{Getting forecast for friday from www.chmi.cz}   & \multicolumn{1}{c|}{2} \\ 
+        \multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{c|}{} \\ \hline
+        \multicolumn{1}{|c|}{8} & \multicolumn{1}{l|}{Getting forecast for saturday from www.chmi.cz} & \multicolumn{1}{c|}{2} \\ 
+        \multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{c|}{} \\ \hline
+        \multicolumn{1}{|c|}{9} & \multicolumn{1}{l|}{Getting forecast for sunday from www.chmi.cz}   & \multicolumn{1}{c|}{2} \\ 
+        \multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{if it is up to four days and not today.}                                           & \multicolumn{1}{c|}{} \\ \hline
     \end{tabular}}
-    \caption{Voice commands of the Weather module (for detail see \cref{section:app_weather})} 
+    \caption{Implemented functions of the Weather module (for detail see \cref{section:app_weather})} 
+    \label{tab:weather_command_voice}
 \end{table} 
