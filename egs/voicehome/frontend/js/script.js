@@ -511,7 +511,7 @@ function restructureTemperatureData() {
 			loc = parseInt(loc.replace("room_", ""));
 			dataTemperature =
 				dataTemperature +
-				(element.timestamp.replace("-", "/") +
+				(element.timestamp.replaceAll("-", "/") +
 					",".repeat(loc) +
 					element.temperature_value.toString() +
 					",".repeat(MAXROOM - loc) +
@@ -535,7 +535,7 @@ function restructureIlluminanceData() {
 			loc = parseInt(loc.replace("room_", ""));
 			dataIlluminance =
 				dataIlluminance +
-				(element.timestamp.replace("-", "/") +
+				(element.timestamp.replaceAll("-", "/") +
 					",".repeat(loc) +
 					element.illuminance_value.toString() +
 					",".repeat(MAXROOM - loc) +
@@ -559,7 +559,7 @@ function restructurePressureData() {
 			loc = parseInt(loc.replace("room_", ""));
 			dataPressure =
 				dataPressure +
-				(element.timestamp.replace("-", "/") +
+				(element.timestamp.replaceAll("-", "/") +
 					",".repeat(loc) +
 					element.pressure_value.toString() +
 					",".repeat(MAXROOM - loc) +
@@ -910,7 +910,7 @@ function drawModule(moduleList, module, checked) {
 			moveCallDiv.className = "badge badge-pill badge-primary m-1";
 			moveCallDiv.innerHTML = module.moves[i_move].calls[i_call]
 				.toString()
-				.replace(",", " ");
+				.replaceAll(",", " ");
 			moveCallsDiv.appendChild(moveCallDiv);
 		}
 	}

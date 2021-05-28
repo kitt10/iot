@@ -34,7 +34,7 @@ mqtt_client.mqtt_msg(msg_structure_state,
 
 # main loop
 while True:
-    time.sleep(2)
+    time.sleep(0.3)
     # print(gc.mem_free())
     if gc.mem_free() < 10000:
         gc.collect()

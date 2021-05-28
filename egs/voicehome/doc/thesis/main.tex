@@ -1,0 +1,36 @@
+% ------------------------------------------------------------------------------------------------------
+\input{tex/sett/preamble}
+\input{tex/sett/thesis_info}
+% familyfont url http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf
+% ------------------------------------------------------------------------------------------------------
+\begin{document}
+% ------------------------------------------------------------------------------------------------------
+\input{tex/sett/title_page}
+\input{tex/sett/declaration_of_authorship}
+\input{tex/sett/quotation}
+\input{tex/sett/abstract}
+\input{tex/sett/keywords}
+% \keywordnames
+\input{tex/sett/acknowledgements}
+\input{tex/sett/lists}
+%\input{tex/sett/dedication} 
+% ------------------------------------------------------------------------------------------------------
+\mainmatter 										% Begin numeric (1,2,3...) page numbering
+\pagestyle{thesis} 									% Return the page headers back to the "thesis" style
+\include{tex/chap/chap_introduction}
+\include{tex/chap/chap_dialogue_systems}
+\include{tex/chap/chap_backend}
+\include{tex/chap/chap_modules}
+\include{tex/chap/chap_gui}
+\include{tex/chap/chap_discussion} 
+\include{tex/chap/chap_conclusion}
+% ------------------------------------------------------------------------------------------------------
+\input{tex/sett/bibliography}
+% ------------------------------------------------------------------------------------------------------
+\appendix 											% Cue to tell LaTeX that the following "chapters" are Appendices
+\renewcommand{\thechapter}{A\arabic{chapter}}	% Appendices A1, A2, ...
+\include{tex/appx/app_esp}
+\include{tex/appx/app_modules_calls}
+% ------------------------------------------------------------------------------------------------------
+\end{document}  
+% ------------------------------------------------------------------------------------------------------

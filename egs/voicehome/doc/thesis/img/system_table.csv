@@ -1,0 +1,12 @@
+﻿ID,function,# activation commands
+1,Reloads all the modules again. A fresh refresh.,3
+2,Makes a testing write and read with the database.,3
+3,"Makes a testing MQTT publish to voicehome/system/test, which this module is also subscribing",3
+4,Sends a testing websocket message with passport system/test.,3
+5,,
+6,,
+7,,
+8,,
+9,,
+10,,
+11,,

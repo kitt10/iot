@@ -6,6 +6,7 @@ import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
+import threading
 
 class Weather(VoicehomeModule):
 
@@ -42,6 +43,21 @@ class Weather(VoicehomeModule):
         self.regex_patterns_minus = '\s(-)\d+\s'
         self.regex_patterns_meter = '(\s\d+\sm\s)'
 
+        self.last_forecast = ""
+        def download_timer():
+            try:
+                self.driver.get(self.URL)
+                results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
+                self.last_forecast = results
+            except:
+                pass
+
+        # print(f"Setting timer to download forecast from the web site every {time} second")
+        self.timer = threading.Timer(900, download_timer)
+        self.timer.start()
+        download_timer()
+
+
     def on_mqtt_message(self, msg):
         print('Module ' + self.id + ": start sending mqtt")
         pass
@@ -54,17 +70,24 @@ class Weather(VoicehomeModule):
         print("Sensors: websocket sended")
         pass
 
-    def get_forecast_today(self):
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
+    def replace_unpronouncable_words(self, msg):
 
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        def minus_replace(matchobj):
+            return matchobj.group(0).replace('-', 'minus ')
+
+        def meter_replace(matchobj):
+            return matchobj.group(0).replace('m', 'metrů')
+
+        msg = re.sub(self.regex_patterns_minus, minus_replace, msg)
+        msg = re.sub(self.regex_patterns_meter, meter_replace, msg)
+
+        msg.replace("°C", "stupňů")
+
+        return msg
+
+
+    def get_forecast_today(self):
+        results = self.last_forecast
 
         breaker = False
         for num_line in range(2, 8):
@@ -80,28 +103,12 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast_today = re.sub(self.regex_patterns_minus, minus_replace, forecast_today)
-        forecast_today = re.sub(self.regex_patterns_meter, meter_replace, forecast_today)
+        forecast_today = self.replace_unpronouncable_words(forecast_today)
 
         self.reply('Server chmi.cz předpovídá pro dnešek. '+forecast_today)
 
     def get_forecast_tomorrow(self):
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(4, 11):
             match = re.search(self.regex_patterns_forecast_tomorrow, results[num_line][:30])
@@ -112,14 +119,8 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
 
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast_tomorrow = re.sub(self.regex_patterns_minus, minus_replace, forecast_tomorrow)
-        forecast_tomorrow = re.sub(self.regex_patterns_meter, meter_replace, forecast_tomorrow)
+        forecast_tomorrow = self.replace_unpronouncable_words(forecast_tomorrow)
 
         self.reply('Server chmi.cz předpovídá pro zítřek. ' + forecast_tomorrow)
 
@@ -132,16 +133,7 @@ class Weather(VoicehomeModule):
             self.get_forecast_tomorrow()
             return
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_monday, results[num_line][:30])
@@ -152,14 +144,7 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
-        forecast = re.sub(self.regex_patterns_meter, meter_replace, forecast)
+        forecast = self.replace_unpronouncable_words(forecast)
 
         self.reply('Server chmi.cz předpovídá na pondělí. ' + forecast)
 
@@ -173,16 +158,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_tuesday, results[num_line][:30])
@@ -193,14 +169,7 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
-        forecast = re.sub(self.regex_patterns_meter, meter_replace, forecast)
+        forecast = self.replace_unpronouncable_words(forecast)
 
         self.reply('Server chmi.cz předpovídá na úterý. ' + forecast)
 
@@ -214,16 +183,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_wednesday, results[num_line][:30])
@@ -234,14 +194,7 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
-        forecast = re.sub(self.regex_patterns_meter, meter_replace, forecast)
+        forecast = self.replace_unpronouncable_words(forecast)
 
         self.reply('Server chmi.cz předpovídá na středu. ' + forecast)
 
@@ -255,16 +208,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_thursday, results[num_line][:30])
@@ -275,14 +219,7 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
-        forecast = re.sub(self.regex_patterns_meter, meter_replace, forecast)
+        forecast = self.replace_unpronouncable_words(forecast)
 
         self.reply('Server chmi.cz předpovídá na čtvrtek. ' + forecast)
 
@@ -296,16 +233,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_friday, results[num_line][:30])
@@ -316,14 +244,7 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
-        forecast = re.sub(self.regex_patterns_meter, meter_replace, forecast)
+        forecast = self.replace_unpronouncable_words(forecast)
 
         self.reply('Server chmi.cz předpovídá na pátek. ' + forecast)
 
@@ -337,16 +258,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_saturday, results[num_line][:30])
@@ -357,14 +269,7 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
-        forecast = re.sub(self.regex_patterns_meter, meter_replace, forecast)
+        forecast = self.replace_unpronouncable_words(forecast)
 
         self.reply('Server chmi.cz předpovídá na sobotu. ' + forecast)
 
@@ -378,16 +283,7 @@ class Weather(VoicehomeModule):
             return
 
 
-        try:
-            self.driver.get(self.URL)
-            results = self.driver.find_element_by_id('loadedcontent').text.split('\n\n')
-        except:
-            results = ''
-            pass
-
-        if results == '':
-            self.reply('Nebylo možno získat data ze serveru chmi.cz')
-            return
+        results = self.last_forecast
 
         for num_line in range(8, len(results)):
             match = re.search(self.regex_patterns_forecast_sunday, results[num_line][:30])
@@ -398,14 +294,7 @@ class Weather(VoicehomeModule):
             self.reply('Nebylo možno získat data ze serveru chmi.cz')
             return
 
-        def minus_replace(matchobj):
-            return matchobj.group(0).replace('-', 'minus ')
-
-        def meter_replace(matchobj):
-            return matchobj.group(0).replace('m', 'metrů')
-
-        forecast = re.sub(self.regex_patterns_minus, minus_replace, forecast)
-        forecast = re.sub(self.regex_patterns_meter, meter_replace, forecast)
+        forecast = self.replace_unpronouncable_words(forecast)
 
         self.reply('Server chmi.cz předpovídá na neděli. ' + forecast)
 

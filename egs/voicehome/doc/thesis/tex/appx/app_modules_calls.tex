@@ -1,0 +1,509 @@
+\chapter{Modules Calls} \label{app:modules_calls}
+
+\section{Lights} \label{section:app_lights}
+The module responds to the following questions:
+\begin{itemize}
+    \item Turn on all the onboard LEDs\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť všechny vývojové desky."
+        \item "Rozsviť všechny vestavěné ledky."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Module confirm each light separately - "Vývojová deska jedna je rozsvícena.", "Vývojová deska dva je rozsvícena.", etc.
+    \end{itemize}
+    \item Turn off all the onboard LEDs\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni všechny vývojové desky."
+        \item "Zhasni všechny vestavěné ledky."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Module confirm each light separately - "Vývojová deska jedna je zhasnuta.", "Vývojová deska dva je zhasnuta.", etc.
+    \end{itemize}    
+    \item Turn on the light 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zapni obýváku světlo."
+        \item "Rozsviť obýváku světlo."
+        \item "Zapni obývacím pokoji světlo."
+        \item "Rozsviť obývacím pokoji světlo."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Světlo v obývacím pokoji rozsvíceno."
+    \end{itemize} 
+    \newpage
+    \item Turn off the light 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Vypni obýváku světlo."
+        \item "Zhasni obýváku světlo."
+        \item "Vypni obývacím pokoji světlo."
+        \item "Zhasni obývacím pokoji světlo."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Světlo v obývacím pokoji zhasnuto."
+    \end{itemize} 
+    \item Turn on the onboard LED number 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť vestavěnou ledku vývojové desky číslo jedna."
+        \item "Rozsviť vývojovou desku číslo jedna."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo jedna rozsvícena."
+    \end{itemize} 
+    \item Turn off the onboard LED number 1\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni vestavěnou ledku vývojové desky číslo jedna."
+        \item "Zhasni vývojovou desku číslo jedna."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo jedna zhasnuta."
+    \end{itemize}
+    \item Turn on the onboard LED number 2\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť vestavěnou ledku vývojové desky číslo dva."
+        \item "Rozsviť vývojovou desku číslo dva."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo dva rozsvícena."
+    \end{itemize}
+    \item Turn off the onboard LED number 2\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni vestavěnou ledku vývojové desky číslo dva."
+        \item "Zhasni vývojovou desku číslo dva."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo dva zhasnuta."
+    \end{itemize}
+    \newpage
+    \item Turn on the onboard LED number 3\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Rozsviť vestavěnou ledku vývojové desky číslo tři."
+        \item "Rozsviť vývojovou desku číslo tři."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo tři rozsvícena."
+    \end{itemize}
+    \item Turn off the onboard LED number 3\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Zhasni vestavěnou ledku vývojové desky číslo tři."
+        \item "Zhasni vývojovou desku číslo tři."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vývojová deska číslo tři zhasnuta."
+    \end{itemize}
+    \item Voicekit answer which lights are turned on\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Která světla svítí."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Aktuálně nejsou rozsvícena žádná světla."
+        \item "Aktuálně jsou rozsvícena tyto světla první ESP, druhé ESP..."
+    \end{itemize}
+\end{itemize}
+
+\section{Sensors}\label{section:app_sensors}
+
+\begin{itemize}
+    \item Sends a command via MQTT to measure current temperature\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Kolik je stupňů?"
+        \item "Jaká je teplota?"
+        \item "Změř teplotu."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Na senzor je odeslán dotaz. Aktuální teplota je dvacet."
+    \end{itemize}
+    \item Sends a command via MQTT to measure current pressure\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Kolik je tlak?"
+        \item "Jaký je tlak?"
+        \item "Změř tlak."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Na senzor je odeslán dotaz. Aktuální tlak je devět set devadesát devět."
+    \end{itemize}
+    \item Sends a command via MQTT to measure current humidity\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Kolik je vlhkost?"
+        \item "Jaká je vlhkost?"
+        \item "Změř vlhkost."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Na senzor je odeslán dotaz. Aktuální vlhkost je deset."
+    \end{itemize}
+    \item Sends a command via MQTT to measure current illuminance\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Kolik je intenzity světla?"
+        \item "Jaká je intenzita světla?"
+        \item "Změř světlo."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Na senzor je odeslán dotaz. Aktuální intenzita světla je třicet."
+    \end{itemize}
+    \item Voicekit answer average temperature for the last day\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrná teplota za poslední den."
+        \item "Dnešní průměrná teplota."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Teplotu nebylo možné vypočíst."
+        \item "Průměrná teplota za poslední den je dvacet."
+    \end{itemize}
+    \item Voicekit answer average pressure for the last day\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrný tlak za poslední den."
+        \item "Dnešní průměrný tlak."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Tlak nebylo možné vypočíst."
+        \item "Průměrný tlak za poslední den je devět set devadesát."
+    \end{itemize}
+    \item Voicekit answer average humidity for the last day\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrná vlhkost za poslední den."
+        \item "Dnešní průměrná vlhkost."
+    \end{itemize}
+    \newpage
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vlhkost nebylo možné vypočíst."
+        \item "Průměrná vlhkost za poslední den je devět set devadesát."
+    \end{itemize}
+    \item Voicekit answer average illuminance for the last day\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrná intenzita světelnosti za poslední den."
+        \item "Dnešní průměrná intenzita světelnosti."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Světelnost nebylo možné vypočíst."
+        \item "Průměrná intenzita světelnosti za poslední den je dvanáct."
+    \end{itemize}
+    \item Voicekit answer average temperature for the last week\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrná teplota za poslední týden."
+        \item "Týdenní průměrná teplota."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Teplotu nebylo možné vypočíst."
+        \item "Průměrná teplota za poslední týden je dvacet."
+    \end{itemize}
+    \item Voicekit answer average pressure for the last week\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrný tlak za poslední týden."
+        \item "Týdenní průměrný tlak."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Tlak nebylo možné vypočíst."
+        \item "Průměrný tlak za poslední týden je devět set devadesát."
+    \end{itemize}
+    \item Voicekit answer average humidity for the last week\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrná vlhkost za poslední týden."
+        \item "Týdenní průměrná vlhkost."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Vlhkost nebylo možné vypočíst."
+        \item "Průměrná vlhkost za poslední týden je devět set devadesát."
+    \end{itemize}
+    \newpage
+    \item Voicekit answer average illuminance for the last week\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item "Průměrná intenzita světelnosti za poslední týden."
+        \item "Týdenní průměrná intenzita světelnosti."
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item "Světelnost nebylo možné vypočíst."
+        \item "Průměrná intenzita světelnosti za poslední týden je dvanáct."
+    \end{itemize}
+\end{itemize}
+
+\section{Time}\label{section:app_time}
+
+\begin{itemize}
+    \item Send command to ask the server for the current time\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Kolik je hodin?
+        \item Čas
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Právě je pět hodin dvacet minut a pět sekund.
+    \end{itemize}
+    \item Send command to ask the server for the current day of year\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Kolikátého dnes je?
+        \item Datum
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Dnes je 4. 5. 2021
+    \end{itemize}
+    \item Send a command to the server to start timer on 3 minute\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Zapni časovač
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Časovač je nastaven na 3 minuty
+    \end{itemize}
+    \item Send a command to the server to stop timer\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Vypni časovač
+        \item Zastav časovač
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Časovač je vypnut
+    \end{itemize}
+    \newpage
+    \item Ask the server for today's day of the week\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Co je za den v týdnu?
+        \item Co je za den?
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Dnes je pondělí.
+    \end{itemize}
+    \item Ask the server for today's sunrise time\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Kdy vychází slunce?
+        \item Východ slunce
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru meteogram.cz
+        \item Slunce vychází v šest hodin a třicet minut.
+    \end{itemize}
+    \item Ask the server for today's sunset time\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Kdy zapadá slunce?
+        \item Západ slunce
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru meteogram.cz
+        \item Slunce zapadá v osmnáct hodin a třicet minut.
+    \end{itemize}
+    \item Ask the server for today's nameday\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Kdo má dnes svátek?
+        \item Svátek
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru svatky.centrum.cz
+        \item Podle serveru svatky.centrum.cz Renata.
+    \end{itemize}
+\end{itemize}
+
+\section{System}\label{section:app_system}
+
+\begin{itemize}
+    \item Reloads all the modules again. A fresh refresh.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Načti moduly
+        \item Aktualizuj moduly
+        \item Přenačti moduly
+    \end{itemize}
+    \newpage
+    \textbf{Reply}
+    \begin{itemize}
+        \item Moduly byly znovu načteny.
+    \end{itemize}
+    \item Makes a testing write and read with the database.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Otestuj databáze
+        \item Test databáze
+        \item Otestuj databázi
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Modul System: Databáze otestována. Vyhledáno dat jeden.
+        \item Modul System: Chyba při testování databáze
+    \end{itemize}
+    \item Makes a testing MQTT publish to voicehome/system/test, which this module is also subscribing\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Otestuj MQTT
+        \item Test MQTT
+        \item Vyzkoušej MQTT
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Na mqtt nebylo možné odesla zprávu
+        \item Zpráva na mqtt odeslána
+    \end{itemize}
+    \item Sends a testing websocket message with passport system/test.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Otestuj WebSocket
+        \item Test WebSocket
+        \item Vyzkoušej WebSockety
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Na websoket nebylo možné odesla zprávu
+        \item Zpráva na websoket odeslána
+    \end{itemize}
+\end{itemize}
+
+\section{Weather}\label{section:app_weather}
+
+\begin{itemize}
+    \item Getting forecast for today from www.chmi.cz.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Dnešní předpověď
+        \item Jak dnes bude?
+    \end{itemize}
+    \newpage
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá pro dnešek. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for tomorrow from www.chmi.cz.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď zítra
+        \item Jak zítra bude?
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá pro zítřek. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for monday from www.chmi.cz if it is up to four days and not today.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď na pondělí
+        \item Jak bude pondělí?
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá na pondělí. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for tuesday from www.chmi.cz if it is up to four days and not today.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď na úterý
+        \item Jak bude úterý?
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá na úterý. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for wednesday from www.chmi.cz if it is up to four days and not today.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď na středu
+        \item Jak bude středu?
+    \end{itemize}
+    \newpage
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá na středu. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for thursday from www.chmi.cz if it is up to four days and not today.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď na čtvrtek
+        \item Jak bude čtvrtek?
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá na čtvrtek. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for friday from www.chmi.cz if it is up to four days and not today.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď na pátek
+        \item Jak bude pátek?
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá na pátek. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for saturday from www.chmi.cz if it is up to four days and not today.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď na sobotu
+        \item Jak bude sobotu?
+    \end{itemize}
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá na sobotu. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+    \item Getting forecast for sunday from www.chmi.cz if it is up to four days and not today.\\
+    \textbf{Voice commands}
+    \begin{itemize}
+        \item Předpověď na neděli
+        \item Jak bude neděli?
+    \end{itemize}
+    \newpage
+    \textbf{Reply}
+    \begin{itemize}
+        \item Nebylo možno získat data ze serveru chmi.cz
+        \item Server chmi.cz předpovídá na neděli. Polojasno až oblačno, místy přeháňky...
+    \end{itemize}
+\end{itemize}

@@ -1,0 +1,13 @@
+﻿ID,function,# activation commands
+1,Sends a command via MQTT to measure current temperature,3
+2,Sends a command via MQTT to measure current pressure,3
+3,Sends a command via MQTT to measure current humidity,3
+4,Sends a command via MQTT to measure current illuminance,3
+5,Voicekit answer average temperature for the last day,2
+6,Voicekit answer average pressure for the last day,2
+7,Voicekit answer average humidity for the last day,2
+8,Voicekit answer average illuminance for the last day,2
+9,Voicekit answer average temperature for the last week,2
+10,Voicekit answer average pressure for the last week,2
+11,Voicekit answer average humidity for the last week,2
+12,Voicekit answer average illuminance for the last week,2

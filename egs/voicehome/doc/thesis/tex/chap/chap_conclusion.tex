@@ -1,0 +1,17 @@
+\chapter{Conclusion} \label{chap:conclusion}
+This thesis is about creating a voice-enabled smart home modules system. The purpose is to allow the user to create various modules for the smart home and a fully customised solution to his needs. The thesis consists of connecting and programming a VoiceKit, an \textit{engine} with voice-enabled modules running on a Raspberry Pi, and three ESP development boards controlling three sensors and four lights. The sensors together measure four physical quantities such as temperature, illuminance, pressure and humidity. The project additionally includes an automatic speech recognition and speech synthesis system. 
+
+The first part of the thesis was designing a hardware solution and the physical implementation of individual sensors and lights. Subsequently, the ESP development board with the \textit{engine} for data transfer from sensors and light control was programmed. Then a database for storing the data has been created. Next, we built the language processor VoiceKit and connected it to a SpeechCloud and the \textit{engine}. In the next phase, modules were created in the \textit{engine} with essential functions. At the end of the project, a comprehensive website was created to present the project's output. 
+
+To sum up the thesis, it is a good start and basis for future work. Many tasks in terms of communication and architecture of code have been solved. During this thesis, three ESP development boards were connected with three sensors and four lights. The general system has been created for connecting modules. Subsequently, the primary five modules were created both on a hardware basis and an Internet basis. Furthermore, a web page was created to present data, states, and voice commands. However, I think we have opened some new questions, so there is still much space to work on in this field. 
+\newpage
+\section{Future Work} \label{sec:future_work}
+Some of the ideas for the future work are listed here.
+
+\begin{itemize}
+    \item \textit{Building a robust database}. The project's database is as simple as possible because it is not the topic of the thesis. Therefore, is there plenty of room for improvement and streamlining.
+    \item \textit{Building a web application}. The thesis's website is made without any model-view-ViewModel framework for the front end, so it would be better to create a single-page application using, for example, Vue.js.
+    \item \textit{Making a project security}. As already mentioned in the thesis field, great emphasis is placed on security and the impossibility of leaking personal data, which could not be explored due to time reasons and complexity of work.
+    \item \textit{Programming an ESP in the C language}. Python was used in the thesis to increase productivity and prototyping. The ESP developing boards would be better to program in C language for acceleration and less memory consumption of the algorithm in the long run.
+    \item \textit{Extending with complex functions and modules}. It is crucial for the future of the project that the development of other modules and functions continues. Many users would certainly appreciate being able to control, for example, music, radio, windows or home security in a smart home.
+\end{itemize}

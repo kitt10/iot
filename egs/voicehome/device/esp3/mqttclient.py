@@ -151,7 +151,7 @@ class Client:
         self.last_minute_sent = self.get_min()
 
     def sync_time(self):
-        GMT = time.mktime(time.localtime()) + 3600
+        GMT = time.mktime(time.localtime()) + 7200
         (year, mon, mday, hour, minute, sec, wd, yd) = time.localtime(GMT)
         converted_time = (str(year) + '-' + "{:02d}".format(mon) + '-' + "{:02d}".format(
             mday) + ' ' + "{:02d}".format(hour) + ':' + "{:02d}".format(minute) + ':' + "{:02d}".format(sec))

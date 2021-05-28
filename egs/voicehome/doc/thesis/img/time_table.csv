@@ -1,0 +1,12 @@
+﻿ID,function,# activation commands
+1,Send command to ask the server for the current time,2
+2,Send command to ask the server for the current day of year,2
+3,Send a command to the server to start timer on 3 minute,1
+4,Send a command to the server to stop timer,2
+5,Ask the server for today's day of the week,2
+6,Ask the server for today's sunrise time,2
+7,Ask the server for today's sunset time,2
+8,Ask the server for today's nameday,2
+,,
+,,
+,,
