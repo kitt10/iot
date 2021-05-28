@@ -12,10 +12,17 @@ function getState(){
 }
 
 function makeButtons(){
-    container = document.getElementById("button-container")
+    container = document.getElementById("button_container")
     container.innerHTML = ""
     for(light in states){
-        container.innerHTML += `<button id=\"${light}\" class=\"light-switch\" onClick=\"toggleLight(this)\">${light}</button>`
+        container.innerHTML += `<button id=\"${light}\" class=\"light_switch\" onClick=\"toggleLight(this)\">${light}</button>`
+        var light_button = document.getElementById(light)
+        if(states[light] === 1){
+           light_button.classList.add("light_on")
+        }
+        else{
+           light_button.classList.add("light_off")
+        }
     }
 }
 
@@ -36,6 +43,14 @@ function onMessageArrived(msg) {
         if("states" in msgD){
             for(light in msgD.states){
                 states[light] = msgD.states[light]
+                var light_button = document.getElementById(light)
+                if(states[light] === 1 && light_button){
+                    light_button.classList.add("light_on")
+                    light_button.classList.remove("light_off")
+                }
+                else if(light_button){
+                    light_button.classList.replace("light_on", "light_off")
+                }
             }
         }
     }
@@ -82,4 +97,14 @@ function toggleLight(element) {
     }
     msg = JSON.stringify(msgD)
     sendMessage(msg, mqtt_topic_cmd)
+}
+
+function debugMode() {
+    var mqttMsg = document.getElementById("mqtt_message_target")
+    if(mqttMsg.style.visibility === "hidden"){
+        mqttMsg.style.visibility = "visible"
+    }
+    else{
+        mqttMsg.style.visibility = "hidden"
+    }
 }
