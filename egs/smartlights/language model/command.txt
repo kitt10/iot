@@ -1,0 +1,13 @@
+rozsviť
+rozsvítit
+zhasni
+zhasnout
+jaký je stav
+jaký je aktuální stav
+jaký je současný stav
+jaký je nyní stav
+jaký je teď stav
+stav
+současný stav
+aktuální stav
+svítí

@@ -1,0 +1,6 @@
+<color>á
+<color>é
+<color>ého
+<color>á <light_type>
+<color>é <light_type>
+<color>ého <light_type>

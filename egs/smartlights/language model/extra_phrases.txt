@@ -1,0 +1,8 @@
+<command> <light>
+ať se <light> rozsvítí
+ať <light> svítí
+ať <light> zhasne
+ať se <light> zhasne
+ať <light> nesvítí
+Je <light> rozsvícená
+Je <light> rozsvícené
