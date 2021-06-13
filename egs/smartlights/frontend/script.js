@@ -15,7 +15,7 @@ function makeButtons(){
     container = document.getElementById("button_container")
     container.innerHTML = ""
     for(light in states){
-        container.innerHTML += `<button id=\"${light}\" class=\"light_switch\" onClick=\"toggleLight(this)\">${light}</button>`
+        container.innerHTML += `<button id=\"${light}\" class=\"light_switch\" onClick=\"toggleLight(this.id)\">${light}</button>`
         var light_button = document.getElementById(light)
         if(states[light] === 1){
            light_button.classList.add("light_on")
@@ -89,11 +89,11 @@ function mqtt_connect() {
 	mqtt_client.connect(options)
 }
 
-function toggleLight(element) {
+function toggleLight(led) {
     msgD = {
         "cmd": "change_status",
-        "LED": element.id,
-        "status": 1-states[element.id]
+        "LED": led,
+        "status": 1-states[led]
     }
     msg = JSON.stringify(msgD)
     sendMessage(msg, mqtt_topic_cmd)
@@ -108,3 +108,7 @@ function debugMode() {
         mqttMsg.style.visibility = "hidden"
     }
 }
+
+/*function parseStatement(statement){
+
+}*/
