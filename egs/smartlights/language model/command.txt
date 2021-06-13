@@ -11,3 +11,4 @@ stav
 současný stav
 aktuální stav
 svítí
+přepnout
