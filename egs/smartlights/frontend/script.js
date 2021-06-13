@@ -1,8 +1,16 @@
-var states = {};
+var states = {};        // kitt-tip: move to index.html - global JS variables
 
 function onBodyLoad() {
     console.log('GUI loaded.')
     mqtt_connect()
+    new_sc_session()
+}
+
+function new_sc_session() {
+    if (speech_cloud) {
+        speech_cloud.terminate()
+    }
+    init_speechcloud(sc_model_uri)
 }
 
 function getState(){
