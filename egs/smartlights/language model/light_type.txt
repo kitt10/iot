@@ -1,5 +1,8 @@
 ledka
 ledku
+ledky
 světlo
+světla
 dioda
 diodu
+diody

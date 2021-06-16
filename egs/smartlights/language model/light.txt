@@ -1,6 +1,14 @@
 <color>á
 <color>é
 <color>ého
+<color>ou
 <color>á <light_type>
 <color>é <light_type>
 <color>ého <light_type>
+<color>ou <light_type>
+světla
+světel
+ledky
+ledek
+diod
+diody

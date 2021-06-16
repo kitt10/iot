@@ -1,8 +1,20 @@
 <command> <light>
 ať se <light> rozsvítí
+ať se <light> zapne
 ať <light> svítí
 ať <light> zhasne
 ať se <light> zhasne
+ať se <light> vypne
 ať <light> nesvítí
-Je <light> rozsvícená
-Je <light> rozsvícené
+je <light> rozsvícená
+jsou <light> rozsvícená
+je <light> rozsvícené
+je <light> zapnutá
+jsou <light> zapnutá
+je <light> zapnuté
+je <light> zhasnutá
+jsou <light> zhasnutá
+je <light> zhasnuté
+je <light> vypnutá
+jsou <light> vypnutá
+je <light> vypnuté

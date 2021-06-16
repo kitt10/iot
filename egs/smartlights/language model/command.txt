@@ -1,7 +1,11 @@
 rozsviť
 rozsvítit
+zapni
+zapnout
 zhasni
 zhasnout
+vypni
+vypnout
 jaký je stav
 jaký je aktuální stav
 jaký je současný stav
@@ -12,3 +16,4 @@ současný stav
 aktuální stav
 svítí
 přepnout
+přepni
