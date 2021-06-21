@@ -5,7 +5,7 @@ import os
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("../frontend/index.html")
+        self.render("../static/index.html")
 
 
 class Application(tornado.web.Application):
@@ -13,7 +13,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r'/(.*)', tornado.web.StaticFileHandler, {
-                'path': os.path.join(os.path.dirname(__file__), '../frontend')})
+                'path': os.path.join(os.path.dirname(__file__), '../static')})
         ]
         settings = {
             "debug": True,
