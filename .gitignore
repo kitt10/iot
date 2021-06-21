@@ -24,4 +24,4 @@ __pycache__
 *.gz
 
 # Know how
-egs/smartlights/backend/dialog.py
+*/dialog.py
