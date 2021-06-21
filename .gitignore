@@ -22,3 +22,6 @@ __pycache__
 .DS_Store
 
 *.gz
+
+# Know how
+egs/smartlights/backend/dialog.py
