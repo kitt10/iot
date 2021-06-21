@@ -1,89 +1,132 @@
 
+/* TTS (Voices: "Iva210", "Jan210", "Jiri210", "Katerina210", "Radka210", "Stanislav210", "Alena210" */
+function do_tts(text, voice) {
+    speechcloud.tts_synthesize({
+        text: text,
+        voice: voice
+    })
+}
+
+/* TTS button listener */
+function tts_say_hello() {
+    do_tts("Ahoj, toto je stránka projektu Vojtěcha Breníka.", "Iva210")
+}
+
+/* ASR button listener */
+function asr_start_stop() {
+    if (recognizing) {
+        speechcloud.asr_pause()
+        recognizing = false
+        console.log("ASR stopped.")
+    } else {
+        speechcloud.asr_recognize()
+        recognizing = true
+        console.log("ASR started: recognizing...")
+    }
+}
+
 function init_speechcloud(model_uri) {
-    var options = {
+
+    /* Space pressed equals ASR button pressed */
+    $(window).keydown(function(evt) {
+        if (evt.keyCode == 32) {
+            evt.preventDefault()
+        }
+    })
+
+    $(window).keyup(function(evt) {
+        if (evt.keyCode == 32) {
+            setTimeout(function () {$("#button_asr").click()}, 100);
+            evt.preventDefault()
+        }
+    })
+
+    let options = {
         uri: model_uri,
-        //tts: "#audioout",
-        disable_audio_processing: false
-    };
+        tts: "#audio_out",
+        disable_audio_processing: true
+    }
 
-    speech_cloud = new SpeechCloud(options)
+    let speechcloud = new SpeechCloud(options);
 
-    speech_cloud.on('error_init', function (data) {
+    window.speechcloud = speechcloud
+
+    speechcloud.on('error_init', function (data) {
         console.error('error.init event handler', data.status, data.text)
-    });
+    })
 
-    speech_cloud.on('error_ws_initialized', function () {
+    speechcloud.on('error_ws_initialized', function () {
         console.log('[WS] - ERROR: WS already initialized.')
-    });
+    })
 
-    speech_cloud.on('_ws_connected', function () {
+    speechcloud.on('_ws_connected', function () {
         console.log('[WS] - connected.')
-    });
+    })
 
-    speech_cloud.on('_ws_closed', function () {
+    speechcloud.on('_ws_closed', function () {
         console.log('[WS] - closed.')
-    });
+    })
 
-    speech_cloud.on('_ws_session', function (data) {
+    speechcloud.on('_ws_session', function (data) {
         console.log('[WS] - session started id=' + data.id)
-    });
+    })
 
-    speech_cloud.on('_sip_closed', function (data) {
+    speechcloud.on('_sip_closed', function (data) {
         console.log('[SIP] - closed.')
-    });
+    })
 
-    speech_cloud.on('_sip_initializing', function (data) {
+    speechcloud.on('_sip_initializing', function (data) {
         console.log('[SIP] - client id=' + data)
-    });
+    })
 
-    speech_cloud.on('_sip_registered', function () {
+    speechcloud.on('_sip_registered', function () {
         console.log('[SIP] - registered.')
-    });
+    })
 
     /* ASR ready */
-    speech_cloud.on('asr_ready', function () {
+    speechcloud.on('asr_ready', function () {
         console.log("ASR model ready.")
-    });
+    })
 
-    speech_cloud.on('asr_audio_record', function (msg) {
+    speechcloud.on('asr_audio_record', function (msg) {
         console.log("Recording...")
-    });
+    })
 
     /* ASR result */
-    speech_cloud.on('asr_result', function (msg) {
+    speechcloud.on('asr_result', function (msg) {
         console.log("Got ASR result:", msg)
-    });
+    })
 
     /* Update signal */
-    speech_cloud.on('asr_signal', function (msg) {
+    speechcloud.on('asr_signal', function (msg) {
         console.log("Received ASR signal:", msg)
-    });
+    })
 
-    speech_cloud.on('sc_start_session', function (msg) {
+    speechcloud.on('sc_start_session', function (msg) {
         session_id = msg.session_id;
         console.log("ASR model: Session ID: " + msg.session_id);
         console.log("ASR model: Session URI: "+ msg.session_uri);
     });
 
-    speech_cloud.on('sc_error', function (msg) {
+    speechcloud.on('sc_error', function (msg) {
         console.log("Error in method"+msg.method_name+": " + msg.error);
         console.log(msg);
-    });
+    })
 
-    speech_cloud.on('asr_offline_started', function (msg) {
+    speechcloud.on('asr_offline_started', function (msg) {
         console.log("asr_offline started.");
-    });
+    })
 
-    speech_cloud.on('asr_offline_finished', function (msg) {
+    speechcloud.on('asr_offline_finished', function (msg) {
         console.log("asr_offline finished.");
-    });
+    })
 
-    speech_cloud.on('asr_offline_error', function (msg) {
+    speechcloud.on('asr_offline_error', function (msg) {
         console.log("asr_offline_error!");
         console.log(msg);
-    });
+    })
 
-    speech_cloud.init();
+    speechcloud.init()
 
-    console.log('Speech cloud library initialized.');
+    console.log('SpeechCloud library initialized.');
 }

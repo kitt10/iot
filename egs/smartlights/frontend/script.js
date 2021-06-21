@@ -7,10 +7,10 @@ function onBodyLoad() {
 }
 
 function new_sc_session() {
-    if (speech_cloud) {
-        speech_cloud.terminate()
+    if (speechcloud) {
+        speechcloud.terminate()
     }
-    init_speechcloud(sc_model_uri)
+    init_speechcloud(SC_URI)
 }
 
 function getState(){
