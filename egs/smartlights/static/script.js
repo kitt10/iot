@@ -3,7 +3,7 @@ var states = {};        // kitt-tip: move to index.html - global JS variables
 function onBodyLoad() {
     console.log('GUI loaded.')
     mqtt_connect()
-    new_sc_session()
+    //new_sc_session()
 }
 
 function new_sc_session() {
