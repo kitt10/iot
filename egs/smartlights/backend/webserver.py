@@ -14,4 +14,4 @@ if __name__ == '__main__':
     SpeechCloudWS.run(SmartLightsDefaultDialog,
                       address="0.0.0.0",
                       port=4000,
-                      static_path="./static")
+                      static_path="../static")

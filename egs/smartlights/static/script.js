@@ -10,7 +10,7 @@ function new_sc_session() {
     if (speechcloud) {
         speechcloud.terminate()
     }
-    init_speechcloud(SC_URI)
+    init_speechcloud()
 }
 
 function getState(){

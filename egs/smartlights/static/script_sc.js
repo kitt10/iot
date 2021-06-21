@@ -25,7 +25,7 @@ function asr_start_stop() {
     }
 }
 
-function init_speechcloud(model_uri) {
+function init_speechcloud() {
 
     /* Space pressed equals ASR button pressed */
     $(window).keydown(function(evt) {
@@ -40,6 +40,11 @@ function init_speechcloud(model_uri) {
             evt.preventDefault()
         }
     })
+
+    let model_uri = SPEECHCLOUD_URI + SPEECHCLOUD_DEFAULT_APP_ID
+    if (location.search.length > 0) {
+        model_uri = SPEECHCLOUD_URI + location.search.substring(1)
+    }
 
     let options = {
         uri: model_uri,

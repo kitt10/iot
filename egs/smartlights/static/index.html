@@ -22,7 +22,9 @@
         let mqtt_client_id = "GUI_"+Date.now()
 
         // Speechcloud
-        let SC_URI = "https://cak.zcu.cz:9443/v1/speechcloud/edu/prj/vbrenik"
+        //let SC_URI = "https://cak.zcu.cz:9443/v1/speechcloud/edu/prj/vbrenik"
+        let SPEECHCLOUD_URI = "https://"+window.location.host.replace("444", "443")+"/v1/speechcloud/"
+        let SPEECHCLOUD_DEFAULT_APP_ID = "edu/prj/vbrenik"
         let speechcloud = null
         let session_id = null
         let recognizing = false
