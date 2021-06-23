@@ -14,5 +14,6 @@ WIFI = dict(
 
 LEDS = dict(
     WHITE = 2,
-    RED = 0
+    RED = 0,
+    GREEN = 1
 )
