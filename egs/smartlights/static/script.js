@@ -1,16 +1,14 @@
-var states = {};        // kitt-tip: move to index.html - global JS variables
-
 function onBodyLoad() {
     console.log('GUI loaded.')
     mqtt_connect()
-    //new_sc_session()
+    new_sc_session()
 }
 
 function new_sc_session() {
-    if (speechcloud) {
-        speechcloud.terminate()
+    if (speech_cloud) {
+        speech_cloud.terminate()
     }
-    init_speechcloud()
+    init_speechcloud(sc_model_uri)
 }
 
 function getState(){
@@ -104,11 +102,35 @@ function toggleLight(led) {
         "status": 1-states[led]
     }
     msg = JSON.stringify(msgD)
+    console.log(`Toggled ${led}.`)
+    sendMessage(msg, mqtt_topic_cmd)
+}
+
+function lightOn(led) {
+    msgD = {
+        "cmd": "change_status",
+        "LED": led,
+        "status": 1
+    }
+    msg = JSON.stringify(msgD)
+    console.log(`Turned ${led} on.`)
+    sendMessage(msg, mqtt_topic_cmd)
+}
+
+function lightOff(led) {
+    msgD = {
+        "cmd": "change_status",
+        "LED": led,
+        "status": 0
+    }
+    msg = JSON.stringify(msgD)
+    console.log(`Turned ${led} off.`)
     sendMessage(msg, mqtt_topic_cmd)
 }
 
 function debugMode() {
     var mqttMsg = document.getElementById("mqtt_message_target")
+
     if(mqttMsg.style.visibility === "hidden"){
         mqttMsg.style.visibility = "visible"
     }
@@ -117,6 +139,79 @@ function debugMode() {
     }
 }
 
-/*function parseStatement(statement){
+function parseStatement(statement){
+    console.log(statement)
+    rLight = "(bíl|zelen|červen|svět|led|diod)(á|é(ho)?|ou|la|el|ky|ek|y)?( (ledk(a|u|y)|svět(lo|la)|diod(a|u|y)))?"
+    rOn = new RegExp("(((rozsviť)|(rozsvítit)|zapni|zapnout) ("+rLight+"))|((ať( se)?) ("+rLight+") ((roz)?svítí))|zapn(e|ou)")
+    rOff = new RegExp("(((zhasni)|(zhasnout)|vypni|vypnout) ("+rLight+"))|((ať( se)?) ("+rLight+") ((zhasne)|(nesvítí)|vypn(e|ou)))")
+    rState = new RegExp("(((jaký je )?(aktuální|současný|nyní|teď)? ?stav)|(je)|(svítí)|jsou) ("+rLight+")(( rozsvícen(á|é))| zhasnut(á|é)| (zap|vyp)nut(á|é))?")
+    rToggle = new RegExp("(přepn(i|out)) ("+rLight+")")
 
-}*/
+    if(match = statement.match(rOn)){
+        if(!(color = match[6])) color = match[18]; //color is in group 6 or 18
+        console.log(`matched on, color: ${color}`)
+        if(["svět", "diod", "led"].includes(color)){
+            for(led in states){
+                lightOn(led)
+            }
+        }
+        else{
+            if(color == "bíl") lightOn("WHITE");
+            else if(color == "červen") lightOn("RED");
+            else if(color == "zelen") lightOn("GREEN");
+        }
+    }
+    else if(match = statement.match(rOff)){
+        if(!(color = match[6])) color = match[18]; //color is in group 6 or 18
+        console.log(`matched off, color: ${color}`)
+        if(["svět", "diod", "led"].includes(color)){
+            for(led in states){
+                lightOff(led)
+            }
+        }
+        else{
+            if(color == "bíl") lightOff("WHITE");
+            else if(color == "červen") lightOff("RED");
+            else if(color == "zelen") lightOff("GREEN");
+        }
+    }
+    else if(match = statement.match(rState)){
+        color = match[8]
+        if(["svět", "diod", "led"].includes(color)){
+            reportState(["WHITE", "RED", "GREEN"])
+        }
+        else{
+            if(color == "bíl") reportState("WHITE");
+            else if(color == "červen") reportState("RED");
+            else if(color == "zelen") reportState("GREEN");
+        }
+    }
+    else if(match = statement.match(rToggle)){
+        color = match[3]
+        if(["svět", "diod", "led"].includes(color)){
+            for(led in states){
+                toggleLight(led)
+            }
+        }
+        else{
+            if(color == "bíl") toggleLight("WHITE");
+            else if(color == "červen") toggleLight("RED");
+            else if(color == "zelen") toggleLight("GREEN");
+        }
+    }
+    else{
+        console.log("Didn't match anything")
+    }
+}
+
+function reportState(leds){
+    console.log(`reporting state of ${leds}`)
+    report = ""
+    ledsCZ = {"WHITE": "bílá", "RED": "červená", "GREEN": "zelená"}
+    for(led in leds){
+        if(report.length) report+=", ";
+        report += `${ledsCZ[led]} ${states[led]?"svítí":"nesvítí"}` 
+    }
+    report+="."
+    //call TTS func on report
+}
