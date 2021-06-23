@@ -4,6 +4,9 @@ body {
 
 #unique_id {
     color: darkblue;
+    font-size: 2vw;
+    padding-left: 2%;
+    padding-top: 1%;
 }
 
 #mqtt_message_target {
@@ -11,7 +14,11 @@ body {
     text-align: center;
     font-style: italic;
     color: maroon;
-    margin-top: 150px;
+    margin-top: 20%;
+    visibility: hidden;
+}
+
+#voice_subs {
     visibility: hidden;
 }
 
@@ -22,6 +29,7 @@ body {
 #button_container {
     width: 100%;
     text-align: center;
+    transform: translate(0,150%);
 }
 
 #footer {
@@ -37,17 +45,33 @@ body {
     border-radius: 50%;
     min-width: 20px;
     min-height: 20px;
-    width: 8vw;
-    height: 8vw;
+    width: 9vw;
+    height: 9vw;
     margin-right: 6%;
     margin-left: 6%;
+    font-size: 1.6vw;
 }
 
 .light_off {
     border: 2px solid black;
     background-color: black;
-    color: white;
-    
+    color: white;  
+}
+
+.light_off#WHITE {
+    border: 2px solid black;
+    background-color: black;
+    color: white;  
+}
+
+.light_off#RED {
+    border: 2px solid rgb(245, 0, 0);
+    color: rgb(245, 0, 0);
+}
+
+.light_off#GREEN {
+    border: 2px solid rgb(0, 219, 0);
+    color:rgb(0, 219, 0)
 }
 
 .light_on {
@@ -56,14 +80,31 @@ body {
     color: black;
 }
 
-.light_on:hover {
+.light_on#WHITE {
     border: 2px solid black;
-    background-color: darkgray;
-    color: white;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
+}
+
+.light_on#RED {
+    border: 2px solid black;
+    background-color: rgb(255, 196, 196);
+    color: rgb(0, 0, 0);
+    box-shadow: 0px 0px 50px rgba(255, 0, 0, 0.3);
+}
+
+.light_on#GREEN {
+    border: 2px solid black;
+    background-color: rgb(187, 241, 187);
+    color: rgb(0, 0, 0);
+    box-shadow: 0px 0px 50px rgba(9, 255, 0, 0.3);
+}
+
+.light_on:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
 .light_off:hover {
-    border: 2px solid black;
-    background-color: lightgray;
-    color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
