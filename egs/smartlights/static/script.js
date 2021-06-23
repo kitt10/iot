@@ -1,7 +1,9 @@
 function onBodyLoad() {
     console.log('GUI loaded.')
     mqtt_connect()
-    new_sc_session()
+    //new_sc_session()
+    document.getElementById("button_asr").innerHTML = mic_off;
+    document.getElementById("button_tts").innerHTML = tts_ico;
 }
 
 function new_sc_session() {
@@ -131,7 +133,6 @@ function lightOff(led) {
 function debugMode() {
     var dbg = document.getElementsByClassName("dbg")
     visibility = "";
-    console.log(dbg)
 
     if(dbg[0].style.visibility === "visible"){
         visibility = "hidden"
@@ -140,7 +141,6 @@ function debugMode() {
         visibility = "visible"
     }
     for(i=0;i<dbg.length;i++){
-        console.log(dbg[i])
         dbg[i].style.visibility = visibility;
     }
 }

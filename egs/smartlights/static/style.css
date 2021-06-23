@@ -26,17 +26,21 @@ body {
     line-height: 1.5em;
 }
 
-#button_container {
+.button_container {
     width: 100%;
     text-align: center;
+}
+
+#button_container {
     transform: translate(0,150%);
 }
 
 #footer {
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 2px;
     width: 100%;
+    text-align: right;
 }
 
 .light_switch {
@@ -50,6 +54,22 @@ body {
     margin-right: 6%;
     margin-left: 6%;
     font-size: 1.6vw;
+}
+
+.SC_button {
+    transition-duration: 0.3s;
+    border-radius: 50%;
+    min-width: 15px;
+    min-height: 15px;
+    width: 6vw;
+    height: 6vw;
+    margin-right: 7%;
+    margin-left: 7%;
+    border: 2px solid black;
+}
+
+.SC_button:hover {
+    background-color: darkgray;
 }
 
 .light_off {
