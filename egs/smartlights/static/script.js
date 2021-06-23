@@ -221,3 +221,13 @@ function reportState(leds){
     report+="."
     //call TTS func on report
 }
+
+function asr_button(element){
+    if(recognizing = !recognizing){
+        element.innerHTML = mic
+    }
+    else{
+        element.innerHTML = mic_off
+    }
+
+}

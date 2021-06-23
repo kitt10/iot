@@ -50,7 +50,7 @@
     
     <!-- ASR/TTS elements -->
     <div class="button_container">
-        <button id="button_asr" onclick="asr_start_stop()" class="SC_button">Recognizer start/stop</button>
+        <button id="button_asr" onclick="asr_button(this); asr_start_stop()" class="SC_button">Recognizer start/stop</button>
         <button id="button_tts" onclick="tts_say_hello()" class="SC_button">Say hello</button>
         <audio id="audio_out"></audio>
     </div>
