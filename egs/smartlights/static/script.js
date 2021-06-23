@@ -129,13 +129,19 @@ function lightOff(led) {
 }
 
 function debugMode() {
-    var mqttMsg = document.getElementById("mqtt_message_target")
+    var dbg = document.getElementsByClassName("dbg")
+    visibility = "";
+    console.log(dbg)
 
-    if(mqttMsg.style.visibility === "hidden"){
-        mqttMsg.style.visibility = "visible"
+    if(dbg[0].style.visibility === "visible"){
+        visibility = "hidden"
     }
     else{
-        mqttMsg.style.visibility = "hidden"
+        visibility = "visible"
+    }
+    for(i=0;i<dbg.length;i++){
+        console.log(dbg[i])
+        dbg[i].style.visibility = visibility;
     }
 }
 

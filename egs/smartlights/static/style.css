@@ -15,11 +15,11 @@ body {
     font-style: italic;
     color: maroon;
     margin-top: 20%;
-    visibility: hidden;
 }
 
-#voice_subs {
+.dbg {
     visibility: hidden;
+    margin-bottom: 15pt;
 }
 
 .common_class {
