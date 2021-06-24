@@ -2,26 +2,32 @@ bílá
 bílé
 bílého
 bílou
-bílá <light_type>
-bílé <light_type>
-bílého <light_type>
-bílou <light_type>
+bílá ledka
+bílé světlo
+bílá dioda
+bílého světla
+bílou ledku
+bílou diodu
 červená
 červené
 červeného
 červenou
-červená <light_type>
-červené <light_type>
-červeného <light_type>
-červenou <light_type>
+červená ledka
+červená dioda
+červené světlo
+červené ledky
+červeného světla
+červenou diodu
+červenou ledku
 zelená
 zelené
 zeleného
 zelenou
-zelená <light_type>
-zelené <light_type>
-zeleného <light_type>
-zelenou <light_type>
+zelená dioda
+zelená ledka
+zelené světlo
+zelenou diodu
+zelenou ledku
 světla
 světel
 ledky
