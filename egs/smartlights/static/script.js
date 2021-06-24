@@ -13,23 +13,31 @@ function new_sc_session() {
     init_speechcloud(sc_model_uri)
 }
 
-function getState(){
+function getState(to){
+    document.getElementById("button_container").innerHTML = ""
     m = "{\"cmd\": \"get_status\"}"
     sendMessage(m, mqtt_topic_cmd)
-    setTimeout(makeButtons, 500)
+    setTimeout(makeButtons, to)
+    console.log(Object.keys(states).length)
+    if(Object.keys(states).length==0){
+        to = to*2;
+        document.getElementById("button_container").innerHTML = `Waiting for ESP8266 to respond. Check if it's connected and <button onclick=\"getState(${to})\">Try again</button>`
+    }
 }
 
 function makeButtons(){
     container = document.getElementById("button_container")
-    container.innerHTML = ""
-    for(light in states){
-        container.innerHTML += `<button id=\"${light}\" class=\"light_switch\" onClick=\"toggleLight(this.id)\">${light}</button>`
-        var light_button = document.getElementById(light)
-        if(states[light] === 1){
-           light_button.classList.add("light_on")
-        }
-        else{
-           light_button.classList.add("light_off")
+    if(Object.keys(states).length) {
+        container.innerHTML = ""
+        for(light in states){
+            container.innerHTML += `<button id=\"${light}\" class=\"light_switch\" onClick=\"toggleLight(this.id)\">${light}</button>`
+            var light_button = document.getElementById(light)
+            if(states[light] === 1){
+                light_button.classList.add("light_on")
+            }
+            else{
+                light_button.classList.add("light_off")
+            }
         }
     }
 }
@@ -73,7 +81,7 @@ function onConnect() {
     mqtt_client.subscribe(mqtt_topic_subscribe)
     console.log("Connected to MQTT broker. Subscribed:", mqtt_topic_subscribe)
     sendAhoy()
-    getState()
+    getState(respTo)
 }
 
 function sendMessage(m, topic) {
