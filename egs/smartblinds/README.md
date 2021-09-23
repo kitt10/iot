@@ -7,12 +7,12 @@
 ---
 
 ### Postup práce
-- Nastudujte možnosti automatického ovládání vybraných žaluzií a seznamte se s poskytovaným API
-- Sestavte úlohu strojového učení volbou vhodného příznakového vektoru a požadovaného výstupního vektoru
-- Otestujte potřebné elektronické komponenty a zprovozněte jejich komunikaci s řídící jednotkou
-- Zahajte sběr reálných dat pro pozdější strojové učení
-- Implementujte základní rozhodovací systém použitelný jako baseline
-- Navrhněte model neuronové sítě a vyhodnoťte jeho reálnou použitelnost v porovnání s baseline systémem
+- Nastudujte možnosti automatického ovládání vybraných žaluzií a seznamte se s poskytovaným API.
+- Sestavte úlohu strojového učení volbou vhodného příznakového vektoru a požadovaného výstupního vektoru.
+- Otestujte potřebné elektronické komponenty a zprovozněte jejich komunikaci s řídící jednotkou.
+- Zahajte sběr reálných dat pro pozdější strojové učení.
+- Implementujte základní rozhodovací systém použitelný jako baseline.
+- Navrhněte model neuronové sítě a vyhodnoťte jeho reálnou použitelnost v porovnání s baseline systémem.
 
 ### Technologie
 ESP8266, MQTT, Python, Keras, MLP, LSTM, HTML, CSS, Git, SSH, Anaconda, LaTeX
@@ -26,3 +26,4 @@ https://github.com/kitt10/iot/tree/master/egs/smartblinds
 - Bishop, C. (1995). Neural networks for pattern recognition. Oxford University Press, USA.
 - Chollet, F., & others. (2015). Keras. https://keras.io.
 
+[1]: http://www.kky.zcu.cz/en/student-works/513
