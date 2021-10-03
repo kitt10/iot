@@ -25,3 +25,4 @@ __pycache__
 
 # Know how
 egs/smartlights/backend/dialog.py
+egs/smartblinds/device/esp_lux_temp/config.json
