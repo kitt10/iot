@@ -74,7 +74,7 @@ class Tsl2591:
                  self,
                  integration=INTEGRATIONTIME_100MS,
                  gain=GAIN_LOW,
-                 i2c=I2C(0)
+                 i2c=I2C(scl=Pin(5), sda=Pin(4), freq=100000)
                  ):
         self.bus = SMBusEmulator(i2c)
         self.integration_time = integration
