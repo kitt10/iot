@@ -1,34 +1,34 @@
-import tornado.ioloop
-import tornado.web
-import os
+from tornado.web import Application, RequestHandler, StaticFileHandler
+from tornado.ioloop import IOLoop
+from os.path import join, dirname
 import json
 
 
-class MainHandler(tornado.web.RequestHandler):
+class MainHandler(RequestHandler):
     def get(self):
-        self.render("index.html")
+        self.render("static/index.html")
 
 
-class JsonHandler(tornado.web.RequestHandler):
+class JsonHandler(RequestHandler):
     def get(self):
         self.write(json.dumps(storage))
 
 
-class Application(tornado.web.Application):
+class WebApp(Application):
     def __init__(self):
         handlers = [
             (r"/", MainHandler),
             (r"/json/", JsonHandler),
+            ('/(.*)', StaticFileHandler, {'path': join(dirname(__file__), 'static')})
         ]
         settings = {
-            "debug": True,
-            "static_path": os.path.join(os.path.dirname(__file__), "static")
+            "debug": True
         }
-        tornado.web.Application.__init__(self, handlers, **settings)
+        Application.__init__(self, handlers, **settings)
 
 
 if __name__ == "__main__":
     storage = {'data': [1, 2]}
-    app = Application()
+    app = WebApp()
     app.listen(8888)
-    tornado.ioloop.IOLoop.current().start()
+    IOLoop.current().start()
