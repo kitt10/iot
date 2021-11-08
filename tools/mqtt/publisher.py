@@ -28,6 +28,6 @@ if __name__ == '__main__':
 
     send2broker(client, TOPIC, 'Hi, there! [string]')
 
-    send2broker(client, TOPIC, dumps({'message': 'Hi, there! [json]'}), retain=True)
+    send2broker(client, TOPIC, dumps_json({'message': 'Hi, there! [json]'}), retain=True)
 
     client.disconnect()
