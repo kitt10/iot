@@ -4,6 +4,23 @@
 - Webserver
 - Neural network based decision system
 ---
+#### cfg_engine.yml
+```yaml
+broker:
+  host:                     # string
+  port:                     # number
+  uname:                    # string
+  passwd:                   # string
+  topic: 'smartblinds/#'    # string
+  verbose: false            # boolean
+mongo:
+  host:                     # string
+  port:                     # number
+  database: 'smartblinds'   # string
+  collection: 'real'        # string [real / sim]
+  verbose: true             # boolean
+verbose: true               # boolean
+```
 #### broker2mongo.py
 - running separately
 - MQTT broker subscriber
