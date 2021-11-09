@@ -26,7 +26,7 @@ class MQTTSubscriber:
     def on_message(self, client, userdata, msg):
         if (msg.payload == 'Q'):
             self.client.disconnect()
-        
+
         self.mongo.save(item=json_loads(msg.payload), topic=str(msg.topic))
 
     def on_log(self, client, userdata, level, buf):
@@ -50,7 +50,6 @@ class Mongo:
         timestamp = datetime.now().isoformat()
         item.update({'timestamp': timestamp, 'topic': topic, 'location': topic.split('/')[2]})
         self.collection.insert_one(item)
-        print(item)
         self.log(str(timestamp)+'\tSaved.\t'+str(item['quantity'])+' at '+str(item['location'])+': '+str(item['value']))
 
     def log(self, buf):
@@ -61,9 +60,8 @@ class Mongo:
 def load_config(cfg_file):
     with open(cfg_file, 'r') as fr:
         cfg = yaml_full_load(fr)
-    
+
     log(cfg, 'Config file '+str(cfg_file)+' loaded.')
-    
     return cfg
 
 def log(cfg, buf):
@@ -72,7 +70,7 @@ def log(cfg, buf):
 
 
 if __name__ == '__main__':
-    
+
     # Load config
     cfg = load_config(cfg_file='cfg_engine.yml')
 
