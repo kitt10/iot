@@ -13,6 +13,7 @@ models/
 
 # config files
 config.cfg
+cfg_engine.yml
 
 # python
 *.pyc
