@@ -11,25 +11,6 @@ import tsl2591
 from connect import connect
 import network
 
-config = open("config.json", "r")
-cfg = json.load(config)
-config.close()
-
-CLIENT_ID = ubinascii.hexlify(machine.unique_id())
-client = MQTTClient(CLIENT_ID, cfg["mqtt"]["broker"], cfg["mqtt"]["port"], cfg["mqtt"]["user"], cfg["mqtt"]["passwd"])
-client.connect()
-ow = onewire.OneWire(Pin(cfg["ds_pin"]))
-ds = ds18x20.DS18X20(ow)
-roms = ds.scan()
-
-sta_if = network.WLAN(network.STA_IF)
-
-def measure_temp():
-    ds.convert_temp()
-    return ds.read_temp(roms[0])
-
-tsl = tsl2591.Tsl2591()
-
 def get_time():
     try:
         ntptime.settime()
@@ -38,6 +19,10 @@ def get_time():
     (year, month, mday, hour, minute, sec, wd, yd) = time.localtime(3600*cfg["tz"] + time.mktime(time.localtime()))
     seconds = hour*3600 + minute*60 + sec
     return (yd, wd, seconds)
+
+def measure_temp():
+    ds.convert_temp()
+    return ds.read_temp(roms[0])
 
 def measure_send():
     lux = tsl.measure()
@@ -57,11 +42,35 @@ def measure_send():
         client.publish(topic, json.dumps(msg))
     print("Successfully published messages.\n")
 
+def callback(topic, message):
+    measure_send()
 
+
+config = open("config.json", "r")
+cfg = json.load(config)
+config.close()
+
+CLIENT_ID = ubinascii.hexlify(machine.unique_id())
+client = MQTTClient(CLIENT_ID, cfg["mqtt"]["broker"], cfg["mqtt"]["port"], cfg["mqtt"]["user"], cfg["mqtt"]["passwd"])
+client.set_callback(callback)
+
+client.connect()
+for event_topic in cfg["mqtt"]["event_topics"]: client.subscribe(event_topic)
+ow = onewire.OneWire(Pin(cfg["ds_pin"]))
+ds = ds18x20.DS18X20(ow)
+roms = ds.scan()
+
+sta_if = network.WLAN(network.STA_IF)
+
+tsl = tsl2591.Tsl2591()
+
+last_time = time.time()-cfg["period"]
 while 1:
     if sta_if.isconnected():
-        measure_send()
-        time.sleep(cfg["period"])
+        if(time.time()-last_time>=cfg["period"]):
+            measure_send()
+            last_time = time.time()
+        client.check_msg()
     else:
         connect()
         client.connect()
