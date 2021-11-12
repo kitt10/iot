@@ -57,13 +57,15 @@ There are 4 quantities measured: ```illuminance``` [lux] and ```temperature``` [
 {
     _id: ObjectId
     timestamp: string
-    location: string
-    quantity: string
-    value: number
-    time: {
-        year_day: number
-        week_day: number
-        day_seconds: number
+    data: {
+      location: string
+      quantity: string
+      value: number
+      time: {
+          year_day: number
+          week_day: number
+          day_seconds: number
+      }
     }
 }
 ```

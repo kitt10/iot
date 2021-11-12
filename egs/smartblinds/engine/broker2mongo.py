@@ -2,7 +2,7 @@ from yaml import full_load as yaml_full_load
 import paho.mqtt.client as mqtt_client
 from pymongo import MongoClient
 from datetime import datetime
-from json import loads as json_loads
+from json import loads as json_loads, JSONDecodeError
 
 
 class MQTTSubscriber:
@@ -27,7 +27,11 @@ class MQTTSubscriber:
         if (msg.payload == 'Q'):
             self.client.disconnect()
 
-        self.mongo.save(item=json_loads(msg.payload), topic=str(msg.topic))
+        try:
+            payload = json_loads(msg.payload)
+            self.mongo.save(data=payload, topic=str(msg.topic))
+        except JSONDecodeError:
+            log('E: json_loads:', msg.payload)
 
     def on_log(self, client, userdata, level, buf):
         if self.cfg['broker']['verbose']:
@@ -46,11 +50,12 @@ class Mongo:
         self.database = self.mongoClient[self.cfg['mongo']['database']]
         self.collection = self.database[self.cfg['mongo']['collection']]
 
-    def save(self, item, topic):
+    def save(self, data, topic):
         timestamp = datetime.now().isoformat()
-        item.update({'timestamp': timestamp, 'topic': topic, 'location': topic.split('/')[2]})
-        self.collection.insert_one(item)
-        self.log(str(timestamp)+'\tSaved.\t'+str(item['quantity'])+' at '+str(item['location'])+': '+str(item['value']))
+        data.update({'topic': topic, 'location': topic.split('/')[2]})
+        doc = {'timestamp': timestamp, 'data': data}
+        self.collection.insert_one(doc)
+        self.log(str(timestamp)+'\tSaved.\t'+str(data['quantity'])+' at '+str(data['location'])+': '+str(data['value']))
 
     def log(self, buf):
         if self.cfg['mongo']['verbose']:
