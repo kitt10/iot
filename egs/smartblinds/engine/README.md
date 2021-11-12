@@ -33,6 +33,8 @@ smartblinds/lux/out
 smartblinds/lux/Vojta
 smartblinds/temp/out
 smartblinds/temp/Vojta
+smartblinds/tilt/Vojta
+smartblinds/position/Vojta
 ```
 - expected message structure
 ```
@@ -46,6 +48,7 @@ smartblinds/temp/Vojta
     }
 }
 ```
+There are 4 quantities measured: ```illuminance``` [lux] and ```temperature``` [°C] (outside - ```out```, inside - ```Vojta```) and both ```position``` <0, 100> and ```tilt``` <0, 100> of blinds.
 ##### Database
 - database: ```'smartblinds'```
 - collections: ```['real', 'sim']```
