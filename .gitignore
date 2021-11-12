@@ -27,3 +27,13 @@ __pycache__
 # Know how
 egs/smartlights/backend/dialog.py
 egs/smartblinds/device/esp_lux_temp/config.json
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/fp-info-cache
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp.sch-bak
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp.sch
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp.pro
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp.net
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp.kicad_pcb-bak
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp.kicad_pcb
+egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp-cache.lib
+egs/smartblinds/device/esp_lux_temp/config-in.json
+egs/smartblinds/engine/cfg_owm.json
