@@ -13,16 +13,25 @@ def get_time():
 
 def on_message(client, userdata, message):
     one_call = mgr.one_call(lat = cfg["owm"]["lat"], lon = cfg["owm"]["lon"])
-    temperature = one_call.forecast_daily[1].temperature('celsius')["day"]
+    values = dict(
+        temp_1h = one_call.forecast_hourly[1].temperature('celsius')["temp"],
+        temp_2h = one_call.forecast_hourly[2].temperature('celsius')["temp"],
+        temp_3h = one_call.forecast_hourly[3].temperature('celsius')["temp"],
+        max_temp = one_call.forecast_daily[0].temperature('celsius')["max"],
+        wind_speed = one_call.forecast_hourly[0].wind().get('speed', 0),
+        wind_heading = one_call.forecast_hourly[0].wind().get('deg', 0),
+        code = one_call.forecast_hourly[0].weather_code
+    )
 
     time_keys = ["year_day", "week_day", "day_seconds"]
     time_tuple = get_time()
     time_dict = {time_keys[i]: time_tuple[i] for i in range(len(time_keys))}
 
-    msg = {"quantity": "forecast_temperature", "time": time_dict, "value": temperature}
-    message = json.dumps(msg)
-    client.publish(cfg["mqtt"]["topic"], message)
-    print(message)
+    for q in values:
+        msg = {"quantity": cfg["QUANTITIES"][q], "id": q, "time": time_dict, "value": values[q]}
+        message = json.dumps(msg)
+        client.publish(cfg["mqtt"]["topics"][q], message)
+        print(message)
 
 
 
@@ -37,4 +46,5 @@ client.on_connect = on_connect
 client.on_message = on_message
 client.username_pw_set(cfg["mqtt"]["user"], password = cfg["mqtt"]["passwd"])
 client.connect(cfg["mqtt"]["broker"], cfg["mqtt"]["port"])
+on_message(client, "", "")
 client.loop_forever()
