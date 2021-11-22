@@ -30,8 +30,8 @@ class MQTTSubscriber:
         try:
             payload = json_loads(msg.payload)
             self.mongo.save(data=payload, topic=str(msg.topic))
-        except JSONDecodeError:
-            log('E: json_loads:', msg.payload)
+        except:
+            print('E: json_loads:', msg.payload)
 
     def on_log(self, client, userdata, level, buf):
         if self.cfg['broker']['verbose']:
