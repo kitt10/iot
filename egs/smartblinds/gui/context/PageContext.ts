@@ -36,13 +36,13 @@ export interface StyleI {
 
 export interface plannedMessageI {
   newMessage: string
-  lasting: number
+  lasting: number         // [ms]
 }
 
 export interface PageContextI {
     style: StyleI
     message: string
-    planMessage: (props: plannedMessageI) => void
+    planMessage: (plannedMessage: plannedMessageI) => void
 }
 
 const PageContext = createContext<PageContextI>({} as PageContextI)

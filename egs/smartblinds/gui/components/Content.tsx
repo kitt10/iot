@@ -6,6 +6,8 @@ const componentS = () => css({
   flexGrow: 1,
   width: 'calc(100% - 50px)',
   margin: '25px',
+  display: 'flex',
+  flexDirection: 'column',
   border: '1px solid green'
 })
 

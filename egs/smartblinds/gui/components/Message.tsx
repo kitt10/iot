@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { css } from '@emotion/react'
+import PageContext from '../context/PageContext'
 
 
 const componentS = () => css({
@@ -11,7 +12,7 @@ const componentS = () => css({
 
 const Message: React.FunctionComponent = () => {
 
-  const message: string = 'message'
+  const { message } = useContext(PageContext)
 
   return (
     <div css={componentS}>
