@@ -1,2 +1,7 @@
-### Graphical User Interface
+### Smartblinds: Graphical User Interface
 ---
+
+- Next.js
+- React
+- TypeScript
+- Emotion

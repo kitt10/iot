@@ -13,7 +13,7 @@ models/
 
 # config files
 config.cfg
-cfg_engine.yml
+*.yml
 
 # python
 *.pyc
@@ -23,6 +23,10 @@ __pycache__
 .DS_Store
 
 *.gz
+
+# React
+node_modules
+.next
 
 # Know how
 egs/smartlights/backend/dialog.py

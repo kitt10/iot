@@ -1,0 +1,30 @@
+{
+  "name": "smartblinds_gui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@emotion/babel-plugin": "11.0.0",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/material": "^5.1.0",
+    "cross-env": "^7.0.2",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-router": "^6.0.2",
+    "react-router-dom": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.33",
+    "eslint": "^8.1.0",
+    "eslint-config-next": "11.1.2",
+    "typescript": "4.4.4"
+  }
+}
