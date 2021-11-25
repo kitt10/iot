@@ -19,7 +19,7 @@ const IndexPage = () => {
   const title: string = 'Smartblinds'
   const description: string = 'Vojtěch Breník - The Smartblinds Project.'
 
-  const animationTime: number = 2000    // [ms]
+  const animationTime: number = 1000    // [ms]
   const step: number = 10              // [ms]
 
   const router = useRouter()

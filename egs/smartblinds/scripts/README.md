@@ -37,7 +37,7 @@ smartblinds/data
     "year_day": ,         // int <1, 365>
     "week_day": ,         // int <0, 6>
     "day_secs": ,         // int <0, 86400>
-    "home": ,             // int {0, 1}
+    "home": ,             // boolean
     "temp_in": ,          // float <-30, 50>
     "temp_out": ,         // float <-30, 50>
     "lum_in": ,           // float <0, 10000>
