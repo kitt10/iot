@@ -7,7 +7,8 @@ const componentS = () => css({
   marginLeft: '25px',
   marginTop: '25px',
   fontSize: '25px',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  width: '35%'         // to make the message centered
 })
 
 export interface TitleI {

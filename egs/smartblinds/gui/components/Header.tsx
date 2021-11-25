@@ -2,6 +2,7 @@ import React from 'react'
 import { css } from '@emotion/react'
 import Title from '../components/Title'
 import Menu from '../components/Menu'
+import Message from './Message'
 
 
 const componentS = () => css({
@@ -22,6 +23,7 @@ const Header: React.FunctionComponent<HeaderI> = ({ titleText, currentPage }) =>
   return (
     <div css={componentS}>
       <Title titleText={titleText} />
+      <Message />
       <Menu currentPage={currentPage} />
     </div>
   )

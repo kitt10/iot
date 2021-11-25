@@ -32,6 +32,7 @@ smartblinds/data
 {
   "timestamp": ,          // float (seconds since 1.1.1970)
   "testing": ,            // boolean (testing mode)
+  "periodical": ,         // boolean (periodical / event-based)
   "features": {
     "year_day": ,         // int <1, 365>
     "week_day": ,         // int <0, 6>

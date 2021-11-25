@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 import { css, SerializedStyles } from '@emotion/react'
 
-const globalStyle = css`
+export const globalStyle = css`
 html {
     background: black;
   }
@@ -20,7 +20,7 @@ a {
 }
 `
 
-const pageS = css({
+export const pageS = css({
     display: 'flex',
     flexDirection: 'column',
     minWidth: '100vh',
@@ -34,15 +34,15 @@ export interface StyleI {
     pageS: SerializedStyles
 }
 
-export interface PageContextI {
-    style: StyleI
+export interface plannedMessageI {
+  newMessage: string
+  lasting: number
 }
 
-export const defaultPageContext: PageContextI = {
-    style: {
-        globalStyle: globalStyle,
-        pageS: pageS
-    }
+export interface PageContextI {
+    style: StyleI
+    message: string
+    planMessage: (props: plannedMessageI) => void
 }
 
 const PageContext = createContext<PageContextI>({} as PageContextI)
