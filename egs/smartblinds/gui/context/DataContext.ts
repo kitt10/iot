@@ -1,12 +1,24 @@
 import { createContext } from 'react'
 
+export interface FeaturesValuesI {
+    [feature_name: string]: number | boolean
+}
+
+export interface TargetsValuesI {
+    [target_name: string]: number
+}
+
 export interface DocumentI {
-    [feature_or_target: string]: string | number | boolean
+    timestamp: number
+    testing: boolean
+    periodical: boolean
+    featureValue: FeaturesValuesI
+    targetValue: TargetsValuesI
 }
 
 export interface DataContextI {
     documents: DocumentI[]
-    setDocuments: (documents: DocumentI[]) => void
+    parseData: (data: Object[]) => void
 }
 
 const DataContext = createContext<DataContextI>({} as DataContextI)

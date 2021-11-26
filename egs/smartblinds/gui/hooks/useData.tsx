@@ -5,9 +5,14 @@ export const useData = () => {
 
     const [documents, setDocuments] = useState([] as DocumentI[])
 
+    const parseData = async (data: Object[]) => {
+        const docs: DocumentI[] = data as DocumentI[]
+        setDocuments(docs)
+    }
+
     const dataContext: DataContextI = {
         documents: documents,
-        setDocuments: setDocuments
+        parseData: parseData
     }
 
     return dataContext

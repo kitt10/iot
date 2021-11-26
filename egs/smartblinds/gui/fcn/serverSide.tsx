@@ -20,7 +20,6 @@ export const loadData = async () => {
     let data: Object[] = [] as Object[]
     await post(config.ep_data, {limit: 0})
         .then(payload => {
-            console.log('payload:', payload)
             data = payload.data
         })
         .catch(err => {

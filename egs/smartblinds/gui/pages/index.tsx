@@ -1,13 +1,14 @@
 import { useEffect, useContext } from 'react'
 import { GetServerSideProps } from 'next'
 import { css } from '@emotion/react'
+import TaskContext, { TaskI } from '../context/TaskContext'
+import DataContext from '../context/DataContext'
 import { useState } from 'react'
+import { loadTask, loadData } from '../fcn/serverSide'
 import Page from '../components/core/Page'
 import { useRouter } from 'next/router'
 import Header from '../components/Header'
 import Content from '../components/Content'
-import TaskContext, { TaskI } from '../context/TaskContext'
-import { loadTask, loadData } from '../fcn/serverSide'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const task: TaskI = await loadTask()
@@ -24,17 +25,19 @@ const blindsS = (countDown: number, animationTime: number) => css({
   borderBottom: '1px solid black'
 })
 
-const IndexPage = (props: {task: TaskI}) => {
+const IndexPage = (props: {task: TaskI, data: Object[]}) => {
 
   const title: string = 'Smartblinds'
   const description: string = 'Vojtěch Breník - The Smartblinds Project.'
+
+  const taskContext = useContext(TaskContext)
+  const dataContext = useContext(DataContext)
 
   const animationTime: number = 1000    // [ms]
   const step: number = 10              // [ms]
 
   const router = useRouter()
   const [countDown, setCountDown] = useState(animationTime)
-  const taskContext = useContext(TaskContext)
 
   const redirect = () => {
     router.push('/live')
@@ -53,6 +56,7 @@ const IndexPage = (props: {task: TaskI}) => {
     console.log('Loaded props:', props)
     /** Fill in server-side loaded props. */
     taskContext.setTask(props.task.features, props.task.targets)
+    dataContext.parseData(props.data)
   }, [])
 
   return (
