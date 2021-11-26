@@ -1,10 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import { GetServerSideProps } from 'next'
 import { css } from '@emotion/react'
 import { useState } from 'react'
 import Page from '../components/core/Page'
 import { useRouter } from 'next/router'
 import Header from '../components/Header'
 import Content from '../components/Content'
+import TaskContext, { TaskI } from '../context/TaskContext'
+import { loadTask } from '../fcn/serverSide'
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const task: TaskI = await loadTask()
+  return { props: {task: task} }
+}
 
 const blindsS = (countDown: number, animationTime: number) => css({
   width: '100%',
@@ -14,7 +22,7 @@ const blindsS = (countDown: number, animationTime: number) => css({
   borderBottom: '1px solid black'
 })
 
-const IndexPage = () => {
+const IndexPage = (props: {task: TaskI}) => {
 
   const title: string = 'Smartblinds'
   const description: string = 'Vojtěch Breník - The Smartblinds Project.'
@@ -24,6 +32,7 @@ const IndexPage = () => {
 
   const router = useRouter()
   const [countDown, setCountDown] = useState(animationTime)
+  const taskContext = useContext(TaskContext)
 
   const redirect = () => {
     router.push('/live')
@@ -37,6 +46,12 @@ const IndexPage = () => {
       redirect()
     }
   }, [countDown])
+
+  useEffect(() => {
+    console.log('Loaded props:', props)
+    /** Fill in server-side loaded props. */
+    taskContext.setTask(props.task.features, props.task.targets)
+  }, [])
 
   return (
     <Page title={title} description={description}>

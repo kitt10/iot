@@ -16,6 +16,8 @@ features:
     description: 'desc'
   - name: 'home'
     type: 'boolean'
+    min: ~
+    max: ~
     description: 'desc'
   - name: 'temp_in'
     type: 'float'

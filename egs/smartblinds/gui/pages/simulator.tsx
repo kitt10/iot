@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { css } from '@emotion/react'
-import PageContext from '../context/PageContext'
 import Page from '../components/core/Page'
 import Header from '../components/Header'
 import Content from '../components/Content'
+import TaskContext from '../context/TaskContext'
 
 const SimulatorPage = () => {
 
   const title: string = 'Smartblinds - Simulator'
   const description: string = 'Vojtěch Breník - The Smartblinds Project.'
 
+  const { features, targets } = useContext(TaskContext)
+  console.log('features:', features)
 
   return (
     <Page title={title} description={description}>
