@@ -2,6 +2,7 @@ from tornado.web import Application, StaticFileHandler
 from tornado.ioloop import IOLoop
 from os.path import join, dirname
 from .ep_web import EP_Web
+from .ep_data import EP_Data
 
 class WebServer:
     
@@ -17,7 +18,9 @@ class WebServer:
         self.debug = self.cfg['webserver']['debug']
 
         endpoints = [('/', EP_Web, {'webserver': self}),
-                     ('/(.*)', StaticFileHandler, {'path': self.static_path_abs})]
+                     ('/ep_data/', EP_Data, {'app': self.app}),
+                     ('/(.*)', StaticFileHandler, {'path': self.static_path_abs})
+                    ]
 
         settings = {
                 'debug': self.debug, 

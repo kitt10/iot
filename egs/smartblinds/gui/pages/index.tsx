@@ -7,11 +7,13 @@ import { useRouter } from 'next/router'
 import Header from '../components/Header'
 import Content from '../components/Content'
 import TaskContext, { TaskI } from '../context/TaskContext'
-import { loadTask } from '../fcn/serverSide'
+import { loadTask, loadData } from '../fcn/serverSide'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const task: TaskI = await loadTask()
-  return { props: {task: task} }
+  const data: Object[] = await loadData()
+
+  return { props: {task: task, data: data} }
 }
 
 const blindsS = (countDown: number, animationTime: number) => css({
