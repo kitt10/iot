@@ -58,7 +58,6 @@ const IndexPage = (props: {task: TaskI, data: Object[]}) => {
   }, [countDown])
 
   useEffect(() => {
-    console.log('Loaded props:', props)
     /** Fill in server-side loaded props. */
     taskContext.setTask(props.task.features, props.task.targets)
     dataContext.parseData(props.data)
