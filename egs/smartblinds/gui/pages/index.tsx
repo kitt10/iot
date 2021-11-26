@@ -17,6 +17,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: {task: task, data: data} }
 }
 
+const contentAS = () => css({
+  display: 'flex',
+  flexDirection: 'column'
+})
+
 const blindsS = (countDown: number, animationTime: number) => css({
   width: '100%',
   flex: countDown/animationTime * 10,
@@ -62,7 +67,7 @@ const IndexPage = (props: {task: TaskI, data: Object[]}) => {
   return (
     <Page title={title} description={description}>
       <Header titleText={title} currentPage='index' />
-      <Content>
+      <Content contentAS={contentAS}>
         <div css={blindsS(countDown, animationTime)}>
           &nbsp;
         </div>

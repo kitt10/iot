@@ -1,19 +1,22 @@
 import React from 'react'
-import { css } from '@emotion/react'
+import { css, SerializedStyles } from '@emotion/react'
 
 
 const componentS = () => css({
   flexGrow: 1,
   width: 'calc(100% - 50px)',
   margin: '25px',
-  display: 'flex',
-  flexDirection: 'column'
+  overflow: 'scroll'
 })
 
-const Content: React.FunctionComponent = props => {
+interface ContentI {
+  contentAS?: () => SerializedStyles
+}
+
+const Content: React.FunctionComponent<ContentI> = props => {
 
   return (
-    <div css={componentS}>
+    <div css={[componentS, props.contentAS]}>
       {props.children}
     </div>
   )

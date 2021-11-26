@@ -12,8 +12,8 @@ export interface DocumentI {
     timestamp: number
     testing: boolean
     periodical: boolean
-    featureValue: FeaturesValuesI
-    targetValue: TargetsValuesI
+    features: FeaturesValuesI
+    targets: TargetsValuesI
 }
 
 export interface DataContextI {

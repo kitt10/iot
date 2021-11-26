@@ -10,7 +10,7 @@ class Database:
         return [
             {
                 "timestamp": 1637933115.62,
-                "testing": True,   
+                "testing": False,   
                 "periodical": False,
                 "features": {
                     "year_day": 212,
@@ -62,8 +62,8 @@ class Database:
             },
             {
                 "timestamp": 1637933215.62,
-                "testing": True,   
-                "periodical": False,
+                "testing": False,   
+                "periodical": True,
                 "features": {
                     "year_day": 212,
                     "week_day": 4,
