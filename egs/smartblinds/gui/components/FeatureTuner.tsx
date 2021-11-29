@@ -39,9 +39,9 @@ const FeatureTuner: React.FunctionComponent<FeatureTunerI> = ({ feature, feature
   const changeHandler = () => {
     if (inpRef.current) {
       if (feature.type == 'int' || feature.type == 'float') {
-        simulatorContext.updateSimFeatureVector(feature.name, +inpRef.current.value)
+        simulatorContext.setSimFeature(feature.name, +inpRef.current.value)
       } else if (feature.type == 'boolean') {
-        simulatorContext.updateSimFeatureVector(feature.name, inpRef.current.checked)
+        simulatorContext.setSimFeature(feature.name, inpRef.current.checked)
       }
       setFeatureValue(simulatorContext.simFeatureVector[feature.name])
     }

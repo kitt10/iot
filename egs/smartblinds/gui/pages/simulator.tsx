@@ -40,7 +40,7 @@ const SimulatorPage = () => {
 
   const { features, classifiers } = useContext(TaskContext)
   const { documents } = useContext(DataContext)
-  const simulatorContext = useSimulator(documents[documents.length-1])
+  const simulatorContext = useSimulator(documents[documents.length-1], classifiers.map((classifier: ClassifierI) => (classifier.name)))
 
   return (
     <Page title={title} description={description}>
