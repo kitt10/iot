@@ -1,26 +1,21 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { css } from '@emotion/react'
-import TaskContext, { FeatureI, TargetI } from '../context/TaskContext'
+import { FeatureI } from '../context/TaskContext'
 
 const componentS = () => css({
-  flexGrow: 0,
-  flexBasis: 'fit-content',
-  display: 'flex',
-  flexDirection: 'column',
-  border: '1px solid green'
+  lineHeight: '1.7em'
 })
 
-const FeatureTuner: React.FunctionComponent = () => {
+interface FeatureTunerI {
+  feature: FeatureI
+  featureInd: number
+}
 
-  const { features, targets } = useContext(TaskContext)
+const FeatureTuner: React.FunctionComponent<FeatureTunerI> = ({ feature, featureInd }) => {
 
   return (
     <div css={componentS}>
-      {Object.values(features).map((feature: FeatureI, featureInd: number) => 
-        <div key={featureInd}>
-          {'F'+(featureInd+1)+': '+feature.name}
-        </div>
-      )}
+      {'F'+(featureInd+1)+': '+feature.name}
     </div>
   )
 }

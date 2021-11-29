@@ -50,16 +50,20 @@ const IndexPage = (props: {task: TaskI, data: Object[]}) => {
 
   useEffect(() => {
     /** Make the animation and then redirect to the /live page in 2 secs after load. */
-    if (countDown > 0) {
-      setTimeout(() => {setCountDown(countDown-step)}, step)
-    } else {
-      redirect()
+    let isMounted = true
+    if (isMounted) {
+      if (countDown > 0) {
+        setTimeout(() => {setCountDown(countDown-step)}, step)
+      } else {
+        redirect()
+      }
     }
+    return () => { isMounted = false }
   }, [countDown])
 
   useEffect(() => {
     /** Fill in server-side loaded props. */
-    taskContext.setTask(props.task.features, props.task.targets)
+    taskContext.setTask(props.task)
     dataContext.parseData(props.data)
   }, [])
 

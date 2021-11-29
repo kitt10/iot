@@ -16,13 +16,20 @@ export interface TargetI {
     description: string
 }
 
+export interface ClassifierI {
+    name: string
+    description: string
+    dataTraining: string[]
+}
+
 export interface TaskI {
     features: FeatureI[]
     targets: TargetI[]
+    classifiers: ClassifierI[]
 }
 
 export interface TaskContextI extends TaskI {
-    setTask: (features: FeatureI[], targets: TargetI[]) => void
+    setTask: (task: TaskI) => void
 }
 
 const TaskContext = createContext<TaskContextI>({} as TaskContextI)
