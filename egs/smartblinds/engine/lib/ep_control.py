@@ -12,3 +12,8 @@ class EP_Control(RequestHandler):
         query = json_decode(self.request.body)
         position, tilt = self.app.cl.get_control(classifier_name=query['classifier_name'], features=query['features'])
         self.write(json_dumps({'data': {'position': position, 'tilt': tilt}}))
+        
+    def set_default_headers(self, *args, **kwargs):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")

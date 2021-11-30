@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import { SimulatorContextI } from '../context/SimulatorContext'
 import { DocumentI } from '../context/DataContext'
 import TaskContext from '../context/TaskContext'
+import { control } from '../fcn/clientSide'
 
 export const useSimulator = (lastDocument: DocumentI) => {
 
@@ -21,6 +22,9 @@ export const useSimulator = (lastDocument: DocumentI) => {
 
         /** Update all one by one */
         for (let classifier of taskContext.classifiers) {
+            let targets = await control(classifier.name, simFeatureVector)
+            classifier.state.sim.position = targets.position
+            classifier.state.sim.tilt = targets.tilt
             classifier.state.sim.updated = true
             taskContext.setClassifiers([...taskContext.classifiers])
         }

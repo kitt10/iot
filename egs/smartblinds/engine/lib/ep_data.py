@@ -12,3 +12,8 @@ class EP_Data(RequestHandler):
         query = json_decode(self.request.body)
         data = self.app.db.get_data(limit=query['limit'])
         self.write(json_dumps({'data': data}))
+
+    def set_default_headers(self, *args, **kwargs):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
