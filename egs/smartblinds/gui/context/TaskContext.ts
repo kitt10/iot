@@ -20,6 +20,8 @@ export interface ClassifierI {
     name: string
     description: string
     dataTraining: string[]
+    retrained: string
+    trainTime: string
     state: {
         sim: {
             updated: boolean
