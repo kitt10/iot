@@ -14,25 +14,22 @@ export const useSimulator = (lastDocument: DocumentI) => {
     }
 
     const updateClassifiers = async () => {
+        /** Set all not updated */
         for (let classifier of taskContext.classifiers) {
-            classifier.state.simUpdated = true
+            classifier.state.sim.updated = false
+        }
+
+        /** Update all one by one */
+        for (let classifier of taskContext.classifiers) {
+            classifier.state.sim.updated = true
             taskContext.setClassifiers([...taskContext.classifiers])
         }
-    }
-
-    const setClassifiersNotUpdated = async () => {
-        for (let classifier of taskContext.classifiers) {
-            classifier.state.simUpdated = false
-        }
-
-        updateClassifiers()     // RETHINK - do it like this?
     }
 
     const simulatorContext: SimulatorContextI = {
         simFeatureVector: simFeatureVector,
         setSimFeature: setSimFeature,
-        updateClassifiers: updateClassifiers,
-        setClassifiersNotUpdated: setClassifiersNotUpdated
+        updateClassifiers: updateClassifiers
     }
 
     return simulatorContext

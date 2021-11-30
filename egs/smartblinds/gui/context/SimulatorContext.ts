@@ -5,7 +5,6 @@ export interface SimulatorContextI {
     simFeatureVector: FeaturesValuesI
     setSimFeature: (featureName: string, value: number | boolean) => void
     updateClassifiers: () => void
-    setClassifiersNotUpdated: () => void
 }
 
 const SimulatorContext = createContext<SimulatorContextI>({} as SimulatorContextI)

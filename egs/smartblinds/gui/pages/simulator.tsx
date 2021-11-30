@@ -29,8 +29,7 @@ const classificationFrameS = () => css({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   marginLeft: '50px',
-  overflow: 'scroll',
-  border: '1px solid blue'
+  overflow: 'scroll'
 })
 
 const SimulatorPage = () => {

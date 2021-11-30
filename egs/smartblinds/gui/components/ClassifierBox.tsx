@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { ClassifierI } from '../context/TaskContext'
+import TaskContext, { ClassifierI } from '../context/TaskContext'
 import SimulatorContext from '../context/SimulatorContext'
 
 const componentS = (updated: boolean) => css({
   display: 'flex',
   flexDirection: 'row',
   marginBottom: '50px',
-  backgroundColor: updated ? 'lime' : 'pink',
-  border: '1px solid red'
+  border: updated ? '1px solid green' : '1px solid maroon'
 })
 
 interface ClassifierBoxI {
@@ -19,12 +18,12 @@ interface ClassifierBoxI {
 const ClassifierBox: React.FunctionComponent<ClassifierBoxI> = ({ classifier, classifierInd }) => {
 
   const simulatorContext = useContext(SimulatorContext)
-  const [updated, setUpdated] = useState(classifier.state.simUpdated)
+  const taskContext = useContext(TaskContext)
+  const [updated, setUpdated] = useState(classifier.state.sim.updated)
 
   useEffect(() => {
-    setUpdated(classifier.state.simUpdated)
-    console.log('changed.')
-  }, [classifier.state.simUpdated])
+    setUpdated(classifier.state.sim.updated)
+  }, [taskContext.classifiers])
 
   return (
     <div css={componentS(updated)}>

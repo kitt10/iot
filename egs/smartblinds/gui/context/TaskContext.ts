@@ -21,12 +21,20 @@ export interface ClassifierI {
     description: string
     dataTraining: string[]
     state: {
-        simUpdated: boolean
+        sim: {
+            updated: boolean
+            position: number
+            tilt: number
+        }
     }
 }
 
 export const defaultClassifierState = {
-    simUpdated: false
+    sim: {
+        updated: false,
+        position: 0,
+        tilt: 0
+    }
 }
 
 export interface TaskI {

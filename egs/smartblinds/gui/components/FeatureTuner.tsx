@@ -44,7 +44,7 @@ const FeatureTuner: React.FunctionComponent<FeatureTunerI> = ({ feature, feature
         simulatorContext.setSimFeature(feature.name, inpRef.current.checked)
       }
       setFeatureValue(simulatorContext.simFeatureVector[feature.name])
-      simulatorContext.setClassifiersNotUpdated()
+      simulatorContext.updateClassifiers()
     }
   }
 
