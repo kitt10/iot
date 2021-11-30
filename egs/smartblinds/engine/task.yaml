@@ -89,9 +89,12 @@ classifiers:
   - name: 'ifelse'
     description: 'A default (baseline) decision maker. Based on if-else statements.'
     dataTraining: []
+    state: {}
   - name: 'ffnn'
     description: 'A Feed-Forward Neural Network based decision maker.'
     dataTraining: []
+    state: {}
   - name: 'lstm'
     description: 'A Recurrent (LSTM) Neural Network based decision maker.'
     dataTraining: []
+    state: {}

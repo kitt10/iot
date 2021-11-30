@@ -17,7 +17,8 @@ export const useTask = () => {
         features: features,
         targets: targets,
         classifiers: classifiers,
-        setTask: setTask
+        setTask: setTask,
+        setClassifiers: setClassifiers
     }
 
     return taskContext

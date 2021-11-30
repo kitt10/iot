@@ -1,28 +1,38 @@
-import { useState } from 'react'
-import { SimulatorContextI, ClassifiersUpdatedI } from '../context/SimulatorContext'
+import { useState, useContext } from 'react'
+import { SimulatorContextI } from '../context/SimulatorContext'
 import { DocumentI } from '../context/DataContext'
+import TaskContext from '../context/TaskContext'
 
-export const useSimulator = (lastDocument: DocumentI, classifiersNames: string[]) => {
+export const useSimulator = (lastDocument: DocumentI) => {
 
+    const taskContext = useContext(TaskContext)
     const [simFeatureVector, setSimFeatureVector] = useState(lastDocument.features)
-    const defaultClassifiersUpdated: ClassifiersUpdatedI = Object.assign({}, ...classifiersNames.map((name: string) => ({[name]: false})))
-    const [classifiersUpdated, setClassifiersUpdated] = useState(defaultClassifiersUpdated)
 
     const setSimFeature = async (featureName: string, value: number | boolean) => {
         simFeatureVector[featureName] = value
         setSimFeatureVector(simFeatureVector)
     }
 
-    const setClassifierUpdated = async (classifierName: string, value: boolean) => {
-        classifiersUpdated[classifierName] = value
-        setClassifiersUpdated(classifiersUpdated)
+    const updateClassifiers = async () => {
+        for (let classifier of taskContext.classifiers) {
+            classifier.state.simUpdated = true
+            taskContext.setClassifiers([...taskContext.classifiers])
+        }
+    }
+
+    const setClassifiersNotUpdated = async () => {
+        for (let classifier of taskContext.classifiers) {
+            classifier.state.simUpdated = false
+        }
+
+        updateClassifiers()     // RETHINK - do it like this?
     }
 
     const simulatorContext: SimulatorContextI = {
         simFeatureVector: simFeatureVector,
         setSimFeature: setSimFeature,
-        classifiersUpdated: classifiersUpdated,
-        setClassifierUpdated: setClassifierUpdated
+        updateClassifiers: updateClassifiers,
+        setClassifiersNotUpdated: setClassifiersNotUpdated
     }
 
     return simulatorContext
