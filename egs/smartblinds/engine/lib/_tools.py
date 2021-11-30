@@ -9,7 +9,7 @@ def load_config(cfg_file):
 
 
 def load_task(cfg):
-    with open(cfg['ml']['task_file'], 'r') as fr:
+    with open(cfg['classification']['task_file'], 'r') as fr:
         task = yaml_full_load(fr)
 
     return task

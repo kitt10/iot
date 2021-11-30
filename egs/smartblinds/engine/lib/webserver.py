@@ -3,6 +3,7 @@ from tornado.ioloop import IOLoop
 from os.path import join, dirname
 from .ep_web import EP_Web
 from .ep_data import EP_Data
+from .ep_control import EP_Control
 
 class WebServer:
     
@@ -19,6 +20,7 @@ class WebServer:
 
         endpoints = [('/', EP_Web, {'webserver': self}),
                      ('/ep_data/', EP_Data, {'app': self.app}),
+                     ('/ep_control/', EP_Control, {'app': self.app}),
                      ('/(.*)', StaticFileHandler, {'path': self.static_path_abs})
                     ]
 

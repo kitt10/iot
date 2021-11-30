@@ -16,7 +16,7 @@ const componentS = () => css({
 const blindsS = (value: number) => css({
   backgroundColor: 'black',
   width: '100%',
-  height: value > 4 ? `calc(2px + ${value-4}%)` : '2px'
+  height: value > 10 ? `calc(5px + ${value-10}%)` : '5px'
 })
 
 interface AnimationPositionI {
