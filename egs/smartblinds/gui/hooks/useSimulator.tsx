@@ -10,7 +10,7 @@ export const useSimulator = (lastDocument: DocumentI) => {
 
     const setSimFeature = async (featureName: string, value: number | boolean) => {
         simFeatureVector[featureName] = value
-        setSimFeatureVector(simFeatureVector)
+        setSimFeatureVector({...simFeatureVector})
     }
 
     const updateClassifiers = async () => {
