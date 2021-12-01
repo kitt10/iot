@@ -18,3 +18,7 @@ export const formatSecs = (secs: number) => {
         return r4(secs)+' s'
     }
 }
+
+export const ts2date = (ts: number) => {
+    return new Date(ts*1000).toLocaleString()
+}

@@ -29,9 +29,13 @@ export interface PayloadControlI {
 
 export interface PayloadTrainI {
     status: string
-    trainTime: number
-    lastTrained: number
-    nSamples: number
+    classifierInfo: {
+        [classifierName: string]: {
+            trainTime: number
+            lastTrained: number
+            nSamples: number
+        }
+    }
 }
 
 const DataContext = createContext<DataContextI>({} as DataContextI)

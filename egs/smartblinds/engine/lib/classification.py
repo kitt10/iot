@@ -12,6 +12,9 @@ class Classification:
         self.cfg = app.cfg
         self.verbose = self.cfg['classification']['verbose']
         
+        self.features = {f['name']:f for f in self.app.task['features']}
+        self.targets = {t['name']:t for t in self.app.task['targets']}
+        
         self.next_training = ''
         
         self.classifiers = {
@@ -35,6 +38,7 @@ class Classification:
             t0 = time()
             cl.train(data)
             cl.last_trained = time()
+            print(cl.last_trained)
             cl.train_time = cl.last_trained - t0
             cl.n_samples = len(data[0])
             cl.dump_metadata()
@@ -43,12 +47,17 @@ class Classification:
         else:
             return {'status': 'bad'}
         
+    def train_now(self):
+        self.retrain_all()
+        return {'classifierInfo': {cl.name:{'lastTrained': cl.last_trained, 'trainTime': cl.train_time, 'nSamples': cl.n_samples} for cl in self.classifiers.values()}}
+        
     def retrain_all(self):
         training_data = self.load_training_data()
         self.log('Retraining all classifiers...')
-        for classifier in self.classifiers:
-            self.do_train(classifier.name, training_data)
-            self.log('Classifier '+classifier.name+' retrained in '+str(round(classifier.train_time, 4))+' s ('+str(classifier.n_samples)+').')
+        for classifier in self.classifiers.values():
+            if classifier.trainable:
+                self.do_train(classifier.name, training_data)
+                self.log('Classifier '+classifier.name+' retrained in '+str(round(classifier.train_time, 4))+' s ('+str(classifier.n_samples)+').')
             
         self.app.ws.plan_next_training()
         
@@ -57,13 +66,16 @@ class Classification:
         x_ = []
         y_ = []
         for sample in raw_data:
-            x_.append([normalize(xi, self.features[f_name].min, self.features[f_name].max) for f_name, xi in sample['features'].items()])
-            y.append([normalize(yi, self.targets[t_name].min, self.targets[t_name].max) for t_name, yi in sample['targets'].items()])
+            x_.append([self.normalize(xi, self.features[f_name]['min'], self.features[f_name]['max'], self.features[f_name]['type']) for f_name, xi in sample['features'].items()])
+            y_.append([self.normalize(yi, self.targets[t_name]['min'], self.targets[t_name]['max'], self.targets[t_name]['type']) for t_name, yi in sample['targets'].items()])
             
         return x_, y_
     
-    def normalize(self, value, a_min, a_max):
-        return (value-a_min)/(a_max-a_min)
+    def normalize(self, value, a_min, a_max, a_type):
+        if a_type == 'boolean':
+            return int(value)
+        else:
+            return (value-a_min)/(a_max-a_min)
     
     def set_next_training(self, next_training):
         self.next_training = next_training

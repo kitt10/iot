@@ -14,5 +14,5 @@ class CL_Lstm(Classifier):
         return position, tilt
     
     def train(self, data):
-        pass
+        print('Training', self.name)
 

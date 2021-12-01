@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { css } from '@emotion/react'
+import { trainAll } from '../fcn/clientSide'
 import Button from './atomic/Button'
 import TaskContext from '../context/TaskContext'
 
@@ -27,10 +28,16 @@ const infoTextS = () => css({
 
 const ClassificationControls: React.FunctionComponent = () => {
 
-  const { taskInfo } = useContext(TaskContext)
+  const { taskInfo, classifiers, setClassifiers } = useContext(TaskContext)
 
-  const clickHandler = () => {
-    console.log('button clicked')
+  const clickHandler = async () => {
+    let clInfo = await trainAll()
+    for (let cl of classifiers) {
+      cl.retrained = clInfo[cl.name].lastTrained
+      cl.trainTime = clInfo[cl.name].trainTime
+      cl.nSamples = clInfo[cl.name].nSamples
+    }
+    setClassifiers([...classifiers])
   }
 
   return (
