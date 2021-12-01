@@ -77,7 +77,7 @@ const ClassifierBox: React.FunctionComponent<ClassifierBoxI> = ({ classifier }) 
           </div>
           <div>
             {classifier.state.sim.updated && <div>{'Control time: '+formatSecs(classifier.controlTime)}</div>}
-            {classifier.trainable && <div>{'Number of samples: '+classifier.nSamples+' | Retrained: '+classifier.retrained+' | Train time: '+classifier.trainTime}</div>}
+            {classifier.trainable && classifier.retrained != 0 && <div>{'Number of samples: '+classifier.nSamples+' | Retrained: '+classifier.retrained+' | Train time: '+classifier.trainTime}</div>}
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import numpy as np
 class CL_Ffnn(Classifier):
     
     def __init__(self, app):
-        Classifier.__init__(self, app, 'ffnn')
+        Classifier.__init__(self, app, 'ffnn', ind=1)
         self.trainable = True
         
     def control(self, features):

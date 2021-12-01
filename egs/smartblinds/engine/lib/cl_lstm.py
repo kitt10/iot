@@ -4,7 +4,7 @@ import numpy as np
 class CL_Lstm(Classifier):
     
     def __init__(self, app):
-        Classifier.__init__(self, app, 'lstm')
+        Classifier.__init__(self, app, 'lstm', ind=2)
         self.trainable = True
         
     def control(self, features):

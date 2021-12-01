@@ -1,4 +1,4 @@
-from yaml import full_load as yaml_full_load
+from yaml import full_load as yaml_full_load, dump as yaml_dump
 
 
 def load_config(cfg_file):
@@ -11,5 +11,11 @@ def load_config(cfg_file):
 def load_task(cfg):
     with open(cfg['classification']['task_file'], 'r') as fr:
         task = yaml_full_load(fr)
+
+    return task
+
+def dump_classifier_metadata(cfg, task):
+    with open(cfg['classification']['task_file'], 'w') as fw:
+        yaml_dump(task, fw, default_flow_style=False)
 
     return task

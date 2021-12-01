@@ -3,7 +3,7 @@ from ._classification import Classifier
 class CL_Ifelse(Classifier):
     
     def __init__(self, app):
-        Classifier.__init__(self, app, 'ifelse')
+        Classifier.__init__(self, app, 'ifelse', ind=0)
         self.trainable = True
         
     def control(self, features):

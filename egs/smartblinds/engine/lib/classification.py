@@ -20,6 +20,7 @@ class Classification:
         t0 = time()
         targets = cl.control(features)
         cl.control_time = time() - t0
+        cl.dump_metadata()
         
         return {'status': 'ok', 'targets': targets, 'controlTime': cl.control_time}
     
@@ -30,8 +31,10 @@ class Classification:
             cl.train(data)
             cl.last_trained = time()
             cl.train_time = cl.last_trained - t0
+            cl.n_samples = len(data)
+            cl.dump_metadata()
             
-            return {'status': 'ok', 'trainTime': cl.train_time, 'lastTrained': cl.last_trained, 'nSamples': len(data)}
+            return {'status': 'ok', 'trainTime': cl.train_time, 'lastTrained': cl.last_trained, 'nSamples': cl.n_samples}
         else:
             return {'status': 'bad'}
         
