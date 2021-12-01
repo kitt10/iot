@@ -27,6 +27,9 @@ class App:
         # Init API WebServer
         self.ws = WebServer(app=self)
         
+        # Plan Classifiers Trainings to every midnight
+        self.ws.plan_next_training()
+        
         # Run API WebServer
         self.ws.run()
 

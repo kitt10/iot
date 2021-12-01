@@ -13,6 +13,6 @@ class CL_Lstm(Classifier):
             
         return position, tilt
     
-    def train(self, data):
+    def train(self, (x_, y_)):
         pass
 

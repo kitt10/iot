@@ -1,10 +1,11 @@
-
+from datetime import datetime
 
 class Database:
     
     def __init__(self, app):
         self.app = app
         self.cfg = app.cfg
+        self.verbose = self.cfg['database']['verbose']
         
     def get_data(self, limit=0):
         return [
@@ -87,3 +88,7 @@ class Database:
                 }
             }
         ]
+        
+    def log(self, buf):
+        if self.verbose:
+            print(datetime.now(), 'DB LOG:', buf)
