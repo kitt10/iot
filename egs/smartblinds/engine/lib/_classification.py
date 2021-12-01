@@ -17,7 +17,7 @@ class Classifier(abc.ABC):
     def control(self, features):
         pass
     
-    def train(self, (x_, y_)):
+    def train(self, data):
         pass
     
     def dump_metadata(self):

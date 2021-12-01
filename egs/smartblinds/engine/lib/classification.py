@@ -22,11 +22,11 @@ class Classification:
     def get_control(self, classifier_name, features):
         cl = self.classifiers[classifier_name]
         t0 = time()
-        targets = cl.control(features)
+        position, tilt = cl.control(features)
         cl.control_time = time() - t0
         cl.dump_metadata()
         
-        return {'status': 'ok', 'targets': targets, 'controlTime': cl.control_time}
+        return {'status': 'ok', 'targets': {'position': position, 'tilt': tilt}, 'controlTime': cl.control_time}
     
     def do_train(self, classifier_name, data):
         cl = self.classifiers[classifier_name]

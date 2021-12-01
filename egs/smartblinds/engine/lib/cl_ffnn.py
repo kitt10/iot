@@ -13,6 +13,6 @@ class CL_Ffnn(Classifier):
             
         return position, tilt
     
-    def train(self, (x_, y_)):
+    def train(self, data):
         pass
 
