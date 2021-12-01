@@ -1,5 +1,5 @@
 import abc
-from ._tools import dump_classifier_metadata
+from ._tools import dump_task
 
 class Classifier(abc.ABC):
     
@@ -26,4 +26,4 @@ class Classifier(abc.ABC):
         task['classifiers'][self.ind]['retrained'] = self.last_trained
         task['classifiers'][self.ind]['trainTime'] = self.train_time
         task['classifiers'][self.ind]['controlTime'] = self.control_time
-        dump_classifier_metadata(self.app.cfg, task)
+        dump_task(self.app.cfg, task)

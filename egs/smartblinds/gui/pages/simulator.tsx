@@ -9,6 +9,7 @@ import Header from '../components/Header'
 import Content from '../components/Content'
 import FeatureTuner from '../components/FeatureTuner'
 import ClassifierBox from '../components/ClassifierBox'
+import ClassificationControls from '../components/ClassificationControls'
 
 const contentAS = () => css({
   display: 'flex',
@@ -55,6 +56,7 @@ const SimulatorPage = () => {
             {Object.values(classifiers).map((classifier: ClassifierI, classifierInd: number) => 
               <ClassifierBox key={'ClassifierBoxSim_'+classifierInd} classifier={classifier} classifierInd={classifierInd} />
             )}
+            <ClassificationControls />
           </div>
         </SimulatorContext.Provider>
       </Content>

@@ -37,7 +37,7 @@ class WebServer:
         tomorrow = datetime.date.today() + datetime.timedelta(days=1)
         midnight = datetime.datetime.combine(tomorrow, datetime.time.min)
         self.current_loop.add_timeout(midnight-datetime.datetime.now(), self.app.cl.retrain_all)
-        self.app.cl.next_training = midnight.strftime('%d.%m.%Y %H:%M:%S')
+        self.app.cl.set_next_training(midnight.strftime('%d.%m.%Y %H:%M:%S'))
         self.log('Next classifiers training planned to: '+self.app.cl.next_training)
         
     def run(self):

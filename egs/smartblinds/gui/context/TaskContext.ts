@@ -41,10 +41,15 @@ export const defaultClassifierState = {
     }
 }
 
+export interface TaskInfoI {
+    nextTraining: string
+}
+
 export interface TaskI {
     features: FeatureI[]
     targets: TargetI[]
     classifiers: ClassifierI[]
+    taskInfo: TaskInfoI
 }
 
 export interface TaskContextI extends TaskI {

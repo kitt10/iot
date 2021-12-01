@@ -1,6 +1,7 @@
 from .cl_ifelse import CL_Ifelse
 from .cl_ffnn import CL_Ffnn
 from .cl_lstm import CL_Lstm
+from ._tools import dump_task
 from time import time
 from datetime import datetime
 
@@ -63,7 +64,11 @@ class Classification:
     
     def normalize(self, value, a_min, a_max):
         return (value-a_min)/(a_max-a_min)
-            
+    
+    def set_next_training(self, next_training):
+        self.next_training = next_training
+        self.app.task['taskInfo']['nextTraining'] = self.next_training
+        dump_task(self.app.cfg, self.app.task)
         
     def log(self, buf):
         if self.verbose:
