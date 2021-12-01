@@ -19,9 +19,11 @@ export interface TargetI {
 export interface ClassifierI {
     name: string
     description: string
-    dataTraining: string[]
-    retrained: string
-    trainTime: string
+    trainable: boolean
+    nSamples: number
+    retrained: number
+    trainTime: number
+    controlTime: number
     state: {
         sim: {
             updated: boolean

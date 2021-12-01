@@ -1,9 +1,10 @@
+from ._classification import Classifier
 
-class CL_Ifelse:
+class CL_Ifelse(Classifier):
     
     def __init__(self, app):
-        self.app = app
-        self.trainable = False
+        Classifier.__init__(self, app, 'ifelse')
+        self.trainable = True
         
     def control(self, features):
         position = 100

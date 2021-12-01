@@ -21,6 +21,19 @@ export interface DataContextI {
     parseData: (data: Object[]) => void
 }
 
+export interface PayloadControlI {
+    status: string
+    targets: TargetsValuesI
+    controlTime: number
+}
+
+export interface PayloadTrainI {
+    status: string
+    trainTime: number
+    lastTrained: number
+    nSamples: number
+}
+
 const DataContext = createContext<DataContextI>({} as DataContextI)
 
 export default DataContext

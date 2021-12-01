@@ -1,9 +1,10 @@
+from ._classification import Classifier
 import numpy as np
 
-class CL_Ffnn:
+class CL_Ffnn(Classifier):
     
     def __init__(self, app):
-        self.app = app
+        Classifier.__init__(self, app, 'ffnn')
         self.trainable = True
         
     def control(self, features):
@@ -11,4 +12,7 @@ class CL_Ffnn:
         tilt = np.random.randint(0, 100)        # TODO
             
         return position, tilt
+    
+    def train(self, data):
+        pass
 

@@ -88,19 +88,25 @@ targets:
 classifiers:
   - name: 'ifelse'
     description: 'A default (baseline) decision maker. Based on if-else statements.'
-    dataTraining: []
-    retrained: 'never'
-    trainTime: '/'
+    trainable: false
+    nSamples: 0
+    retrained: 0
+    trainTime: 0
+    controlTime: 0
     state: {}
   - name: 'ffnn'
     description: 'A Feed-Forward Neural Network based decision maker.'
-    dataTraining: []
-    retrained: ''
-    trainTime: ''
+    trainable: true
+    nSamples: 0
+    retrained: 0
+    trainTime: 0
+    controlTime: 0
     state: {}
   - name: 'lstm'
     description: 'A Recurrent (LSTM) Neural Network based decision maker.'
-    dataTraining: []
-    retrained: ''
-    trainTime: ''
+    trainable: true
+    nSamples: 0
+    retrained: 0
+    trainTime: 0
+    controlTime: 0
     state: {}

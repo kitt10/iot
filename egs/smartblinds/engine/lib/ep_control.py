@@ -10,8 +10,8 @@ class EP_Control(RequestHandler):
 
     def post(self):
         query = json_decode(self.request.body)
-        position, tilt = self.app.cl.get_control(classifier_name=query['classifier_name'], features=query['features'])
-        self.write(json_dumps({'data': {'position': position, 'tilt': tilt}}))
+        payload = self.app.cl.get_control(classifier_name=query['classifier_name'], features=query['features'])
+        self.write(json_dumps({'payload': payload}))
         
     def set_default_headers(self, *args, **kwargs):
         self.set_header("Access-Control-Allow-Origin", "*")

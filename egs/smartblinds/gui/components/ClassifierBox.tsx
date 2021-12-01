@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { ClassifierI } from '../context/TaskContext'
+import { formatSecs } from '../fcn/_tools'
 import AnimationPosition from './AnimationPosition'
 import AnimationTilt from './AnimationTilt'
 import Icon from './atomic/Icon'
@@ -75,7 +76,8 @@ const ClassifierBox: React.FunctionComponent<ClassifierBoxI> = ({ classifier }) 
             {classifier.description}
           </div>
           <div>
-            {classifier.retrained != 'never' && 'Number of samples: '+classifier.dataTraining.length+' | Retrained: '+classifier.retrained+' | Train time: '+classifier.trainTime}
+            {classifier.state.sim.updated && <div>{'Control time: '+formatSecs(classifier.controlTime)}</div>}
+            {classifier.trainable && <div>{'Number of samples: '+classifier.nSamples+' | Retrained: '+classifier.retrained+' | Train time: '+classifier.trainTime}</div>}
           </div>
         </div>
       </div>
