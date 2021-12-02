@@ -14,8 +14,18 @@ def load_task(cfg):
 
     return task
 
+
 def dump_task(cfg, task):
     with open(cfg['classification']['task_file'], 'w') as fw:
         yaml_dump(task, fw, default_flow_style=False)
 
-    return task
+
+def format_secs(s):
+    if s < 1e-6:
+        return str(round(s*1e6, 4))+' ns'
+    elif s < 1e-3:
+        return str(round(s*1e3, 4))+' ms'
+    elif s > 60:
+        return str(round(s/60, 4))+' min'
+    else:
+        return str(round(s, 4))+' s'

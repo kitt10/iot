@@ -1,3 +1,4 @@
+from ._tools import format_secs
 from datetime import datetime
 from time import time
 import numpy as np
@@ -8,10 +9,15 @@ class Database:
         self.app = app
         self.cfg = app.cfg
         self.verbose = self.cfg['database']['verbose']
+        self.db_load_data_time = 0
         
     def get_data(self, limit=0):
-        #return self.generate_toy_data()
-        return sorted(self.generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
+        t0 = time()
+        data = sorted(self.generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
+        #data = self.generate_toy_data()
+        self.db_load_data_time = time()-t0
+        self.log('Data caught in '+format_secs(self.db_load_data_time))
+        return data
     
     def generate_toy_data(self):
         return [

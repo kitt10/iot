@@ -14,6 +14,6 @@ class CL_Ffnn(Classifier):
         return position, tilt
     
     def train(self, data):
-        print('Training', self.name)
+        self.app.cl.log('Training classifier '+self.name)
         pass
 

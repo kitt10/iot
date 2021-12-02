@@ -4,7 +4,7 @@ class CL_Ifelse(Classifier):
     
     def __init__(self, app):
         Classifier.__init__(self, app, 'ifelse', ind=0)
-        self.trainable = True
+        self.trainable = False
         
     def control(self, features):
         position = 100

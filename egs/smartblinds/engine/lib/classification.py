@@ -1,7 +1,7 @@
 from .cl_ifelse import CL_Ifelse
 from .cl_ffnn import CL_Ffnn
 from .cl_lstm import CL_Lstm
-from ._tools import dump_task
+from ._tools import dump_task, format_secs
 from time import time
 from datetime import datetime
 
@@ -16,6 +16,7 @@ class Classification:
         self.targets = {t['name']:t for t in self.app.task['targets']}
         
         self.next_training = 0
+        self.data_load_time = 0
         
         self.classifiers = {
             'ifelse': CL_Ifelse(app=self.app),
@@ -38,7 +39,6 @@ class Classification:
             t0 = time()
             cl.train(data)
             cl.last_trained = time()
-            print(cl.last_trained)
             cl.train_time = cl.last_trained - t0
             cl.n_samples = len(data[0])
             cl.dump_metadata()
@@ -48,18 +48,22 @@ class Classification:
             return {'status': 'bad'}
         
     def train_now(self):
-        self.retrain_all()
+        self.retrain_all(plan_next=False)
         return {'classifierInfo': {cl.name:{'lastTrained': cl.last_trained, 'trainTime': cl.train_time, 'nSamples': cl.n_samples} for cl in self.classifiers.values()}}
         
-    def retrain_all(self):
+    def retrain_all(self, plan_next=True):
+        t0 = time()
         training_data = self.load_training_data()
+        self.data_load_time = time()-t0
+        self.log('Data loaded in '+format_secs(self.data_load_time)+' ('+str(len(training_data[0]))+' samples)')
         self.log('Retraining all classifiers...')
         for classifier in self.classifiers.values():
             if classifier.trainable:
                 self.do_train(classifier.name, training_data)
                 self.log('Classifier '+classifier.name+' retrained in '+str(round(classifier.train_time, 4))+' s ('+str(classifier.n_samples)+').')
-            
-        self.app.ws.plan_next_training()
+        
+        if plan_next:
+            self.app.ws.plan_next_training()
         
     def load_training_data(self):
         raw_data = self.app.db.get_data()
