@@ -1,6 +1,7 @@
 import Page from '../components/core/Page'
 import Header from '../components/Header'
 import Content from '../components/Content'
+import InfoBar from '../components/InfoBar'
 
 const LivePage = () => {
 
@@ -13,6 +14,7 @@ const LivePage = () => {
       <Content>
         {'content live page'}
       </Content>
+      <InfoBar />
     </Page>
   )
 }

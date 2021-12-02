@@ -8,7 +8,7 @@ const componentS = () => css({
   fontSize: '25px',
   display: 'flex',
   flexDirection: 'row-reverse',
-  width: '35%'         // to make the message centered
+  width: '25%'         // to make the message centered
 })
 
 export interface MenuI {

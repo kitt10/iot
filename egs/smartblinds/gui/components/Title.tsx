@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { css } from '@emotion/react'
 import Link from 'next/link'
-
+import PageContext from '../context/PageContext'
+import Message from './Message'
 
 const componentS = () => css({
   marginLeft: '25px',
   marginTop: '25px',
   fontSize: '25px',
   fontWeight: 'bold',
-  width: '35%'         // to make the message centered
+  width: '25%'         // to make the middle component centered
 })
 
 export interface TitleI {
@@ -17,11 +18,14 @@ export interface TitleI {
 
 const Title: React.FunctionComponent<TitleI> = ({ titleText }) => {
 
+  const { message } = useContext(PageContext)
+
   return (
     <div css={componentS}>
-      <Link href='/'>
+      {message != '' && <Message />}
+      {message == '' && <Link href='/'>
         {titleText}
-      </Link>
+      </Link>}
     </div>
   )
 }
