@@ -15,7 +15,7 @@ class Classification:
         self.features = {f['name']:f for f in self.app.task['features']}
         self.targets = {t['name']:t for t in self.app.task['targets']}
         
-        self.next_training = ''
+        self.next_training = 0
         
         self.classifiers = {
             'ifelse': CL_Ifelse(app=self.app),

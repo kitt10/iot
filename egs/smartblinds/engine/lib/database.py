@@ -1,4 +1,6 @@
 from datetime import datetime
+from time import time
+import numpy as np
 
 class Database:
     
@@ -8,6 +10,10 @@ class Database:
         self.verbose = self.cfg['database']['verbose']
         
     def get_data(self, limit=0):
+        #return self.generate_toy_data()
+        return sorted(self.generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
+    
+    def generate_toy_data(self):
         return [
             {
                 "timestamp": 1637933115.62,
@@ -88,6 +94,51 @@ class Database:
                 }
             }
         ]
+        
+    def generate_random_data(self, days=2):
+        now = int(time())
+        t_back = days*24*60*60
+        samples = []
+        for t in range(now-t_back, now):
+            if t % 300 == 0:
+                try:
+                    samples.append(self.random_sample(t, periodical=True, last_targets=samples[-1]['targets']))
+                except IndexError:
+                    samples.append(self.random_sample(t, periodical=True))
+            elif np.random.choice(list(range(1000))) == 0:
+                samples.append(self.random_sample(t, periodical=False))
+        
+        self.log('Generated '+str(len(samples))+' samples.')
+        return samples
+                
+    def random_sample(self, t, periodical, last_targets=None):
+        dt = datetime.fromtimestamp(t)
+        return {
+                "timestamp": t,
+                "testing": False,   
+                "periodical": periodical,
+                "features": {
+                    "year_day": int(dt.timetuple().tm_yday),
+                    "week_day": int(dt.weekday()),
+                    "day_secs": int((dt - dt.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()),
+                    "home": bool(np.random.choice([True, False])),
+                    "temp_in": float(np.random.choice(list(range(-20, 51)))),
+                    "temp_out": float(np.random.choice(list(range(-20, 51)))),
+                    "lum_in": float(np.random.choice(list(range(0, 10001)))),
+                    "lum_out": float(np.random.choice(list(range(0, 10001)))),
+                    "owm_temp_max": float(np.random.choice(list(range(-20, 51)))),
+                    "owm_temp_1h": float(np.random.choice(list(range(-20, 51)))),
+                    "owm_temp_2h": float(np.random.choice(list(range(-20, 51)))),
+                    "owm_temp_3h": float(np.random.choice(list(range(-20, 51)))),
+                    "owm_code": int(np.random.choice(list(range(200, 805)))),
+                    "owm_wind_speed": float(np.random.choice(list(range(0, 51)))),
+                    "owm_wind_heading": float(np.random.choice(list(range(0, 360))))
+                },
+                "targets": {
+                    "position": last_targets['position'] if last_targets else int(np.random.choice(list(range(0, 101)))),         
+                    "tilt": last_targets['tilt'] if last_targets else int(np.random.choice(list(range(0, 101))))
+                }
+            }
         
     def log(self, buf):
         if self.verbose:

@@ -15,7 +15,7 @@ class WebServer:
         self.port = self.cfg['webserver']['port']
         self.static_path_rel = self.cfg['webserver']['static_path_rel']
         self.static_path_abs = join(dirname(__file__), self.static_path_rel)
-        self.static_index = self.cfg['webserver']['static_index']
+        self.static_index = join(self.static_path_abs, self.cfg['webserver']['static_index'])
         self.host_web = self.cfg['webserver']['host_web']
         self.verbose = self.cfg['webserver']['verbose']
         self.debug = self.cfg['webserver']['debug']
@@ -39,8 +39,8 @@ class WebServer:
         tomorrow = datetime.date.today() + datetime.timedelta(days=1)
         midnight = datetime.datetime.combine(tomorrow, datetime.time.min)
         self.current_loop.add_timeout(midnight-datetime.datetime.now(), self.app.cl.retrain_all)
-        self.app.cl.set_next_training(midnight.strftime('%d.%m.%Y %H:%M:%S'))
-        self.log('Next classifiers training planned to: '+self.app.cl.next_training)
+        self.app.cl.set_next_training(datetime.datetime.timestamp(midnight))
+        self.log('Next classifiers training planned to: '+str(midnight))
         
     def run(self):
         self.log('Starting '+self.app.name+', port: '+str(self.port))

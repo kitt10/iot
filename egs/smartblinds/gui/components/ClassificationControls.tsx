@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { css } from '@emotion/react'
 import { trainAll } from '../fcn/clientSide'
-import Button from './atomic/Button'
+import { ts2date } from '../fcn/_tools'
 import TaskContext from '../context/TaskContext'
+import Button from './atomic/Button'
 
 const componentS = () => css({
   display: 'flex',
@@ -47,7 +48,7 @@ const ClassificationControls: React.FunctionComponent = () => {
               buttonStyle={buttonAS} />
 
       <div css={infoTextS}>
-        {'Next retraining planned to '+taskInfo.nextTraining}
+        {'Next retraining planned to '+ts2date(taskInfo.nextTraining)}
       </div>
     </div>
   )

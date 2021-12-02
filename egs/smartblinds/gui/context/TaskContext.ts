@@ -42,7 +42,7 @@ export const defaultClassifierState = {
 }
 
 export interface TaskInfoI {
-    nextTraining: string
+    nextTraining: number
 }
 
 export interface TaskI {

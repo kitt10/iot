@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { css } from '@emotion/react'
+import { ts2date } from '../fcn/_tools'
 import { DocumentI } from '../context/DataContext'
 import TaskContext, { FeatureI, TargetI } from '../context/TaskContext'
 import Icon from './atomic/Icon'
@@ -20,10 +21,10 @@ const DataTableLine: React.FunctionComponent<DataTableLineI> = ({ document }) =>
   return (
     <tr css={lineS(document.testing)}>
       <td>
-        <Icon fontSize='20px'>{document.periodical ? 'event_repeat' : 'event'}</Icon>
+        <Icon fontSize='20px'>{document.periodical ? 'event_repeat' : 'sports_esports'}</Icon>
       </td>
       <td>
-        {new Date(document.timestamp).toLocaleString()}
+        {ts2date(document.timestamp)}
       </td>
 
       {features.map((feature: FeatureI, featureInd: number) => 

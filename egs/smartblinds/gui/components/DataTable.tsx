@@ -22,7 +22,7 @@ const DataTable: React.FunctionComponent = () => {
   const { documents } = useContext(DataContext)
 
   return (
-    <table css={tableS} cellSpacing='10px'>
+    <table css={tableS} cellSpacing='5px'>
       <thead>
         <tr>
           <td>&nbsp;</td>
