@@ -113,6 +113,9 @@ class Database:
                     samples.append(self.random_sample(t, periodical=True))
             elif np.random.choice(list(range(1000))) == 0:
                 samples.append(self.random_sample(t, periodical=False))
+                
+            if len(samples) == 10:
+                break
         
         self.log('Generated '+str(len(samples))+' samples.')
         return samples

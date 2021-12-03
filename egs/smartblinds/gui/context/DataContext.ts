@@ -29,8 +29,6 @@ export interface ControlsI {
     }
 }
 
-
-
 export interface PayloadControlI {
     status: string
     targets: TargetsValuesI
