@@ -12,10 +12,9 @@ const componentS = () => css({
   justifyContent: 'space-between',
   marginLeft: '25px',
   marginRight: '25px',
-  marginTop: '25px',
   paddingTop: '5px',
   paddingBottom: '5px',
-  fontSize: '12px',
+  fontSize: '11px',
   color: 'darkgray',
   borderTop: '1px solid #ddd',
   borderBottom: '1px solid #ddd'

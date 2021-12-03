@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { css } from '@emotion/react'
 import { trainAll } from '../fcn/clientSide'
-import { ts2date } from '../fcn/_tools'
+import { ts2date, getCurrentTs } from '../fcn/_tools'
 import TaskContext from '../context/TaskContext'
 import Slider from './atomic/Slider'
 import Button from './atomic/Button'
@@ -13,12 +13,14 @@ const componentS = () => css({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  border: '1px solid #ddd'
 })
 
 const buttonAS = () => css({
   width: 'fit-content',
   padding: '7px',
+  backgroundColor: 'white',
   border: '1px solid darkgray',
   borderRadius: '5px'
 })
@@ -55,7 +57,7 @@ const ControlPanel: React.FunctionComponent = () => {
 
   const inpTrainBackRef: React.RefObject<HTMLInputElement> = React.createRef<HTMLInputElement>()
   const inpShowBackRef: React.RefObject<HTMLInputElement> = React.createRef<HTMLInputElement>()
-  const now: number = + new Date() / 1000
+  const now: number = getCurrentTs()
 
   const clickHandler = async () => {
     let clInfo = await trainAll()
@@ -86,8 +88,15 @@ const ControlPanel: React.FunctionComponent = () => {
           <div css={tBackControlsTextS}>
             {'Train back to: '}
           </div>
-          <Slider onChange={changeTrainBackHandler} containerStyle={tBackControlsSliderS} sliderRef={inpTrainBackRef} min={config.defaultTrainBack} max={now} defaultValue={trainBack} step={300} />
-          <div css={tBackControlsTextS}>
+          <Slider onChange={changeTrainBackHandler} 
+                  containerStyle={tBackControlsSliderS} 
+                  sliderRef={inpTrainBackRef} 
+                  min={config.defaultTrainBack} 
+                  max={now} 
+                  defaultValue={trainBack} 
+                  step={300} 
+                  suppressHydrationWarning />
+          <div css={tBackControlsTextS} suppressHydrationWarning>
               {ts2date(trainBack)}
           </div>
         </div>
@@ -95,13 +104,20 @@ const ControlPanel: React.FunctionComponent = () => {
           <div css={tBackControlsTextS}>
               {'Show back to: '}
           </div>
-          <Slider onChange={changeShowBackHandler} containerStyle={tBackControlsSliderS} sliderRef={inpShowBackRef} min={config.defaultTrainBack} max={now} defaultValue={showBack} step={300} />
-          <div css={tBackControlsTextS}>
+          <Slider onChange={changeShowBackHandler} 
+                  containerStyle={tBackControlsSliderS} 
+                  sliderRef={inpShowBackRef} 
+                  min={config.defaultTrainBack} 
+                  max={now} 
+                  defaultValue={showBack} 
+                  step={300} 
+                  suppressHydrationWarning />
+          <div css={tBackControlsTextS} suppressHydrationWarning>
             {ts2date(showBack)}
           </div>
         </div>
       </div>
-      <Button text='Retrain classifiers now'
+      <Button text='Retrain now'
               onClick={clickHandler}
               buttonStyle={buttonAS} />
     </div>

@@ -20,5 +20,9 @@ export const formatSecs = (secs: number) => {
 }
 
 export const ts2date = (ts: number) => {
-    return new Date(ts*1000).toLocaleString()
+    return new Date(ts*1000).toLocaleString('cs')
+}
+
+export const getCurrentTs = () => {
+    return + new Date() / 1000
 }

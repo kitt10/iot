@@ -1,5 +1,5 @@
 classifiers:
-- controlTime: 4.0531158447265625e-06
+- controlTime: 3.0994415283203125e-06
   description: A default (baseline) decision maker. Based on if-else statements.
   nSamples: 0
   name: ifelse
@@ -7,7 +7,7 @@ classifiers:
   state: {}
   trainTime: 0
   trainable: false
-- controlTime: 0
+- controlTime: 2.8133392333984375e-05
   description: A Feed-Forward Neural Network based decision maker.
   nSamples: 366
   name: ffnn
@@ -15,7 +15,7 @@ classifiers:
   state: {}
   trainTime: 7.152557373046875e-06
   trainable: true
-- controlTime: 0
+- controlTime: 2.5033950805664062e-05
   description: A Recurrent (LSTM) Neural Network based decision maker.
   nSamples: 366
   name: lstm
@@ -111,4 +111,4 @@ targets:
   name: tilt
   type: int
 taskInfo:
-  nextTraining: 1638486000.0
+  nextTraining: 1638572400.0

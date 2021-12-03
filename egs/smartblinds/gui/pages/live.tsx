@@ -5,14 +5,14 @@ import InfoBar from '../components/InfoBar'
 
 const LivePage = () => {
 
-  const title: string = 'Smartblinds - Live Control'
+  const title: string = 'Smartblinds - Live'
   const description: string = 'Vojtěch Breník - The Smartblinds Project.'
 
   return (
     <Page title={title} description={description}>
       <Header titleText={title} currentPage='live' />
       <Content>
-        {'content live page'}
+        
       </Content>
       <InfoBar />
     </Page>
