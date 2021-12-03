@@ -15,12 +15,14 @@ const componentS = (relativeWidth: number) => css({
 })
 
 const featureValueFrameS = (lineNb: number) => css({
-  flexBasis: '6.6%',
+  flexBasis: 'calc(6.6% - 4px)',
   width: '100%',
   backgroundColor: lineNb % 2 == 0 ? '#ddd' : '#fff',
   ':hover': {
     backgroundColor: 'lime'
-  }
+  },
+  paddingTop: '2px',
+  paddingBottom: '2px'
 })
 
 const featureValueLineS = (value: number) => css({
@@ -50,7 +52,7 @@ const FeatureValueFrame: React.FunctionComponent<FeatureValueFrameI> = ({ doc, f
   }
 
   return (
-      <div css={featureValueFrameS(featureInd)} onMouseOver={() => updateSamplesTitle(doc, feature)}>
+      <div css={featureValueFrameS(featureInd)} onMouseDown={() => updateSamplesTitle(doc, feature)}>
         <div css={featureValueLineS(normalizedValue(doc.features[feature.name], feature.min, feature.max))}>
           &nbsp;
         </div>
@@ -80,4 +82,4 @@ const LiveSampleColumn: React.FunctionComponent<LiveSampleColumnI> = ({ doc,  nD
   )
 }
 
-export default React.memo(LiveSampleColumn)
+export default LiveSampleColumn

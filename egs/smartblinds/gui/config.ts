@@ -7,7 +7,7 @@ const config = {
     ep_train: 'http://localhost:9777/ep_train/',
 
     defaultTrainBack: 1638313200.0,                  // 1.12.2021
-    defaultShowBack: getCurrentTs() - 84600          // yesterday
+    defaultShowBack: getCurrentTs() - 1800           // last 30 minutes
 }
 
 export default config

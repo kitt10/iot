@@ -18,7 +18,8 @@ export const useLive = () => {
 
     const liveContext: LiveContextI = {
         samplesTitle: samplesTitle,
-        updateSamplesTitle: updateSamplesTitle
+        updateSamplesTitle: updateSamplesTitle,
+        setSamplesTitle: setSamplesTitle
     }
 
     return liveContext

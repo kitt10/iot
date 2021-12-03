@@ -32,7 +32,7 @@ const samplesS = () => css({
   maxWidth: 'calc(100% - 37px)',
   overflow: 'scroll',
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'row-reverse',
   borderRight: '1px solid #ddd'
 })
 
@@ -52,10 +52,10 @@ const LiveSamples: React.FunctionComponent = () => {
 
   const { features } = useContext(TaskContext)
   const { documents } = useContext(DataContext)
-  const { samplesTitle } = useContext(LiveContext)
+  const { samplesTitle, setSamplesTitle } = useContext(LiveContext)
 
   return (
-    <div css={componentS}>
+    <div css={componentS} onMouseOut={() => setSamplesTitle('')}>
       <div css={featureIdsS}>
         {Object.values(features).map((feature: FeatureI, featureInd: number) => 
           <div key={featureInd} css={featureIdS(featureInd)}>
