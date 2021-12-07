@@ -19,17 +19,42 @@ export interface TargetI {
 export interface ClassifierI {
     name: string
     description: string
-    dataTraining: string[]
+    trainable: boolean
+    nSamples: number
+    retrained: number
+    trainTime: number
+    controlTime: number
+    state: {
+        sim: {
+            updated: boolean
+            position: number
+            tilt: number
+        }
+    }
+}
+
+export const defaultClassifierState = {
+    sim: {
+        updated: false,
+        position: 0,
+        tilt: 0
+    }
+}
+
+export interface TaskInfoI {
+    nextTraining: number
 }
 
 export interface TaskI {
     features: FeatureI[]
     targets: TargetI[]
     classifiers: ClassifierI[]
+    taskInfo: TaskInfoI
 }
 
 export interface TaskContextI extends TaskI {
     setTask: (task: TaskI) => void
+    setClassifiers: (classifiers: ClassifierI[]) => void
 }
 
 const TaskContext = createContext<TaskContextI>({} as TaskContextI)

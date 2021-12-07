@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Content from '../components/Content'
 import DataTable from '../components/DataTable'
 import DataLegend from '../components/DataLegend'
+import InfoBar from '../components/InfoBar'
 
 const contentAS = () => css({
   display: 'flex',
@@ -29,6 +30,7 @@ const DataPage = () => {
         <DataTable />
         <DataLegend />
       </Content>
+      <InfoBar />
     </Page>
   )
 }

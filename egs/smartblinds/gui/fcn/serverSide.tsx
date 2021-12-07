@@ -1,8 +1,15 @@
 import { load } from 'js-yaml'
 import fs from 'promise-fs'
 import { post } from './httpFetch'
-import { TaskI } from '../context/TaskContext'
+import { TaskI, defaultClassifierState } from '../context/TaskContext'
 import config from '../config'
+
+const initClassifiersStates = async (task: TaskI) => {
+    for (let classifier of task.classifiers) {
+        classifier.state = defaultClassifierState
+    }
+    return task
+}
 
 export const loadTask = async () => {
     let task: TaskI = {} as TaskI
@@ -13,7 +20,7 @@ export const loadTask = async () => {
         .catch(err => {
             console.log('ERROR loading task:', err)
         })
-    return task
+    return await initClassifiersStates(task)
 }
 
 export const loadData = async () => {

@@ -1,13 +1,60 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { css } from '@emotion/react'
 import { ClassifierI } from '../context/TaskContext'
-import SimulatorContext from '../context/SimulatorContext'
+import { formatSecs, ts2date } from '../fcn/_tools'
+import AnimationPosition from './AnimationPosition'
+import AnimationTilt from './AnimationTilt'
+import Icon from './atomic/Icon'
 
-const componentS = () => css({
+const componentS = (updated: boolean) => css({
   display: 'flex',
   flexDirection: 'row',
   marginBottom: '50px',
-  border: '1px solid red'
+  padding: '10px',
+  border: updated ? '2px solid green' : '2px solid maroon'
+})
+
+const classifierInfoS = () => css({
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1
+})
+
+const classifierTitleS = (updated: boolean) => css({
+  display: 'flex',
+  flexDirection: 'row',
+  color: updated ? 'green' : 'maroon',
+  fontSize: '22px',
+  fontWeight: 'bold',
+})
+
+const classifierDescriptionS = () => css({
+  display: 'flex',
+  flexDirection: 'column',
+  color: 'darkgray',
+  padding: '7px',
+  fontSize: '13px',
+  lineHeight: '2em'
+})
+
+const classifierOutputS = () => css({
+  display: 'flex',
+  flexDirection: 'row',
+  flexGrow: 0,
+  flexBasis: '300px',
+  marginLeft: '50px',
+  justifyContent: 'space-around'
+})
+
+const animationFrameS = () => css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between'
+})
+
+const iconAS = () => css({
+  marginRight: '10px'
 })
 
 interface ClassifierBoxI {
@@ -15,14 +62,39 @@ interface ClassifierBoxI {
   classifierInd: number
 }
 
-const ClassifierBox: React.FunctionComponent<ClassifierBoxI> = ({ classifier, classifierInd }) => {
-
-  const simulatorContext = useContext(SimulatorContext)
-  const [updated, setUpdated] = useState(simulatorContext.classifiersUpdated[classifier.name])
-
+const ClassifierBox: React.FunctionComponent<ClassifierBoxI> = ({ classifier }) => {
+  
   return (
-    <div css={componentS}>
-      {'Classifier '+classifierInd+' : '+classifier.name+' : '+classifier.description}
+    <div css={componentS(classifier.state.sim.updated)}>
+      <div css={classifierInfoS}>
+        <div css={classifierTitleS(classifier.state.sim.updated)}>
+          <Icon iconStyle={iconAS}>update</Icon>
+          {classifier.name}
+        </div>
+        <div css={classifierDescriptionS}>
+          <div>
+            {classifier.description}
+          </div>
+          <div>
+            {classifier.state.sim.updated && <div>{'Control time: '+formatSecs(classifier.controlTime)}</div>}
+            {classifier.trainable && classifier.retrained != 0 && <div>{'Number of samples: '+classifier.nSamples+' | Retrained: '+(ts2date(classifier.retrained))+' | Train time: '+formatSecs(classifier.trainTime)}</div>}
+          </div>
+        </div>
+      </div>
+      <div css={classifierOutputS}>
+        <div css={animationFrameS}>
+          <AnimationPosition value={classifier.state.sim.position} />
+          <div>
+            {'Position: '+classifier.state.sim.position}
+            </div>
+        </div>
+        <div css={animationFrameS}>
+          <AnimationTilt value={classifier.state.sim.tilt} />
+          <div>
+            {'Tilt: '+classifier.state.sim.tilt}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

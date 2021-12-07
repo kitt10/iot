@@ -1,5 +1,6 @@
 from lib._tools import *
 from lib.database import Database
+from lib.classification import Classification
 from lib.webserver import WebServer
 
 class App:
@@ -20,8 +21,14 @@ class App:
         # Init Database
         self.db = Database(app=self)
         
+        # Init Classifiers
+        self.cl = Classification(app=self)
+        
         # Init API WebServer
         self.ws = WebServer(app=self)
+        
+        # Plan Classifiers Trainings to every midnight
+        self.ws.plan_next_training()
         
         # Run API WebServer
         self.ws.run()

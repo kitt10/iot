@@ -16,8 +16,44 @@ export interface DocumentI {
     targets: TargetsValuesI
 }
 
+export interface ControlsI {
+    [classifierName: string]: {
+        controlByTs: {
+            [timestamp: number]: {
+                position: number
+                tilt: number
+            }
+        }
+        tsMin: number
+        tsMax: number
+    }
+}
+
+export interface PayloadControlI {
+    status: string
+    targets: TargetsValuesI
+    controlTime: number
+}
+
+export interface PayloadTrainI {
+    status: string
+    classifierInfo: {
+        [classifierName: string]: {
+            trainTime: number
+            lastTrained: number
+            nSamples: number
+        }
+    }
+}
+
 export interface DataContextI {
     documents: DocumentI[]
+    controls: ControlsI
+    setControls: (controls: ControlsI) => void
+    trainBack: number
+    setTrainBack: (trainBack: number) => void
+    showBack: number
+    setShowBack: (showBack: number) => void
     parseData: (data: Object[]) => void
 }
 

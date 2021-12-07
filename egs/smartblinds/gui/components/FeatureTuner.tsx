@@ -33,7 +33,7 @@ interface FeatureTunerI {
 const FeatureTuner: React.FunctionComponent<FeatureTunerI> = ({ feature, featureInd }) => {
 
   const simulatorContext = useContext(SimulatorContext)
-  const [featureValue, setFeatureValue] = useState(simulatorContext.simFeatureVector[feature.name])
+  const featureValue = simulatorContext.simFeatureVector[feature.name]
   const inpRef: React.RefObject<HTMLInputElement> = React.createRef<HTMLInputElement>()
 
   const changeHandler = () => {
@@ -43,7 +43,7 @@ const FeatureTuner: React.FunctionComponent<FeatureTunerI> = ({ feature, feature
       } else if (feature.type == 'boolean') {
         simulatorContext.setSimFeature(feature.name, inpRef.current.checked)
       }
-      setFeatureValue(simulatorContext.simFeatureVector[feature.name])
+      simulatorContext.updateClassifiers()
     }
   }
 

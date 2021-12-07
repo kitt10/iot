@@ -1,97 +1,114 @@
-features:
-  - name: 'year_day'
-    type: 'int'
-    min: 1
-    max: 365
-    description: 'desc'
-  - name: 'week_day'
-    type: 'int'
-    min: 0
-    max: 6
-    description: 'desc'
-  - name: 'day_secs'
-    type: 'int'
-    min: 0
-    max: 86400
-    description: 'desc'
-  - name: 'home'
-    type: 'boolean'
-    min: ~
-    max: ~
-    description: 'desc'
-  - name: 'temp_in'
-    type: 'float'
-    min: -30
-    max: 50
-    description: 'desc'
-  - name: 'temp_out'
-    type: 'float'
-    min: -30
-    max: 50
-    description: 'desc'
-  - name: 'lum_in'
-    type: 'float'
-    min: 0
-    max: 10000
-    description: 'desc'
-  - name: 'lum_out'
-    type: 'float'
-    min: 0
-    max: 10000
-    description: 'desc'
-  - name: 'owm_temp_max'
-    type: 'float'
-    min: -30
-    max: 50
-    description: 'desc'
-  - name: 'owm_temp_1h'
-    type: 'float'
-    min: -30
-    max: 50
-    description: 'desc'
-  - name: 'owm_temp_2h'
-    type: 'float'
-    min: -30
-    max: 50
-    description: 'desc'
-  - name: 'owm_temp_3h'
-    type: 'float'
-    min: -30
-    max: 50
-    description: 'desc'
-  - name: 'owm_code'
-    type: 'int'
-    min: 200
-    max: 804
-    description: 'desc'
-  - name: 'owm_wind_speed'
-    type: 'float'
-    min: 0
-    max: 50
-    description: 'desc'
-  - name: 'owm_wind_heading'
-    type: 'float'
-    min: 0
-    max: 359
-    description: 'desc'
-targets:
-  - name: 'position'
-    type: 'int'
-    min: 0
-    max: 100
-    description: 'desc'
-  - name: 'tilt'
-    type: 'int'
-    min: 0
-    max: 100
-    description: 'desc'
 classifiers:
-  - name: 'ifelse'
-    description: 'A default (baseline) decision maker. Based on if-else statements.'
-    dataTraining: []
-  - name: 'ffnn'
-    description: 'A Feed-Forward Neural Network based decision maker.'
-    dataTraining: []
-  - name: 'lstm'
-    description: 'A Recurrent (LSTM) Neural Network based decision maker.'
-    dataTraining: []
+- controlTime: 3.0994415283203125e-06
+  description: A default (baseline) decision maker. Based on if-else statements.
+  nSamples: 0
+  name: ifelse
+  retrained: 0
+  state: {}
+  trainTime: 0
+  trainable: false
+- controlTime: 2.8133392333984375e-05
+  description: A Feed-Forward Neural Network based decision maker.
+  nSamples: 366
+  name: ffnn
+  retrained: 1638457479.8859031
+  state: {}
+  trainTime: 7.152557373046875e-06
+  trainable: true
+- controlTime: 2.5033950805664062e-05
+  description: A Recurrent (LSTM) Neural Network based decision maker.
+  nSamples: 366
+  name: lstm
+  retrained: 1638457479.89288
+  state: {}
+  trainTime: 2.6941299438476562e-05
+  trainable: true
+features:
+- description: desc
+  max: 365
+  min: 1
+  name: year_day
+  type: int
+- description: desc
+  max: 6
+  min: 0
+  name: week_day
+  type: int
+- description: desc
+  max: 86400
+  min: 0
+  name: day_secs
+  type: int
+- description: desc
+  max: null
+  min: null
+  name: home
+  type: boolean
+- description: desc
+  max: 50
+  min: -30
+  name: temp_in
+  type: float
+- description: desc
+  max: 50
+  min: -30
+  name: temp_out
+  type: float
+- description: desc
+  max: 10000
+  min: 0
+  name: lum_in
+  type: float
+- description: desc
+  max: 10000
+  min: 0
+  name: lum_out
+  type: float
+- description: desc
+  max: 50
+  min: -30
+  name: owm_temp_max
+  type: float
+- description: desc
+  max: 50
+  min: -30
+  name: owm_temp_1h
+  type: float
+- description: desc
+  max: 50
+  min: -30
+  name: owm_temp_2h
+  type: float
+- description: desc
+  max: 50
+  min: -30
+  name: owm_temp_3h
+  type: float
+- description: desc
+  max: 804
+  min: 200
+  name: owm_code
+  type: int
+- description: desc
+  max: 50
+  min: 0
+  name: owm_wind_speed
+  type: float
+- description: desc
+  max: 359
+  min: 0
+  name: owm_wind_heading
+  type: float
+targets:
+- description: desc
+  max: 100
+  min: 0
+  name: position
+  type: int
+- description: desc
+  max: 100
+  min: 0
+  name: tilt
+  type: int
+taskInfo:
+  nextTraining: 1638572400.0

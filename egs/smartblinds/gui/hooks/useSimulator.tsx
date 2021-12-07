@@ -1,28 +1,40 @@
-import { useState } from 'react'
-import { SimulatorContextI, ClassifiersUpdatedI } from '../context/SimulatorContext'
-import { DocumentI } from '../context/DataContext'
+import { useState, useContext } from 'react'
+import { SimulatorContextI } from '../context/SimulatorContext'
+import { DocumentI, PayloadControlI } from '../context/DataContext'
+import TaskContext from '../context/TaskContext'
+import { control } from '../fcn/clientSide'
 
-export const useSimulator = (lastDocument: DocumentI, classifiersNames: string[]) => {
+export const useSimulator = (lastDocument: DocumentI) => {
 
+    const taskContext = useContext(TaskContext)
     const [simFeatureVector, setSimFeatureVector] = useState(lastDocument.features)
-    const defaultClassifiersUpdated: ClassifiersUpdatedI = Object.assign({}, ...classifiersNames.map((name: string) => ({[name]: false})))
-    const [classifiersUpdated, setClassifiersUpdated] = useState(defaultClassifiersUpdated)
 
     const setSimFeature = async (featureName: string, value: number | boolean) => {
         simFeatureVector[featureName] = value
-        setSimFeatureVector(simFeatureVector)
+        setSimFeatureVector({...simFeatureVector})
     }
 
-    const setClassifierUpdated = async (classifierName: string, value: boolean) => {
-        classifiersUpdated[classifierName] = value
-        setClassifiersUpdated(classifiersUpdated)
+    const updateClassifiers = async () => {
+        /** Set all not updated */
+        for (let classifier of taskContext.classifiers) {
+            classifier.state.sim.updated = false
+        }
+
+        /** Update all one by one */
+        for (let classifier of taskContext.classifiers) {
+            let payload: PayloadControlI = await control(classifier.name, simFeatureVector)
+            classifier.controlTime = payload.controlTime
+            classifier.state.sim.position = payload.targets.position
+            classifier.state.sim.tilt = payload.targets.tilt
+            classifier.state.sim.updated = true
+            taskContext.setClassifiers([...taskContext.classifiers])
+        }
     }
 
     const simulatorContext: SimulatorContextI = {
         simFeatureVector: simFeatureVector,
         setSimFeature: setSimFeature,
-        classifiersUpdated: classifiersUpdated,
-        setClassifierUpdated: setClassifierUpdated
+        updateClassifiers: updateClassifiers
     }
 
     return simulatorContext

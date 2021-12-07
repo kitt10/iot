@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { css } from '@emotion/react'
 import TaskContext, { ClassifierI, FeatureI } from '../context/TaskContext'
 import SimulatorContext from '../context/SimulatorContext'
@@ -9,6 +9,7 @@ import Header from '../components/Header'
 import Content from '../components/Content'
 import FeatureTuner from '../components/FeatureTuner'
 import ClassifierBox from '../components/ClassifierBox'
+import InfoBar from '../components/InfoBar'
 
 const contentAS = () => css({
   display: 'flex',
@@ -29,8 +30,7 @@ const classificationFrameS = () => css({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   marginLeft: '50px',
-  overflow: 'scroll',
-  border: '1px solid blue'
+  overflow: 'scroll'
 })
 
 const SimulatorPage = () => {
@@ -40,7 +40,7 @@ const SimulatorPage = () => {
 
   const { features, classifiers } = useContext(TaskContext)
   const { documents } = useContext(DataContext)
-  const simulatorContext = useSimulator(documents[documents.length-1], classifiers.map((classifier: ClassifierI) => (classifier.name)))
+  const simulatorContext = useSimulator(documents[documents.length-1])
 
   return (
     <Page title={title} description={description}>
@@ -59,6 +59,7 @@ const SimulatorPage = () => {
           </div>
         </SimulatorContext.Provider>
       </Content>
+      <InfoBar />
     </Page>
   )
 }

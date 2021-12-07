@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from '@emotion/react'
 import Title from '../components/Title'
 import Menu from '../components/Menu'
-import Message from './Message'
+import ControlPanel from './ControlPanel'
 
 
 const componentS = () => css({
@@ -23,7 +23,7 @@ const Header: React.FunctionComponent<HeaderI> = ({ titleText, currentPage }) =>
   return (
     <div css={componentS}>
       <Title titleText={titleText} />
-      <Message />
+      <ControlPanel />
       <Menu currentPage={currentPage} />
     </div>
   )
