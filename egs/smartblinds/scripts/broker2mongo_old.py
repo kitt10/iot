@@ -71,7 +71,7 @@ def log(cfg, buf):
 if __name__ == '__main__':
 
     # Load config
-    cfg = load_config(cfg_file='cfg_broker2mongo.yml')
+    cfg = load_config(cfg_file='cfg_engine.yml')
 
     # Init MongoDB
     mongo = Mongo(cfg)
