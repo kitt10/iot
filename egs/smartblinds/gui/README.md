@@ -33,8 +33,8 @@ App: http://localhost:3000
 - Tornado can provide the web only if the Next.js app is exported to ```static_path_rel```
 ```yaml
 webserver.host_web: true
-static_path_rel: '../../gui/_static'
-static_index: 'index.html'
+webserver.static_path_rel: '../../gui/_static'
+webserver.static_index: 'index.html'
 ```
 otherwise
 ```yaml
