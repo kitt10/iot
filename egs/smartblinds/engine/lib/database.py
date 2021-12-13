@@ -16,7 +16,7 @@ class Database:
         data = sorted(self.generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
         #data = self.generate_toy_data()
         self.db_load_data_time = time()-t0
-        self.log('Data caught in '+format_secs(self.db_load_data_time))
+        self.log('Data collected in '+format_secs(self.db_load_data_time))
         return data
     
     def generate_toy_data(self):
