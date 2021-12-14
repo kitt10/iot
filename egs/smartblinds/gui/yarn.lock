@@ -1515,6 +1515,21 @@ domain-browser@^1.1.1:
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
   integrity sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==
 
+echarts-for-react-typescript@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/echarts-for-react-typescript/-/echarts-for-react-typescript-1.2.5.tgz#33bf089b2c72d4d218817ac8d8e76e21328c705e"
+  integrity sha1-M78Imyxy1NIYgXrI2OduITKMcF4=
+  dependencies:
+    echarts "~3.5.0"
+    element-resize-event "2.0.7"
+
+echarts@~3.5.0:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.5.4.tgz#f4fb32559711edc56375b06bf1d7628a707ff9e2"
+  integrity sha1-9PsyVZcR7cVjdbBr8ddiinB/+eI=
+  dependencies:
+    zrender "^3.4.4"
+
 electron-to-chromium@^1.3.723:
   version "1.3.879"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.879.tgz#4aba9700cfb241fb95c6ed69e31785e3d1605a43"
@@ -1524,6 +1539,11 @@ electron-to-chromium@^1.3.878:
   version "1.3.886"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.886.tgz#ac039c4001b665b1dd0f0ed9c2e4da90ff3c9267"
   integrity sha512-+vYdeBosI63VkCtNWnEVFjgNd/IZwvnsWkKyPtWAvrhA+XfByKoBJcbsMgudVU/bUcGAF9Xp3aXn96voWlc3oQ==
+
+element-resize-event@2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/element-resize-event/-/element-resize-event-2.0.7.tgz#8b63953715967cd2241620245573e79e684e07b0"
+  integrity sha1-i2OVNxWWfNIkFiAkVXPnnmhOB7A=
 
 elliptic@^6.5.3:
   version "6.5.4"
@@ -3836,3 +3856,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zrender@^3.4.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.7.4.tgz#f847d53948481ef6d42906d1ea9aeec7acbefdf2"
+  integrity sha512-5Nz7+L1wIoL0+Pp/iOP56jD6eD017qC9VRSgUBheXBiAHgOBJZ4uh4/g6e83acIwa8RKSyZf/FlceKu5ntUuxQ==

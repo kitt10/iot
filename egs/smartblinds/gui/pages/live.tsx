@@ -5,11 +5,11 @@ import Page from '../components/core/Page'
 import Header from '../components/Header'
 import Content from '../components/Content'
 import InfoBar from '../components/InfoBar'
-import LiveSamples from '../components/LiveSamples'
+import LiveDataGraph from '../components/LiveDataGraph'
 
 const contentAS = () => css({
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'column'
 })
 
 const LivePage = () => {
@@ -24,7 +24,7 @@ const LivePage = () => {
       <Header titleText={title} currentPage='live' />
       <Content contentAS={contentAS}>
         <LiveContext.Provider value={liveContext}>
-          <LiveSamples /> 
+          <LiveDataGraph /> 
         </LiveContext.Provider>
       </Content>
       <InfoBar />

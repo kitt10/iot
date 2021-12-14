@@ -41,7 +41,7 @@ const DataTable: React.FunctionComponent = () => {
         </tr>
       </thead>
       <tbody>
-        {documents.map((document: DocumentI, docInd: number) => 
+        {Array.from(documents.reverse()).map((document: DocumentI, docInd: number) => 
           <DataTableLine key={docInd} document={document} documentInd={docInd} /> 
         )}
       </tbody>

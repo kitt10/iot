@@ -28,16 +28,16 @@ class Database:
         t0 = time()
         if self.real_data:
             if ts_start and ts_end:
-                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$gte': ts_start, '$lte': ts_end}}).sort('timestamp', -1))})
+                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$gte': ts_start, '$lte': ts_end}}).sort('timestamp', 1))})
                 self.log('Using data from '+str(datetime.fromtimestamp(ts_start))+' to '+str(datetime.fromtimestamp(ts_end)))
             elif ts_start:
-                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$gte': ts_start}}).sort('timestamp', -1))})
+                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$gte': ts_start}}).sort('timestamp', 1))})
                 self.log('Using data from '+str(datetime.fromtimestamp(ts_start)))
             elif ts_end:
-                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$lte': ts_end}}).sort('timestamp', -1))})
+                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$lte': ts_end}}).sort('timestamp', 1))})
                 self.log('Using data to '+str(datetime.fromtimestamp(ts_end)))
             else:
-                data = json_dumpsb({'data': list(self.collection.find().sort('timestamp', -1))})
+                data = json_dumpsb({'data': list(self.collection.find().sort('timestamp', 1))})
                 self.log('Using all data')
         else:
             data = sorted(generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
