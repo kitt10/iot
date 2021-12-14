@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { css } from '@emotion/react'
 import ReactECharts from 'echarts-for-react-typescript'
-import TaskContext, { FeatureI } from '../context/TaskContext'
+import TaskContext, { TargetI } from '../context/TaskContext'
 import DataContext, { DocumentI } from '../context/DataContext'
 import { ts2date, norm } from '../fcn/_tools'
 
@@ -14,18 +14,17 @@ const chartS = () => css({
   maxHeight: '38vh'
 })
 
-const LiveDataGraph: React.FunctionComponent = () => {
+const LiveControlGraph: React.FunctionComponent = () => {
 
-  const { features } = useContext(TaskContext)
+  const { targets } = useContext(TaskContext)
   const { documents } = useContext(DataContext)
 
-  const chartsSeries = features.map((feature: FeatureI) => ({
-    name: feature.name,
+  const chartsSeries = targets.map((target: TargetI) => ({
+    name: 'actual_'+target.name,
     type: 'line',
-    data: documents.map((document: DocumentI) => norm(document.features[feature.name], feature.min, feature.max))
+    symbol: 'roundRect',
+    data: documents.map((document: DocumentI) => document.targets[target.name])
   }))
-
-  const selected = features.reduce((a: FeatureI, feature: FeatureI) => ({ ...a, [feature.name]: feature.show}), {} as FeatureI)
 
   const chartsOption = {
     title: {
@@ -38,8 +37,7 @@ const LiveDataGraph: React.FunctionComponent = () => {
       }
     },
     legend: {
-      data: features.map((feature: FeatureI) => feature.name),
-      selected: selected
+      data: targets.map((target: TargetI) => 'actual_'+target.name)
     },
     grid: {
       left: '3%',
@@ -58,22 +56,23 @@ const LiveDataGraph: React.FunctionComponent = () => {
     },
     yAxis: {
       type: 'value',
-      min: -0.1,
-      max: 1.1
+      min: -10,
+      max: 110
     },
-    series: chartsSeries
+    series: chartsSeries,
+    color: ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc']
   }
 
   const chartIsReady = () => {
-    console.log('Live data chart is ready.')
+    console.log('Live control chart is ready.')
   }
 
   const chartClicked = () => {
-    console.log('Live data chart clicked.')
+    console.log('Live control chart clicked.')
   }
 
   const chartLegendSelectChanged = () => {
-    console.log('Live data chart legend select changed.')
+    console.log('Live control chart legend select changed.')
   }
 
   const onEvents = {
@@ -95,4 +94,4 @@ const LiveDataGraph: React.FunctionComponent = () => {
   )
 }
 
-export default LiveDataGraph
+export default LiveControlGraph

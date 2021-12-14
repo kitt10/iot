@@ -6,10 +6,16 @@ import Header from '../components/Header'
 import Content from '../components/Content'
 import InfoBar from '../components/InfoBar'
 import LiveDataGraph from '../components/LiveDataGraph'
+import LiveControlGraph from '../components/LiveControlGraph'
 
 const contentAS = () => css({
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  justifyContent: 'space-around'
+})
+
+const sepLineS = () => css({
+  borderTop: '2px solid darkgray'
 })
 
 const LivePage = () => {
@@ -24,7 +30,11 @@ const LivePage = () => {
       <Header titleText={title} currentPage='live' />
       <Content contentAS={contentAS}>
         <LiveContext.Provider value={liveContext}>
-          <LiveDataGraph /> 
+          <LiveDataGraph />
+          <div css={sepLineS}>
+            &nbsp;
+          </div>
+          <LiveControlGraph />
         </LiveContext.Provider>
       </Content>
       <InfoBar />
