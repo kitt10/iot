@@ -6,6 +6,7 @@ export interface FeatureI {
     min: number | undefined
     max: number | undefined
     description: string
+    icon: string
 }
 
 export interface TargetI {
@@ -14,6 +15,7 @@ export interface TargetI {
     min: number | undefined
     max: number | undefined
     description: string
+    icon: string
 }
 
 export interface ClassifierI {

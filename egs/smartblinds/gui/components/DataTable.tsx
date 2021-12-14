@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import DataContext, { DocumentI } from '../context/DataContext'
 import TaskContext, { FeatureI, TargetI } from '../context/TaskContext'
 import DataTableLine from './DataTableLine'
+import Icon from './atomic/Icon'
 
 const tableS = () => css({
   flexGrow: 1,
@@ -29,12 +30,12 @@ const DataTable: React.FunctionComponent = () => {
           <th>{'DateTime'}</th>
           {Object.values(features).map((feature: FeatureI, featureInd: number) => 
             <th key={featureInd} css={thS}>
-              {'F'+(featureInd+1)}
+              <Icon>{feature.icon}</Icon>
             </th>
           )}
           {Object.values(targets).map((target: TargetI, targetInd: number) => 
             <th key={targetInd}  css={thS}>
-              {'T'+(targetInd+1)}
+              <Icon>{target.icon}</Icon>
             </th>
           )}
         </tr>

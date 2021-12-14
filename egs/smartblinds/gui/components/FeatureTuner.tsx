@@ -4,6 +4,7 @@ import { FeatureI } from '../context/TaskContext'
 import SimulatorContext from '../context/SimulatorContext'
 import Slider from './atomic/Slider'
 import CheckBox from './atomic/CheckBox'
+import Icon from './atomic/Icon'
 
 const componentS = () => css({
   display: 'flex',
@@ -15,6 +16,9 @@ const componentS = () => css({
 })
 
 const tunerHeaderS = () => css({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
   fontSize: '12px'
 })
 
@@ -23,6 +27,10 @@ const tunerControlS = () => css({
   width: '200px',
   display: 'flex',
   flexDirection: 'row'
+})
+
+const featureIconAS = () => css({
+  marginRight: '10px'
 })
 
 interface FeatureTunerI {
@@ -50,7 +58,8 @@ const FeatureTuner: React.FunctionComponent<FeatureTunerI> = ({ feature, feature
   return (
     <div css={componentS}>
       <div css={tunerHeaderS} >
-        {'F'+(featureInd+1)+': '+feature.name}
+        <Icon iconStyle={featureIconAS}>{feature.icon}</Icon>
+        {feature.name}
       </div>
       <div css={tunerControlS}>
         {feature.type == 'float' && <Slider onChange={changeHandler} sliderRef={inpRef} min={feature.min || 0} max={feature.max || 1} defaultValue={featureValue.toString()} step={0.1} />}

@@ -12,12 +12,6 @@ const contentAS = () => css({
   alignItems: 'start'
 })
 
-const legendS = () => css({
-  flexGrow: 0,
-  display: 'flex',
-  flexDirection: 'column'
-})
-
 const DataPage = () => {
 
   const title: string = 'Smartblinds - Data'

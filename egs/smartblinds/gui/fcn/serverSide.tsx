@@ -25,7 +25,7 @@ export const loadTask = async () => {
 
 export const loadData = async () => {
     let data: Object[] = [] as Object[]
-    await post(config.ep_data, {limit: 0})
+    await post(config.ep_data, {ts_start: 0, ts_end: 0})
         .then(payload => {
             data = payload.data
         })
