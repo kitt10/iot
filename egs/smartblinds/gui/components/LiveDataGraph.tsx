@@ -4,7 +4,8 @@ import ReactECharts from 'echarts-for-react-typescript'
 import TaskContext, { FeatureI } from '../context/TaskContext'
 import DataContext, { DocumentI } from '../context/DataContext'
 import LiveContext from '../context/LiveContext'
-import { ts2date } from '../fcn/_tools'
+import Icon from './atomic/Icon'
+import { ts2date, norm } from '../fcn/_tools'
 
 
 const componentS = () => css({
@@ -20,12 +21,21 @@ const LiveDataGraph: React.FunctionComponent = () => {
   const { features } = useContext(TaskContext)
   const { documents } = useContext(DataContext)
 
+  const chartsSeries = features.map((feature: FeatureI) => ({
+    name: feature.name,
+    type: 'line',
+    data: documents.map((document: DocumentI) => norm(document.features[feature.name], feature.min, feature.max))
+  }))
+
   const chartsOption = {
     title: {
-      text: 'Data'
+      text: ''
     },
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
+      position: (point: Array<number>) => {
+          return [point[0], '10%']
+      }
     },
     legend: {
       data: features.map((feature: FeatureI) => feature.name)
@@ -37,9 +47,7 @@ const LiveDataGraph: React.FunctionComponent = () => {
       containLabel: true
     },
     toolbox: {
-      feature: {
-        saveAsImage: {}
-      }
+      show: false
     },
     xAxis: {
       type: 'category',
@@ -47,14 +55,11 @@ const LiveDataGraph: React.FunctionComponent = () => {
       data: documents.map((document: DocumentI) => ts2date(document.timestamp))
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      min: -0.1,
+      max: 1.1
     },
-    series: features.map((feature: FeatureI) => ({
-      name: feature.name,
-      type: 'line',
-      stack: 'Total',
-      data: documents.map((document: DocumentI) => document.features[feature.name])
-    }))
+    series: chartsSeries
   }
 
   const chartIsReady = () => {

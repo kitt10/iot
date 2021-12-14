@@ -26,3 +26,11 @@ export const ts2date = (ts: number) => {
 export const getCurrentTs = () => {
     return + new Date() / 1000
 }
+
+export const norm = (value: number | boolean, a_min: number | undefined, a_max: number | undefined) => {
+    if (typeof value === 'number' && a_min && a_max) {
+      return (value-a_min)/(a_max-a_min)
+    } else {
+      return value ? 1 : 0
+    }
+  }
