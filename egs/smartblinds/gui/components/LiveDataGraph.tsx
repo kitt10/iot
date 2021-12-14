@@ -3,17 +3,15 @@ import { css } from '@emotion/react'
 import ReactECharts from 'echarts-for-react-typescript'
 import TaskContext, { FeatureI } from '../context/TaskContext'
 import DataContext, { DocumentI } from '../context/DataContext'
-import LiveContext from '../context/LiveContext'
-import Icon from './atomic/Icon'
 import { ts2date, norm } from '../fcn/_tools'
 
-
 const componentS = () => css({
-  width: '100%'
+  width: '100%',
+  height: '40vh'
 })
 
 const chartS = () => css({
-  border: '2px solid green'
+  
 })
 
 const LiveDataGraph: React.FunctionComponent = () => {
@@ -27,6 +25,8 @@ const LiveDataGraph: React.FunctionComponent = () => {
     data: documents.map((document: DocumentI) => norm(document.features[feature.name], feature.min, feature.max))
   }))
 
+  const selected = features.reduce((a: FeatureI, feature: FeatureI) => ({ ...a, [feature.name]: feature.show}), {} as FeatureI)
+
   const chartsOption = {
     title: {
       text: ''
@@ -34,16 +34,18 @@ const LiveDataGraph: React.FunctionComponent = () => {
     tooltip: {
       trigger: 'axis',
       position: (point: Array<number>) => {
-          return [point[0], '10%']
+          return [point[0]+20, '12%']
       }
     },
     legend: {
-      data: features.map((feature: FeatureI) => feature.name)
+      data: features.map((feature: FeatureI) => feature.name),
+      selected: selected
     },
     grid: {
       left: '3%',
-      right: '4%',
+      right: '3%',
       bottom: '3%',
+      top: '12%',
       containLabel: true
     },
     toolbox: {
@@ -86,7 +88,6 @@ const LiveDataGraph: React.FunctionComponent = () => {
         css={chartS}
         notMerge={true}
         lazyUpdate={true}
-        theme={"theme_name"}
         onChartReady={chartIsReady}
         onEvents={onEvents}
       />

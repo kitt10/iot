@@ -7,6 +7,7 @@ export interface FeatureI {
     max: number | undefined
     description: string
     icon: string
+    show: boolean
 }
 
 export interface TargetI {

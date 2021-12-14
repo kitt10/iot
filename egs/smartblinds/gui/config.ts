@@ -11,7 +11,7 @@ const config = {
     ep_train: engineURL+':'+enginePort+'/ep_train/',
 
     defaultTrainBack: 1638313200.0,                  // 1.12.2021
-    defaultShowBack: getCurrentTs() - 1800           // last 30 minutes
+    defaultShowBack: getCurrentTs() - 18000,         // last 5 hours
 }
 
 export default config

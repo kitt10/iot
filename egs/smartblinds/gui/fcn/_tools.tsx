@@ -28,9 +28,11 @@ export const getCurrentTs = () => {
 }
 
 export const norm = (value: number | boolean, a_min: number | undefined, a_max: number | undefined) => {
-    if (typeof value === 'number' && a_min && a_max) {
-      return (value-a_min)/(a_max-a_min)
-    } else {
+    if (typeof value === 'number' && a_min !== undefined && a_max !== undefined) {
+      return ((value-a_min)/(a_max-a_min)).toFixed(2)
+    } else if (typeof value === 'boolean' && a_min !== undefined && a_max !== undefined) {
       return value ? 1 : 0
+    } else {
+      console.log('W: Bad things happening in norm...')
     }
   }
