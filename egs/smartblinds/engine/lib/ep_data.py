@@ -10,7 +10,7 @@ class EP_Data(RequestHandler):
 
     def post(self):
         query = json_decode(self.request.body)
-        self.write(self.app.db.get_data(limit=query['limit']))
+        self.write(self.app.db.get_data(ts_start=query['ts_start'], ts_end=query['ts_end']))
 
     def set_default_headers(self, *args, **kwargs):
         self.set_header("Access-Control-Allow-Origin", "*")

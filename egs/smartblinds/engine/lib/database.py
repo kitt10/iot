@@ -23,10 +23,17 @@ class Database:
         self.client = MongoClient(self.host, self.port)
         self.collection = self.client[self.db_name][self.coll_name]
         
-    def get_data(self, limit=0):
+    def get_data(self, ts_start=None, ts_end=None):
         t0 = time()
         if self.real_data:
-            data = json_dumpsb({'data': list(self.collection.find())})
+            if ts_start and ts_end:
+                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$gte': ts_start, '$lte': ts_end}}))})
+            elif ts_start:
+                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$gte': ts_start}}))})
+            elif ts_end:
+                data = json_dumpsb({'data': list(self.collection.find({'timestamp': {'$lte': ts_end}}))})
+            else:
+                data = json_dumpsb({'data': list(self.collection.find())})
         else:
             data = sorted(generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
         self.db_load_data_time = time()-t0
