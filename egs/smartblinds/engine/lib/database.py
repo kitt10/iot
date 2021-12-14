@@ -26,7 +26,7 @@ class Database:
     def get_data(self, limit=0):
         t0 = time()
         if self.real_data:
-            data = json_dumpsb({'data': list(self.collection.find())})['data']
+            data = json_dumpsb({'data': list(self.collection.find())})
         else:
             data = sorted(generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
         self.db_load_data_time = time()-t0
