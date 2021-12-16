@@ -19,6 +19,9 @@ config.cfg
 *.pyc
 __pycache__
 
+# Yarn
+yarn.lock
+
 # Mac
 .DS_Store
 
