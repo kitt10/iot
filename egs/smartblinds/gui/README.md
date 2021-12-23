@@ -26,6 +26,13 @@ $ yarn dev
 
 App: http://localhost:3000
 
+Note: KKY PC: if not sudo, put in ```package.json```:
+```json
+"scripts": {
+    "dev": "cross-env NODE_OPTIONS='--openssl-legacy-provider' next dev",
+    ...
+```
+
 ---
 
 #### Backend config (```engine/cfg_engine.yml```)
