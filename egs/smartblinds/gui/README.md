@@ -20,6 +20,7 @@ $ conda activate web
 Terminal 2 (frontend):
 ```bash
 $ cd gui
+$ yarn install  # needed just once, when repo cloned or package.json updated
 $ yarn dev
 ```
 
