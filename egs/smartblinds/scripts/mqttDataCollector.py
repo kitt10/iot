@@ -34,6 +34,7 @@ class Collector:
         self.client.subscribe([(topic, 0) for topic in self.cfg["mqtt"]["event_topics"]])
         self.client.subscribe([(topic, 0) for topic in self.cfg["mqtt"]["features"].values()])
         self.client.subscribe([(topic, 0) for topic in self.cfg["mqtt"]["targets"].values()])
+        self.client.subscribe(self.cfg["mqtt"]["testing_topic"], 0)
 
     def get_time(self):
         (year, month, mday, hour, minute, sec, wd, yd, isdst) = time.localtime()
