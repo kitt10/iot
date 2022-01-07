@@ -49,7 +49,16 @@ class Collector:
         if message.topic in self.cfg["mqtt"]["event_topics"] and not self.pending_request:
             self.periodical = False
             self.request_values()
-
+        elif message.topic == self.cfg["mqtt"]["testing_topic"]:
+            try:
+                msg = json.loads(message.payload.decode('utf-8'))
+                quantity_id = msg["id"]
+                print(quantity_id)
+                if quantity_id=="testing":
+                    self.cfg["testing"] = msg["value"]
+                    print("Set testing mode to ", self.cfg["testing"])
+            except:
+                print("E: unable to set testing value.", message.topic, message.payload)
         else:
             try:
                 msg = json.loads(message.payload.decode('utf-8'))
