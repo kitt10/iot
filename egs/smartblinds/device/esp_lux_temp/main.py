@@ -32,8 +32,8 @@ def measure_send():
     time_tuple = get_time()
     time_dict = {time_keys[i]: time_tuple[i] for i in range(len(time_keys))}
 
-    lux_msg = {"time": time_dict, "value": lux, "quantity": "illuminance"}
-    temp_msg = {"time": time_dict, "value": temp, "quantity": "temperature"}
+    lux_msg = {"time": time_dict, "value": lux, "quantity": "illuminance", "id": cfg["ids"]["lux"]}
+    temp_msg = {"time": time_dict, "value": temp, "quantity": "temperature", "id": cfg["ids"]["temp"]}
     print('Illuminance: {} lux\nTemperature: {}°C'.format(lux, temp))
 
     msgs = [lux_msg, temp_msg]
