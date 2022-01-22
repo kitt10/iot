@@ -1,4 +1,6 @@
 import numpy as np
+from time import time
+from datetime import datetime
 
 
 def generate_toy_data():
@@ -91,11 +93,11 @@ def generate_random_data(days=2):
     for t in range(now-t_back, now):
         if t % 300 == 0:
             try:
-                samples.append(self.random_sample(t, periodical=True, last_targets=samples[-1]['targets']))
+                samples.append(random_sample(t, periodical=True, last_targets=samples[-1]['targets']))
             except IndexError:
-                samples.append(self.random_sample(t, periodical=True))
+                samples.append(random_sample(t, periodical=True))
         elif np.random.choice(list(range(1000))) == 0:
-            samples.append(self.random_sample(t, periodical=False))
+            samples.append(random_sample(t, periodical=False))
     
     print('FAKDB LOG: Generated '+str(len(samples))+' samples.')
     return samples

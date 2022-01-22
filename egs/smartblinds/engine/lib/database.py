@@ -40,7 +40,7 @@ class Database:
                 data = json_dumpsb({'data': list(self.collection.find().sort('timestamp', 1))})
                 self.log('Using all data')
         else:
-            data = sorted(generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True)
+            data = json_dumpsb({'data': list(sorted(generate_random_data(days=1), key=lambda x:x['timestamp'], reverse=True))})
             self.log('Using simulation random data.')
         self.db_load_data_time = time()-t0
         self.log('Data collected in '+format_secs(self.db_load_data_time))
