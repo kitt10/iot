@@ -9,7 +9,9 @@ const componentS = () => css({
   flexDirection: 'column',
   fontSize: '12px',
   lineHeight: '2em',
-  marginLeft: '50px'
+  marginLeft: '50px',
+  position: 'sticky',
+  top: 0
 })
 
 const legendLineS = () => css({

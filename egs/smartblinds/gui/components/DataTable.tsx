@@ -15,6 +15,9 @@ const tableS = () => css({
 })
 
 const thS = () => css({
+  position: 'sticky',
+  top: 0,
+  background: '#eee'
 })
 
 const DataTable: React.FunctionComponent = () => {
@@ -26,8 +29,8 @@ const DataTable: React.FunctionComponent = () => {
     <table css={tableS} cellSpacing='5px'>
       <thead>
         <tr>
-          <td>&nbsp;</td>
-          <th>{'DateTime'}</th>
+          <td css={thS}>&nbsp;</td>
+          <th css={thS}>{'DateTime'}</th>
           {Object.values(features).map((feature: FeatureI, featureInd: number) => 
             <th key={featureInd} css={thS}>
               <Icon>{feature.icon}</Icon>
