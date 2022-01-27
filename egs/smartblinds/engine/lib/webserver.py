@@ -6,6 +6,7 @@ from .ep_web import EP_Web
 from .ep_data import EP_Data
 from .ep_control import EP_Control
 from .ep_train import EP_Train
+from .ep_ws import EP_WS, WS_Somfy
 
 class WebServer:
     
@@ -19,9 +20,11 @@ class WebServer:
         self.host_web = self.cfg['webserver']['host_web']
         self.verbose = self.cfg['webserver']['verbose']
         self.debug = self.cfg['webserver']['debug']
+        self.ws_somfy = WS_Somfy(self.cfg)
 
         endpoints = [('/', EP_Web, {'webserver': self}),
                      ('/ep_data/', EP_Data, {'app': self.app}),
+                     ('/ws/', EP_WS, {'ws_somfy': self.ws_somfy}),
                      ('/ep_control/', EP_Control, {'app': self.app}),
                      ('/ep_train/', EP_Train, {'app': self.app}),
                      ('/(.*)', StaticFileHandler, {'path': self.static_path_abs})
@@ -34,6 +37,7 @@ class WebServer:
         self.tornado_app = Application(endpoints, **settings)
         self.tornado_app.listen(self.port)
         self.current_loop = IOLoop.current()
+        self.ws_somfy.setIOL(self.current_loop)
     
     def plan_next_training(self):
         tomorrow = datetime.date.today() + datetime.timedelta(days=1)
