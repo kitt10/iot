@@ -161,10 +161,10 @@ class EP_WS(WebSocketHandler):
             print('Webserver: Received json WS message:', msg)
             pos = msg.get("position")
             if(not pos is None):
-                self.ws_somfy.cover.set_position(value=int(pos))
+                self.ws_somfy.cover.set_position(value=100-int(pos))
             tlt = msg.get("tilt")
             if(not tlt is None):
-                self.ws_somfy.cover.orientation = int(tlt)
+                self.ws_somfy.cover.orientation = 100-int(tlt)
             mode = msg.get("testing")
             if(not mode is None):
                 self.ws_somfy.testmode(mode)
@@ -244,8 +244,8 @@ class WS_Somfy:
     def update_device(self):
         try:
             self.cover.refresh_state()
-            position = self.cover.get_position()
-            tilt = self.cover.orientation
+            position = 100-self.cover.get_position()
+            tilt = 100-self.cover.orientation
 
             message = {"position": position, "tilt": tilt}
 

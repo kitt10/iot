@@ -14,10 +14,10 @@ const BlindControlVisualization: React.FunctionComponent<TargetsTunerI> = (targe
     const slatsN = 11;
     const slatsSpacing = 25;
 
-    const pospercent = createMap(0, 250, 0, 100);
-    const percentpos = createMap(0, 100, 0, 250);
-    const angle2tilt = createMap(0, 87, 0, 100);
-    const tilt2angle = createMap(0, 100, 0, 87);
+    const pospercent = createMap(0, 250, 100, 0);
+    const percentpos = createMap(100, 0, 0, 250);
+    const angle2tilt = createMap(0, 87, 100, 0);
+    const tilt2angle = createMap(100, 0, 0, 87);
 
     const slatS = (N:number) => {
         let output = css``
