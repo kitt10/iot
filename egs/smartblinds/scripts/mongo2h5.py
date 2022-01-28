@@ -65,8 +65,8 @@ def save2h5(X, Y, cfg):
     out_file = cfg['data']['out_path']+cfg['data']['from']+'_'+cfg['data']['until']+'.h5'
 
     with h5py.File(out_file, 'w') as fw:
-        fw.create_dataset('X', data=np.array(X))
-        fw.create_dataset('Y', data=np.array(Y))
+        fw.create_dataset('x', data=np.array(X))
+        fw.create_dataset('y', data=np.array(Y))
 
     log('Data saved to '+out_file, cfg['verbose'])
     log('Number of samples '+str(len(X)), cfg['verbose'])
