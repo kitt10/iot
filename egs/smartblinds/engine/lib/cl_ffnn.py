@@ -9,7 +9,7 @@ class CL_Ffnn(Classifier):
         self.trainable = True
 
         # Load trained model
-        self.model = load_model(app.cfg['classification']['ffnn_model_w'])
+        self.model = load_model(app.cfg['classification']['ffnn_model'])
         self.app.cl.log('FFNN model loaded.')
         self.model.summary()
 
