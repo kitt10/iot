@@ -1,5 +1,5 @@
 classifiers:
-- controlTime: 2.1457672119140625e-06
+- controlTime: 1.33514404296875e-05
   description: A default (baseline) decision maker. Based on if-else statements.
   nSamples: 0
   name: ifelse
@@ -7,7 +7,7 @@ classifiers:
   state: {}
   trainTime: 0
   trainable: false
-- controlTime: 2.5033950805664062e-05
+- controlTime: 0.0029964447021484375
   description: A Feed-Forward Neural Network based decision maker.
   nSamples: 0
   name: ffnn
@@ -15,7 +15,7 @@ classifiers:
   state: {}
   trainTime: 0
   trainable: true
-- controlTime: 2.5033950805664062e-05
+- controlTime: 6.890296936035156e-05
   description: A Recurrent (LSTM) Neural Network based decision maker.
   nSamples: 0
   name: lstm
@@ -25,122 +25,122 @@ classifiers:
   trainable: true
 features:
 - description: desc
+  icon: calendar_view_month
   max: 365
   min: 1
   name: year_day
-  type: int
-  icon: calendar_view_month
   show: false
+  type: int
 - description: desc
+  icon: calendar_view_week
   max: 6
   min: 0
   name: week_day
-  type: int
-  icon: calendar_view_week
   show: false
+  type: int
 - description: desc
+  icon: calendar_view_day
   max: 86400
   min: 0
   name: day_secs
-  type: int
-  icon: calendar_view_day
   show: true
+  type: int
 - description: desc
+  icon: cottage
   max: null
   min: null
   name: home
-  type: boolean
-  icon: cottage
   show: true
+  type: boolean
 - description: desc
+  icon: thermostat
   max: 50
   min: -30
   name: temp_in
-  type: float
-  icon: thermostat
   show: false
+  type: float
 - description: desc
+  icon: thermostat_auto
   max: 50
   min: -30
   name: temp_out
-  type: float
-  icon: thermostat_auto
   show: true
+  type: float
 - description: desc
+  icon: lightbulb
   max: 10000
   min: 0
   name: lum_in
-  type: float
-  icon: lightbulb
   show: true
+  type: float
 - description: desc
+  icon: light_mode
   max: 10000
   min: 0
   name: lum_out
-  type: float
-  icon: light_mode
   show: true
+  type: float
 - description: desc
+  icon: looks
   max: 50
   min: -30
   name: owm_temp_max
-  type: float
-  icon: looks
   show: false
+  type: float
 - description: desc
+  icon: looks_one
   max: 50
   min: -30
   name: owm_temp_1h
-  type: float
-  icon: looks_one
   show: false
+  type: float
 - description: desc
+  icon: looks_two
   max: 50
   min: -30
   name: owm_temp_2h
-  type: float
-  icon: looks_two
   show: false
+  type: float
 - description: desc
+  icon: looks_3
   max: 50
   min: -30
   name: owm_temp_3h
-  type: float
-  icon: looks_3
   show: false
+  type: float
 - description: desc
+  icon: integration_instructions
   max: 804
   min: 200
   name: owm_code
-  type: int
-  icon: integration_instructions
   show: false
+  type: int
 - description: desc
+  icon: speed
   max: 50
   min: 0
   name: owm_wind_speed
-  type: float
-  icon: speed
   show: true
+  type: float
 - description: desc
+  icon: directions
   max: 359
   min: 0
   name: owm_wind_heading
-  type: float
-  icon: directions
   show: true
+  type: float
 targets:
 - description: desc
+  icon: video_label
   max: 100
   min: 0
   name: position
   type: int
-  icon: video_label
 - description: desc
+  icon: screen_rotation
   max: 100
   min: 0
   name: tilt
   type: int
-  icon: screen_rotation
 taskInfo:
-  nextTraining: 1639522800.0
+  nextTraining: 1643410800.0
