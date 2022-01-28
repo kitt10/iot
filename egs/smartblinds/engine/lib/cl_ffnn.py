@@ -24,8 +24,8 @@ class CL_Ffnn(Classifier):
         X = np.array([self.make_vector(features, self.taskF)])
         U = self.model.predict(X)
 
-        position = round(float(U[0][0]), 2)
-        tilt = round(float(U[0][1]), 2)
+        position = round(float(U[0][0]), 2)*100
+        tilt = round(float(U[0][1]), 2)*100
 
         print('X:', X)
         print('U:', U)
