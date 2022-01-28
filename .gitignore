@@ -10,6 +10,7 @@
 # models
 .clf
 models/
+!/egs/smartblinds/models/
 
 # config files
 config.cfg

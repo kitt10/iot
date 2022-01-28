@@ -54,7 +54,7 @@ def train(X, Y, cfg):
     model.summary()
 
     # Define callbacks
-    callbacks = [ModelCheckpoint(model_path, monitor='loss', verbose=True, save_best_only=True, save_weights_only=True)]
+    callbacks = [ModelCheckpoint(model_path, monitor='losss', verbose=True, save_best_only=True, save_weights_only=False)]
 
     # Fit the model (train the network)
     model.fit(X, Y, epochs=cfg['ffnn']['epochs'], batch_size=cfg['ffnn']['batch_size'], callbacks=callbacks)
