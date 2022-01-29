@@ -1,3 +1,6 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'        # shut up tensorflow debug messages
+
 from yaml import full_load as yaml_full_load
 from keras.models import Sequential
 from keras.layers import Dense
@@ -48,13 +51,18 @@ def train(X, Y, cfg):
     model.add(Dense(m, activation='sigmoid'))
 
     # Compile the model
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy', 'cosine_similarity'])
+    model.compile(loss=cfg['ffnn']['loss'], optimizer='adam', metrics=cfg['ffnn']['metrics'])
 
     # Print the model summary
+    log('Compiled model:', cfg['verbose'])
     model.summary()
 
     # Define callbacks
-    callbacks = [ModelCheckpoint(model_path, monitor='losss', verbose=True, save_best_only=True, save_weights_only=False)]
+    callbacks = [ModelCheckpoint(model_path, 
+                                 monitor=cfg['ffnn']['monitor'], 
+                                 verbose=True, 
+                                 save_best_only=True, 
+                                 save_weights_only=False)]
 
     # Fit the model (train the network)
     model.fit(X, Y, epochs=cfg['ffnn']['epochs'], batch_size=cfg['ffnn']['batch_size'], callbacks=callbacks)
@@ -67,5 +75,6 @@ if __name__ == '__main__':
     # Load training data
     X, Y = load_data(cfg)
 
-    # Train the neural network, get the model
-    model = train(X, Y, cfg)
+    # Train the neural network
+    # The best model is derived and saved with callbacks
+    train(X, Y, cfg)
