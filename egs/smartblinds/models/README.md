@@ -8,8 +8,11 @@ Parameters in CFG file: ```/scripts/cfg_train_nn.yml```
 
 ### FeedForward model (```ffnn_best_<ts>.h5```)
 
-Input: ```vector (n x 1)```, ```n```: number of features (```n = 15```)
-Output: ```vector (m x 1)```, ```m```: number of targets (```m = 2```)
+Input: ```vector (n x 1)```
+- ```n```: number of features (```n = 15```)
+
+Output: ```vector (m x 1)```
+- ```m```: number of targets (```m = 2```)
 
 Script for training:  ```/scripts/train_ffnn.py```
 
@@ -17,8 +20,13 @@ Script for training:  ```/scripts/train_ffnn.py```
 
 ### Recurrent (LSTM) model (```lstm_best_<ts>.h5```)
 
-Input: ```matrix (n x t)```, ```n```: number of features (```n = 15```), ```t```: number of timesteps (history context considered) (defaultly ```t = 64 ~ 64 x 5 minutes ~ 5-6 hours```)
-Output: ```vector (m x 1)```, ```m```: number of targets (```m = 2```)
+Input: ```matrix (n x t)```
+
+- ```n```: number of features (```n = 15```), 
+- ```t```: number of timesteps - history context considered (by default ```t = 64 ~ 64 x 5 minutes ~ 5-6 hours```)
+
+Output: ```vector (m x 1)```
+- ```m```: number of targets (```m = 2```)
 
 Script for training:  ```/scripts/train_lstm.py```
 
