@@ -59,7 +59,7 @@ class Classification:
         self.log('Retraining all classifiers...')
         for classifier in self.classifiers.values():
             if classifier.trainable:
-                self.do_train(classifier.name, training_data)
+                #self.do_train(classifier.name, training_data)      # TODO
                 self.log('Classifier '+classifier.name+' retrained in '+str(round(classifier.train_time, 4))+' s ('+str(classifier.n_samples)+').')
         
         if plan_next:
