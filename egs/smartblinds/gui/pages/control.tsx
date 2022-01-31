@@ -34,7 +34,7 @@ const wsTextState = (wsReadyState:number|null) => {
     case 0: return "Connecting";
     case 1: return "Connected";
     case 2: return "Disconnecting";
-    case 3: return "Disonnected";
+    case 3: return "Disconnected";
     default: return "Not a browser";
   }
 }
