@@ -29,13 +29,13 @@ class CL_Ifelse(Classifier):
 
     def __suntilt(self, features):
         azimuth, altitude = pysolar.solar.get_position(self.app.cfg['blind']['lat'], self.app.cfg['blind']['lon'], dt.datetime(dt.datetime.now().year, 1, 1, tzinfo = dt.timezone.utc) + dt.timedelta(days = features['year_day'] - 1, seconds = features['day_secs']))
-        az_diff = (azimuth - self.app.cfg['blind']['azimuth'] + 180) % 360 - 180
-        if az_diff > -90 and az_diff < 90:
+        az_diff = abs((azimuth - self.app.cfg['blind']['azimuth'] + 180) % 360 - 180)
+        if az_diff < 90:
             return (10 / 9
             * 1.5
             * math.degrees(math.atan(
                 math.tan(math.radians(altitude)))
-                / math.cos(math.radians(abs(az_diff)))
+                / math.cos(math.radians(az_diff))
                 )
             )
         else:
