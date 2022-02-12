@@ -15,6 +15,8 @@ class Collector:
         self.features = {f: None for f in self.cfg["mqtt"]["features"]}
         self.targets = {t: None for t in self.cfg["mqtt"]["targets"]}
 
+        self.pending_request = False
+
         self.client = mqtt_client.Client(client_id = 'OWM')
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
@@ -77,6 +79,8 @@ class Collector:
         print(str(self.targets) + "\n")
 
     def request_values(self):
+        if self.pending_request and self.periodical:
+            self.alert()
         self.pending_request = True
         msg={
             "timestamp": time.time(),
@@ -131,6 +135,20 @@ class Collector:
         self.reset_values()
 
         print(message)
+
+    def alert(self):
+        missing = [m for m in self.targets if self.targets[m] == None]
+        missing.extend([m for m in self.features if self.features[m] == None])
+        msg = {
+            "timestamp": time.time(),          
+            "testing": self.cfg["testing"],
+            "missing": missing
+        }
+        message = json.dumps(msg)
+        self.client.publish(self.cfg["mqtt"]["alert_topic"], message)
+
+        print("There are some missing values: ", missing)
+        print("Alert sent.\n")
 
 if __name__ == "__main__":
     Collector()
