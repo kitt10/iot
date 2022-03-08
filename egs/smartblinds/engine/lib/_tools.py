@@ -1,4 +1,5 @@
 from yaml import full_load as yaml_full_load, dump as yaml_dump
+import numpy as np
 
 def load_config(cfg_file):
     with open(cfg_file, 'r') as fr:
@@ -31,3 +32,15 @@ def format_secs(s):
 
 def trim(val, minimum=0, maximum=100):
     return min(maximum, max(minimum, val))
+
+def make_vector(data, taskInfo):
+    return [norm(data[name], *info) for name, info in taskInfo.items()]
+
+def make_matrix(data, key, taskInfo):
+    return np.array([make_vector(obs[key], taskInfo) for obs in data])
+
+def norm(value, a_type, a_min, a_max):
+    if a_type == 'boolean':
+        return int(value)
+    else:
+        return (value-a_min)/(a_max-a_min)

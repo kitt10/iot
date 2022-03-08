@@ -30,6 +30,10 @@ class Classifier(abc.ABC):
     @abc.abstractmethod
     def control(self, features):
         pass
+
+    @abc.abstractmethod
+    def predict(self, data):
+        pass
     
     def train(self, data):
         pass

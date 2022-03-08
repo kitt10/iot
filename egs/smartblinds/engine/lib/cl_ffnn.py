@@ -1,5 +1,6 @@
 from ._classification import Classifier
 import numpy as np
+from ._tools import make_vector
 
 class CL_Ffnn(Classifier):
     
@@ -24,12 +25,8 @@ class CL_Ffnn(Classifier):
         self.app.cl.log('Training classifier '+self.name)
         pass
 
-    def make_vector(self, data, taskInfo):
-        return [norm(data[name], *info) for name, info in taskInfo.items()]
-
-# should not be in this file...
-def norm(value, a_type, a_min, a_max):
-    if a_type == 'boolean':
-        return int(value)
-    else:
-        return (value-a_min)/(a_max-a_min)
+    def predict(self, data):
+        X = np.array([make_vector(item['features'], self.taskF) for item in data])
+        predictions = self.model.predict(X)*100
+        timestamps = np.array([item['timestamp'] for item in data])
+        return timestamps, predictions

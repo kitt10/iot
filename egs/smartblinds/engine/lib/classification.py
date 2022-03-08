@@ -1,7 +1,7 @@
 from .cl_ifelse import CL_Ifelse
 from .cl_ffnn import CL_Ffnn
 from .cl_lstm import CL_Lstm
-from ._tools import dump_task, format_secs
+from ._tools import dump_task, format_secs, norm as normalize
 from time import time
 from datetime import datetime
 
@@ -32,6 +32,17 @@ class Classification:
         cl.dump_metadata()
         
         return {'status': 'ok', 'targets': {'position': position, 'tilt': tilt}, 'controlTime': cl.control_time}
+
+    def predict(self, classifier_name, data):
+        cl = self.classifiers[classifier_name]
+        t0 = time()
+        timestamps, predictions = cl.predict(data)
+        predict_time = time() - t0
+        positions = predictions[:, 0]
+        tilts = predictions[:, 1]
+        cl.dump_metadata()
+
+        return {'predictions': [{'timestamp': t, 'targets': {'position': p, 'tilt': s}} for t,p,s in zip(timestamps, positions, tilts)]}
     
     def do_train(self, classifier_name, data):
         cl = self.classifiers[classifier_name]
@@ -74,12 +85,6 @@ class Classification:
             y_.append([self.normalize(yi, self.targets[t_name]['min'], self.targets[t_name]['max'], self.targets[t_name]['type']) for t_name, yi in sample['targets'].items()])
             
         return x_, y_
-    
-    def normalize(self, value, a_min, a_max, a_type):
-        if a_type == 'boolean':
-            return int(value)
-        else:
-            return (value-a_min)/(a_max-a_min)
     
     def set_next_training(self, next_training):
         self.next_training = next_training
