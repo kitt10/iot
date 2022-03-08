@@ -4,7 +4,8 @@ export const get = async (url: string) => {
     return await res.json()
 }
   
-export const post = async (url: string, params: any) => {
-    const res = await fetch(url, {body: JSON.stringify(params), method: 'POST'})
+export const post = async (url: string, signal:null|AbortSignal, params: any) => {
+    let fetchParams:any = signal?{body: JSON.stringify(params), method: 'POST', signal: signal}:{body: JSON.stringify(params), method: 'POST'}
+    const res = await fetch(url, fetchParams)
     return await res.json()
 }

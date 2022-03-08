@@ -29,11 +29,28 @@ export interface ControlsI {
     }
 }
 
+export interface PredictionI {
+    timestamp: number
+    targets: TargetsValuesI
+}
+
 export interface PayloadControlI {
     status: string
     targets: TargetsValuesI
     controlTime: number
 }
+
+interface PayloadPredictA {
+    status: string
+}
+
+export interface PredictionsI {
+    [classifierName: string]: {
+        predictions: PredictionI[]
+    }
+}
+
+export type PayloadPredictI = PayloadPredictA & PredictionsI //interface intersection - hack to include both status and classifiers predictions (https://stackoverflow.com/questions/45258216/property-is-not-assignable-to-string-index-in-interface)
 
 export interface PayloadTrainI {
     status: string
@@ -55,6 +72,8 @@ export interface DataContextI {
     showBack: number
     setShowBack: (showBack: number) => void
     parseData: (data: Object[]) => void
+    predictions: PredictionsI
+    setPredictions: (predictions: PredictionsI) => void
 }
 
 const DataContext = createContext<DataContextI>({} as DataContextI)
