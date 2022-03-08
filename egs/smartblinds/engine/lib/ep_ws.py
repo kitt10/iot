@@ -224,7 +224,7 @@ class WS_Somfy:
 
     def send_ws_message(self, message):
         for client in self.ws_clients:
-            self.iol.spawn_callback(client.write_message, json.dumps(message))
+            self.iol.spawn_callback(client.try_send_message, json.dumps(message))
 
     def get_token(self):
         try:
