@@ -34,6 +34,10 @@ const BlindControlVisualization: React.FunctionComponent<TargetsTunerI> = (targe
         return output;
     }
 
+    const svgS = css({
+        border: '1px solid black'
+    });
+
     const blindS = css`
     padding: 5% 0 3% 0;
     background-color: #a8a8a8;
@@ -63,7 +67,7 @@ const BlindControlVisualization: React.FunctionComponent<TargetsTunerI> = (targe
     `
     return(
         <div css={blindS} id="blind">
-            <svg className="blind" width="50" height="275" xmlns="http://www.w3.org/2000/svg">
+            <svg css={svgS} className="blind" width="50" height="275" xmlns="http://www.w3.org/2000/svg">
                 <rect className="slat" width="40" height="4" />
                 <rect className="slat" width="40" height="4" />
                 <rect className="slat" width="40" height="4" />
