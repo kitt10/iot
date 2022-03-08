@@ -7,6 +7,7 @@ from .ep_data import EP_Data
 from .ep_control import EP_Control
 from .ep_train import EP_Train
 from .ep_ws import EP_WS, WS_Somfy
+from .ep_predict import EP_Predict
 
 class WebServer:
     
@@ -27,6 +28,7 @@ class WebServer:
                      ('/ws/', EP_WS, {'ws_somfy': self.ws_somfy}),
                      ('/ep_control/', EP_Control, {'app': self.app}),
                      ('/ep_train/', EP_Train, {'app': self.app}),
+                     ('/ep_predict/', EP_Predict, {'app': self.app}),
                      ('/(.*)', StaticFileHandler, {'path': self.static_path_abs})
                     ]
 

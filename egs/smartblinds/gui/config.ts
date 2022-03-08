@@ -15,6 +15,7 @@ const config = {
     ep_control: engineURL+'/ep_control/',
     ep_train: engineURL+'/ep_train/',
     ep_ws: `${WSProtocol}://${engineHost}:${enginePort}/ws/`,
+    ep_predict: engineURL+'/ep_predict/',
 
     defaultTrainBack: 1638313200.0,                  // 1.12.2021
     defaultShowBack: getCurrentTs() - 1209600,       // last 14 days
