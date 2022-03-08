@@ -8,6 +8,7 @@ from keras.callbacks import ModelCheckpoint
 from datetime import datetime
 import h5py
 import numpy as np
+import pickle
 
 
 def load_yml(file_path):
@@ -21,29 +22,12 @@ def log(buf, verbose):
     if verbose:
         print('[LOG]:', buf)
 
-def load_data(cfg):
+def load_data(cfg, dataset_suffix=''):
     
-    with h5py.File(cfg['data']['path'], 'r') as fr:
-        return fr['x'][:], fr['y'][:]
+    with h5py.File(cfg['data']['path_start']+'lstm.h5', 'r') as fr:
+        return fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
 
-def resample(X_, Y_, cfg):
-    t = cfg['lstm']['timesteps']
-    k_, n = X_.shape
-    b = k_ // cfg['lstm']['batch_size']
-    k = cfg['lstm']['batch_size'] * b
-
-    X = list()
-    Y = list()
-
-    for ki, x in enumerate(X_[:k]):
-        X.append(np.zeros(shape=(t, n)))
-        offset = max(0, t-ki-1)
-        X[-1][offset:, :] = X_[max(0, ki+1-t):ki+1]
-        Y.append(Y_[ki])
-
-    return np.array(X), np.array(Y)
-
-def train(X, Y, cfg):
+def train(X, Y, cfg, X_val = None, Y_val = None):
     """ Design the model and train the network """
 
     # Take now for this particular training phase
@@ -55,6 +39,12 @@ def train(X, Y, cfg):
     m = Y.shape[1]
     H = cfg['lstm']['hidden_neurons']
     log('Data: {} features, {} targets, {} samples, {} timesteps'.format(n, m, k, t), cfg['verbose'])
+
+    # Check if there is a validation dataset
+    if X_val is None or Y_val is None:
+        validation_data = None
+    else:
+        validation_data = (X_val, Y_val)
 
     # Initializie the model
     model = Sequential()
@@ -88,7 +78,11 @@ def train(X, Y, cfg):
                                  save_weights_only=False)]
 
     # Fit the model (train the network)
-    model.fit(X, Y, epochs=cfg['lstm']['epochs'], batch_size=cfg['lstm']['batch_size'], callbacks=callbacks)
+    history = model.fit(X, Y, validation_data = validation_data, epochs=cfg['lstm']['epochs'], batch_size=cfg['lstm']['batch_size'], callbacks=callbacks)
+
+    if cfg['lstm']['save_history']:
+        with open(cfg['lstm']['history_path_start']+now+'.pkl', 'wb') as file_pi:
+            pickle.dump(history.history, file_pi)
 
 if __name__ == '__main__':
 
@@ -96,10 +90,10 @@ if __name__ == '__main__':
     cfg = load_yml(file_path='cfg_train_nn.yml')
 
     # Load training data
-    X_, Y_ = load_data(cfg)
+    X, Y = load_data(cfg)
 
-    # Adjust for RNN learning
-    X, Y = resample(X_, Y_, cfg)
+    # Load validation data
+    X_val, Y_val = load_data(cfg, dataset_suffix = '_val')
 
     # Train the neural network, get the model
-    train(X, Y, cfg)
+    train(X, Y, cfg, X_val, Y_val)

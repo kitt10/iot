@@ -7,6 +7,7 @@ from keras.layers import Dense
 from keras.callbacks import ModelCheckpoint
 from datetime import datetime
 import h5py
+import pickle
 
 
 def load_yml(file_path):
@@ -20,12 +21,12 @@ def log(buf, verbose):
     if verbose:
         print('[LOG]:', buf)
 
-def load_data(cfg):
+def load_data(cfg, dataset_suffix=''):
     
-    with h5py.File(cfg['data']['path'], 'r') as fr:
-        return fr['x'][:], fr['y'][:]
+    with h5py.File(cfg['data']['path_start']+'ffnn.h5', 'r') as fr:
+        return fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
 
-def train(X, Y, cfg):
+def train(X, Y, cfg, X_val = None, Y_val = None):
     """ Design the model and train the network """
 
     # Take now for this particular training phase
@@ -36,6 +37,12 @@ def train(X, Y, cfg):
     n, m, k = X.shape[1], Y.shape[1], X.shape[0]
     H = cfg['ffnn']['hidden_neurons']
     log('Data: {} features, {} targets, {} samples'.format(n, m, k), cfg['verbose'])
+
+    # Check if there is a validation dataset
+    if X_val is None or Y_val is None:
+        validation_data = None
+    else:
+        validation_data = (X_val, Y_val)
 
     # Initializie the model
     model = Sequential()
@@ -65,7 +72,11 @@ def train(X, Y, cfg):
                                  save_weights_only=False)]
 
     # Fit the model (train the network)
-    model.fit(X, Y, epochs=cfg['ffnn']['epochs'], batch_size=cfg['ffnn']['batch_size'], callbacks=callbacks)
+    history = model.fit(X, Y, validation_data = validation_data, epochs=cfg['ffnn']['epochs'], batch_size=cfg['ffnn']['batch_size'], callbacks=callbacks)
+
+    if cfg['lstm']['save_history']:
+        with open(cfg['lstm']['history_path_start']+now+'.pkl', 'wb') as file_pi:
+            pickle.dump(history.history, file_pi)
 
 if __name__ == '__main__':
 
@@ -75,6 +86,9 @@ if __name__ == '__main__':
     # Load training data
     X, Y = load_data(cfg)
 
+    # Load validation data
+    X_val, Y_val = load_data(cfg, dataset_suffix = '_val')
+
     # Train the neural network
     # The best model is derived and saved with callbacks
-    train(X, Y, cfg)
+    train(X, Y, cfg, X_val, Y_val)
