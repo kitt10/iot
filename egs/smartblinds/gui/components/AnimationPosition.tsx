@@ -13,11 +13,11 @@ const componentS = () => css({
   border: '1px solid black'
 })
 
-const blindsS = (value: number) => css({
+const blindsS = (value: number) => {value = 100-value; return css({
   backgroundColor: 'black',
   width: '100%',
   height: value > 10 ? `calc(5px + ${value-10}%)` : '5px'
-})
+})}
 
 interface AnimationPositionI {
   value: number
