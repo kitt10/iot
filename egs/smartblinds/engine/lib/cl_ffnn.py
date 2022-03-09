@@ -9,7 +9,7 @@ class CL_Ffnn(Classifier):
 
     def control(self, features):
         
-        X = np.array([self.make_vector(features, self.taskF)])
+        X = np.array([make_vector(features, self.taskF)])
         U = self.model.predict(X)
 
         position = round(float(U[0][0]), 2)*100
