@@ -87,7 +87,7 @@ def make_matrix(data, key, taskInfo):
 def ratios2ranges(length, ratios, batch_size):
     points_rel = list([0, ratios[0]])
     for i in range(1, len(ratios)):
-        points_rel.append(ratios[i] + ratios[i-1])
+        points_rel.append(ratios[i] + points_rel[i])
     points = [int(length * point_rel / batch_size) * batch_size for point_rel in points_rel]
     return [[points[i], points[i+1]] for i in range(len(points)-1)]
 
