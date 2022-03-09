@@ -36,3 +36,9 @@ export const norm = (value: number | boolean, a_min: number | undefined, a_max: 
       console.log('W: Bad things happening in norm...')
     }
   }
+
+export function createMap(inMin:number, inMax:number, outMin:number, outMax:number) {
+    return function map(x:number) {
+        return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    };
+}

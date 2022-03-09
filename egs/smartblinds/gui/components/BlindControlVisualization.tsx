@@ -2,12 +2,7 @@ import { TargetsTunerI } from "./BlindStateAndControlTable";
 import React, { useContext } from "react";
 import { css } from "@emotion/react";
 import ControlContext from "../context/ControlContext";
-
-function createMap(inMin:number, inMax:number, outMin:number, outMax:number) {
-    return function map(x:number) {
-        return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-    };
-}
+import { createMap } from "../fcn/_tools";
 
 const BlindControlVisualization: React.FunctionComponent<TargetsTunerI> = (targets) => {
     const controlContext = useContext(ControlContext)
