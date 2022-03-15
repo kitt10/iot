@@ -32,6 +32,19 @@ yarn.lock
 node_modules
 .next
 
+# TeX, etc.
+egs/smartblinds/doc/main-blx.bib
+*.aux
+egs/smartblinds/doc/main.bbl
+egs/smartblinds/doc/main.blg
+egs/smartblinds/doc/main.lof
+egs/smartblinds/doc/main.log
+egs/smartblinds/doc/main.lot
+egs/smartblinds/doc/main.out
+egs/smartblinds/doc/main.run.xml
+egs/smartblinds/doc/main.toc
+egs/smartblinds/doc/img/*-eps-converted-to.pdf
+
 # Know how
 egs/smartlights/backend/dialog.py
 egs/smartblinds/device/esp_lux_temp/config.json
@@ -45,3 +58,6 @@ egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp.kicad_pcb
 egs/smartblinds/device/esp_lux_temp/esp_lux_temp/esp_lux_temp-cache.lib
 egs/smartblinds/device/esp_lux_temp/config-in.json
 egs/smartblinds/engine/cfg_owm.json
+egs/smartblinds/engine/somfycache
+egs/smartblinds/scripts/cfg_collector.json
+egs/smartblinds/scripts/cfg_owm.json
