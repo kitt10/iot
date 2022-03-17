@@ -84,14 +84,14 @@ def make_vector(data, taskInfo):
 def make_matrix(data, key, taskInfo):
     return np.array([make_vector(obs[key], taskInfo) for obs in data])
 
-def ratios2ranges(length, ratios, batch_size):
+def ratios2ranges(length, ratios):
     points_rel = list([0, ratios[0]])
     for i in range(1, len(ratios)):
         points_rel.append(ratios[i] + points_rel[i])
-    points = [int(length * point_rel / batch_size) * batch_size for point_rel in points_rel]
+    points = [int(length * point_rel) for point_rel in points_rel]
     return [[points[i], points[i+1]] for i in range(len(points)-1)]
 
-def split_data(X, Y, cfg, cfgnn, shuffle_data = True):
+def split_data(X, Y, cfg, shuffle_data = True):
     log("Splitting data", cfg['verbose'])
     if shuffle_data:
         seed = random.random()
@@ -100,7 +100,7 @@ def split_data(X, Y, cfg, cfgnn, shuffle_data = True):
         random.seed(seed)
         shuffle(Y)
 
-    split_ranges = ratios2ranges(len(X), cfg['data']['split_ratios'], cfgnn['batch_size'])
+    split_ranges = ratios2ranges(len(X), cfg['data']['split_ratios'])
     split = dict(zip(cfg['data']['split_name_suffixes'], split_ranges))
 
     X_split = dict()
@@ -125,7 +125,7 @@ def save2h5(X_split, Y_split, cfg, nn):
             fw.create_dataset('y%s'%suff, data=Y_split[suff])
 
     log('Data saved to '+out_file, cfg['verbose'])
-    log('Number of samples '+str(len(X_split[''])), cfg['verbose'])
+    log('Number of samples - train: '+str(len(X_split[''])) + 'validation: '+str(len(X_split['_val'])) + 'test: '+str(len(X_split['_test'])), cfg['verbose'])
 
 def main(mongo, task, cfg, cfgnn, include_periodical=True, include_events=True):
 
@@ -167,11 +167,13 @@ def main(mongo, task, cfg, cfgnn, include_periodical=True, include_events=True):
 
     k_ = len(data)
 
-    b_ffnn = k_ // cfgnn['ffnn']['batch_size']
-    k_ffnn = cfgnn['ffnn']['batch_size'] * b_ffnn
+    # b_ffnn = k_ // cfgnn['ffnn']['batch_size']
+    # k_ffnn = cfgnn['ffnn']['batch_size'] * b_ffnn
 
-    b_lstm = k_ // cfgnn['lstm']['batch_size']
-    k_lstm = cfgnn['lstm']['batch_size'] * b_lstm - t
+    # b_lstm = k_ // cfgnn['lstm']['batch_size']
+    # k_lstm = cfgnn['lstm']['batch_size'] * b_lstm - t
+    k_ffnn = k_
+    k_lstm = k_ - t
 
     for i, item in enumerate(data):
         if cfg['verbose']: 
@@ -191,7 +193,7 @@ def main(mongo, task, cfg, cfgnn, include_periodical=True, include_events=True):
 
     for nn in data_prep:
         X, Y = data_prep[nn]
-        X_split, Y_split = split_data(X, Y, cfg, cfgnn[nn])
+        X_split, Y_split = split_data(X, Y, cfg)
         save2h5(X_split, Y_split, cfg, nn)
 
 

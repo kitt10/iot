@@ -24,7 +24,10 @@ def log(buf, verbose):
 def load_data(cfg, dataset_suffix=''):
     
     with h5py.File(cfg['data']['path_start']+'ffnn.h5', 'r') as fr:
-        return fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
+        x, y = fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
+        k_ = len(x)
+        k = (k_//cfg['ffnn']['batch_size']) * cfg['ffnn']['batch_size']
+        return x[:k], y[:k]
 
 def train(X, Y, cfg, X_val = None, Y_val = None):
     """ Design the model and train the network """
@@ -74,8 +77,8 @@ def train(X, Y, cfg, X_val = None, Y_val = None):
     # Fit the model (train the network)
     history = model.fit(X, Y, validation_data = validation_data, epochs=cfg['ffnn']['epochs'], batch_size=cfg['ffnn']['batch_size'], callbacks=callbacks)
 
-    if cfg['lstm']['save_history']:
-        with open(cfg['lstm']['history_path_start']+now+'.pkl', 'wb') as file_pi:
+    if cfg['ffnn']['save_history']:
+        with open(cfg['ffnn']['history_path_start']+now+'.pkl', 'wb') as file_pi:
             pickle.dump(history.history, file_pi)
 
 if __name__ == '__main__':

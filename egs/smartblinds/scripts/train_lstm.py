@@ -25,7 +25,10 @@ def log(buf, verbose):
 def load_data(cfg, dataset_suffix=''):
     
     with h5py.File(cfg['data']['path_start']+'lstm.h5', 'r') as fr:
-        return fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
+        x, y = fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
+        k_ = len(x)
+        k = (k_//cfg['lstm']['batch_size']) * cfg['lstm']['batch_size']
+        return x[:k], y[:k]
 
 def train(X, Y, cfg, X_val = None, Y_val = None):
     """ Design the model and train the network """
