@@ -68,7 +68,7 @@ features:
   type: float
 - description: desc
   icon: lightbulb
-  max: 10000
+  max: 2000
   min: 0
   name: lum_in
   show: true
@@ -143,4 +143,4 @@ targets:
   name: tilt
   type: int
 taskInfo:
-  nextTraining: 1643497200.0
+  nextTraining: 1646434800.0
