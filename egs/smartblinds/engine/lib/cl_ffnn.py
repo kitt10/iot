@@ -27,6 +27,6 @@ class CL_Ffnn(Classifier):
 
     def predict(self, data):
         X = np.array([make_vector(item['features'], self.taskF) for item in data])
-        predictions = self.model.predict(X)*100
+        predictions = self.model.predict(X, batch_size=1)*100
         timestamps = np.array([item['timestamp'] for item in data])
         return timestamps, predictions
