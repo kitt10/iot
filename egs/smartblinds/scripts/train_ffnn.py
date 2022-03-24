@@ -2,7 +2,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'        # shut up tensorflow debug messages
 
 from yaml import full_load as yaml_full_load
-from keras.models import Sequential
+from keras.models import Sequential, load_model, save_model
 from keras.layers import Dense
 from keras.callbacks import ModelCheckpoint
 from datetime import datetime
@@ -29,7 +29,7 @@ def load_data(cfg, dataset_suffix=''):
         k = (k_//cfg['ffnn']['batch_size']) * cfg['ffnn']['batch_size']
         return x[:k], y[:k]
 
-def train(X, Y, cfg, X_val = None, Y_val = None):
+def train(X, Y, cfg, X_val = None, Y_val = None, fit_model = True):
     """ Design the model and train the network """
 
     # Take now for this particular training phase
@@ -47,18 +47,26 @@ def train(X, Y, cfg, X_val = None, Y_val = None):
     else:
         validation_data = (X_val, Y_val)
 
-    # Initializie the model
-    model = Sequential()
+    models = list()
+    for batch_size in [1, cfg['ffnn']['batch_size']]:
 
-    # Input layer
-    model.add(Dense(H[0], input_dim=n, activation='relu'))
+        # Initializie the model
+        model = Sequential()
 
-    # Hidden layers
-    for h in H[1:]:
-        model.add(Dense(h, activation='relu'))    
-    
-    # Output layer
-    model.add(Dense(m, activation='sigmoid'))
+        # Input layer
+        model.add(Dense(H[0], input_dim=n, batch_size=batch_size, activation='relu'))
+
+        # Hidden layers
+        for h in H[1:]:
+            model.add(Dense(h, activation='relu'))    
+        
+        # Output layer
+        model.add(Dense(m, activation='sigmoid'))
+
+        models.append(model)
+
+    model = models[1]
+    model_pr = models[0]
 
     # Compile the model
     model.compile(loss=cfg['ffnn']['loss'], optimizer='adam', metrics=cfg['ffnn']['metrics'])
@@ -80,6 +88,15 @@ def train(X, Y, cfg, X_val = None, Y_val = None):
     if cfg['ffnn']['save_history']:
         with open(cfg['ffnn']['history_path_start']+now+'.pkl', 'wb') as file_pi:
             pickle.dump(history.history, file_pi)
+
+    # Load the best model
+    model = load_model(model_path)
+    # Copy weights to the model with batch_size = 1 and save it
+    model_pr.set_weights(model.get_weights())
+    model_pr.compile(loss=cfg['ffnn']['loss'], optimizer='adam', metrics=cfg['ffnn']['metrics'])
+    model_pr_path = cfg['ffnn']['model_path_start']+'pr_'+now+'.h5'
+    save_model(model_pr, model_pr_path)
+
 
 if __name__ == '__main__':
 

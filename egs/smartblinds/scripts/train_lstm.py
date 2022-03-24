@@ -2,7 +2,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'        # shut up tensorflow debug messages
 
 from yaml import full_load as yaml_full_load
-from keras.models import Sequential
+from keras.models import Sequential, load_model, save_model
 from keras.layers import Dense, LSTM
 from keras.callbacks import ModelCheckpoint
 from datetime import datetime
@@ -49,22 +49,30 @@ def train(X, Y, cfg, X_val = None, Y_val = None):
     else:
         validation_data = (X_val, Y_val)
 
-    # Initializie the model
-    model = Sequential()
-    
-    # Input layer
-    model.add(LSTM(units=H[0], input_shape=(t, n), batch_size=cfg['lstm']['batch_size'],
-                   return_sequences=True, stateful=True))
+    models = list()
 
-    # Hidden layers (-1)
-    for h in H[1:-1]:
-        model.add(LSTM(units=h, return_sequences=True, stateful=True))
-    
-    # Last hidden recurrent layer
-    model.add(LSTM(units=H[-1], return_sequences=False, stateful=True))
+    for batch_size in [1, cfg['lstm']['batch_size']]:
+        # Initializie the model
+        model = Sequential()
+        
+        # Input layer
+        model.add(LSTM(units=H[0], input_shape=(t, n), batch_size=batch_size,
+                    return_sequences=True, stateful=True))
 
-    # Output layer
-    model.add(Dense(units=m, activation='sigmoid'))
+        # Hidden layers (-1)
+        for h in H[1:-1]:
+            model.add(LSTM(units=h, return_sequences=True, stateful=True))
+        
+        # Last hidden recurrent layer
+        model.add(LSTM(units=H[-1], return_sequences=False, stateful=True))
+
+        # Output layer
+        model.add(Dense(units=m, activation='sigmoid'))
+
+        models.append(model)
+
+    model = models[1]
+    model_pr = models[0]
 
     # Compile the model
     model.compile(loss=cfg['lstm']['loss'], optimizer='adam', metrics=cfg['lstm']['metrics'])
@@ -86,6 +94,15 @@ def train(X, Y, cfg, X_val = None, Y_val = None):
     if cfg['lstm']['save_history']:
         with open(cfg['lstm']['history_path_start']+now+'.pkl', 'wb') as file_pi:
             pickle.dump(history.history, file_pi)
+
+    # Load the best model
+    model = load_model(model_path)
+    # Copy weights to the model with batch_size = 1 and save it
+    model_pr.set_weights(model.get_weights())
+    model_pr.compile(loss=cfg['lstm']['loss'], optimizer='adam', metrics=cfg['lstm']['metrics'])
+    model_pr_path = cfg['lstm']['model_path_start']+'pr_'+now+'.h5'
+    save_model(model_pr, model_pr_path)
+
 
 if __name__ == '__main__':
 
