@@ -4,6 +4,7 @@ import sys
 
 path = "../models"
 def convert(filename):
+    x = filename
     if(x.startswith("ffnn")):
         for i in range(2):
             model_cfg['layers'][i]['config']['batch_input_shape'] = (1,15)
