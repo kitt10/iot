@@ -44,7 +44,7 @@ class CL_Ifelse(Classifier):
         if season == 2:
             return tilt()
         elif season == 1:
-            grad = features['temp_owm_2h'] - features['temp_owm_1h']
+            grad = features['owm_temp_2h'] - features['owm_temp_1h']
             if features['temp_out'] < self.cfg['temp_out_thresholds']['cold']:
                 return open()
             elif features['temp_out'] < self.cfg['temp_out_thresholds']['mid']:
@@ -95,7 +95,7 @@ class CL_Ifelse(Classifier):
         w1 = 2
         w2 = 1
 
-        return ((features['temp_owm_2h'] - features['temp_owm_1h'])*w1 + (features['temp_owm_3h'] - features['temp_owm_2h'])*w2)/(w1+w2)
+        return ((features['owm_temp_2h'] - features['owm_temp_1h'])*w1 + (features['owm_temp_3h'] - features['owm_temp_2h'])*w2)/(w1+w2)
 
     def __season_value(self, features):
         if features['year_day'] < 80 or features['year_day'] >= 321: 
