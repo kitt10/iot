@@ -5,6 +5,8 @@ import sys
 path = "../models"
 def convert(filename):
     x = filename
+    model = load_model(x)
+    model_cfg = model.get_config()
     if(x.startswith("ffnn")):
         for i in range(2):
             model_cfg['layers'][i]['config']['batch_input_shape'] = (1,15)
@@ -23,8 +25,5 @@ if len(sys.argv) > 1:
         convert(mdl)
 else:
     for x in os.listdir(path):
-        if x.endswith(".h5"):
-            model = load_model(path+"/"+x)
-            model_cfg = model.get_config()
-            if(x.startswith("ffnn_best_h") or x.startswith("lstm_best_h")):
-                convert(x)
+        if x.endswith(".h5") and ((x.startswith("ffnn_best_h") or x.startswith("lstm_best_h"))):
+            convert(path+"/"+x)
