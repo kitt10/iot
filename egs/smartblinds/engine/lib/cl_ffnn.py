@@ -27,6 +27,13 @@ class CL_Ffnn(Classifier):
 
     def predict(self, data):
         X = np.array([make_vector(item['features'], self.taskF) for item in data])
-        predictions = self.model.predict(X, batch_size=1)*100
+        l = X.shape[0]
+        model_cfg = self.model.get_config()
+        for i in range(2):
+            model_cfg['layers'][i]['config']['batch_input_shape'] = (l,len(self.taskF))
+        new_model = self.model.__class__.from_config(model_cfg)
+        new_model.set_weights(self.model.get_weights())
+
+        predictions = new_model.predict(X, batch_size=l)*100
         timestamps = np.array([item['timestamp'] for item in data])
         return timestamps, predictions

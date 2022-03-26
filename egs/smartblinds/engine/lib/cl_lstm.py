@@ -29,7 +29,14 @@ class CL_Lstm(Classifier):
         k = len(data) - t
 
         X = np.array([make_matrix(data[i:i+t], 'features', self.taskF) for i in range(k)])
-        predictions = 100*self.model.predict(X, batch_size=1)
+        l = X.shape[0]
+        model_cfg = self.model.get_config()
+        for i in range(2):
+            model_cfg['layers'][i]['config']['batch_input_shape'] = (l,self.timesteps,len(self.taskF))
+        new_model = self.model.__class__.from_config(model_cfg)
+        new_model.set_weights(self.model.get_weights())
+
+        predictions = 100*new_model.predict(X, batch_size=l)
         timestamps = np.array([data[i+t-1]['timestamp'] for i in range(k)])
         return timestamps, predictions
 
