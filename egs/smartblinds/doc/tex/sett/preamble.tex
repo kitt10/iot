@@ -24,11 +24,11 @@
 
 \documentclass[
 11pt, 						% The default document font size, options: 10pt, 11pt, 12pt
-oneside, 					% Two side (alternating margins) for binding by default, uncomment to switch to one side
-%chapterinoneline,			% Have the chapter title next to the number in one single line
+% oneside, 					% Two side (alternating margins) for binding by default, uncomment to switch to one side
+chapterinoneline,			% Have the chapter title next to the number in one single line
 czech, 					    % ngerman for German
 singlespacing, 				% Single line spacing, alternatives: onehalfspacing or doublespacing
-%draft, 					% Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+% draft, 					% Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
 nolistspacing, 				% Uncomment this to set spacing in lists to single
 %liststotoc, 				% Uncomment to add the list of figures/tables/etc to the table of contents
 %toctotoc, 					% Uncomment to add the main table of contents to the table of contents
@@ -73,18 +73,30 @@ hidelinks,
 \definecolor{lightyellow}{rgb}{0.95,1.0,0.8}
 
 \usepackage{courier}
+\usepackage{tikz}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\code{#1}}
 
 \usepackage{listings}
 \lstset{frame=single, basicstyle=\footnotesize\ttfamily, backgroundcolor=\color{lightgray}}
-\renewcommand{\lstlistingname}{Part of Code}
-\renewcommand{\lstlistlistingname}{List of Algorithms and Code Parts}
+\renewcommand{\lstlistingname}{Úryvek kódu}
+\renewcommand{\lstlistlistingname}{Seznam úryvků kódu}
 
 \usepackage{amsmath}
+\usepackage{hyperref}
 \usepackage{cleveref}
-\crefname{listing}{code part}{code parts}
-\crefname{figure}{Fig.}{Fig.}
-\crefname{table}{Table}{Tables}
-\crefname{equation}{Eq.}{Eq.}
+\crefname{listing}{úryvek kódu}{úryvky kódu}
+\crefname{figure}{obrázek}{obrázky}
+\crefname{table}{tabulka}{tabulky}
+\crefname{equation}{rovnice}{rovnice}
+\crefname{chapter}{kapitola}{kapitoly}
+\crefname{section}{sekce}{sekce}
+\crefname{enumerate}{bod}{body}
+\newcommand{\crefpairconjunction}{ a\nobreakspace}
+\newcommand{\crefrangeconjunction}{ až\nobreakspace}
+
+\newcommand{\refskl}[2]{\hyperref[#1]{#2 \labelcref{#1}}}
 
 \usepackage{float}
 
@@ -123,3 +135,9 @@ hidelinks,
 \newcolumntype{M}{>{\begin{varwidth}{4cm}}l<{\end{varwidth}}}
 
 \def\xstrut{\rule[-2ex]{0pt}{5ex}}
+
+\usepackage[acronym]{glossaries}
+
+\input{tex/sett/acronyms.tex}
+
+\includeonly{tex/chap/chap_hardware.tex,tex/chap/chap_data_collection.tex,tex/chap/chap_features}
