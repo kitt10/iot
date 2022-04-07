@@ -64,7 +64,7 @@ const LiveControlGraph: React.FunctionComponent = () => {
     data: documents.map((document: DocumentI) => [1000*document.timestamp, document.targets[target.name]])
   }))
 
-  let classfs = [classifiers[0]]
+  let classfs = classifiers
 
   let predictedSeries = classfs.map((cl: ClassifierI) => (targets.map((target: TargetI) => ({
     name: cl.name + '_' + target.name,

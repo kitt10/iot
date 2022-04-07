@@ -38,7 +38,7 @@ const IndexPage = (props: {task: TaskI, data: Object[]}) => {
   const taskContext = useContext(TaskContext)
   const dataContext = useContext(DataContext)
 
-  const animationTime: number = 1000    // [ms]
+  const animationTime: number = 2000    // [ms]
   const step: number = 10              // [ms]
 
   const router = useRouter()

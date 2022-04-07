@@ -30,7 +30,8 @@ export const useData = () => {
 
     const getPredictions = () => {
         let predictions = {status: "bad"} as PayloadPredictI
-        post(config.ep_predict, null, {ts_start: showBack, classifiers: ["ifelse"]}).then(payload => {
+        //post(config.ep_predict, null, {ts_start: showBack, classifiers: ["ifelse"]}).then(payload => {
+        post(config.ep_predict, null, {ts_start: showBack}).then(payload => {
             predictions = payload.payload;
             setPredictions(predictions);
             console.log(predictions)})
