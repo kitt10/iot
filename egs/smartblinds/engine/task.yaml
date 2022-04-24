@@ -54,15 +54,15 @@ features:
   type: boolean
 - description: desc
   icon: thermostat
-  max: 50
-  min: -30
+  max: 35
+  min: 10
   name: temp_in
   show: false
   type: float
 - description: desc
   icon: thermostat_auto
-  max: 50
-  min: -30
+  max: 40
+  min: -20
   name: temp_out
   show: true
   type: float
@@ -75,36 +75,36 @@ features:
   type: float
 - description: desc
   icon: light_mode
-  max: 10000
+  max: 60000
   min: 0
   name: lum_out
   show: true
   type: float
 - description: desc
   icon: looks
-  max: 50
-  min: -30
+  max: 40
+  min: -20
   name: owm_temp_max
   show: false
   type: float
 - description: desc
   icon: looks_one
   max: 50
-  min: -30
+  min: -20
   name: owm_temp_1h
   show: false
   type: float
 - description: desc
   icon: looks_two
   max: 50
-  min: -30
+  min: -20
   name: owm_temp_2h
   show: false
   type: float
 - description: desc
   icon: looks_3
   max: 50
-  min: -30
+  min: -20
   name: owm_temp_3h
   show: false
   type: float
