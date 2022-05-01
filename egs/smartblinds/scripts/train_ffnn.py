@@ -72,16 +72,8 @@ def train(X, Y, cfg, X_val = None, Y_val = None, fit_model = True):
     model = models[1]
     model_pr = models[0]
 
-    start_time = time.monotonic()
     # Compile the model
     model.compile(loss=cfg['ffnn']['loss'], optimizer='adam', metrics=cfg['ffnn']['metrics'])
-
-    end_time = time.monotonic()
-    if cfg["verbose"]:
-        with open(cfg['ffnn']['summary_path_start']+now+'.txt', 'wt') as f:
-            model.summary(print_fn=lambda x: f.write(x + '\n'))
-            f.write("\n")
-            f.write("Training time: " + str(end_time-start_time) + " s")
 
     # Print the model summary
     log('Compiled model:', cfg['verbose'])
@@ -94,8 +86,16 @@ def train(X, Y, cfg, X_val = None, Y_val = None, fit_model = True):
                                  save_best_only=True, 
                                  save_weights_only=False)]
 
+    start_time = time.monotonic()
     # Fit the model (train the network)
     history = model.fit(X, Y, validation_data = validation_data, epochs=cfg['ffnn']['epochs'], batch_size=cfg['ffnn']['batch_size'], callbacks=callbacks)
+
+    end_time = time.monotonic()
+    if cfg["verbose"]:
+        with open(cfg['ffnn']['summary_path_start']+now+'.txt', 'wt') as f:
+            model.summary(print_fn=lambda x: f.write(x + '\n'))
+            f.write("\n")
+            f.write("Training time: " + str(end_time-start_time) + " s")
 
     if cfg['ffnn']['save_history']:
         with open(cfg['ffnn']['history_path_start']+now+'.pkl', 'wb') as file_pi:
