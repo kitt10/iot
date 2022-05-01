@@ -10,6 +10,8 @@ import h5py
 import numpy as np
 import pickle
 
+import time
+
 
 def load_yml(file_path):
     with open(file_path, 'r') as fr:
@@ -22,12 +24,14 @@ def log(buf, verbose):
     if verbose:
         print('[LOG]:', buf)
 
-def load_data(cfg, dataset_suffix=''):
-    
-    with h5py.File(cfg['data']['path_start']+'lstm.h5', 'r') as fr:
+def load_data(cfg=None, dataset_suffix='', file_path=None, batch_size=None):
+    if cfg is not None:
+        file_path = cfg['data']['path_start']+'lstm.h5'
+        batch_size = cfg['lstm']['batch_size']
+    with h5py.File(file_path, 'r') as fr:
         x, y = fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
         k_ = len(x)
-        k = (k_//cfg['lstm']['batch_size']) * cfg['lstm']['batch_size']
+        k = (k_//batch_size) * batch_size
         return x[:k], y[:k]
 
 def train(X, Y, cfg, X_val = None, Y_val = None):
@@ -88,8 +92,15 @@ def train(X, Y, cfg, X_val = None, Y_val = None):
                                  save_best_only=True, 
                                  save_weights_only=False)]
 
+    start_time = time.monotonic()
     # Fit the model (train the network)
     history = model.fit(X, Y, validation_data = validation_data, epochs=cfg['lstm']['epochs'], batch_size=cfg['lstm']['batch_size'], callbacks=callbacks)
+    end_time = time.monotonic()
+    if cfg["verbose"]:
+        with open(cfg['lstm']['summary_path_start']+now+'.txt', 'wt') as f:
+            model.summary(print_fn=lambda x: f.write(x + '\n'))
+            f.write("\n")
+            f.write("Training time: " + str(end_time-start_time) + " s")
 
     if cfg['lstm']['save_history']:
         with open(cfg['lstm']['history_path_start']+now+'.pkl', 'wb') as file_pi:

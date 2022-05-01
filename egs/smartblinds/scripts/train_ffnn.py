@@ -9,6 +9,8 @@ from datetime import datetime
 import h5py
 import pickle
 
+import time
+
 
 def load_yml(file_path):
     with open(file_path, 'r') as fr:
@@ -21,12 +23,14 @@ def log(buf, verbose):
     if verbose:
         print('[LOG]:', buf)
 
-def load_data(cfg, dataset_suffix=''):
-    
-    with h5py.File(cfg['data']['path_start']+'ffnn.h5', 'r') as fr:
+def load_data(cfg=None, dataset_suffix='', file_path=None, batch_size=None):
+    if cfg is not None:
+        file_path = cfg['data']['path_start']+'ffnn.h5'
+        batch_size = cfg['ffnn']['batch_size']
+    with h5py.File(file_path, 'r') as fr:
         x, y = fr['x%s'%dataset_suffix][:], fr['y%s'%dataset_suffix][:]
         k_ = len(x)
-        k = (k_//cfg['ffnn']['batch_size']) * cfg['ffnn']['batch_size']
+        k = (k_//batch_size) * batch_size
         return x[:k], y[:k]
 
 def train(X, Y, cfg, X_val = None, Y_val = None, fit_model = True):
@@ -68,8 +72,16 @@ def train(X, Y, cfg, X_val = None, Y_val = None, fit_model = True):
     model = models[1]
     model_pr = models[0]
 
+    start_time = time.monotonic()
     # Compile the model
     model.compile(loss=cfg['ffnn']['loss'], optimizer='adam', metrics=cfg['ffnn']['metrics'])
+
+    end_time = time.monotonic()
+    if cfg["verbose"]:
+        with open(cfg['ffnn']['summary_path_start']+now+'.txt', 'wt') as f:
+            model.summary(print_fn=lambda x: f.write(x + '\n'))
+            f.write("\n")
+            f.write("Training time: " + str(end_time-start_time) + " s")
 
     # Print the model summary
     log('Compiled model:', cfg['verbose'])
