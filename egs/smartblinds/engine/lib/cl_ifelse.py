@@ -4,15 +4,18 @@ import datetime as dt
 import math
 from ._tools import trim, load_config
 import numpy as np
+import os, sys
+from keras.metrics import MeanSquaredError as MSE
 
 class CL_Ifelse(Classifier):
     
     def __init__(self, app):
         Classifier.__init__(self, app, 'ifelse', False, ind=0)
-        self.cfg = load_config("./lib/cfg_ifelse.yml")
-        
+        print(sys.path)
+        self.cfg = load_config(os.path.join(sys.path[0],"..","engine","lib","cfg_ifelse.yml"))
+
     def control(self, features):        
-        if 21600 < features['day_secs'] < 61200:
+        if self.cfg["morning_seconds"][features['week_day']] < features['day_secs'] and self.cfg["lum_thresholds"]['low']<features["lum_out"]:
             pos, tilt = self.__light(features)
         else:
             pos, tilt = self.__dark(features)
@@ -22,6 +25,16 @@ class CL_Ifelse(Classifier):
         predictions = np.array([list(self.control(item['features'])) for item in data])
         timestamps = np.array([item['timestamp'] for item in data])
         return timestamps, predictions
+
+    def evaluate(self, X, Y, metrics):
+        data = list()
+        for row in X:
+            data.append({"timestamp": None, "features": dict(zip([f["name"] for f in self.app.task["features"]], row))})
+        ts, Y_hat = self.predict(data)
+        results = list()
+        for m in [MSE()] + metrics:
+            results.append(m(Y, Y_hat).numpy())
+        return results
 
     def __light(self, features):
         def open(features = features):
@@ -36,28 +49,34 @@ class CL_Ifelse(Classifier):
         def tilt_or_open(features=features):
             azimuth, altitude = pysolar.solar.get_position(self.app.cfg['blind']['lat'], self.app.cfg['blind']['lon'], dt.datetime(dt.datetime.now().year, 1, 1, tzinfo = dt.timezone.utc) + dt.timedelta(days = features['year_day'] - 1, seconds = features['day_secs']))
             az_diff = (azimuth - self.app.cfg['blind']['azimuth'] + 180) % 360 - 180
-            if az_diff>90:
+            if az_diff>90 or features["owm_temp_max"] < self.cfg["temp_out_thresholds"]["mid"]:
                 return open()
             return tilt()
 
         season = self.__season_value(features)
         if season == 2:
+            if features["home"]: return tilt_or_open()
             return tilt()
         elif season == 1:
             grad = features['owm_temp_2h'] - features['owm_temp_1h']
+            L = self.app.task["features"][2]["max"]
+            gon = math.cos(math.pi*(features["day_secs"]-L/2)/L)
+            h = gon*gon/L
             if features['temp_out'] < self.cfg['temp_out_thresholds']['cold']:
                 return open()
             elif features['temp_out'] < self.cfg['temp_out_thresholds']['mid']:
-                if grad > self.cfg['temp_grad_thresholds']['pos']:
+                if grad > self.cfg['temp_grad_thresholds']['pos'] or features["lum_out"]/h>self.cfg['lum_thresholds']['high'] and features["temp_in"] > self.cfg['temp_in_thresholds']['mid']:
                     return tilt_or_open()
                 elif grad < self.cfg['temp_grad_thresholds']['neg']:
                     return open()
                 else:
                     return close()
-            else:
+            elif features["lum_out"]/h>self.cfg['lum_thresholds']['high']: 
                 return tilt_or_open()
+            else:
+                close()
         else:
-            return 100, 100
+            return open()
 
     def __dark(self, features):
         if features['home'] and features['day_secs'] > 79200 or features['temp_in'] < self.cfg['temp_in_thresholds']['ventilation']:
@@ -105,4 +124,6 @@ class CL_Ifelse(Classifier):
             val += 1
         return val
         
-
+    @property
+    def batch_size(self):
+        return 1
