@@ -1,22 +1,31 @@
 \chapter{Diskuze} \label{chap:discussion}
-Discussion helps to make your paper memorable - consolidate (summarize) your data to make it easier to remember. Briefly summarize your Methods (what you did) and Results (what you got and what you learnt).
+% Discussion helps to make your paper memorable - consolidate (summarize) your data to make it easier to remember. Briefly summarize your Methods (what you did) and Results (what you got and what you learnt).
 
-Skeleton:
-\begin{itemize}
-    \item Recap your Methods
-    \item Recap your Results
-    \item List other researchers’ reports using similar methods
-    \item Compare you results to theirs
-    \item \begin{itemize}
-        \item List similarities and differences and/or
-        \item Make a prediction and/or
-        \item Describe a relevant empirical rule
-    \end{itemize}
-\end{itemize}
+% Skeleton:
+% \begin{itemize}
+%     \item Recap your Methods
+%     \item Recap your Results
+%     \item List other researchers’ reports using similar methods
+%     \item Compare you results to theirs
+%     \item \begin{itemize}
+%         \item List similarities and differences and/or
+%         \item Make a prediction and/or
+%         \item Describe a relevant empirical rule
+%     \end{itemize}
+% \end{itemize}
 
-Systém domácí automatizace je možné vyloučit a používat přímo Pymfy, protože se podařilo získat tokeny nedokumentovanou cestou. V diskuzních fórech ale ostatní uživatelé podobný problém nehlásí a je tedy možné, že se týká pouze používaného uživatelského účtu u výrobce žaluzií. 
+Cílem této práce bylo navrhnout systém pro automatické ovládání žaluzie na základě preferencí uživatele. Pro základní rozhodovací systém (Ifelse) se zvolil přístup pro vyjádření preferencí uživatele zřetězením jednoduchých pravidel. Další dva regresory navržené pro použití v systému jsou neuronové sítě (FFNN a LSTM), pro jejichž učení je nutné dodat data o skutečném nastavení žaluzií uživatelem a příznacích, na jejichž základě se o nastavení mohl uživatel rozhodovat.
 
+Data se sbírala pomocí měřicích zařízení vlastní kostrukce a z některých zdrojů dostupných na internetu a ukládala se do databáze pro pozdější použití. V průběhu sběru dat docházelo opakovaně k výpadkům. Většina jich byla způsobena nedostupností služby 3. strany, ale největší ztráty měření způsobily vlastní provozované součásti. Jako rizikové se jevilo umístění jednoho z měřicích zařízení na střeše domu, kde bylo vystavené nízkým i vysokým teplotám a zejména dešti. Před zahájením sběru kvůli nedostatečné těsnosti okénka v krabičce došlo k vniknutí vody do zařízení a zničení vstupně-výstupních portů \acrshort{mcu}. Po přetěsnění už k podobnému problému nedošlo. Na eliminaci velkých ztrát by mělo pozitivní vliv použití komplexnějšího monitoringu součástí, protože by výpadek bylo možné rychleji odstranit a případně mu i předejít. V průběhu vývoje systému byl nasazen monitoring funkčnosti všech zdrojů dat. Pokud by se zanedbaly výpadky 3. stran a výpadky, které by bylo možné kvůli monitoringu výrazně zkrátit nebo odstranit, ztraceno by bylo jen $1{,}4~\%$ měření.
 
-\section{Recapitulation of Methods} \label{sec:recapitulation_of_methods}
+Jedním ze zdrojů dat byl systém domácí automatizace, který poskytoval informace o nastavení žaluzie z API výrobce, protože se v počátcích vývoje nedařilo získání přístupu k \acrshort{api} běžným způsobem. Později se to však povedlo nedokumentovanou cestou a místo systému domácí automatizace by tak bylo možné používat knihovnu Pymfy pro přímý přístup k API.
 
-\section{Shrnutí výsledků} \label{sec:summary_of_results}
+\textcolor{red}{TODO: Doplnit volbu struktury po zopakování}
+
+Každý z příznaků může mít různě významný vliv na hodnoty odhadované regresorem. Pro kvantifikaci tohoto vlivu byla využita metoda \emph{Permutation Feature Importance} (\cref{chap:features}). Výsledky (\cref{sec:res_features}) napovídají, že by mohlo být možné redukovat příznakový vektor, protože některé příznaky mají na odhad zanedbatelný vliv a úloha by se tak zjednodušila.
+
+Jeden z nejdůležitějších příznaků je v obou případech \acrshort{nn} příznak \code{lum\_in}. Problémem tohoto příznaku je skutečnost, že je silně ovlivňován nastavením žaluzie. V případě reálného nasazení systému tak hrozí, že by sítě nemusely vygenerovat žádný akční zásah. Přestože je tedy příznak důležitý pro predikci v navržených modelech, mohlo by být lepší ho vynechat z příznakového vektoru.
+
+Důležitou vlastností navrhovaného systému je retraining modelů na nových datech, která jsou průběžně sbírána (\cref{sec:res_retr}). Za účelem zjištění, jaký vliv na odhad poskytovaný regresory má právě přetrénování, byly pro každou z použitých \acrshort{nn} porovnány 2 modely, z nichž jeden přetrénováním druhého na čerstvějších data (mladší model). Na testovací datové sadě byl patrný výrazný rozdíl v \acrshort{mse} ve prospěch modelů s čerstvějšími datech (\cref{tab:retr_ffnn,tab:retr_lstm}), v ukázce predikce starších a novějších modelů na reálných datech (\cref{fig:retr_ffnn,fig:retr_lstm} je u těchto modelů pak zřejmá reakce na zvýšené riziko přehřátí interiéru v dopoledních hodinách, kdy by květnové modely narozdíl od březnových ponechaly žaluzii zataženou a sklápěly by lamely.
+
+\acrshort{nn} doporučované řízení není přímo vhodné pro přímé použití. Žaluzie by příliš často nevhodně měnily své nastavení a pro uživatele by používání systému nemuselo být pohodlné. Pro vylepšení poskytovaných výsledků by mohlo být vhodné nasbírat větší množství dat a dále zkoumat možné způsoby trénování \acrshort{nn} a jejich strukturu, případně řízení vhodně filtrovat.

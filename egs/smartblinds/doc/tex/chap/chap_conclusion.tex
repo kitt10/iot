@@ -1,15 +1,24 @@
 \chapter{Závěr} \label{chap:conclusion}
-\begin{itemize}
-    \item the Introduction of the paper gives the current scientific context
-    \item the Discussion shows how your data lead to or support the ideas
-    \item the Conclusion summarizes the ideas in one paragraph
-\end{itemize}
-Skeleton:
-\begin{itemize}
-    \item Conclusion (one or two main ideas)
-    \item Outlook (what are you going to do next)  
-\end{itemize}
+% \begin{itemize}
+%     \item the Introduction of the paper gives the current scientific context
+%     \item the Discussion shows how your data lead to or support the ideas
+%     \item the Conclusion summarizes the ideas in one paragraph
+% \end{itemize}
+% Skeleton:
+% \begin{itemize}
+%     \item Conclusion (one or two main ideas)
+%     \item Outlook (what are you going to do next)  
+% \end{itemize}
 
 
-\section{Future Work} \label{sec:future_work}
-Outlook...
+% \section{Future Work} \label{sec:future_work}
+% Outlook...
+    V rámci této práce byl vyvinut systém, který v reálném čase sbírá hodnoty příznaků a aktuální uživatelské nastavení žaluzie, pomocí 3 různých regresorů odhaduje vhodné nastavení žaluzie a umožňuje řízení generované jednotlivými regresory porovnat. \acrshort{nn} se v systému periodicky přetrénovávají (retraining), což má pozitivní vliv na přesnost jejich odhadu, vyskytnou-li se v datech nové skutečnosti.
+
+    Hardwarové součásti použité v měřicích zařízeních se osvědčily, stejně jako datové spojení s ostatními součástmi systému. Bylo by vhodné monitorovat všechny součásti i jejich spojení a případné problémy nejlépe automaticky odstraňovat, nebo hlásit uživateli. V systému se uživateli hlásí jen to, když nepřijdou data z některého zdroje dat v okamžiku pořizování vzorku.
+
+    V úloze automatického ovládání žaluzií může jejich stav záviset nejen na aktuálních podmínkách ale také na podmínkách, které panovaly v historii. Kvůli tomu je vhodné využít regresor, který historické podmínky uvažuje při svém odhadu. V této práci tuto vlastnost splňuje regresor založný na rekurentní neuronové síti s LSTM buňkami.
+
+    Přesto, že některé veličiny mohou být silně svázány s odhadovanými, nemusí být dobrými příznaky pro reálné využití, pokud je odhad řízení při jeho použití zpětně ovlivňuje.
+
+    Díky dalšímu sběru dat společně s přetrénováním \acrshort{nn} by regresory mohly do budoucna poskytovat postupně lepší výsledky. V případě skutečného nasazení by bylo nutné ošetřit konfliktní stavy uživatelem vyžádaného nastavení žaluzie a systémem odhadnutým nastavením tak, aby interakce se systémem byla pro uživatele přívětivá.

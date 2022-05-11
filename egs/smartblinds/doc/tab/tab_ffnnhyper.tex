@@ -10,12 +10,12 @@
     \midrule
     počet epoch & 500, 200, 700 \\
     \midrule
-    velikost dávky & 16, 32 \\
+    batch size & 16, 32 \\
     \midrule
     ztrátová funkce & MSE, kosinová podobnost \\
     \bottomrule
     \bottomrule
     \end{tabular}%
-    \caption[Prohledáváné parametry dopředné neuronové sítě]{Prohledáváné parametry dopředné neuronové sítě. Tabulka zachycuje 4 parametry neuronové sítě a jejího učení jejichž vzájemné kombinace se prohledávaly za účelem získání nejlepší z nich pro úlohu regrese hodnot nastavení venkovní žaluzie na základě 15 příznaků. Hodnoty parametru struktura sítě jsou seznamy (v hranatých závorkách) počtu neuronů v jednotlivých vrstvách sítě. \acrshort{mse} značí střední kvadratickou odchylku.}
+    \caption[Prohledáváné parametry dopředné neuronové sítě]{4 parametry dopředné neuronové sítě a jejího učení, jejichž kombinace se prohledávaly za účelem získání nejlepší sítě pro úlohu regrese stavu žaluzie podle 15 příznaků. Parametr struktura sítě reprezentují posloupnosti (v hranatých závorkách) počtu neuronů v jednotlivých vrstvách sítě. \acrshort{mse} značí střední kvadratickou odchylku.}
   \label{tab:ffnnhyper}%
 \end{table}%

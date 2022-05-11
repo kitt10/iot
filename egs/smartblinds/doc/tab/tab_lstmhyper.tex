@@ -10,12 +10,12 @@
     \midrule
     počet epoch & 100, 200 \\
     \midrule
-    velikost dávky & 16, 64 \\
+    batch size & 16, 64 \\
     \midrule
     ztrátová funkce & MSE, kosinová podobnost \\
     \bottomrule
     \bottomrule
     \end{tabular}%
-    \caption[Prohledáváné parametry rekurentní neuronové sítě]{Prohledáváné parametry rekurentní neuronové sítě. Tabulka zachycuje 4 parametry neuronové sítě a jejího učení jejichž vzájemné kombinace se prohledávaly za účelem získání nejlepší z nich pro úlohu regrese hodnot nastavení venkovní žaluzie na základě 15 příznaků. Každá z hodnot parametru struktura sítě je seznam (ohraničený hranatými závorkami) o délce rovné počtu vrstev sítě z nichž každá má takový počet neuronů jako odpovídající prvek seznamu. \acrshort{mse} značí střední kvadratickou odchylku.}
+    \caption[Prohledáváné parametry rekurentní neuronové sítě]{4 parametry rekurentní neuronové sítě a jejího učení, jejichž kombinace se prohledávaly za účelem získání nejlepší sítě pro úlohu regrese stavu žaluzie podle 15 příznaků. Parametr struktura sítě reprezentují posloupnosti (v hranatých závorkách) počtu neuronů v jednotlivých vrstvách sítě. \acrshort{mse} značí střední kvadratickou odchylku.}
   \label{tab:lstmhyper}%
 \end{table}%

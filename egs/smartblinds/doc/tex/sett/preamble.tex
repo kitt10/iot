@@ -24,7 +24,7 @@
 
 \documentclass[
 11pt, 						% The default document font size, options: 10pt, 11pt, 12pt
-% oneside, 					% Two side (alternating margins) for binding by default, uncomment to switch to one side
+oneside, 					% Two side (alternating margins) for binding by default, uncomment to switch to one side
 chapterinoneline,			% Have the chapter title next to the number in one single line
 czech, 					    % ngerman for German
 singlespacing, 				% Single line spacing, alternatives: onehalfspacing or doublespacing
@@ -72,6 +72,13 @@ hidelinks,
 \definecolor{lightblue}{rgb}{0.6,0.75,0.85}
 \definecolor{lightyellow}{rgb}{0.95,1.0,0.8}
 
+\definecolor{guired}{RGB}{237,28,36}
+\definecolor{guiorange}{RGB}{255,127,39}
+\definecolor{guigreen}{RGB}{34,177,76}
+\definecolor{guiblue}{RGB}{0,162,232}
+
+\usepackage{adjustbox}
+
 \usepackage{courier}
 \usepackage{tikz}
 
@@ -85,7 +92,11 @@ hidelinks,
 
 \usepackage{amsmath}
 \usepackage{hyperref}
-\usepackage{cleveref}
+\usepackage[]{cleveref}
+\providecommand\crefpairconjunction{ a\nobreakspace}
+\providecommand\crefrangeconjunction{ až }
+\providecommand\creflastconjunction{\crefpairconjunction}
+\providecommand\crefpairgroupconjunction{\crefpairconjunction}
 \crefname{listing}{úryvek kódu}{úryvky kódu}
 \crefname{figure}{obrázek}{obrázky}
 \crefname{table}{tabulka}{tabulky}
@@ -93,8 +104,10 @@ hidelinks,
 \crefname{chapter}{kapitola}{kapitoly}
 \crefname{section}{sekce}{sekce}
 \crefname{enumerate}{bod}{body}
-\newcommand{\crefpairconjunction}{ a\nobreakspace}
-\newcommand{\crefrangeconjunction}{ až\nobreakspace}
+\renewcommand{\crefpairconjunction}{ a\nobreakspace}
+\renewcommand{\crefrangeconjunction}{ až }
+\renewcommand{\creflastconjunction}{\crefpairconjunction}
+\renewcommand{\crefpairgroupconjunction}{\crefpairconjunction}
 
 \newcommand{\refskl}[2]{\hyperref[#1]{#2 \labelcref{#1}}}
 
@@ -128,6 +141,8 @@ hidelinks,
 
 \usepackage{forest}
 
+\usepackage[useregional,showseconds=false]{datetime2}
+
 \usepackage{longtable}
 
 \usepackage{array} % for defining a new column type
@@ -138,8 +153,10 @@ hidelinks,
 
 \usepackage[acronym]{glossaries}
 
+\renewcommand*{\acronymname}{Seznam zkratek}
+
 \input{tex/sett/acronyms.tex}
 
-\includeonly{tex/chap/chap_hardware.tex,tex/chap/chap_data_collection.tex,tex/chap/chap_features,tex/chap/chap_regressors.tex,tex/chap/chap_gui.tex}
+\includeonly{tex/chap/chap_hardware.tex,tex/chap/chap_data_collection.tex,tex/chap/chap_features,tex/chap/chap_regressors.tex,tex/chap/chap_gui.tex,tex/chap/chap_eval.tex,tex/chap/chap_discussion.tex,tex/chap/chap_conclusion.tex,tex/chap/chap_introduction.tex}
 
 \newcommand{\draftfig}{false}

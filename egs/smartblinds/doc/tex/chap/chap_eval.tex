@@ -1,6 +1,85 @@
 \chapter{Vyhodnocení}
-\section{Referenční data}
-\section{Vliv příznaků na predikci}
-\section{Porovnání regresorů}
-\section{Vyhodnocení predikce jednotlivých regresorů na vybraných datech}
-\section{Vyhodnocení vlivu retraingu}
+\section{Vyhodnocení sběru dat a spolehlivosti} \label{sec:resData}
+    Pro účely této práce se sbírala data (\cref{chap:dataCollection}) od \DTMdisplaydate{2021}{12}{09}{-1} \DTMdisplaytime{17}{38}{00} (UTC) do \DTMdisplaydate{2022}{05}{02}{-1} \DTMdisplaytime{11}{59}{00} (UTC). Za tu dobu bylo sesbíráno 38128~vzor\-ků dat, sestávajících z 15 hodnot příznakových veličin, 2 hodnot stavu žaluzie, časové známky, důvodu pořízení vzorku a aktivity testovacího režimu. Z toho bylo 36306 pořízeno periodicky v pětiminutových intervalech a 1822 na základě události změny stavu žaluzie - ruční ovládání uživatelem. Příklad 3 sbíraných veličin na časovém úseku jednoho dne (\DTMdisplaydate{2022}{04}{19}{-1}) je v grafu na \refskl{fig:data_sel}{obrázku}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[draft=false,width=\textwidth]{img/results/data_sel.pdf}
+        \caption[Graf sesbíraných dat (příklad)]{Graf sesbíraných hodnot 3 vybraných příznakových veličin z celkových 15. Zobrazena je pouze část dat ze dne \DTMdisplaydate{2022}{04}{19}{-1}}
+        \label{fig:data_sel}
+    \end{figure}
+
+    V průběhu sběru dat došlo ke 125~výpadkům při kterých bylo ztraceno 5240~vzorků. Nejčastějším důvodem výpadku byly problémy s připojením k \acrshort{api} výrobce žaluzie (Somfy, celkem 105 výpadků). Mezi další příčiny patří výpadky senzorů (odpojení), plný disk databázového serveru (MongoDB) a chyba v systému domácí automatizace (Home Assistant). Poslední dvě příčiny společně způsobily ztrátu asi 81~\% měření z celkového počtu ztracených měření. Největší z výpadků, způsobený Home Assistantem, vznikl ještě před implementací monitoringu přicházejích MQTT zpráv a byl tak odhalen pozdě. Jednou došlo k výpadku připojení k DNS serverům poskytovatele připojení k internetu a nebylo kvůli tomu možné zjistit stav žaluzie. Počet výpadků, jejich důvod a počet při nich ztracených měření shrnuje \cref{tab:outages}.
+    \input{tab/tab_outages.tex}
+
+    Vzorky podle důvodu sběru (událost, periodické) a výpadky v závislosti na čase jsou v grafu na \refskl{fig:sample_type}{obrázku}. Každý vzorek je vyobrazen jako bod podle důvodu svého vzniku (Periodická data - vzorky, které byly pořízeny v pětiminutových intervalech; Události - vzorky získané na základě ruční změny stavu žaluzie uživatelem; Výpadky - vzorky, které měly být periodicky pořízeny, ale nebyly).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[draft=false,width=\textwidth]{img/results/sample_type.pdf}
+        \caption[Graf druhu sesbíraných vzorků a výpadků]{Graf druhu sesbíraných vzorků dat a výpadků.}
+        \label{fig:sample_type}
+    \end{figure}
+\section{Volba struktury \acrshort{nn} a parametrů učení}
+    Na datech sesbíraných ve dnech od \DTMdisplaydate{2021}{12}{1}{-1} do \DTMdisplaydate{2022}{3}{17}{-1} bylo natrénováno 60 dopředných \acrshort{nn} (regresor FFNN, \cref{sec:ffnn}) a 32 rekurentních \acrshort{nn} (regresor LSTM, \cref{sec:lstm}). Dále budeme uvažovat pouze sítě trénované se ztrátovou funkcí \acrshort{mse}, protože ostatní se trénovaly s využitím kosinové vzdálenosti, která je pro danou úlohu nevhodná (nízkou ztrátu totiž vykazují nejen stavy blízko požadovaným, ale také ty, které mají blízký poměr mezi dvěma stavovými veličinami žaluzie), což se potvrdilo i při tomto experimentu, kdy \acrshort{mse} predikcí na testovací datové sadě (\cref{ssec:test}) u sítí trénovaných se ztrátovou funkcí \acrshort{mse} a s kosinovou podobností se lišila o řád jak v případě dopředné, tak i v případě rekurentní \acrshort{nn}. Struktura sítě, parametry použité při jejím trénování a \acrshort{mse} na testovací datové sadě jsou v \refskl{tab:ffnnhyperResults,tab:lstmhyperResults}{tabulkách}.
+    \input{tab/tab_ffnnhyper_results.tex}
+    \input{tab/tab_lstmhyper_results.tex}
+
+    Na základě těchto výsledků byly pro další použití v navrhovaném systému automatického ovládání žaluzií zvoleny následující parametry pro \acrshort{nn} a jejich trénování:
+    \begin{itemize}
+        \item Dopředná \acrshort{nn} (FFNN):
+        \begin{itemize}
+            \item 3 skryté vrstvy (po řadě 20, 15 a 10 neuronů);
+            \item 500 epoch trénování;
+            \item velikost dávky (batch\_size) 32.;
+            \item ztrátová funkce (loss) \acrshort{mse}.
+        \end{itemize}
+        \item Dopředná \acrshort{nn} (LSTM):
+        \begin{itemize}
+            \item 2 skryté vrstvy (po řadě 64 a 64 neuronů);
+            \item 200 epoch trénování;
+            \item velikost dávky (batch\_size) 16;
+            \item ztrátová funkce (loss) \acrshort{mse}.
+        \end{itemize}
+    \end{itemize}
+\section{Vliv jednotlivých příznaků na predikci} \label{sec:res_features}
+    Důležitost příznaků v regresorech byla vyjádřena jako průměrný rozdíl \acrshort{mse} jestliže jsou hodnoty daného příznaku náhodně promíchány mezi vzorky (20 realizací) a \acrshort{mse} na datech v původním pořadí. Pro regresor FFNN jsou první 4 nejdůležitější příznaky day\_secs, lum\_in, lum\_out a year\_day, pro regresor LSTM pak day\_secs, lum\_in, year\_day a owm\_wind\_speed. Mezi málo důležité příznaky patří u obou regresorů všechny teploty (temp\_in, temp\_out, owm\_temp\_$x$h pro $x=1,2,3$). Grafy důležitostí všech příznaků pro jednotlivé regresory jsou na \refskl{fig:pfi_ffnn,fig:pfi_lstm}{obrázcích}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[draft=false,width=\textwidth]{img/results/pfi_ffnn.pdf}
+        \caption[Důležitost příznaků FFNN]{Permutační důležilost příznaků v regresoru založeném na dopředné neuronové síti v úloze automatického ovládání žaluzie.}
+        \label{fig:pfi_ffnn}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[draft=false,width=\textwidth]{img/results/pfi_lstm.pdf}
+        \caption[Důležitost příznaků LSTM]{Permutační důležilost příznaků v regresoru založeném na rekurentní neuronové síti v úloze automatického ovládání žaluzie.}
+        \label{fig:pfi_lstm}
+    \end{figure}
+\section{Porovnání regresorů} \label{sec:res_regr}
+    Porovnání regresorů použitých v systému automatického ovládání žaluzie (jestliže to vzhledem k jejich návrhu dává smysl) z hlediska počtu parametrů (u Ifelse ručně konfigurované, u FFNN a LSTM odhadnuté pomocí algoritmů strojového učení), doby učení, doby predikce výstupu a dosažené \acrshort{mse} na testovací datové sadě je uvedené v \refskl{tab:regr_comp}{tabulce}. Regresor Ifelse má nejmenší počet parametrů, je 2. v rychlosti predikce a má nejvyšší \acrshort{mse}. Největší počet parametrů, dobu trénování i predikce a nejnižší \acrshort{mse} má regresor LSTM.
+    \input{tab/tab_regressors.tex}
+
+    Ukázka predikce obou stavových veličin žaluzie jednotlivými regresory na základě dat sesbíraných \DTMdisplaydate{2022}{04}{10}{-1} a porovnání se skutečným řízením je v grafu na \refskl{fig:regr_comp}{obrázku}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[draft=false,width=\textwidth]{img/results/regr_comp_sel.pdf}
+        \caption[Porovnání predikce regresorů]{Porovnání predikce 3 regresorů a skutečného řízení na datech z \DTMdisplaydate{2022}{04}{10}{-1}}
+        \label{fig:regr_comp}
+    \end{figure}
+\section{Vyhodnocení vlivu retrainingu} \label{sec:res_retr}
+    Vyhodnocovat retraining má smysl jen u 2 z regresorů, které využívají strojové učení (FFNN a LSTM). Pro každý z nich se porovnaly 2 modely. První z modelů se trénovaly na datech do konce února, druhé pak vznikly z prvních opakovaným trénovaním na datech do konce dubna. \Cref{tab:retr_ffnn,tab:retr_lstm} porovnávají \acrshort{mse} od referenčních dat z testovací datové sady pro každý z regresorů celkově i pro každou stavovou proměnnou zvlášť.
+    \input{tab/tab_retraining_ffnn.tex}
+    \input{tab/tab_retraining_lstm.tex}
+
+    Příklad predikce ovládání žaluzií (pro každou z proměnných ve vlastní soustavě souřadné) jednotlivými modely dne \DTMdisplaydate{2022}{04}{20}{-1} je na \refskl{fig:retr_ffnn,fig:retr_lstm}{obrázcích}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[draft=false,width=0.95\textwidth]{img/results/retraining_sel_ffnn.pdf}
+        \caption[Porovnání predikce FFNN (retraining)]{Porovnání predikce 2 modelů dopředné neuronové sítě a skutečného řízení na datech z \DTMdisplaydate{2022}{04}{20}{-1}}
+        \label{fig:retr_ffnn}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[draft=false,width=0.95\textwidth]{img/results/retraining_sel_lstm.pdf}
+        \caption[Porovnání predikce LSTM (retraining)]{Porovnání predikce 2 modelů rekurentní neuronové sítě a skutečného řízení na datech z \DTMdisplaydate{2022}{04}{20}{-1}}
+        \label{fig:retr_lstm}
+    \end{figure}

@@ -1,28 +1,35 @@
 \chapter{Úvod} \label{chap:introduction}
-Žaluzie se nachází v rodinném domě autora před oknem jeho ložnice.
-\uv{Introduction section of your paper leads a reader from a well-known to the particular spot}
+% \uv{Introduction section of your paper leads a reader from a well-known to the particular spot}
 
-Skeleton:
-\begin{itemize}
-    \item background
-    \item gap
-    \item proposed method
-    \item outline
-\end{itemize}
+% Skeleton:
+% \begin{itemize}
+%     \item background
+%     \item gap
+%     \item proposed method
+%     \item outline
+% \end{itemize}
 
-motivace, zasazení do kontextu, o čem práce je, jaké jsou cíle práce, rozvržení práce (outline)
-\begin{itemize}
-    \item hlavní motivace: zapojení strojového učení na realtime problém
-    \item retraining na základě nově nasbíraných dat
-    \item naučení se návyků uživatele
-    \item naučení se nových příznaků v průběhu času (přes roční období…)
-    \item vyhodnocení vlivu zapojení kontextu na kvalitu predikce (LSTM vs. FFNN))
-    \item …
-\end{itemize}
+% motivace, zasazení do kontextu, o čem práce je, jaké jsou cíle práce, rozvržení práce (outline)
+% \begin{itemize}
+%     \item hlavní motivace: zapojení strojového učení na realtime problém
+%     \item retraining na základě nově nasbíraných dat
+%     \item naučení se návyků uživatele
+%     \item naučení se nových příznaků v průběhu času (přes roční období…)
+%     \item vyhodnocení vlivu zapojení kontextu na kvalitu predikce (LSTM vs. FFNN))
+%     \item …
+% \end{itemize}
+Stínění oken v pozemních stavbách určených k bydlení se využívá k regulaci teploty a zajištění soukromí obyvatel. (\cite{lubinova:stineni}) Jednou z možností stínění jsou venkovní žaluzie osazené pohonem na dálkové ovládání. Jejich uživatel může měnit výšku vytažení žaluzie a sklon lamel a ovlivňovat tím množství záření, které skrz okno prochází. Pomocí vzdáleného ovládání pak lze žaluzie řídit automaticky.
 
+Komplexní systém může generovat akční zásahy pro řízení žaluzií na základě různých vstupních informací (datum a čas, měření veličin pomocí senzorů) bez účasti uživatele za účelem zajištění jeho komfortu a úspory prostředků vynaložených na regulaci teploty v interiéru (vytápění a chlazení). Sběr informací na základě kterých se má rozhodovat o nastavení žaluzie i samotné rozhodování musí probíhat v reálném čase.
 
-\section{State of the Art} \label{sec:state_of_the_art}
+Tato práce se zabývá návrhem takového systému, návrhem měřicích zařízení použitelných pro měření veličin užitečných při rozhodování systému a možnostmi využití strojového učení k ovládání žaluzií v reálném čase. Zkoumá časový vývoj použitých algoritmů při opakovaném učení na postupně sbíraných datech s ohledem na měnící se požadavky uživatele a měnící se podmínky v průběhu roku. Její cíle jsou následující:
+\begin{enumerate}
+    \item Určit vhodné vstupní veličiny (příznaky) a výstupní veličiny pro automatické rozhodování o stavu žaluzie.
+    \item Zkonstruovat měřicí zařízení pro měřitelné příznaky odesílat jejich hodnoty pomocí MQTT\footnote{MQTT je komunikační protokol blíže popsaný v \refskl{sec:MQTT}{sekci}}.
+    \item Zajistit komunikaci s vybranými žaluziemi pomocí poskytovaného API\footnote{\acrlong{api}} a MQTT\footnotemark[1].
+    \item Zajistit komunikaci se zdroji všech příznaků pomocí MQTT a data ukládat pro pozdější použití.
+    \item Navrhnout základní rozhodovací systém založený na pravidlech (baseline).
+    \item Navrhnout model neuronové sítě a porovnat jeho použitelnost s baseline systémem.
+\end{enumerate}
 
-\section{Thesis Objectives} \label{sec:thesis_objectives}
-
-\section{Thesis Outline} \label{sec:thesis_outline}
+V práci se využívá skutečná venkovní žaluzie s hliníkovými lamelami a pohonem od firmy Somfy. Vzdálenou komunikaci s ním zajišťuje řídicí jednotka Tahoma připojená do internetu, která komunikuje se servery výrobce, jejichž prostřednictvím je možné žaluzii ovládat a zjistit její aktuální stav. Žaluzie se nachází před oknem pokoje autora v rodinném domě v obci vzdálené asi 12~km severovýchodně od Plzně. Uvnitř tohoto pokoje a na střeše daného domu také probíhají všechna měření.
