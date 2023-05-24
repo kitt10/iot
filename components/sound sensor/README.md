@@ -10,7 +10,7 @@
 <tr><td>Microphone Frequency</td><td><b>16-20 kHz</b></td></tr>
 <tr><td>Microphone S/N Radio</td><td><b>54 dB</b></td></tr>
 <tr><td>Response time</td><td><b>1s</b></td></tr>
-<tr><td>Price</td><td><b>< 41 Kč</b></td></tr></table>
+<tr><td>Price</td><td><b>< 150 Kč</b></td></tr></table>
 
 * [Datasheet](./datasheet.pdf)
 
