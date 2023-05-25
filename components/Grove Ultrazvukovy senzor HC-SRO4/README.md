@@ -1,4 +1,4 @@
-## Vibrační mini motor
+## Ultrazvukový senzor
 
 <table border="0" width="100%"><tr><td colspan=2 width="60%">seeed studio Grove </td>
 <td rowspan=9 width="40%" align="right"><img src="../../.img/ultra.jpg" width="200px" /></td></tr>

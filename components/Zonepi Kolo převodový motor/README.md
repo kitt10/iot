@@ -1,6 +1,6 @@
-## Water sensor
+## Kolo převodový motor
 
-<table border="0" width="100%"><tr><td colspan=2 width="60%">seeed studio Grove </td>
+<table border="0" width="100%"><tr><td colspan=2 width="60%">Zonepi </td>
 <td rowspan=9 width="40%" align="right"><img src="../../.img/kolo.jpg" width="200px" /></td></tr>
 <tr><td>Voltage range</td><td><b>3V - 6V</b></td></tr>
 <tr><td>Input type</td><td><b>Digital</b></td></tr>

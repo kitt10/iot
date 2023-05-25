@@ -1,7 +1,7 @@
 ## Temperature sensor
 
 <table border="0" width="100%"><tr><td colspan=2 width="60%">GM Electronic</td>
-<td rowspan=9 width="40%" align="right"><img src="../../.img/temp.jpg" width="200px" /></td></tr>
+<td rowspan=9 width="40%" align="right"><img src="../../.img/gmtemp.jpg" width="200px" /></td></tr>
 <tr><td>Voltage range</td><td><b>3V - 5.5V</b></td></tr>
 <tr><td>Input type</td><td><b>Digital</b></td></tr>
 <tr><td>Compatible</td><td><b>Arduino, Raspberry Pi, ESP8266</b></td></tr>
