@@ -1,6 +1,6 @@
 ## Temperature & humi sensor
 
-<table border="0" width="100%"><tr><td colspan=2 width="60%">seeed studio Grove </td>
+<table border="0" width="100%"><tr><td colspan=2 width="60%">GM Electronic</td>
 <td rowspan=9 width="40%" align="right"><img src="../../.img/humi.jpg" width="200px" /></td></tr>
 <tr><td>Voltage range</td><td><b>3.5V - 5V</b></td></tr>
 <tr><td>Input type</td><td><b>Digital</b></td></tr>
