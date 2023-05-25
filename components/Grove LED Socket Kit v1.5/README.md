@@ -43,10 +43,9 @@ while True:
 >https://wiki.seeedstudio.com/Grove-Creator-Kit-1/
 
 ### References
-> https://wiki.seeedstudio.com/Grove-Button/
+> https://wiki.seeedstudio.com/Grove-LED_Socket_Kit/
 >
-> https://botland.cz/grove-tlacitka-klavesnice-a-joysticky/11297-grove-button-modul-s-tlacitkem-5903351246446.html
-
+> https://simple-circuit.com/arduino-led-blink-seeed-studio-grove-led-socket-kit/
 ### Zpracováno
 - Václav Sontag
 - Lucas Löffler
