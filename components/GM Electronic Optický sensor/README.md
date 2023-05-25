@@ -31,11 +31,6 @@ while True:
 time_sleep(1)
 ```
 
-### Notes
-> Also found in Grove Creator Kit-
->
->https://wiki.seeedstudio.com/Grove-Creator-Kit-1/
-
 ### References
 > 
 >

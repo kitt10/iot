@@ -2,13 +2,13 @@
 
 <table border="0" width="100%"><tr><td colspan=2 width="60%">seeed studio Grove </td>
 <td rowspan=9 width="40%" align="right"><img src="../../.img/humi.jpg" width="200px" /></td></tr>
-<tr><td>Voltage range</td><td><b>3.3V - 5V</b></td></tr>
+<tr><td>Voltage range</td><td><b>3.5V - 5V</b></td></tr>
 <tr><td>Input type</td><td><b>Digital</b></td></tr>
 <tr><td>Compatible</td><td><b>Arduino, Raspberry Pi, ESP8266</b></td></tr>
-<tr><td>Temperature Measuring Range</td><td><b>-0°C to +70°C</b></td></tr>
-<tr><td>Humidity Measuring Range</td><td><b>20% to 90% RH</b></td></tr>
+<tr><td>Temperature Measuring Range</td><td><b>0°C to +60°C</b></td></tr>
+<tr><td>Humidity Measuring Range</td><td><b>20% to 95% RH</b></td></tr>
 <tr><td>Response time</td><td><b>2s</b></td></tr>
-<tr><td>Price</td><td><b>< 248 Kč</b></td></tr></table>
+<tr><td>Price</td><td><b>< 58 Kč</b></td></tr></table>
 
 * [Datasheet not found]()
 
@@ -40,15 +40,8 @@ while True:
         time.sleep(3)
 ```
 
-### Notes
-> Also found in Grove Creator Kit-
->
->https://wiki.seeedstudio.com/Grove-Creator-Kit-1/
-
 ### References
-> https://wiki.seeedstudio.com/Grove-TemperatureAndHumidity_Sensor/
->
-> https://seeeddoc.github.io/Grove-Temperature_and_Humidity_Sensor/
+> https://www.laskakit.cz/arduino-senzor-teploty-a-vlhkosti-vzduchu-dht11/?gclid=EAIaIQobChMIm8f1gf-P_wIViBYGAB0R9QhuEAQYCiABEgIK3_D_BwE
 
 ### Zpracováno
 - Václav Sontag
